@@ -97,8 +97,8 @@ const config = {
                         options: {
                             encodeOptions: {
                                 avif: {
-                                    cqLevel: 21,
-                                    speed: process.env.NODE_ENV === 'production' ? 0 : 10,
+                                    cqLevel: 18,
+                                    speed: process.env.NODE_ENV === 'production' ? 0 : 6,
                                     subsample: 3,
                                 },
                             },
@@ -128,8 +128,8 @@ const config = {
                         options: {
                             encodeOptions: {
                                 avif: {
-                                    cqLevel: 21,
-                                    speed: process.env.NODE_ENV === 'production' ? 0 : 10,
+                                    cqLevel: 18,
+                                    speed: process.env.NODE_ENV === 'production' ? 0 : 6,
                                     subsample: 3,
                                 },
                             },
