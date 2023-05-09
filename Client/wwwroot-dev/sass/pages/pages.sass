@@ -1,0 +1,64 @@
+@import "home"
+@import "blog"
+@import "projects"
+@import "gaming"
+@import "media"
+@import "setups"
+
+main, #main-border, #page-transitioner
+    position: fixed
+    right: 0px
+    overflow-x: hidden
+    overflow-y: visible
+
+main, #page-transitioner
+    top: #{$bootstrapMargin * 2 - 8} + px
+    bottom: #{$bootstrapMargin * 2 - 8} + px
+    left: #{$navigationBarWidth + $bootstrapMargin - 4} + px
+    width: unset !important
+    border-top-left-radius: #{$borderRadius - math.div($bootstrapMargin, 2)} + px
+    border-bottom-left-radius: #{$borderRadius - math.div($bootstrapMargin, 2)} + px
+    z-index: $zIndexMain
+
+#page-transitioner
+    background-color: $materialYouColour1
+    opacity: 0
+    z-index: $zIndexPageTransitioner
+
+#main-border
+    top: #{$bootstrapMargin - 4} + px
+    bottom: #{$bootstrapMargin - 4} + px
+    left: $navigationBarWidth + px
+    border-top-left-radius: $borderRadius + px
+    border-bottom-left-radius: $borderRadius + px
+    background-color: $materialYouColour1
+    z-index: $zIndexMainBorder
+
+#background-img
+    position: fixed
+    top: 0px
+    bottom: 0px
+    left: 0px
+    right: 0px
+
+.page
+    height: 100%
+    & > .col
+        height: inherit
+        & > .row
+            background-repeat: no-repeat
+            background-position: center
+            background-size: cover
+            background-attachment: fixed
+    .section
+        position: relative
+        border-radius: #{math.div($borderRadius, 2)} + px
+        margin-top: -$borderRadius + px
+        margin-bottom: -$borderRadius + px
+        padding-top: $borderRadius + px
+        padding-bottom: $borderRadius + px
+        padding-left: $borderRadius + px
+        padding-right: $borderRadius + px
+
+        &:last-child
+            border-bottom-right-radius: 0px

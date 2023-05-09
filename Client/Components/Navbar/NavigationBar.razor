@@ -1,0 +1,32 @@
+﻿<nav id="navbar" class="container-fluid" style="background-image: url('')">
+    <div id="background-fader"></div>
+    <div class="row">
+        <div class="col-auto">
+            @ChildContent
+        </div>
+    </div>
+</nav>
+
+@inject IJSRuntime JS
+@inject NavigationManager Navigation
+
+@inject UIState UI
+
+@code {
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    protected override Task OnInitializedAsync()
+    {
+        JS.InvokeVoidAsync("setNavigationAnimatorDotNetReference", DotNetObjectReference.Create(this));
+        return base.OnInitializedAsync();
+    }
+
+    [JSInvokable]
+    public void NavigatePage(string link) => Navigation.NavigateTo(link);
+
+    [JSInvokable]
+    public void FinishPageNavigation() => UI.PageIsTransitioning = false;
+
+}

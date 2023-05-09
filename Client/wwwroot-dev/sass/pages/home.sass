@@ -1,0 +1,39 @@
+$homeZIndexSection1: 1
+$homeZIndexSection2: 2
+    
+#page-home
+    & > .col
+        & > .row
+            &:nth-child(1)
+                z-index: $homeZIndexSection1
+                background-image: url('../../img/home/background-section-0.png?as=avif')
+                padding-bottom: $borderRadius + px
+                height: 100%
+                #welcome-text
+                    background-color: $materialYouColour1TransparencyLow
+                    backdrop-filter: blur($blurRadius + px)
+                    -webkit-backdrop-filter: blur($blurRadius + px)
+                    padding-left: 0px
+                    max-width: 600px
+                    text-align: center
+                    & > h1, & > h2, & > p
+                        margin-top: #{$bootstrapMargin * 2} + px
+                        margin-bottom: #{$bootstrapMargin * 2} + px
+                        margin-left: #{$bootstrapMargin * 2} + px
+                    & > h1, & > h2
+                        padding-top: #{$bootstrapMargin * 2} + px
+                        padding-bottom: #{$bootstrapMargin * 2} + px
+                        padding-left: #{$bootstrapMargin * 2} + px
+                        padding-right: #{$bootstrapMargin * 2} + px
+                    & > p
+                        padding-top: #{$bootstrapMargin * 2} + px
+                        padding-bottom: #{$bootstrapMargin * 2} + px
+                        padding-left: #{$bootstrapMargin * 3} + px
+                        padding-right: #{$bootstrapMargin * 3} + px
+                #avatar-cutout
+                    padding-top: $borderRadius + px
+            &:nth-child(2)
+                z-index: $homeZIndexSection2
+                background-color: $black
+                color: $white
+                border-top-left-radius: $borderRadius - 10 + px

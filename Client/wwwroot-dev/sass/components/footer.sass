@@ -1,0 +1,27 @@
+footer
+    position: fixed
+    height: $footerHeight + px
+    bottom: 0px
+    left: 0px
+    right: 0px
+    background-color: $materialYouColour3
+    z-index: $zIndexFooter
+
+    & > .row > .col-auto
+        background-color: $materialYouColour3
+        width: $navigationBarWidth + px
+        height: $navigationBarWidth - ($bootstrapMargin * 3) - 8 + px
+        border-top-left-radius: math.div($borderRadius, 2) + px
+        border-top-right-radius: math.div($borderRadius, 2) + px
+        margin-top: math.div(-$borderRadius, 2) + px
+
+    img
+        width: 55.625px
+        height: 55.625px
+        transform: translateY(8px) translateX(1px)
+        cursor: pointer
+        border-radius: 20px
+        transition: 0.33s
+        padding: 4px
+        &:hover
+            background-color: $black

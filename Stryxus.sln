@@ -1,0 +1,76 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33006.217
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stryxus.Server", "Server\Stryxus.Server.csproj", "{CA8F5191-91D4-49CE-AB34-DAB23328C482}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stryxus.Client", "Client\Stryxus.Client.csproj", "{82AF6C54-52CA-4301-A269-D64E11FF2A56}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stryxus.Shared", "Shared\Stryxus.Shared.csproj", "{A94EF7E7-3667-441D-85A5-128A9A2CB1BB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Node", "Node", "{030A4210-4C5F-49A7-BB87-C6D1173037DF}"
+	ProjectSection(SolutionItems) = preProject
+		optimiser.js = optimiser.js
+		package-lock.json = package-lock.json
+		package.json = package.json
+		tsconfig.json = tsconfig.json
+		webpack.config.js = webpack.config.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{B5591EE8-EBD5-4CAD-9520-DFE43AD48D26}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompressedStaticFiles", "Submodules\CompressedStaticFiles\CompressedStaticFiles\CompressedStaticFiles.csproj", "{16FB84BA-580A-4F9D-992D-0C2EBF73F1AD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StryxLib", "Submodules\StryxLib\.NET\StryxLib\StryxLib.csproj", "{0D7FE0AE-E4EB-4B04-B67A-2644BAB6E8B7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Components", "Components", "{6F12E418-C289-4835-A4F5-9B9E6017DA55}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Media", "Media", "{66D6808F-87DC-4574-A7B3-E0878C778163}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stryxus.Client.Components.Media", "Components\Media\Stryxus.Client.Components.Media\Stryxus.Client.Components.Media.csproj", "{BD07F3CF-96BA-43F8-B62C-1F96CE044AA5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CA8F5191-91D4-49CE-AB34-DAB23328C482}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA8F5191-91D4-49CE-AB34-DAB23328C482}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA8F5191-91D4-49CE-AB34-DAB23328C482}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA8F5191-91D4-49CE-AB34-DAB23328C482}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82AF6C54-52CA-4301-A269-D64E11FF2A56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82AF6C54-52CA-4301-A269-D64E11FF2A56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82AF6C54-52CA-4301-A269-D64E11FF2A56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82AF6C54-52CA-4301-A269-D64E11FF2A56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A94EF7E7-3667-441D-85A5-128A9A2CB1BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A94EF7E7-3667-441D-85A5-128A9A2CB1BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A94EF7E7-3667-441D-85A5-128A9A2CB1BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A94EF7E7-3667-441D-85A5-128A9A2CB1BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16FB84BA-580A-4F9D-992D-0C2EBF73F1AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16FB84BA-580A-4F9D-992D-0C2EBF73F1AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16FB84BA-580A-4F9D-992D-0C2EBF73F1AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16FB84BA-580A-4F9D-992D-0C2EBF73F1AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D7FE0AE-E4EB-4B04-B67A-2644BAB6E8B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D7FE0AE-E4EB-4B04-B67A-2644BAB6E8B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D7FE0AE-E4EB-4B04-B67A-2644BAB6E8B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D7FE0AE-E4EB-4B04-B67A-2644BAB6E8B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD07F3CF-96BA-43F8-B62C-1F96CE044AA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD07F3CF-96BA-43F8-B62C-1F96CE044AA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD07F3CF-96BA-43F8-B62C-1F96CE044AA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD07F3CF-96BA-43F8-B62C-1F96CE044AA5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{16FB84BA-580A-4F9D-992D-0C2EBF73F1AD} = {B5591EE8-EBD5-4CAD-9520-DFE43AD48D26}
+		{0D7FE0AE-E4EB-4B04-B67A-2644BAB6E8B7} = {B5591EE8-EBD5-4CAD-9520-DFE43AD48D26}
+		{66D6808F-87DC-4574-A7B3-E0878C778163} = {6F12E418-C289-4835-A4F5-9B9E6017DA55}
+		{BD07F3CF-96BA-43F8-B62C-1F96CE044AA5} = {66D6808F-87DC-4574-A7B3-E0878C778163}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {687EFF39-46B7-470C-9C18-7B3FAB48556A}
+	EndGlobalSection
+EndGlobal

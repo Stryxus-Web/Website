@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <PropertyGroup>
+	<SourceRevisionId>build$([System.DateTime]::UtcNow.ToString("yyyyMMddHHmmss"))</SourceRevisionId>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'HTTPS' " />
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="7.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Client\Stryxus.Client.csproj" />
+    <ProjectReference Include="..\Shared\Stryxus.Shared.csproj" />
+    <ProjectReference Include="..\Submodules\CompressedStaticFiles\CompressedStaticFiles\CompressedStaticFiles.csproj" />
+    <ProjectReference Include="..\Submodules\StryxLib\.NET\StryxLib\StryxLib.csproj" />
+  </ItemGroup>
+
+</Project>

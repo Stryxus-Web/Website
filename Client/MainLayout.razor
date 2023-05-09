@@ -1,0 +1,46 @@
+﻿@inherits LayoutComponentBase
+
+<div id="avatar-container" class="container-fluid@(UI.CurrentPageContext?.RelativeLink == "/" ? " active" : string.Empty) @(UI.PageIsTransitioning ? "disabled" : string.Empty)">
+    <div class="row">
+        <div class="col">
+            <img src="/img/avatar.avif" @onclick="NavigateToHome" />
+        </div>
+    </div>
+</div>
+<div id="header"></div>
+<NavigationBar>
+    @if (UI.PageContexts is not null)
+    {
+        @foreach (UIState.PageContext c in UI.PageContexts.GetRange(1, UI.PageContexts.Count - 1))
+        {
+            <NavigationBarButton IconType="@MaterialYouIconType.Rounded" Title="@(c.Name)" RelativeLink="@(c.RelativeLink)" />
+        }
+    }
+</NavigationBar>
+<main id="main-body" class="container-fluid">
+    @Body
+</main>
+<div id="page-transitioner">
+    <LoadingCircle />
+</div>
+<div id="main-border"></div>
+<footer class="container-fluid">
+    <div class="row">
+        <div class="col-auto">
+            <VersionFooter />
+        </div>
+    </div>
+</footer>
+
+@inject UIState UI
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        UI.OnPageIsTransitioningChange += StateHasChanged;
+    }
+
+    private void NavigateToHome() => UI.CurrentPageContext = UI.PageContexts?.First(x => x.RelativeLink == "/");
+}

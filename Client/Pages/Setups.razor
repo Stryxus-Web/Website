@@ -1,0 +1,116 @@
+﻿@page "/setups"
+
+<div id="page-setups" class="page row justify-content-center align-items-center">
+    <div class="col">
+        <div class="row section">
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <h1>My Setup('s) &amp; Other Things</h1>
+                    </div>
+                </div>
+                <PersonalSetupCategory Title="@("PC Hardware")" Items="@(new Dictionary<string, (List<string>, Uri)>
+                {
+                    {"NZXT h210 Case", new ValueTuple<List<string>, Uri>(new List<string>
+                        {
+                            "/img/home/setup-pc-0.avif"
+                        }, new Uri("https://nzxt.com/en-GB/collection/h210"))},
+                    {"ZOTAC GAMING GeForce RTX 3060 Ti Twin Edge OC LHR", new ValueTuple<List<string>, Uri>(new List<string>
+                        {
+                            "/img/home/setup-pc-1.avif"
+                        }, new Uri("https://www.zotac.com/gb/product/graphics_card/zotac-gaming-geforce-rtx-3060-ti-twin-edge-oc-lhr-0"))},
+                    {"ROG Strix X570-I Gaming", new ValueTuple<List<string>, Uri>(new List<string>
+                        {
+                            "/img/home/setup-pc-2.avif"
+                        }, new Uri("https://rog.asus.com/motherboards/rog-strix/rog-strix-x570-i-gaming-model/"))},
+                    {"EK-AIO 240 D-RGB", new ValueTuple<List<string>, Uri>(new List<string>
+                        {
+                            "/img/home/setup-pc-3.avif"
+                        }, new Uri("https://www.ekwb.com/shop/ek-aio-240-d-rgb"))},
+                })" Description=""></PersonalSetupCategory>
+                    <PersonalSetupCategory Title="@("Macintosh")" Items="@(new Dictionary<string, (List<string>, Uri)>
+                {
+                    {"iMac 24\"", new ValueTuple<List<string>, Uri>(new List<string>
+                        {
+                            "/img/home/setup-imac-0.avif",
+                            "/img/home/setup-imac-1.avif"
+                        }, new Uri("https://www.apple.com/uk/imac-24/"))},
+                })" Description=""></PersonalSetupCategory>
+                    <PersonalSetupCategory Title="@("Monitors")" Items="@(new Dictionary<string, (List<string>, Uri)>
+                {
+                    {"Cooler Master Tempest GP27U", new ValueTuple<List<string>, Uri>(new List<string>
+                        {
+                            "/img/home/setup-monitor-0.avif"
+                        }, new Uri("https://www.coolermaster.com/catalog/setup/monitors/tempest-gp27u/"))},
+                    {"Samsung Odyssey G7 27\" G75T", new ValueTuple<List<string>, Uri>(new List<string>
+                        {
+                            "/img/home/setup-monitor-1.avif"
+                        }, new Uri("https://www.samsung.com/uk/business/monitors/gaming/odyssey-g7-379083-lc27g75tqsrxxu/"))},
+                })" Description=""></PersonalSetupCategory>
+                    <PersonalSetupCategory Title="@("Audio")" Items="@(new Dictionary<string, (List<string>, Uri)>
+                {
+                    {"Beyerdynamic DT 990 Pro Black Edition", new ValueTuple<List<string>, Uri>(new List<string>
+                        {
+                            "/img/home/setup-audio-0.avif"
+                        }, new Uri("https://europe.beyerdynamic.com/dt-990-pro-black.html"))},
+                    {"Asus ROG Delta", new ValueTuple<List<string>, Uri>(new List<string>
+                        {
+                            "/img/home/setup-audio-1.avif"
+                        }, new Uri("https://rog.asus.com/uk/headsets-audio/headsets/usb-headsets/rog-delta-model/"))},
+                })" Description=""></PersonalSetupCategory>
+                    <PersonalSetupCategory Title="@("Other Peripherals")" Items="@(new Dictionary<string, (List<string>, Uri)>
+                {
+                    {"Asus ROG Claymore II", new ValueTuple<List<string>, Uri>(new List<string>
+                        {
+                            "/img/home/setup-keyboardmouse-0.avif"
+                        }, new Uri("https://rog.asus.com/uk/keyboards/keyboards/aura-rgb/rog-claymore-ii-model/"))},
+                    {"Asus ROG Keris Wireless", new ValueTuple<List<string>, Uri>(new List<string>
+                        {
+                            "/img/home/setup-keyboardmouse-1.avif"
+                        }, new Uri("https://rog.asus.com/mice-mouse-pads/mice/wireless/rog-keris-wireless-model/"))},
+                    {"Asus ROG Rapture GT-AC2900", new ValueTuple<List<string>, Uri>(new List<string>
+                        {
+                            "/img/home/setup-otherperi-0.avif"
+                        }, new Uri("https://rog.asus.com/uk/networking/rog-rapture-gt-ac2900-model/"))},
+                })" Description=""></PersonalSetupCategory>
+                    <PersonalSetupCategory Title="@("Desk('s)")" Items="@(new Dictionary<string, (List<string>, Uri)>
+                {
+                    {"Asus ROG/IKEA UPPSPEL", new ValueTuple<List<string>, Uri>(new List<string>
+                        {
+                            "/img/home/setup-desk-0.avif"
+                        }, new Uri("https://www.ikea.com/gb/en/p/uppspel-gaming-desk-black-s69430192/"))},
+                })" Description=""></PersonalSetupCategory>
+                    <PersonalSetupCategory Title="@("Phone, Tablet & Peripherals")" Items="@(new Dictionary<string, (List<string>, Uri)>
+                {
+                    {"Nothing Phone (1)", new ValueTuple<List<string>, Uri>(new List<string>
+                        {
+                            "/img/home/setup-phonetablet-0.avif"
+                        }, new Uri("https://nothing.tech/pages/phone-1"))},
+                    {"OnePlus 9 Pro", new ValueTuple<List<string>, Uri>(new List<string>
+                        {
+                            "/img/home/setup-phonetablet-1.avif"
+                        }, new Uri("https://www.oneplus.com/uk/9-pro"))},
+                    {"Samsung Galaxy Tab A8 (10.5\", Wi-Fi)", new ValueTuple<List<string>, Uri>(new List<string>
+                        {
+                            "/img/home/setup-phonetablet-2.avif"
+                        }, new Uri("https://www.samsung.com/uk/tablets/galaxy-tab-a/galaxy-tab-a8-wifi-dark-gray-32gb-sm-x200nzaaeua/"))},
+                })" Description=""></PersonalSetupCategory>
+                    <PersonalSetupCategory Title="@("Servers & SBC's")" Items="@(new Dictionary<string, (List<string>, Uri)>
+                {
+                    {"Raspberry Pi 4 Model B 4GB", new ValueTuple<List<string>, Uri>(new List<string>
+                        {
+                            "/img/home/setup-serversbc-0.avif"
+                        }, new Uri("https://www.raspberrypi.com/products/raspberry-pi-4-model-b/"))},
+                    {"Argon ONE V2 Case", new ValueTuple<List<string>, Uri>(new List<string>
+                        {
+                            "/img/home/setup-serversbc-1.avif"
+                        }, new Uri("https://argon40.com/en-gb/products/argon-one-v2-case-for-raspberry-pi-4"))},
+                })" Description=""></PersonalSetupCategory>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+}

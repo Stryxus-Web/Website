@@ -1,0 +1,43 @@
+#header
+    position: fixed
+    height: $headerHeight + px
+    top: 0px
+    left: 0px
+    right: 0px
+    background-color: $materialYouColour3
+    z-index: $zIndexHeader
+    border-bottom-left-radius: $borderRadius + px
+        
+#avatar-container
+    margin-top: -4px
+
+    &.disabled
+        pointer-events: none
+
+    &.active
+        & > .row > img
+            border-color: rgb(249, 249, 249)
+
+    & > .row
+        width: $navigationBarWidth - ($bootstrapMargin * 3) + 1 + px
+        height: $navigationBarWidth - ($bootstrapMargin * 3) + 1 + px
+        background-color: $materialYouColour3
+        margin-left: -$bootstrapMargin + px
+        padding-top: $bootstrapMargin * 1.5 - 4 + px
+        padding-bottom: $bootstrapMargin * 1.5 + px
+        padding-left: $bootstrapMargin * 1.5 + px
+        padding-right: $bootstrapMargin * 1.5 - 0.3 + px
+        border-bottom-left-radius: $borderRadius + px
+        border-bottom-right-radius: $borderRadius + px
+        z-index: $zIndexAvatarContainer
+        img
+            width: $navigationBarWidth - ($bootstrapMargin * 4.25) + px
+            height: $navigationBarWidth - ($bootstrapMargin * 4.25) + px
+            margin-left: -$bootstrapMargin + px
+            border-radius: $navigationBarWidth - math.div(($bootstrapMargin * 3), 2) + px
+            border: math.div($bootstrapMargin, 1.5) + px solid $materialYouColour4
+            cursor: pointer
+            transition: 0.33s
+            &:hover
+                border-color: $black
+        

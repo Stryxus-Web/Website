@@ -1,0 +1,73 @@
+﻿<Router AppAssembly="@typeof(App).Assembly">
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+    </Found>
+    <NotFound>
+        <PageTitle>Not found</PageTitle>
+        <LayoutView Layout="@typeof(MainLayout)">
+            <p role="alert">Sorry, there's nothing at this address.</p>
+        </LayoutView>
+    </NotFound>
+</Router>
+
+@inject UIState UI
+@inject NavigationManager Navigation
+
+@code 
+{
+    protected override Task OnInitializedAsync()
+    {
+        UI.SetPageContexts(new List<UIState.PageContext>()
+        {
+            new UIState.PageContext
+            {
+                Name = "Home",
+                RelativeLink = "/",
+                IconName = "home"
+            },
+            new UIState.PageContext
+            {
+                Name = "Blog",
+                RelativeLink = "/blog",
+                IconName = "feed"
+            },
+            new UIState.PageContext
+            {
+                Name = "Projects",
+                RelativeLink = "/projects",
+                IconName = "code"
+            },
+            new UIState.PageContext
+            {
+                Name = "Media",
+                RelativeLink = "/media",
+                IconName = "camera"
+            },
+            new UIState.PageContext
+            {
+                Name = "Gaming",
+                RelativeLink = "/gaming",
+                IconName = "sports_esports"
+            },
+            new UIState.PageContext
+            {
+                Name = "Setups",
+                RelativeLink = "/setups",
+                IconName = "devices"
+            }
+        });
+        Uri navURI = new(Navigation.Uri);
+        try
+        {
+            if (Navigation.Uri == Navigation.BaseUri || !UI.PageContexts.Any(o => o.RelativeLink == navURI.AbsolutePath)) UI.CurrentPageContext = UI.PageContexts?.First(x => x.RelativeLink == "/");
+            else
+            {
+                UIState.PageContext newConext = UI.PageContexts.First(x => x.RelativeLink == navURI.AbsolutePath);
+                if (!UI.PageIsTransitioning && !UI.CurrentPageContext.Equals(newConext)) UI.CurrentPageContext = newConext;
+            }
+        }
+        catch { Navigation.NavigateTo(string.Empty); }
+        return base.OnInitializedAsync();
+    }
+}
