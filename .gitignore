@@ -351,5 +351,3 @@ MigrationBackup/
 
 # Custom
 Client/wwwroot
-Submodules/CompressedStaticFiles
-Submodules/StryxLib
