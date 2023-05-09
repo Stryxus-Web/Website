@@ -1,11 +1,11 @@
-import { Blazor } from "./globals";
+import { } from "./globals";
 
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("start-button")?.addEventListener("click", () => 
     {
-        Blazor.start();
+        window.Blazor.start();
     });
-});
+}, false);
 
 export function testForAV1() {
     const testVid: HTMLVideoElement = document.createElement("video");

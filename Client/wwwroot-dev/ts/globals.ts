@@ -3,6 +3,9 @@
 declare global {
     interface Window {
         setNavigationAnimatorDotNetReference: (ref: never) => void
+        Blazor: {
+            start: () => void
+        }
     }
 }
 
@@ -12,11 +15,6 @@ export declare let DotNet: {
 
 window.setNavigationAnimatorDotNetReference = (ref: never) => {
     DotNet = ref;
-};
-
-
-export declare let Blazor: {
-    start: () => Promise<void>;
 };
 
 // Variables

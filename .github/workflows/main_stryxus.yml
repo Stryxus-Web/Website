@@ -11,12 +11,12 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
       - uses: actions/checkout@v2
 
-      - name: Setup Node 16
+      - name: Set up Node 16
         uses: actions/setup-node@v1
         with:
           node-version: '16.x'
@@ -26,6 +26,15 @@ jobs:
         with:
           dotnet-version: '7.x'
           include-prerelease: false
+
+      - name: Setup .NET WASM
+        run: dotnet workload install wasm-tools
+
+      - name: Restore Git Submodules
+        run: git submodule update --init --recursive
+
+      - name: Restore .NET Dependencies
+        run: dotnet restore "${{ env.WORKING_DIRECTORY }}"
           
       - name: Restore NPM Dependencies
         run: npm i
@@ -37,23 +46,23 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: Publish Website
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish Server -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
-      - name: Upload artifact for deployment job
+      - name: Upload Artifacts For Azure Deployment
         uses: actions/upload-artifact@v2
         with:
           name: .net-app
           path: ${{env.DOTNET_ROOT}}/myapp
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     needs: build
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
-      - name: Download artifact from build job
+      - name: Download Artifacts For Azure Deployment
         uses: actions/download-artifact@v2
         with:
           name: .net-app

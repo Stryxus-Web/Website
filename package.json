@@ -1,7 +1,6 @@
 {
   "name": "stryxus",
   "author": "Connor 'Stryxus' Shearer",
-  "type": "module",
   "scripts": {
     "dev": "webpack --mode=development",
     "prod": "webpack --mode=production",

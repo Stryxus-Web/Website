@@ -38,6 +38,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Git", "Git", "{3C7063DB-5F0
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflow", "Workflow", "{F5588EDC-B18F-4AC7-8CE7-9A5BD7B99784}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\main_stryxus.yml = .github\workflows\main_stryxus.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +82,7 @@ Global
 		{0D7FE0AE-E4EB-4B04-B67A-2644BAB6E8B7} = {B5591EE8-EBD5-4CAD-9520-DFE43AD48D26}
 		{66D6808F-87DC-4574-A7B3-E0878C778163} = {6F12E418-C289-4835-A4F5-9B9E6017DA55}
 		{BD07F3CF-96BA-43F8-B62C-1F96CE044AA5} = {66D6808F-87DC-4574-A7B3-E0878C778163}
+		{F5588EDC-B18F-4AC7-8CE7-9A5BD7B99784} = {3C7063DB-5F03-4663-A306-2D3F6DAECC92}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {687EFF39-46B7-470C-9C18-7B3FAB48556A}
