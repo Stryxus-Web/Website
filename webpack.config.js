@@ -33,7 +33,7 @@ module.exports = (env, argv) => {
         },
         watch: argv.mode === 'production' ? false : true,
         watchOptions: {
-            ignored: ["**/Stryxus/Client/wwwroot/**", "**/node_modules"],
+            ignored: [ '**/Stryxus/Client/wwwroot/**', '**/node_modules' ],
         },
         module: {
             rules: [
@@ -62,7 +62,7 @@ module.exports = (env, argv) => {
                 },
                 {
                     test: /\.png$/i,
-                    type: "asset",
+                    type: 'asset',
                 },
             ],
         },
@@ -100,9 +100,8 @@ module.exports = (env, argv) => {
                 }),
                 new ImageMinimizerPlugin({
                     generator: [
-                        /*
                         {
-                            type: "asset",
+                            type: 'asset',
                             implementation: ImageMinimizerPlugin.squooshGenerate,
                             options: {
                                 encodeOptions: {
@@ -113,20 +112,7 @@ module.exports = (env, argv) => {
                                     },
                                 },
                             },
-                        },
-                        */
-                        {
-                            preset: 'avif',
-                            implementation: ImageMinimizerPlugin.squooshGenerate,
-                            options: {
-                                encodeOptions: {
-                                    avif: {
-                                        cqLevel: 21,
-                                        speed: argv.mode === 'production' ? 0 : 10,
-                                        subsample: 3,
-                                    },
-                                },
-                            },
+                            filter: (source, sourcePath) => { return !sourcePath.endsWith('svg'); },
                         },
                     ],
                 }),
