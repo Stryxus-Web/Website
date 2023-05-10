@@ -130,7 +130,7 @@ module.exports = (env, argv) => {
                                     avif: {
                                         cqLevel: 18,
                                         speed: process.env.NODE_ENV === 'production' ? 0 : 10,
-                                        subsample: 0,
+                                        subsample: 3,
                                     },
                                 },
                             },
@@ -144,7 +144,7 @@ module.exports = (env, argv) => {
                                     avif: {
                                         cqLevel: 18,
                                         speed: process.env.NODE_ENV === 'production' ? 0 : 10,
-                                        subsample: 0,
+                                        subsample: 3,
                                     },
                                 },
                             },
