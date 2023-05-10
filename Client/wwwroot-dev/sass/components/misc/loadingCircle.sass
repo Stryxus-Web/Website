@@ -2,44 +2,41 @@
 	display: flex
 	align-items: center
 	justify-content: center
-	min-height: 100vh
+	height: 100vh
 	background-color: transparent
+	.loading-circle 
+		width: 340px
+		height: 340px
+		stroke-linecap: round
+		circle 
+			fill: none
+			stroke-width: 7
+			animation-name: preloader
+			animation-duration: 2s
+			animation-iteration-count: infinite
+			animation-timing-function: ease-in-out
+			transform-origin: 170px 170px
+			will-change: transform
 
-.loading-circle 
-	max-width: 15vw
-	width: 100%
-	height: auto
-	stroke-linecap: round
+			&:nth-of-type(1)
+				stroke-dasharray: 550px
+				stroke: $materialYouColour1
 
-circle 
-	fill: none
-	stroke-width: 7
-	animation-name: preloader
-	animation-duration: 2s
-	animation-iteration-count: infinite
-	animation-timing-function: ease-in-out
-	transform-origin: 170px 170px
-	will-change: transform
+			&:nth-of-type(2)
+				stroke-dasharray: 500px
+				stroke: $materialYouColour2
 
-	&:nth-of-type(1)
-		stroke-dasharray: 550px
-		stroke: $materialYouColour1
+			&:nth-of-type(3)
+				stroke-dasharray: 450px
+				stroke: $materialYouColour3
 
-	&:nth-of-type(2)
-		stroke-dasharray: 500px
-		stroke: $materialYouColour2
+			&:nth-of-type(4)
+				stroke-dasharray: 300px
+				stroke: $materialYouColour4
 
-	&:nth-of-type(3)
-		stroke-dasharray: 450px
-		stroke: $materialYouColour3
-
-	&:nth-of-type(4)
-		stroke-dasharray: 300px
-		stroke: $materialYouColour4
-
-	@for $i from 1 through 4
-		&:nth-of-type(#{$i})
-			animation-delay: -#{$i * 0.15}s
+			@for $i from 1 through 4
+				&:nth-of-type(#{$i})
+					animation-delay: -#{$i * 0.15}s
 
 @keyframes preloader
 	50%

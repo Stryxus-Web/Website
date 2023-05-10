@@ -5,7 +5,7 @@
 @import "media"
 @import "setups"
 
-main, #main-border, #page-transitioner
+main, #main-border, #page-transitioner, #page-transitioner-pre
     position: fixed
     right: 0px
     overflow-x: hidden
@@ -20,10 +20,15 @@ main, #page-transitioner
     border-bottom-left-radius: #{$borderRadius - math.div($bootstrapMargin, 2)} + px
     z-index: $zIndexMain
 
-#page-transitioner
+#page-transitioner, #page-transitioner-pre
     background-color: $materialYouColour1
     opacity: 0
     z-index: $zIndexPageTransitioner
+
+#page-transitioner-pre
+    top: 0px
+    bottom: 0px
+    left: 0px
 
 #main-border
     top: #{$bootstrapMargin - 4} + px

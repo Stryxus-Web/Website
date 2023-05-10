@@ -4,7 +4,7 @@ declare global {
     interface Window {
         setNavigationAnimatorDotNetReference: (ref: never) => void
         Blazor: {
-            start: () => void
+            start: () => Promise<void>
         }
     }
 }
