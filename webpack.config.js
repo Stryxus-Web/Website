@@ -31,7 +31,7 @@ module.exports = (env, argv) => {
                 return `${filepath.includes('wwwroot-dev/') ? filepath.slice(12) : filepath}/[name][ext]`;
             },
         },
-        watch: argv.mode === 'production' ? false : true,
+        watch: argv.mode === 'development',
         watchOptions: {
             ignored: [ '**/Stryxus/Client/wwwroot/**', '**/node_modules' ],
         },
