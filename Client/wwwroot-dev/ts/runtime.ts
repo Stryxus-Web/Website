@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
             trans.style.zIndex = "10000";
             gsap.to(trans, { opacity: 1, duration: 0.33, onComplete: () => 
             {
+                document.body.style.fontFamily = "SF-Pro-Display";
                 window.Blazor.start().then(() =>
                 {
                     waitForElement(`#${app.id}`, 30000).then(() => 
