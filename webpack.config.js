@@ -42,6 +42,19 @@ module.exports = (env, argv) => {
                     use: [
                         'style-loader',
                         { loader: 'css-loader', options: { sourceMap: argv.mode === 'development' } },
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                postcssOptions: {
+                                    plugins: function ()
+                                    {
+                                        return [
+                                            require('autoprefixer')
+                                        ];
+                                    }
+                                }
+                            }
+                        },
                         { loader: 'sass-loader', options: { sourceMap: argv.mode === 'development' } },
                     ],
                 },
@@ -51,17 +64,28 @@ module.exports = (env, argv) => {
                     exclude: /node_modules/,
                 },
                 {
-                    test: /\.(json|mp4|aac|svg)$/i,
+                    test: /\.(json|mp4|aac)$/i,
                     type: 'asset/resource',
                 },
                 {
-                    test: /\.woff2$/i,
+                    test: /\.woff2?$/,
                     type: 'asset/resource',
-                    dependency: { not: ['url'] },
+                    generator: {
+                        filename: './fonts/[name][ext]',
+                    },
+                },
+                {
+                    test: /\.svg/i,
+                    type: 'asset/resource',
                 },
                 {
                     test: /\.png$/i,
-                    type: 'asset',
+                    type: "asset",
+                    parser: {
+                        dataUrlCondition: {
+                            maxSize: 8192
+                        }
+                    }
                 },
             ],
         },
@@ -106,11 +130,24 @@ module.exports = (env, argv) => {
                                     avif: {
                                         cqLevel: 18,
                                         speed: process.env.NODE_ENV === 'production' ? 0 : 10,
-                                        subsample: 3,
+                                        subsample: 0,
                                     },
                                 },
                             },
                             filter: (source, sourcePath) => { return sourcePath.endsWith('png'); },
+                        },
+                        {
+                            preset: 'avif',
+                            implementation: ImageMinimizerPlugin.squooshGenerate,
+                            options: {
+                                encodeOptions: {
+                                    avif: {
+                                        cqLevel: 18,
+                                        speed: process.env.NODE_ENV === 'production' ? 0 : 10,
+                                        subsample: 0,
+                                    },
+                                },
+                            },
                         },
                     ],
                 }),
