@@ -30,8 +30,11 @@ $homeZIndexSection2: 2
                         padding-bottom: #{$bootstrapMargin * 2} + px
                         padding-left: #{$bootstrapMargin * 3} + px
                         padding-right: #{$bootstrapMargin * 3} + px
-                #avatar-cutout
-                    padding-top: $borderRadius + px
+                
+                #avatar-cutout-container
+                    #avatar-cutout
+                        padding-top: $borderRadius + px
+                        max-height: 100vh
             &:nth-child(2)
                 z-index: $homeZIndexSection2
                 background-color: $black
