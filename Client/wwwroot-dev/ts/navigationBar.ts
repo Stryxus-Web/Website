@@ -23,34 +23,34 @@ window.navigationBar = {
                 });
 
                 gsap.to(trans, { zIndex: 1000, onComplete: () => 
+                {
+                    gsap.to(trans, { opacity: 1, duration: 0.33, onComplete: () => 
                     {
-                        gsap.to(trans, { opacity: 1, duration: 0.25, onComplete: () => 
-                            {
-                                DotNet.invokeMethodAsync("NavigatePage", link).then((data: unknown) => {
-                                    if (data) {
-                                        console.log(data);
-                                    } else {
-                                        // TODO: If there is a timeout after 30 seconds, ask if they would like to continue or go back.
-                                        waitForElement("#main-body", 30000).then(() => 
+                        DotNet.invokeMethodAsync("NavigatePage", link).then((data: unknown) => {
+                            if (data) {
+                                console.log(data);
+                            } else {
+                                // TODO: If there is a timeout after 30 seconds, ask if they would like to continue or go back.
+                                waitForElement("#main-body", 30000).then(() => 
+                                {
+                                    const trans = document.getElementById("page-transitioner");
+                                    gsap.to(trans, { opacity: 0, duration: 0.33, delay: 0.5, onComplete: () => 
+                                    {
+                                        gsap.to(trans, { zIndex: -4, onComplete: () => 
                                         {
-                                            const trans = document.getElementById("page-transitioner");
-                                            gsap.to(trans, { opacity: 0, duration: 0.25, delay: 0.5, onComplete: () => 
-                                                {
-                                                    gsap.to(trans, { zIndex: -4, onComplete: () => 
-                                                        {
-                                                            DotNet.invokeMethodAsync("FinishPageNavigation").then((data: unknown) => 
-                                                            {
-                                                                if (data) {
-                                                                    console.log(data);
-                                                                }
-                                                            });
-                                                        }});
-                                                }});
-                                        });
-                                    }
+                                            DotNet.invokeMethodAsync("FinishPageNavigation").then((data: unknown) => 
+                                            {
+                                                if (data) {
+                                                    console.log(data);
+                                                }
+                                            });
+                                        }});
+                                    }});
                                 });
-                            }});
+                            }
+                        });
                     }});
+                }});
             }
         }
     }
