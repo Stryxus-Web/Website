@@ -79,7 +79,6 @@ module.exports = (env, argv) => {
                 apply: (compiler) => {
                     if (argv.mode === 'production') {
                         compiler.hooks.done.tap('DonePlugin', (stats) => {
-                            console.log('Compile is done!')
                             setTimeout(() => {
                                 process.exit(0)
                             })
