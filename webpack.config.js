@@ -112,7 +112,7 @@ module.exports = (env, argv) => {
                                     },
                                 },
                             },
-                            filter: (source, sourcePath) => { return !sourcePath.endsWith('svg'); },
+                            filter: (source, sourcePath) => { return sourcePath.endsWith('png'); },
                         },
                     ],
                 }),
