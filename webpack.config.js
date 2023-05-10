@@ -106,7 +106,7 @@ module.exports = (env, argv) => {
                             options: {
                                 encodeOptions: {
                                     avif: {
-                                        cqLevel: 21,
+                                        cqLevel: 18,
                                         speed: process.env.NODE_ENV === 'production' ? 0 : 10,
                                         subsample: 3,
                                     },
