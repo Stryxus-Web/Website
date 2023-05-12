@@ -1,9 +1,12 @@
 ﻿@inherits LayoutComponentBase
 
 <div id="avatar-container" class="container-fluid@(UI.CurrentPageContext?.RelativeLink == "/" ? " active" : string.Empty) @(UI.PageIsTransitioning ? "disabled" : string.Empty)">
+    <div id="mobile-open-button">
+        <i class="bi bi-caret-right-fill"></i>
+    </div>
     <div class="row">
         <div class="col">
-            <img src="/img/avatar.avif" @onclick="NavigateToHome" />
+            <img id="avatar-img" src="/img/avatar.avif" @onclick="NavigateToHome" />
         </div>
     </div>
 </div>

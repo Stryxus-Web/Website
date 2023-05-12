@@ -26,7 +26,7 @@
         right: 0px
         opacity: 0
 
-    .button
+    .navbar-button
         width: $navigationBarWidth + px
 
         & > .col
@@ -80,3 +80,18 @@
                 .active-bullet
                     transform: translateY(1.5px) translateX(0.5px)
                     opacity: 0
+
+@include media-breakpoint-up(sm)
+@include media-breakpoint-up(md)
+
+@include media-breakpoint-up(lg)
+@include media-breakpoint-up(xl)
+@include media-breakpoint-down(sm)
+@include media-breakpoint-down(md)
+
+@include media-breakpoint-down(lg)
+@include media-breakpoint-down(xl)
+@include media-breakpoint-only(sm)
+@include media-breakpoint-only(md)
+@include media-breakpoint-only(lg)
+@include media-breakpoint-only(xl)

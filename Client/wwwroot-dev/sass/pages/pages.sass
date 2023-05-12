@@ -5,19 +5,14 @@
 @import "media"
 @import "setups"
 
-main, #main-border, #page-transitioner, #page-transitioner-pre
+#main-body, #main-border, #page-transitioner, #page-transitioner-pre
     position: fixed
     right: 0px
     overflow-x: hidden
     overflow-y: visible
 
-main, #page-transitioner
-    top: #{$bootstrapMargin * 2 - 8} + px
-    bottom: #{$bootstrapMargin * 2 - 8} + px
-    left: #{$navigationBarWidth + $bootstrapMargin - 4} + px
+#main-body, #page-transitioner
     width: unset !important
-    border-top-left-radius: #{$borderRadius - math.div($bootstrapMargin, 2)} + px
-    border-bottom-left-radius: #{$borderRadius - math.div($bootstrapMargin, 2)} + px
     z-index: $zIndexMain
 
 #page-transitioner, #page-transitioner-pre
@@ -31,11 +26,6 @@ main, #page-transitioner
     left: 0px
 
 #main-border
-    top: #{$bootstrapMargin - 4} + px
-    bottom: #{$bootstrapMargin - 4} + px
-    left: $navigationBarWidth + px
-    border-top-left-radius: $borderRadius + px
-    border-bottom-left-radius: $borderRadius + px
     background-color: $materialYouColour1
     z-index: $zIndexMainBorder
 
@@ -48,13 +38,16 @@ main, #page-transitioner
 
 .page
     height: 100%
+
     & > .col
         height: inherit
+
         & > .row
             background-repeat: no-repeat
             background-position: center
             background-size: cover
             background-attachment: fixed
+
     .section
         position: relative
         border-radius: #{math.div($borderRadius, 2)} + px
@@ -67,3 +60,42 @@ main, #page-transitioner
 
         &:last-child
             border-bottom-right-radius: 0px
+
+@include media-breakpoint-up(sm)
+    #main-body, #page-transitioner
+        top: #{$bootstrapMargin * 2 - 8} + px
+        bottom: #{$bootstrapMargin * 2 - 8} + px
+        left: #{$navigationBarWidth + $bootstrapMargin - 4} + px
+        border-top-left-radius: 44px
+        border-bottom-left-radius: 44px
+    #main-border
+        top: #{$bootstrapMargin - 4} + px
+        bottom: #{$bootstrapMargin - 4} + px
+        left: $navigationBarWidth + px
+        border-top-left-radius: $borderRadius + px
+        border-bottom-left-radius: $borderRadius + px
+
+@include media-breakpoint-up(md)
+@include media-breakpoint-up(lg)
+@include media-breakpoint-up(xl)
+@include media-breakpoint-down(sm)
+@include media-breakpoint-down(md)
+    #main-body, #page-transitioner
+        top: 0px
+        bottom: 0px
+        left: 18px
+        border-top-left-radius: 10px
+        border-bottom-left-radius: 10px
+    #main-border
+        top: 0px
+        bottom: 0px
+        left: 0px
+        border-top-left-radius: 0px
+        border-bottom-left-radius: 0px
+
+@include media-breakpoint-down(lg)
+@include media-breakpoint-down(xl)
+@include media-breakpoint-only(sm)
+@include media-breakpoint-only(md)
+@include media-breakpoint-only(lg)
+@include media-breakpoint-only(xl)

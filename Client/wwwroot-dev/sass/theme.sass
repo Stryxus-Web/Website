@@ -19,6 +19,11 @@ body
     color: white
     overflow-x: hidden
 
+#app
+    width: inherit
+    height: inherit
+    overflow-x: hidden
+
 img
     display: block
     width: 100%
@@ -106,35 +111,35 @@ p, small
 //[class*='col-'], .col
 
 @include media-breakpoint-up(sm) // [768px] Larger Than Small
-@include media-breakpoint-up(md) // [992px] Larger Than Medium
 
-// Scrollbar
+    // Scrollbar
 
-/* width */
-::-webkit-scrollbar
-    width: 16px
-    margin-right: $bootstrapMargin + px
+    /* width */
+    ::-webkit-scrollbar
+        width: 16px
+        margin-right: $bootstrapMargin + px
 
-/* Track */
-::-webkit-scrollbar-track
-    background: $materialYouColour1
+    /* Track */
+    ::-webkit-scrollbar-track
+        background: $materialYouColour1
 
-/* Handle */
-::-webkit-scrollbar-thumb
-    background: $materialYouColour2
+    /* Handle */
+    ::-webkit-scrollbar-thumb
+        background: $materialYouColour2
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover
-    background: $materialYouColour3
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover
+        background: $materialYouColour3
 
-@include media-breakpoint-up(lg) // [1200px] Larger Than Larger
-@include media-breakpoint-up(xl) // [14000px] Larger Than XLarger
-@include media-breakpoint-down(sm) // [767.98px] Smaller Than Small
-@include media-breakpoint-down(md) // [991.98px] Smaller Than Medium
+@include media-breakpoint-up(md)
+@include media-breakpoint-up(lg)
+@include media-breakpoint-up(xl)
+@include media-breakpoint-down(sm)
+@include media-breakpoint-down(md)
 
-@include media-breakpoint-down(lg) // [1199.98px] Smaller Than Large
-@include media-breakpoint-down(xl) // [1399.98px] Smaller Than XLarge
-@include media-breakpoint-only(sm) // [768px] Small Only
-@include media-breakpoint-only(md) // [992px] Medium Only
-@include media-breakpoint-only(lg) // [1200px] Large Only
-@include media-breakpoint-only(xl) // [1400px] XLarge Only
+@include media-breakpoint-down(lg)
+@include media-breakpoint-down(xl)
+@include media-breakpoint-only(sm)
+@include media-breakpoint-only(md)
+@include media-breakpoint-only(lg)
+@include media-breakpoint-only(xl)
