@@ -15,7 +15,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     determineTestResult(testForFLAC(), "test-flac");
 
     function determineTestResult(result: boolean, elementName: string) {
-        document.getElementById(elementName)?.classList.add(result ? "good" : "bad");
+        const card: HTMLElement | null = document.getElementById(elementName);
+        card?.classList.add(result ? "good" : "bad");
+        card?.getElementsByTagName("i")[0].classList.replace("bi-question-lg", result ? "bi-check-circle" : "bi-x-circle");
     }
 
     document.getElementById("start-button")?.addEventListener("click", () => {
