@@ -22,6 +22,7 @@ import './img/navbar/setups.png'
 import './img/navbar/settings.png'
 
 // PNG - Home
+import './img/home/background-section-0.png'
 import './img/home/setup-pc-0.png'
 import './img/home/setup-pc-1.png'
 import './img/home/setup-pc-2.png'

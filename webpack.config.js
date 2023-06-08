@@ -136,19 +136,6 @@ module.exports = (env, argv) => {
                             },
                             filter: (source, sourcePath) => { return sourcePath.endsWith('png'); },
                         },
-                        {
-                            preset: 'avif',
-                            implementation: ImageMinimizerPlugin.squooshGenerate,
-                            options: {
-                                encodeOptions: {
-                                    avif: {
-                                        cqLevel: 18,
-                                        speed: process.env.NODE_ENV === 'production' ? 0 : 10,
-                                        subsample: 3,
-                                    },
-                                },
-                            },
-                        },
                     ],
                 }),
             ],
