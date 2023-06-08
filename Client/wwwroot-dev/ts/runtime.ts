@@ -18,6 +18,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         const card: HTMLElement | null = document.getElementById(elementName);
         card?.classList.add(result ? "good" : "bad");
         card?.getElementsByTagName("i")[0].classList.replace("bi-question-lg", result ? "bi-check-circle" : "bi-x-circle");
+        if (!result) {
+            let button: HTMLElement | null;
+            if ((button = document.getElementById("start-button")) !== null) {
+                button.getElementsByTagName("h1")[0].innerText = "I know what I'm doing! Start the Website!";
+            }
+        }
     }
 
     document.getElementById("start-button")?.addEventListener("click", () => {
