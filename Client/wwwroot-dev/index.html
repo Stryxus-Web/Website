@@ -23,29 +23,27 @@
         </div>
     </div>
     <div id="app"> 
-        <div id="preapp" class="container-fluid">
-            <div class="row justify-content-center align-items-center">
-                <div class="col">
+        <div id="preapp" class="container-fluid p-0">
+            <div class="row justify-content-center align-items-center g-0">
+                <div class="col col-md-8">
                     <div class="row justify-content-center">
                         <div class="col-auto">
                             <h1>Welcome, please read below!</h1>
                         </div>
                     </div>
-                    <div id="warn-desc" class="row justify-content-center">
-                        <div class="col-12 col-md-4">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-md-8 warn-desc">
                             <p>
-                                Due to the cutting edge nature of this website, a few feature tests are run prior to it actually loading to determine how many features your browser supports.
+                                Due to the cutting edge nature of this website, a few feature tests are run before loading, determining how many features your browser supports.
+                            </p>
+                            <p>
+                                This page is here to also make the app preemptively friendly for battery based devices and those with slow networks.
                             </p>
                         </div>
-                        <div class="col-12 col-md-4">
+                        <div class="col-12 col-md-8 warn-desc">
                             <p>
-                                This is also designed to make the website much more friendly for battery based devices and those using limited data for internet.
-                            </p>
-                        </div>
-                        <div class="col-12 col-md-8">
-                            <p>
-                                This page will only show up on your first visit to the website or when one of the tests have problems. You will also get a similar page when there is an update
-                                to alert those on limited data about the update size. If you want to come back here, just go into the websites settings!
+                                This page will only show up on your first visit or when one of the tests is flagged. You will also get a similar page when there is an update
+                                to alert those on limited data about the update size. You will be able to modify the behaviour of this page or come back here in the websites settings.
                             </p>
                         </div>
                     </div>
@@ -58,17 +56,15 @@
                     <div class="row justify-content-center">
                         <div class="col-auto">
                             <button id="start-button">
-                                <h1>Enter the app</h1>
+                                <h1>Start The Website</h1>
                             </button>
                         </div>
                     </div>
                     <div class="row justify-content-center">
                         <div id="test-card-grid" class="col">
-                            <div class="row">
-                                <h2>Major Browser Tests</h2>
-                            </div>
                             <div class="row justify-content-center">
-                                <div class="col-12 col-md-5 test-card">
+
+                                <div id="test-wasm" class="col-12 col-md-5 test-card">
                                     <div class="row">
                                         <div class="col-auto">
                                             <i class="bi bi-question-lg"></i>
@@ -81,13 +77,13 @@
                                                 Some browsers have WebAssembly disabled, most commonly on organisational devices over fears of security. 
                                                 <br />
                                                 <br />
-                                                WebAssembly is the core of what runs this website allowing the .NET Runtime to be run in your browser and C# code to be executed
+                                                WebAssembly is the core of what runs this website allowing the .NET Runtime to be run in your browser and C# code to be executed.
                                             </small>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="col-12 col-md-5 test-card">
+                                <div id="test-avif" class="col-12 col-md-5 test-card">
                                     <div class="row">
                                         <div class="col-auto">
                                             <i class="bi bi-question-lg"></i>
@@ -97,31 +93,31 @@
                                         </div>
                                         <div class="col-12">
                                             <small>
-                                                AVIF is used for this websites imagery and animations due to its extreme effeciency when compared to legacy formats like JPEG and PNG.
-                                                It also supports a plethora of features like HDR formatting capabilities. AVIF is based off of AV1 but implemented seperatly.
+                                                AVIF is used for this websites imagery and animations due to its extreme effeciency and superior feature set when compared to legacy formats like JPEG, PNG and GIF.
+                                                AVIF is based off AV1 but implemented seperatly.
                                             </small>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="col-12 col-md-5 test-card">
+                                <div id="test-av1opus" class="col-12 col-md-5 test-card">
                                     <div class="row">
                                         <div class="col-auto">
                                             <i class="bi bi-question-lg"></i>
                                         </div>
                                         <div class="col">
-                                            <p>WebM/AV1 Decoding</p>
+                                            <p>MP4 [AV1/Opus] Decoding</p>
                                         </div>
                                         <div class="col-12">
                                             <small>
-                                                AV1 is used for this websites videos due to its extreme effeciency when compared to that of h264, h265 and more including capabilities 
-                                                like HDR formatting.
+                                                MP4 is a standardised video/audio container which supports AV1 (Video) and Opus (Audio), it is used for this websites videos due 
+                                                to its extreme effeciency when compared to that of h264, h265 and more including capabilities like HDR formatting.
                                             </small>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="col-12 col-md-5 test-card">
+                                <div id="test-flac" class="col-12 col-md-5 test-card">
                                     <div class="row">
                                         <div class="col-auto">
                                             <i class="bi bi-question-lg"></i>
@@ -137,88 +133,12 @@
                                     </div>
                                 </div>
 
-                                <div class="col-12 col-md-5 test-card">
-                                    <div class="row">
-                                        <div class="col-auto">
-                                            <i class="bi bi-question-lg"></i>
-                                        </div>
-                                        <div class="col">
-                                            <p>CSS: Backdrop Filter</p>
-                                        </div>
-                                        <div class="col-12">
-                                            <small>
-                                                Backdrop Filter is used on many devices natively these days and the web has had support for it for a few years now but its not all there still, 
-                                                and it makes for a much more modern experience.
-                                            </small>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="row">
-                                <h2>Minor Browser Tests</h2>
-                            </div>
-                            <div class="row justify-content-center">
-
-                                <div class="col-12 col-md-5 test-card">
-                                    <div class="row">
-                                        <div class="col-auto">
-                                            <i class="bi bi-question-lg"></i>
-                                        </div>
-                                        <div class="col">
-                                            <p>135 PPI Screen</p>
-                                        </div>
-                                        <div class="col-12">
-                                            <small>
-                                                This website is designed for high PPI screens for sharp crisp detail. 
-                                                <br />
-                                                <br />
-                                                PPI (Pixels per inch) is calculated by using Pythagorean Theorem using the screens pixels in the form of &#8730 width<sup>2</sup> x height<sup>2</sup> to get the diagonal length in pixels and then dividing that against the physical diagonal length in inches.
-                                            </small>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-12 col-md-5 test-card">
-                                    <div class="row">
-                                        <div class="col-auto">
-                                            <i class="bi bi-question-lg"></i>
-                                        </div>
-                                        <div class="col">
-                                            <p>WebP Decoding</p>
-                                        </div>
-                                        <div class="col-12">
-                                            <small>
-                                                WebP is an image format designed by Google to succeed the legacy JPEG, PNG and GIF formats.
-                                            </small>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-12 col-md-5 test-card">
-                                    <div class="row">
-                                        <div class="col-auto">
-                                            <i class="bi bi-question-lg"></i>
-                                        </div>
-                                        <div class="col">
-                                            <p>WebM/VP9 Decoding</p>
-                                        </div>
-                                        <div class="col-12">
-                                            <small>
-                                                WebM is a video/audio container designed by Google which supports VP9 to compete with that of h264 and is the relative of WebP in many respect while also supporting AV1.
-                                            </small>
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div id="preapp-footer" class="container-fluid">
-            <div class="row justify-content-center align-items-center">
+            <div id="footer" class="row justify-content-center align-items-center g-0">
                 <div class="col-auto">
                     <i class="bi bi-github"></i>
                 </div>

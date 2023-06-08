@@ -30,7 +30,7 @@ window.navigationBar = {
                                 console.log(data);
                             } else {
                                 // TODO: If there is a timeout after 30 seconds, ask if they would like to continue or go back.
-                                waitForElement("#main-body", 30000).then(() => {
+                                waitForElement("#main-body").then(() => {
                                     const trans = document.getElementById("page-transitioner");
                                     gsap.to(trans, { ease: "sine.out", duration: 0.33, delay: 0.5, opacity: 0, onComplete: () => {
                                         gsap.to(trans, { zIndex: -4, onComplete: () => {

@@ -5,7 +5,19 @@ import { waitForElement } from "./standard/mutations";
 
 import gsap from "gsap";
 
-document.addEventListener("DOMContentLoaded", () => {
+// Pre-App
+
+document.addEventListener("DOMContentLoaded", async () => {
+
+    determineTestResult(testForWebAssembly(), "test-wasm");
+    determineTestResult(await testForAVIF(), "test-avif");
+    determineTestResult(testForAV1(), "test-av1opus");
+    determineTestResult(testForFLAC(), "test-flac");
+
+    function determineTestResult(result: boolean, elementName: string) {
+        document.getElementById(elementName)?.classList.add(result ? "good" : "bad");
+    }
+
     document.getElementById("start-button")?.addEventListener("click", () => {
         const trans: HTMLElement | null = document.getElementById("page-transitioner-pre");
         const app: HTMLElement | null = document.getElementById("app");
@@ -15,19 +27,58 @@ document.addEventListener("DOMContentLoaded", () => {
             gsap.to(trans, { opacity: 1, duration: 0.33, onComplete: () => {
                 document.body.style.fontFamily = "SF-Pro-Display";
                 window.Blazor.start().then(() => {
-                    waitForElement(`#${app.id}`, 30000).then(() => {
+                    waitForElement(".page").then(() => {
                         setTimeout(() => {
                             init();
                             gsap.to(trans, { opacity: 0, duration: 0.33, onComplete: () => {
                                 trans.remove();
                             }});
-                        }, 1000);
+                        }, 1500);
                     });
                 });
             }});
         }
     });
+
 }, false);
+
+function testForWebAssembly(): boolean {
+    try {
+        if (typeof WebAssembly === "object" && typeof WebAssembly.instantiate === "function") {
+            const m = new WebAssembly.Module(Uint8Array.of(0x0, 0x61, 0x73, 0x6d, 0x01, 0x00, 0x00, 0x00));
+            return m instanceof WebAssembly.Module ? new WebAssembly.Instance(m) instanceof WebAssembly.Instance : false;
+        }
+    } catch (e) {
+        return false;
+    }
+    return false;
+}
+
+function testForAVIF(): Promise<boolean> {
+    return new Promise<boolean>((resolve) => {
+        const img = new Image();
+        img.onerror = () => resolve(false);
+        img.onload = () => resolve(true);
+        img.src = "data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D///8WfhwB8+ErK42A=";
+        img.remove();
+      }).catch(() => false);
+}
+
+function testForAV1(): boolean {
+    const testVid: HTMLVideoElement = document.createElement("video");
+    const sup = testVid.canPlayType("video/mp4; codecs=\"av01.2.15M.10.0.100.09.16.09.0, opus\"") !== "";
+    testVid.remove();
+    return sup;
+}
+
+function testForFLAC(): boolean {
+    const testVid: HTMLVideoElement = document.createElement("video");
+    const sup = testVid.canPlayType("audio/ogg; codecs=\"opus\"") !== "";
+    testVid.remove();
+    return sup;
+}
+
+// Initialization
 
 function init() {
 
@@ -55,8 +106,7 @@ function init() {
         });
     }
 
-    function adaptMobileButton() {
-        console.log(isBreakpointDownMD);
+    async function adaptMobileButton() {
         const mobileButton: HTMLElement | null = document.getElementById("mobile-open-button");
         if (mobileButton !== null) {
             if (isBreakpointDownMD) {
@@ -78,16 +128,4 @@ function init() {
     addWindowSizeListener(adaptMobileButton);
 
     adaptMobileButton();
-}
-
-export function testForAV1() {
-    const testVid: HTMLVideoElement = document.createElement("video");
-    testVid.canPlayType("video/mp4; codecs=\"av01, aac\"");
-    testVid.remove();
-}
-
-export function testForVP9() {
-    const testVid: HTMLVideoElement = document.createElement("video");
-    testVid.canPlayType("video/mp4; codecs=\"vp9, aac\"");
-    testVid.remove();
 }
