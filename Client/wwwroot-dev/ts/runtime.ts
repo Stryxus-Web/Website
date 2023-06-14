@@ -9,10 +9,43 @@ import gsap from "gsap";
 
 document.addEventListener("DOMContentLoaded", async () => {
 
-    determineTestResult(testForWebAssembly(), "test-wasm");
-    determineTestResult(await testForAVIF(), "test-avif");
-    determineTestResult(testForAV1(), "test-av1opus");
-    determineTestResult(testForFLAC(), "test-flac");
+    const trans: HTMLElement | null = document.getElementById("page-transitioner-pre");
+    const app: HTMLElement | null = document.getElementById("app");
+
+    if (window.location.hostname === "www.stryxus.xyz") {
+        determineTestResult(testForWebAssembly(), "test-wasm");
+        determineTestResult(await testForAVIF(), "test-avif");
+        determineTestResult(testForAV1(), "test-av1opus");
+        determineTestResult(testForFLAC(), "test-flac");
+    
+        document.getElementById("start-button")?.addEventListener("click", () => {
+            if (trans !== null && app !== null) {
+                trans.style.zIndex = "10000";
+                gsap.to(trans, { opacity: 1, duration: 0.33, onComplete: () => {
+                    document.body.style.fontFamily = "SF-Pro-Display";
+                    window.Blazor.start().then(() => {
+                        waitForElement(".page").then(() => {
+                            setTimeout(() => {
+                                init();
+                                gsap.to(trans, { opacity: 0, duration: 0.33, onComplete: () => {
+                                    trans.remove();
+                                }});
+                            }, 1500);
+                        });
+                    });
+                }});
+            }
+        });
+    } else {
+        window.Blazor.start().then(() => {
+            waitForElement(".page").then(() => {
+                init();
+                gsap.to(trans, { opacity: 0, duration: 0.33, onComplete: () => {
+                    trans?.remove();
+                }});
+            });
+        });
+    }
 
     function determineTestResult(result: boolean, elementName: string) {
         const card: HTMLElement | null = document.getElementById(elementName);
@@ -25,28 +58,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
         }
     }
-
-    document.getElementById("start-button")?.addEventListener("click", () => {
-        const trans: HTMLElement | null = document.getElementById("page-transitioner-pre");
-        const app: HTMLElement | null = document.getElementById("app");
-
-        if (trans !== null && app !== null) {
-            trans.style.zIndex = "10000";
-            gsap.to(trans, { opacity: 1, duration: 0.33, onComplete: () => {
-                document.body.style.fontFamily = "SF-Pro-Display";
-                window.Blazor.start().then(() => {
-                    waitForElement(".page").then(() => {
-                        setTimeout(() => {
-                            init();
-                            gsap.to(trans, { opacity: 0, duration: 0.33, onComplete: () => {
-                                trans.remove();
-                            }});
-                        }, 1500);
-                    });
-                });
-            }});
-        }
-    });
 
 }, false);
 
