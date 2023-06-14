@@ -9,26 +9,19 @@ $homeZIndexSection2: 2
                 padding-bottom: $borderRadius + px
                 height: 100%
                 #welcome-text
-                    background-color: $materialYouColour1TransparencyLow
-                    backdrop-filter: blur($blurRadius + px)
-                    -webkit-backdrop-filter: blur($blurRadius + px)
                     padding-left: 0px
                     max-width: 600px
-                    text-align: center
-                    & > h1, & > h2, & > p
-                        margin-top: #{$bootstrapMargin * 2} + px
-                        margin-bottom: #{$bootstrapMargin * 2} + px
-                        margin-left: #{$bootstrapMargin * 2} + px
-                    & > h1, & > h2
-                        padding-top: #{$bootstrapMargin * 2} + px
-                        padding-bottom: #{$bootstrapMargin * 2} + px
-                        padding-left: #{$bootstrapMargin * 2} + px
-                        padding-right: #{$bootstrapMargin * 2} + px
-                    & > p
-                        padding-top: #{$bootstrapMargin * 2} + px
-                        padding-bottom: #{$bootstrapMargin * 2} + px
-                        padding-left: #{$bootstrapMargin * 3} + px
-                        padding-right: #{$bootstrapMargin * 3} + px
+                    text-align: right
+                    
+                    h1
+                        background-color: $blackTransparencyLow
+                        font-size: 48px
+                        padding-top: 20px
+                        padding-bottom: 20px
+                        padding-left: 100px
+                        padding-right: 40px
+                        transform: translateX(-$borderRadius + px)
+                        clip-path: polygon(0px 0px, 100% 0px, calc(100% - #{$borderRadius + px}) 100%, 0% 100%)
                 
                 #avatar-cutout-container
                     #avatar-cutout
