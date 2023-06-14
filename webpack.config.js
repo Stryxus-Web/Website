@@ -136,12 +136,9 @@ module.exports = (env, argv) => {
                     parallel: true,
                 }),
                 new ImageMinimizerPlugin({
-                    minimizer: {
-                        implementation: ImageMinimizerPlugin.squooshMinify,
-                    },
                     generator: [
                         {
-                            preset: "avif",
+                            type: "asset",
                             implementation: ImageMinimizerPlugin.squooshGenerate,
                             options: {
                                 encodeOptions: {
@@ -152,6 +149,7 @@ module.exports = (env, argv) => {
                                     },
                                 },
                             },
+                            filter: (source, sourcePath) => { return sourcePath.endsWith('png'); },
                         },
                     ],
                 }),
