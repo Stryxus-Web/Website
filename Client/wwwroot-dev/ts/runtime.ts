@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     } else {
         window.Blazor.start().then(() => {
+            document.body.style.fontFamily = "SF-Pro-Display";
             waitForElement(".page").then(() => {
                 init();
                 gsap.to(trans, { opacity: 0, duration: 0.33, onComplete: () => {
