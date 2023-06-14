@@ -12,31 +12,13 @@
     background-attachment: fixed
 
     & > .row
-        backdrop-filter: blur(100px)
-        -webkit-backdrop-filter: blur(100px)
+        backdrop-filter: blur($blurRadius + px)
         height: 100%
         padding-top: $headerIconHeight + px
         padding-bottom: $footerBumpHeight + px
 
-    #background-fader
-        position: absolute
-        top: 0px
-        bottom: 0px
-        left: 0px
-        right: 0px
-        opacity: 0
-
     .navbar-button
         width: $navigationBarWidth + px
-
-        & > .col
-            padding-left: 0px
-            padding-right: 0px
-            & > .row
-                margin-left: 8px
-                margin-right: 8px
-                & > .col
-                    padding: 4px
         
         .icon-container, .icon, .active-bullet
             transition: 0.33s
@@ -49,6 +31,9 @@
             pointer-events: none
 
         &.active
+            .icon-container
+                background-color: $materialYouColour4TransparencyHigh
+
             .bullet-container
                 .active-bullet
                     opacity: 0.5 !important
@@ -59,9 +44,24 @@
                 background-color: $materialYouColour4TransparencyHigh
         
         .icon-container
-            margin-left: 16px !important
-            margin-right: 16px !important
-            border-radius: 8px
+            background-color: $blackTransparencyLow
+            border-radius: 14px
+            width: 64px
+            height: 64px
+            margin-left: auto
+            margin-right: auto
+            margin-bottom: 16px
+
+            & > .col
+                padding: 0px
+
+            i
+                display: block
+                font-size: 32px
+                width: 32px
+                height: 32px
+                margin: 16px
+                transform: translateY(-2px)
 
         .bullet-container
             margin-top: -4px !important
@@ -78,7 +78,7 @@
                 text-align: center
                 transform: translateY(-40px) translateX(-42px)
                 .active-bullet
-                    transform: translateY(1.5px) translateX(0.5px)
+                    transform: translateY(-10px) translateX(0.5px)
                     opacity: 0
 
 @include media-breakpoint-up(sm)

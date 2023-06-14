@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
+using Newtonsoft.Json;
+
 namespace Stryxus.Client.Data.State;
 
 internal class UIState
@@ -10,6 +12,7 @@ internal class UIState
         internal string Name;
         internal string RelativeLink;
         internal string IconName;
+        internal object[] RelativeNavbarImageURLs;
     }
 
     internal void SetPageContexts(List<PageContext> contexts) => PageContexts = contexts; 
@@ -31,7 +34,7 @@ internal class UIState
                     if (!IsFirstNavigation)
                     {
                         PageIsTransitioning = true;
-                        Services.Get<IJSRuntime>()?.InvokeVoidAsync("navigationBar.animator.transitionPage", value?.RelativeLink);
+                        Services.Get<IJSRuntime>()?.InvokeVoidAsync("navigationBar.animator.transitionPage", value?.RelativeLink, JsonConvert.SerializeObject(value?.RelativeNavbarImageURLs));
                     }
                     else IsFirstNavigation = false;
                 });

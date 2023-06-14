@@ -2,11 +2,7 @@
     <div class="col">
         <div class="row icon-container">
             <div class="col">
-                <div class="row">
-                    <div class="col">
-                        <img class="icon" alt="@Title" src="/img/navbar/@(Title?.ToLower()).avif" />
-                    </div>
-                </div>
+                <i class="bi bi-@(IconName)"></i>
             </div>
         </div>
         <div class="row justify-content-center bullet-container">
@@ -28,7 +24,7 @@
     public string? RelativeLink { get; set; }
 
     [Parameter, EditorRequired]
-    public MaterialYouIconType IconType { get; set; }
+    public string? IconName { get; set; }
 
     protected override Task OnInitializedAsync() 
     {

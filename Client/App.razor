@@ -24,13 +24,14 @@
             {
                 Name = "Home",
                 RelativeLink = "/",
-                IconName = "home"
+                IconName = "home",
+                RelativeNavbarImageURLs = new object[] { "./img/home/background-0.avif" }
             },
             new UIState.PageContext
             {
                 Name = "Blog",
                 RelativeLink = "/blog",
-                IconName = "feed"
+                IconName = "newspaper"
             },
             new UIState.PageContext
             {
@@ -42,19 +43,28 @@
             {
                 Name = "Media",
                 RelativeLink = "/media",
-                IconName = "camera"
+                IconName = "camera",
+                RelativeNavbarImageURLs = new object[] 
+                { 
+                    "./img/media/background-0.avif", 
+                    "./img/media/background-1.avif",
+                    "./img/media/background-2.avif",
+                    "./img/media/background-3.avif",
+                    "./img/media/background-4.avif",
+                    "./img/media/background-5.avif"
+                }
             },
             new UIState.PageContext
             {
                 Name = "Gaming",
                 RelativeLink = "/gaming",
-                IconName = "sports_esports"
+                IconName = "joystick"
             },
             new UIState.PageContext
             {
                 Name = "Setups",
                 RelativeLink = "/setups",
-                IconName = "devices"
+                IconName = "pci-card"
             }
         });
         Uri navURI = new(Navigation.Uri);

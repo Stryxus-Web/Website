@@ -16,7 +16,7 @@
     {
         @foreach (UIState.PageContext c in UI.PageContexts.GetRange(1, UI.PageContexts.Count - 1))
         {
-            <NavigationBarButton IconType="@MaterialYouIconType.Rounded" Title="@(c.Name)" RelativeLink="@(c.RelativeLink)" />
+            <NavigationBarButton Title="@c.Name" RelativeLink="@c.RelativeLink" IconName="@c.IconName" />
         }
     }
 </NavigationBar>

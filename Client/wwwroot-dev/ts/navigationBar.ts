@@ -14,7 +14,7 @@ declare global {
 window.navigationBar = {
 
     animator: {
-        transitionPage: (link: string) =>
+        transitionPage: (link: string, imageURLs: string) =>
         {
             const trans = document.getElementById("page-transitioner");
             if (trans) {
@@ -22,6 +22,14 @@ window.navigationBar = {
                 cans.forEach(c => c.remove());
                 gsap.to(trans, { zIndex: 1000, onComplete: () => {
                     gsap.to(trans, { ease: "sine.out", duration: 0.33, opacity: 1, onComplete: () => {
+
+                        const navbar: HTMLElement | null = document.getElementById("navbar");
+
+                        if (navbar !== null) {
+                            const imgurls = JSON.parse(imageURLs);
+                            navbar.style.backgroundImage = `url('${imgurls[Math.floor(Math.random() * imgurls.length)]}')`;
+                        }
+
                         DotNet.invokeMethodAsync("NavigatePage", link).then((data: unknown) => {
                             if (data) {
                                 console.log(data);

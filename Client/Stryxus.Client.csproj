@@ -28,6 +28,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.0-preview.5.23302.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.0-preview.5.23302.2" PrivateAssets="all" />
 	<PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0-preview.5.23280.8" />
+	<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,6 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Enumerables\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

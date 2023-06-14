@@ -13,16 +13,8 @@ import './ts/navigationBar.ts'
 import './img/avatar.png'
 import './img/cutout.png'
 
-// PNG - Navbar
-import './img/navbar/blog.png'
-import './img/navbar/projects.png'
-import './img/navbar/gaming.png'
-import './img/navbar/media.png'
-import './img/navbar/setups.png'
-import './img/navbar/settings.png'
-
 // PNG - Home
-import './img/home/background-section-0.png'
+import './img/home/background-0.png'
 import './img/home/setup-pc-0.png'
 import './img/home/setup-pc-1.png'
 import './img/home/setup-pc-2.png'
