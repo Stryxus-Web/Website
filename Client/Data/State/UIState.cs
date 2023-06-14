@@ -36,7 +36,11 @@ internal class UIState
                         PageIsTransitioning = true;
                         Services.Get<IJSRuntime>()?.InvokeVoidAsync("navigationBar.animator.transitionPage", value?.RelativeLink, JsonConvert.SerializeObject(value?.RelativeNavbarImageURLs));
                     }
-                    else IsFirstNavigation = false;
+                    else
+                    {
+                        Services.Get<IJSRuntime>()?.InvokeVoidAsync("navigationBar.animator.setNavbarBackground", JsonConvert.SerializeObject(value?.RelativeNavbarImageURLs));
+                        IsFirstNavigation = false;
+                    }
                 });
             }
         }
