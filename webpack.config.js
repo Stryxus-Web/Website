@@ -64,34 +64,49 @@ module.exports = (env, argv) => {
                     exclude: /node_modules/,
                 },
                 {
-                    test: /\.(json|mp4|aac)$/i,
-                    type: 'asset/resource',
+                    test: /\.(png|json|mp4|aac|svg)$/i,
+                    type: 'asset',
                 },
                 {
                     test: /\.woff2?$/,
-                    type: 'asset/resource',
+                    type: 'asset',
                     generator: {
                         filename: './fonts/[name][ext]',
                     },
-                },
-                {
-                    test: /\.svg/i,
-                    type: 'asset/resource',
-                },
-                {
-                    test: /\.png$/i,
-                    type: "asset",
-                    parser: {
-                        dataUrlCondition: {
-                            maxSize: 8192
-                        }
-                    }
                 },
             ],
         },
         plugins: [
             new CopyPlugin({
                 patterns: [
+                    {
+                        from: path.resolve(path.resolve(), 'Client', 'wwwroot-dev', 'android-chrome-192x192.png'),
+                        to: path.resolve(path.resolve(), 'Client', 'wwwroot')
+                    },
+                    {
+                        from: path.resolve(path.resolve(), 'Client', 'wwwroot-dev', 'android-chrome-512x512.png'),
+                        to: path.resolve(path.resolve(), 'Client', 'wwwroot')
+                    },
+                    {
+                        from: path.resolve(path.resolve(), 'Client', 'wwwroot-dev', 'apple-touch-icon.png'),
+                        to: path.resolve(path.resolve(), 'Client', 'wwwroot')
+                    },
+                    {
+                        from: path.resolve(path.resolve(), 'Client', 'wwwroot-dev', 'favicon.ico'),
+                        to: path.resolve(path.resolve(), 'Client', 'wwwroot')
+                    },
+                    {
+                        from: path.resolve(path.resolve(), 'Client', 'wwwroot-dev', 'favicon-16x16.png'),
+                        to: path.resolve(path.resolve(), 'Client', 'wwwroot')
+                    },
+                    {
+                        from: path.resolve(path.resolve(), 'Client', 'wwwroot-dev', 'favicon-32x32.png'),
+                        to: path.resolve(path.resolve(), 'Client', 'wwwroot')
+                    },
+                    {
+                        from: path.resolve(path.resolve(), 'Client', 'wwwroot-dev', 'site.webmanifest'),
+                        to: path.resolve(path.resolve(), 'Client', 'wwwroot')
+                    },
                     {
                         from: path.resolve(path.resolve(), 'Client', 'wwwroot-dev', 'index.html'),
                         to: path.resolve(path.resolve(), 'Client', 'wwwroot')
@@ -101,7 +116,7 @@ module.exports = (env, argv) => {
             {
                 apply: (compiler) => {
                     if (argv.mode === 'production') {
-                        compiler.hooks.done.tap('DonePlugin', (stats) => {
+                        compiler.hooks.done.tap('DonePlugin', () => {
                             setTimeout(() => {
                                 process.exit(0)
                             })
@@ -121,9 +136,12 @@ module.exports = (env, argv) => {
                     parallel: true,
                 }),
                 new ImageMinimizerPlugin({
+                    minimizer: {
+                        implementation: ImageMinimizerPlugin.squooshMinify,
+                    },
                     generator: [
                         {
-                            type: 'asset',
+                            preset: "avif",
                             implementation: ImageMinimizerPlugin.squooshGenerate,
                             options: {
                                 encodeOptions: {
@@ -134,7 +152,6 @@ module.exports = (env, argv) => {
                                     },
                                 },
                             },
-                            filter: (source, sourcePath) => { return sourcePath.endsWith('png'); },
                         },
                     ],
                 }),
