@@ -10,42 +10,32 @@ import gsap from "gsap";
 document.addEventListener("DOMContentLoaded", async () => {
 
     const trans: HTMLElement | null = document.getElementById("page-transitioner-pre");
-    const app: HTMLElement | null = document.getElementById("app");
+    if (trans !== null) {
+        if (window.location.hostname === "www.stryxus.xyz") {
+            determineTestResult(testForWebAssembly(), "test-wasm");
+            determineTestResult(await testForAVIF(), "test-avif");
+            determineTestResult(testForAV1(), "test-av1opus");
+            determineTestResult(testForFLAC(), "test-flac");
 
-    if (window.location.hostname === "www.stryxus.xyz") {
-        determineTestResult(testForWebAssembly(), "test-wasm");
-        determineTestResult(await testForAVIF(), "test-avif");
-        determineTestResult(testForAV1(), "test-av1opus");
-        determineTestResult(testForFLAC(), "test-flac");
-    
-        document.getElementById("start-button")?.addEventListener("click", () => {
-            if (trans !== null && app !== null) {
-                trans.style.zIndex = "10000";
-                gsap.to(trans, { opacity: 1, duration: 0.33, onComplete: () => {
-                    document.body.style.fontFamily = "SF-Pro-Display";
-                    window.Blazor.start().then(() => {
-                        waitForElement(".page").then(() => {
-                            setTimeout(() => {
-                                init();
-                                gsap.to(trans, { opacity: 0, duration: 0.33, onComplete: () => {
-                                    trans.remove();
-                                }});
-                            }, 1500);
-                        });
-                    });
-                }});
-            }
-        });
-    } else {
-        window.Blazor.start().then(() => {
+            document.getElementById("start-button")?.addEventListener("click", () => loadWASM(trans));
+        } else {
+            loadWASM(trans);
+        }   
+    }
+
+    function loadWASM(trans: HTMLElement) {
+        trans.style.zIndex = "10000";
+        gsap.to(trans, { opacity: 1, duration: 0.33, onComplete: () => {
             document.body.style.fontFamily = "SF-Pro-Display";
-            waitForElement(".page").then(() => {
-                init();
-                gsap.to(trans, { opacity: 0, duration: 0.33, onComplete: () => {
-                    trans?.remove();
-                }});
+            window.Blazor.start().then(() => {
+                waitForElement(".page").then(() => {
+                    setTimeout(() => {
+                        init();
+                        gsap.to(trans, { opacity: 0, duration: 0.33, onComplete: () => trans.remove()});
+                    }, 1500);
+                });
             });
-        });
+        }});
     }
 
     function determineTestResult(result: boolean, elementName: string) {
@@ -81,7 +71,7 @@ function testForAVIF(): Promise<boolean> {
         img.onload = () => resolve(true);
         img.src = "data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D///8WfhwB8+ErK42A=";
         img.remove();
-      }).catch(() => false);
+    }).catch(() => false);
 }
 
 function testForAV1(): boolean {
@@ -146,6 +136,5 @@ function init() {
     }
 
     addWindowSizeListener(adaptMobileButton);
-
     adaptMobileButton();
 }
