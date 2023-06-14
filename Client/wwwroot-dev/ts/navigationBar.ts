@@ -19,10 +19,7 @@ window.navigationBar = {
             const trans = document.getElementById("page-transitioner");
             if (trans) {
                 const cans = document.querySelectorAll('#page-transitioner > :not(div)');
-                cans.forEach(c => {
-                    c.remove();
-                });
-
+                cans.forEach(c => c.remove());
                 gsap.to(trans, { zIndex: 1000, onComplete: () => {
                     gsap.to(trans, { ease: "sine.out", duration: 0.33, opacity: 1, onComplete: () => {
                         DotNet.invokeMethodAsync("NavigatePage", link).then((data: unknown) => {

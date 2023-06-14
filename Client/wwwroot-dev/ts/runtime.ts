@@ -17,13 +17,13 @@ document.addEventListener("DOMContentLoaded", async () => {
             determineTestResult(testForAV1(), "test-av1opus");
             determineTestResult(testForFLAC(), "test-flac");
 
-            document.getElementById("start-button")?.addEventListener("click", () => loadWASM(trans));
+            document.getElementById("start-button")?.addEventListener("click", () => loadWASM(trans, true));
         } else {
-            loadWASM(trans);
+            loadWASM(trans, false);
         }   
     }
 
-    function loadWASM(trans: HTMLElement) {
+    function loadWASM(trans: HTMLElement, delay: boolean) {
         trans.style.zIndex = "10000";
         gsap.to(trans, { opacity: 1, duration: 0.33, onComplete: () => {
             document.body.style.fontFamily = "SF-Pro-Display";
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     setTimeout(() => {
                         init();
                         gsap.to(trans, { opacity: 0, duration: 0.33, onComplete: () => trans.remove()});
-                    }, 1500);
+                    }, delay ? 1500 : 0);
                 });
             });
         }});
