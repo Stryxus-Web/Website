@@ -43,7 +43,7 @@ jobs:
         run: npm run prod
 
       - name: Build Website
-        run: dotnet build --configuration Release -r linux-x64 --self-contained true
+        run: dotnet build Server --configuration Release -r linux-x64 --self-contained true
 
       - name: Publish Website
         run: dotnet publish Server -c Release -r linux-x64 -o ${{env.DOTNET_ROOT}}/myapp --self-contained true
