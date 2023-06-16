@@ -7,13 +7,15 @@ footer
     background-color: $black
     z-index: $zIndexFooter
 
-    & > .row > .col-auto
-        background-color: $black
-        width: $navigationBarWidth + px
-        height: $navigationBarWidth - ($bootstrapMargin * 3) - 8 + px
-        border-top-left-radius: math.div($borderRadius, 2) + px
-        border-top-right-radius: math.div($borderRadius, 2) + px
-        margin-top: math.div(-$borderRadius, 2) + px
+    & > .row 
+        height: inherit
+
+        & > .col-auto
+            background-color: $black
+            width: $navigationBarWidth + px
+            height: inherit
+            margin-top: math.div(-$borderRadius, 2) + px
+            clip-path: polygon(0% 25px, 25px 0%, calc(100% - 25px) 0%, 100% 25px, 100% 100%, 0% 100%)
 
     i
         display: block

@@ -69,14 +69,12 @@
         top: #{$bootstrapMargin * 2 - 8} + px
         bottom: #{$bootstrapMargin * 2 - 8} + px
         left: #{$navigationBarWidth + $bootstrapMargin - 4} + px
-        border-top-left-radius: 44px
-        border-bottom-left-radius: 44px
+    #main-body, #main-border
+        clip-path: polygon(0% 50px, 50px 0%, 100% 0%, 100% 100%, 50px 100%, 0% calc(100% - 50px))
     #main-border
         top: #{$bootstrapMargin - 4} + px
         bottom: #{$bootstrapMargin - 4} + px
         left: $navigationBarWidth + px
-        border-top-left-radius: $borderRadius + px
-        border-bottom-left-radius: $borderRadius + px
 
 @include media-breakpoint-up(md)
 @include media-breakpoint-up(lg)
@@ -87,14 +85,12 @@
         top: 0px
         bottom: 0px
         left: 18px
-        border-top-left-radius: 10px
-        border-bottom-left-radius: 10px
+    #main-body, #main-border
+        clip-path: polygon(0% 20px, 20px 0%, 100% 0%, 100% 100%, 20px 100%, 0% calc(100% - 20px))
     #main-border
         top: 0px
         bottom: 0px
         left: 0px
-        border-top-left-radius: 0px
-        border-bottom-left-radius: 0px
 
 @include media-breakpoint-down(lg)
 @include media-breakpoint-down(xl)

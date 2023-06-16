@@ -20,27 +20,31 @@
 
     & > .row
         width: $navigationBarWidth - ($bootstrapMargin * 3) + 1 + px
-        height: $navigationBarWidth - ($bootstrapMargin * 3) + 1 + px
+        height: $navigationBarWidth - ($bootstrapMargin * 3) + 6 + px
         background-color: $black
         margin-left: -$bootstrapMargin + px
         padding-top: $bootstrapMargin * 1.5 - 4 + px
         padding-bottom: $bootstrapMargin * 1.5 + px
         padding-left: $bootstrapMargin * 1.5 + px
         padding-right: $bootstrapMargin * 1.5 - 0.3 + px
-        border-bottom-left-radius: $borderRadius + px
-        border-bottom-right-radius: $borderRadius + px
+        clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - 25px), calc(100% - 25px) 100%, 25px 100%, 0% calc(100% - 25px))
         z-index: $zIndexAvatarContainer
 
-        img
-            width: $navigationBarWidth - ($bootstrapMargin * 4.25) + px
-            height: $navigationBarWidth - ($bootstrapMargin * 4.25) + px
-            margin-left: -$bootstrapMargin + px
-            border-radius: $navigationBarWidth - math.div(($bootstrapMargin * 3), 2) + px
-            border: math.div($bootstrapMargin, 1.5) + px solid $materialYouColour1
+        #avatar-img-container
+            width: $navigationBarWidth - ($bootstrapMargin * 3.5) + px
+            height: $navigationBarWidth - ($bootstrapMargin * 3.5) + px
+            margin-left: -17.25px
+            padding: math.div($bootstrapMargin, 1.5) + px
+            background-color: $materialYouColour1
+            clip-path: polygon(0% 15px, 15px 0%, calc(100% - 15px) 0%, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0% calc(100% - 15px))
             cursor: pointer
             transition: 0.33s
+
             &:hover
-                border-color: $black
+                background-color: $black
+
+            img
+                clip-path: polygon(0% 10px, 10px 0%, calc(100% - 10px) 0%, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0% calc(100% - 10px))
     
     #mobile-open-button
         position: absolute
