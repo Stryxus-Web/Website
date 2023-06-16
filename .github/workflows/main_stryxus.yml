@@ -46,7 +46,7 @@ jobs:
         run: dotnet build --configuration Release --self-contained true
 
       - name: Publish Website
-        run: dotnet publish Server -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish Server -c Release -o ${{env.DOTNET_ROOT}}/myapp --self-contained true
 
       - name: Upload Artifacts For Azure Deployment
         uses: actions/upload-artifact@v2
