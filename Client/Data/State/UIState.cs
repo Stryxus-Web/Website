@@ -12,7 +12,7 @@ internal class UIState
         internal string Name;
         internal string RelativeLink;
         internal string IconName;
-        internal object[] RelativeNavbarImageURLs;
+        internal object[]? RelativeNavbarImageURLs;
     }
 
     internal void SetPageContexts(List<PageContext> contexts) => PageContexts = contexts; 
@@ -38,7 +38,10 @@ internal class UIState
                     }
                     else
                     {
-                        Services.Get<IJSRuntime>()?.InvokeVoidAsync("navigationBar.animator.setNavbarBackground", JsonConvert.SerializeObject(value?.RelativeNavbarImageURLs));
+                        if (value?.RelativeNavbarImageURLs is not null && value?.RelativeNavbarImageURLs.Length is not 0)
+                        {
+                            Services.Get<IJSRuntime>()?.InvokeVoidAsync("navigationBar.animator.setNavbarBackground", JsonConvert.SerializeObject(value?.RelativeNavbarImageURLs));
+                        }
                         IsFirstNavigation = false;
                     }
                 });

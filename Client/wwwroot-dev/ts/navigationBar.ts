@@ -48,9 +48,9 @@ window.navigationBar = {
         },
         setNavbarBackground(imageURLs: string) {
             const navbar: HTMLElement | null = document.getElementById("navbar");
-            if (navbar !== null) {
+            if (navbar !== null && imageURLs.length !== 0) {
                 const imgurls = JSON.parse(imageURLs);
-                navbar.style.backgroundImage = `url('${imgurls[Math.floor(Math.random() * imgurls.length)]}')`;
+                if (imgurls !== null) navbar.style.backgroundImage = `url('${imgurls[Math.floor(Math.random() * imgurls.length)]}')`;
             }
         }
     }
