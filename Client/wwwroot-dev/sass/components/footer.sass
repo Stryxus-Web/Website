@@ -15,16 +15,20 @@ footer
         border-top-right-radius: math.div($borderRadius, 2) + px
         margin-top: math.div(-$borderRadius, 2) + px
 
-    img
-        width: 55.625px
-        height: 55.625px
-        transform: translateY(8px) translateX(1px)
+    i
+        display: block
+        text-align: center
+        line-height: 42px
+        width: 42px
+        height: 42px
+        font-size: 36px
+        margin-top: 16px !important
         cursor: pointer
-        border-radius: 20px
+        border-radius: 44px
         transition: 0.33s
         padding: 4px
         &:hover
-            background-color: $black
+            background-color: $materialYouColour4
 
 @include media-breakpoint-up(sm) // [768px] Larger Than Small
 @include media-breakpoint-up(md) // [992px] Larger Than Medium
