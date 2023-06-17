@@ -1,6 +1,7 @@
 const path = require('path');
 const process = require('process');
 
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
@@ -77,6 +78,9 @@ module.exports = (env, argv) => {
             ],
         },
         plugins: [
+            new HtmlWebpackPlugin({
+                template: "./Client/wwwroot-dev/index.html",
+            }),
             new CopyPlugin({
                 patterns: [
                     {
@@ -105,10 +109,6 @@ module.exports = (env, argv) => {
                     },
                     {
                         from: path.resolve(path.resolve(), 'Client', 'wwwroot-dev', 'site.webmanifest'),
-                        to: path.resolve(path.resolve(), 'Client', 'wwwroot')
-                    },
-                    {
-                        from: path.resolve(path.resolve(), 'Client', 'wwwroot-dev', 'index.html'),
                         to: path.resolve(path.resolve(), 'Client', 'wwwroot')
                     },
                 ],
