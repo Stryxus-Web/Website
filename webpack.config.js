@@ -7,6 +7,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const BlazorAssetCachesPlugin = require('./blazorAssetCachesPlugin');
 
 module.exports = (env, argv) => {
     return {
@@ -14,7 +15,7 @@ module.exports = (env, argv) => {
         output: {
             path: path.resolve(path.resolve(), 'Client', 'wwwroot'),
             publicPath: '',
-            filename: '[name].min.js',
+            filename: '[name].[contenthash].js',
             globalObject: 'this',
             clean: true,
             asyncChunks: true,
@@ -31,7 +32,7 @@ module.exports = (env, argv) => {
             },
             assetModuleFilename: (pathData) => {
                 const filepath = path.dirname(pathData.filename).split('/').slice(1).join('/');
-                return `${filepath.includes('wwwroot-dev/') ? filepath.slice(12) : filepath}/[name][ext]`;
+                return `${filepath.includes('wwwroot-dev/') ? filepath.slice(12) : filepath}/[name].[contenthash][ext]`;
             },
         },
         watch: argv.mode === 'development',
@@ -74,7 +75,7 @@ module.exports = (env, argv) => {
                     test: /\.woff2?$/,
                     type: 'asset',
                     generator: {
-                        filename: './fonts/[name][ext]',
+                        filename: './fonts/[name][contenthash][ext]',
                     },
                 },
             ],
@@ -83,7 +84,9 @@ module.exports = (env, argv) => {
             new HtmlWebpackPlugin({
                 template: "./Client/wwwroot-dev/index.html",
             }),
-            new MiniCssExtractPlugin(),
+            new MiniCssExtractPlugin({
+                filename: "./[name].[contenthash].css",
+            }),
             new ESLintPlugin(),
             new CopyPlugin({
                 patterns: [
@@ -127,7 +130,8 @@ module.exports = (env, argv) => {
                         });
                     }
                 }
-            }
+            },
+            new BlazorAssetCachesPlugin(),
         ],
         optimization: {
             splitChunks: {

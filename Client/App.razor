@@ -11,12 +11,15 @@
     </NotFound>
 </Router>
 
+@inject HttpClient Http
+
+@inject AssetCaches AC
 @inject UIState UI
 @inject NavigationManager Navigation
 
 @code 
 {
-    protected override Task OnInitializedAsync()
+    protected override async Task OnParametersSetAsync()
     {
         UI.SetPageContexts(new List<UIState.PageContext>()
         {
@@ -25,7 +28,7 @@
                 Name = "Home",
                 RelativeLink = "/",
                 IconName = "home",
-                RelativeNavbarImageURLs = new object[] { "./img/home/background-0.avif" }
+                RelativeNavbarImageURLs = new object[] { AC.Asset("/img/home/background-0.avif") }
             },
             new UIState.PageContext
             {
@@ -44,14 +47,14 @@
                 Name = "Media",
                 RelativeLink = "/media",
                 IconName = "camera",
-                RelativeNavbarImageURLs = new object[] 
-                { 
-                    "./img/media/background-0.avif", 
-                    "./img/media/background-1.avif",
-                    "./img/media/background-2.avif",
-                    "./img/media/background-3.avif",
-                    "./img/media/background-4.avif",
-                    "./img/media/background-5.avif"
+                RelativeNavbarImageURLs = new object[]
+                {
+                    AC.Asset("/img/media/background-0.avif"),
+                    AC.Asset("/img/media/background-1.avif"),
+                    AC.Asset("/img/media/background-2.avif"),
+                    AC.Asset("/img/media/background-3.avif"),
+                    AC.Asset("/img/media/background-4.avif"),
+                    AC.Asset("/img/media/background-5.avif"),
                 }
             },
             new UIState.PageContext
@@ -84,6 +87,6 @@
             }
         }
         catch { Navigation.NavigateTo(string.Empty); }
-        return base.OnInitializedAsync();
+        await base.OnParametersSetAsync();
     }
 }

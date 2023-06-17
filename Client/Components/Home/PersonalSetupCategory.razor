@@ -16,7 +16,7 @@
                             @foreach (string imagePath in @item.Value.Item1)
                             {
                                 <div class="col">
-                                    <img alt="@item.Key" src="@imagePath" />
+                                    <img alt="@item.Key" src="@(AC.Asset(imagePath))" />
                                 </div>
                             }
                         </div>
@@ -39,6 +39,8 @@
         </div>
     </div>
 </div>
+
+@inject AssetCaches AC
 
 @code {
 

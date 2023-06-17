@@ -34,7 +34,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Components\Media\Stryxus.Client.Components.Media\Stryxus.Client.Components.Media.csproj" />
     <ProjectReference Include="..\Shared\Stryxus.Shared.csproj" />
-    <ProjectReference Include="..\Submodules\StryxLib\.NET\StryxLib\StryxLib.csproj" />
   </ItemGroup>
 
   <ItemGroup>

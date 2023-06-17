@@ -2,7 +2,7 @@
 
 <div id="page-home" class="page row justify-content-center align-items-center">
     <div class="col">
-        <div class="section row" style="background-image: url('./img/home/background-0.avif')">
+        <div class="section row" style="background-image: url('@(AC.Asset("/img/home/background-0.avif"))')">
             <div id="welcome-text" class="col">
                 <div class="row">
                     <div class="col">
@@ -12,7 +12,7 @@
             </div>
             <div class="col-1"></div>
             <div id="avatar-cutout-container" class="col-auto align-self-end">
-                <img id="avatar-cutout" src="/img/cutout.avif" alt="Avatar" />
+                <img id="avatar-cutout" src="@(AC.Asset("/img/cutout.avif"))" alt="Avatar" />
             </div>
         </div>
         <div class="section row">
@@ -57,6 +57,8 @@
         </div>
     </div>
 </div>
+
+@inject AssetCaches AC
 
 @code 
 {

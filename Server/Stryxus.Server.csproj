@@ -20,7 +20,6 @@
     <ProjectReference Include="..\Client\Stryxus.Client.csproj" />
     <ProjectReference Include="..\Shared\Stryxus.Shared.csproj" />
     <ProjectReference Include="..\Submodules\CompressedStaticFiles\CompressedStaticFiles\CompressedStaticFiles.csproj" />
-    <ProjectReference Include="..\Submodules\StryxLib\.NET\StryxLib\StryxLib.csproj" />
   </ItemGroup>
 
 </Project>

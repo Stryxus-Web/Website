@@ -1,6 +1,4 @@
-﻿using System;
-
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 
 public static class Services
 {

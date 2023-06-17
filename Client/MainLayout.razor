@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-auto">
             <div id="avatar-img-container">
-                <img src="/img/avatar.avif" @onclick="NavigateToHome" />
+                <img src="@(AC.Asset("/img/avatar.avif"))" @onclick="NavigateToHome" />
             </div>
         </div>
     </div>
@@ -36,6 +36,8 @@
         </div>
     </div>
 </footer>
+
+@inject AssetCaches AC
 
 @inject UIState UI
 

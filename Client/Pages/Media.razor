@@ -2,13 +2,15 @@
 
 <div id="page-media" class="page row">
     <div class="col">
-        <div class="row" style="background-image: url('./img/media/background-@(Random.Shared.Next(0, 5)).avif')">
+        <div class="row" style="background-image: url('@(AC.Asset($"/img/media/background-{Random.Shared.Next(0, 5)}.avif"))')">
             <div class="col">
                 <MediaExtensionComponent />
             </div>
         </div>
     </div>
 </div>
+
+@inject AssetCaches AC
 
 @code {
 
