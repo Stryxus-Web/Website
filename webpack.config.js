@@ -2,6 +2,7 @@ const path = require('path');
 const process = require('process');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
@@ -81,6 +82,7 @@ module.exports = (env, argv) => {
             new HtmlWebpackPlugin({
                 template: "./Client/wwwroot-dev/index.html",
             }),
+            new ESLintPlugin(),
             new CopyPlugin({
                 patterns: [
                     {
