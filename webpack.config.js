@@ -6,7 +6,6 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
 const BlazorAssetCachesPlugin = require('./blazorAssetCachesPlugin');
 
 module.exports = (env, argv) => {
@@ -31,9 +30,13 @@ module.exports = (env, argv) => {
                 templateLiteral: true,
             },
             assetModuleFilename: (pathData) => {
-                const filepath = path.dirname(pathData.filename).split('/').slice(1).join('/');
-                return `${filepath.includes('wwwroot-dev/') ? filepath.slice(12) : filepath}/[name].[contenthash][ext]`;
+                let filepath = path.dirname(pathData.filename).split('/').slice(1).join('/');
+                filepath = filepath.includes('/') ? filepath.slice(12) : filepath.slice(11);
+                return `${filepath}/[name].[contenthash][ext]`;
             },
+        },
+        stats: {
+            children: argv.mode === 'development',
         },
         watch: argv.mode === 'development',
         watchOptions: {
@@ -88,38 +91,6 @@ module.exports = (env, argv) => {
                 filename: "./[name].[contenthash].css",
             }),
             new ESLintPlugin(),
-            new CopyPlugin({
-                patterns: [
-                    {
-                        from: path.resolve(path.resolve(), 'Client', 'wwwroot-dev', 'android-chrome-192x192.png'),
-                        to: path.resolve(path.resolve(), 'Client', 'wwwroot')
-                    },
-                    {
-                        from: path.resolve(path.resolve(), 'Client', 'wwwroot-dev', 'android-chrome-512x512.png'),
-                        to: path.resolve(path.resolve(), 'Client', 'wwwroot')
-                    },
-                    {
-                        from: path.resolve(path.resolve(), 'Client', 'wwwroot-dev', 'apple-touch-icon.png'),
-                        to: path.resolve(path.resolve(), 'Client', 'wwwroot')
-                    },
-                    {
-                        from: path.resolve(path.resolve(), 'Client', 'wwwroot-dev', 'favicon.ico'),
-                        to: path.resolve(path.resolve(), 'Client', 'wwwroot')
-                    },
-                    {
-                        from: path.resolve(path.resolve(), 'Client', 'wwwroot-dev', 'favicon-16x16.png'),
-                        to: path.resolve(path.resolve(), 'Client', 'wwwroot')
-                    },
-                    {
-                        from: path.resolve(path.resolve(), 'Client', 'wwwroot-dev', 'favicon-32x32.png'),
-                        to: path.resolve(path.resolve(), 'Client', 'wwwroot')
-                    },
-                    {
-                        from: path.resolve(path.resolve(), 'Client', 'wwwroot-dev', 'site.webmanifest'),
-                        to: path.resolve(path.resolve(), 'Client', 'wwwroot')
-                    },
-                ],
-            }),
             {
                 apply: (compiler) => {
                     if (argv.mode === 'production') {
@@ -146,7 +117,7 @@ module.exports = (env, argv) => {
                 new ImageMinimizerPlugin({
                     generator: [
                         {
-                            type: "asset",
+                            preset: "avif",
                             implementation: ImageMinimizerPlugin.squooshGenerate,
                             options: {
                                 encodeOptions: {
@@ -157,7 +128,6 @@ module.exports = (env, argv) => {
                                     },
                                 },
                             },
-                            filter: (source, sourcePath) => { return sourcePath.endsWith('png'); },
                         },
                     ],
                 }),
