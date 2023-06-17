@@ -2,8 +2,9 @@ const path = require('path');
 const process = require('process');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ESLintPlugin = require('eslint-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
@@ -42,7 +43,7 @@ module.exports = (env, argv) => {
                 {
                     test: /\.sass$/i,
                     use: [
-                        'style-loader',
+                        { loader: MiniCssExtractPlugin.loader },
                         { loader: 'css-loader', options: { sourceMap: argv.mode === 'development' } },
                         {
                             loader: 'postcss-loader',
@@ -82,6 +83,7 @@ module.exports = (env, argv) => {
             new HtmlWebpackPlugin({
                 template: "./Client/wwwroot-dev/index.html",
             }),
+            new MiniCssExtractPlugin(),
             new ESLintPlugin(),
             new CopyPlugin({
                 patterns: [
