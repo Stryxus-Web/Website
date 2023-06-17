@@ -117,7 +117,7 @@ module.exports = (env, argv) => {
                 new ImageMinimizerPlugin({
                     generator: [
                         {
-                            preset: "avif",
+                            type: "asset",
                             implementation: ImageMinimizerPlugin.squooshGenerate,
                             options: {
                                 encodeOptions: {
