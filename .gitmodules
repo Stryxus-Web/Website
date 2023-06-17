@@ -1,6 +1,3 @@
-[submodule "Submodules/StryxLib"]
-	path = Submodules/StryxLib
-	url = https://github.com/Stryxus/StryxLib
 [submodule "Submodules/CompressedStaticFiles"]
 	path = Submodules/CompressedStaticFiles
 	url = https://github.com/Stryxus/CompressedStaticFiles
