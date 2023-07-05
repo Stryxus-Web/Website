@@ -18,9 +18,13 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'HTTPS' " />
   <ItemGroup>
+    <Compile Remove="Enumerables\**" />
     <Compile Remove="wwwroot-dev\**" />
+    <Content Remove="Enumerables\**" />
     <Content Remove="wwwroot-dev\**" />
+    <EmbeddedResource Remove="Enumerables\**" />
     <EmbeddedResource Remove="wwwroot-dev\**" />
+    <None Remove="Enumerables\**" />
     <None Remove="wwwroot-dev\**" />
   </ItemGroup>
 
@@ -37,7 +41,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Enumerables\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
