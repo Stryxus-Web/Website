@@ -1,10 +1,10 @@
 ﻿@inherits LayoutComponentBase
 
-<div id="avatar-container" class="container-fluid@(UI.CurrentPageContext?.RelativeLink == "/" ? " active" : string.Empty) @(UI.PageIsTransitioning ? "disabled" : string.Empty)">
+<div class="site-container header container-fluid@(UI.CurrentPageContext?.RelativeLink == "/" ? " active" : string.Empty) @(UI.PageIsTransitioning ? "disabled" : string.Empty)">
     <div id="mobile-open-button">
         <i class="bi bi-caret-right-fill"></i>
     </div>
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-auto">
             <div id="avatar-img-container">
                 <img src="@(AC.Asset("/img/avatar.avif"))" @onclick="NavigateToHome" />
@@ -12,7 +12,6 @@
         </div>
     </div>
 </div>
-<div id="header"></div>
 <NavigationBar>
     @if (UI.PageContexts is not null)
     {
@@ -29,13 +28,13 @@
     <LoadingCircle />
 </div>
 <div id="main-border"></div>
-<footer class="container-fluid">
+<div class="site-container footer container-fluid">
     <div class="row">
         <div class="col-auto">
             <VersionFooter />
         </div>
     </div>
-</footer>
+</div>
 
 @inject AssetCaches AC
 

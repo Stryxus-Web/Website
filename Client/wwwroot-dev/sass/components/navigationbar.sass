@@ -13,73 +13,76 @@
 
     & > .row
         backdrop-filter: blur($blurRadius + px)
-        height: 100%
-        padding-top: $headerIconHeight + px
-        padding-bottom: $footerBumpHeight + px
+        height: calc(100% - #{$siteContainerSectionHeight}px)
+        overflow-y: scroll
 
-    .navbar-button
-        width: $navigationBarWidth + px
-        
-        .icon-container, .icon, .active-bullet
-            transition: 0.33s
+        & > .col-auto
+            padding-top: #{$siteContainerSectionHeight + 40}px
+            padding-bottom: #{math.div($siteContainerSectionHeight, 4)}px
 
-        *
-            color: white
-            text-decoration: none
+            .navbar-button
+                width: $navigationBarWidth + px
+                
+                .icon-container, .icon, .active-bullet
+                    transition: 0.33s
 
-        &.disabled
-            pointer-events: none
+                *
+                    color: white
+                    text-decoration: none
 
-        &.active
-            .icon-container
-                background-color: $materialYouColour4TransparencyHigh
+                &.disabled
+                    pointer-events: none
 
-            .bullet-container
-                .active-bullet
-                    opacity: 0.5 !important
+                &.active
+                    .icon-container
+                        background-color: $materialYouColour4TransparencyHigh
 
-        &:hover
-            cursor: pointer
-            .icon-container
-                background-color: $materialYouColour4TransparencyHigh
-        
-        .icon-container
-            background-color: $blackTransparencyLow
-            clip-path: polygon(0% 15px, 15px 0%, calc(100% - 15px) 0%, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0% calc(100% - 15px))
-            width: 64px
-            height: 64px
-            margin-left: auto
-            margin-right: auto
-            margin-bottom: 16px
+                    .bullet-container
+                        .active-bullet
+                            opacity: 0.5 !important
 
-            & > .col
-                padding: 0px
+                &:hover
+                    cursor: pointer
+                    .icon-container
+                        background-color: $materialYouColour4TransparencyHigh
+                
+                .icon-container
+                    background-color: $blackTransparencyLow
+                    clip-path: polygon(0% 15px, 15px 0%, calc(100% - 15px) 0%, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0% calc(100% - 15px))
+                    width: 64px
+                    height: 64px
+                    margin-left: auto
+                    margin-right: auto
+                    margin-bottom: 16px
 
-            i
-                display: block
-                font-size: 32px
-                width: 32px
-                height: 32px
-                margin: 16px
-                transform: translateY(-2px)
+                    & > .col
+                        padding: 0px
 
-        .bullet-container
-            margin-top: -4px !important
-            margin-bottom: -4px !important
-            margin-left: 0px !important
-            margin-right: 0px !important
-            & > .col-auto
-                padding: 0px !important
-                border-radius: 20px
-                width: 12px
-                height: 12px
-                line-height: 12px
-                font-size: 20px
-                text-align: center
-                transform: translateY(-40px) translateX(-42px)
-                .active-bullet
-                    transform: translateY(-10px) translateX(0.5px)
-                    opacity: 0
+                    i
+                        display: block
+                        font-size: 32px
+                        width: 32px
+                        height: 32px
+                        margin: 16px
+                        transform: translateY(-2px)
+
+                .bullet-container
+                    margin-top: -4px !important
+                    margin-bottom: -4px !important
+                    margin-left: 0px !important
+                    margin-right: 0px !important
+                    & > .col-auto
+                        padding: 0px !important
+                        border-radius: 20px
+                        width: 12px
+                        height: 12px
+                        line-height: 12px
+                        font-size: 20px
+                        text-align: center
+                        transform: translateY(-40px) translateX(-42px)
+                        .active-bullet
+                            transform: translateY(-10px) translateX(0.5px)
+                            opacity: 0
 
 @include media-breakpoint-up(sm)
 @include media-breakpoint-up(md)

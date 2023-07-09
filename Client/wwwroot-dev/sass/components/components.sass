@@ -1,11 +1,104 @@
-@import "header"
 @import "navigationbar"
-@import "footer"
 
 // Misc
 
 @import "misc/loadingCircle"
 @import "misc/versionFooter"
+
+.site-container
+    position: fixed
+    height: $siteContainerSectionHeight + px
+    left: 0px
+    right: 0px
+    background-color: $black
+    z-index: $zIndexSiteContainer
+
+    &.disabled
+        pointer-events: none
+
+    &.active
+        & > .row > img
+            border-color: $white
+
+    & > .row 
+        height: inherit
+
+        & > .col-auto
+            background-color: $black
+            width: $navigationBarWidth + px
+            height: inherit
+            margin-top: math.div(-$borderRadius, 2) + px
+            clip-path: polygon(0% 25px, 25px 0%, calc(100% - 25px) 0%, 100% 25px, 100% 100%, 0% 100%)
+
+    &.header
+        top: 0px
+
+        & > .row
+            margin-left: -$bootstrapMargin + px
+            width: 100px
+
+            & > .col-auto
+                height: 120px
+                clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - 25px), calc(100% - 25px) 100%, 25px 100%, 0% calc(100% - 25px))
+
+                #avatar-img-container
+                    background-color: $materialYouColour1
+                    clip-path: polygon(0% 15px, 15px 0%, calc(100% - 15px) 0%, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0% calc(100% - 15px))
+                    width: 48px
+                    height: 48px
+                    cursor: pointer
+                    transition: 0.33s
+                    padding: 8px
+                    transform: translateY(42px) translateX(6px)
+
+                    &:hover
+                        background-color: $black
+
+                    img
+                        clip-path: polygon(0% 10px, 10px 0%, calc(100% - 10px) 0%, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0% calc(100% - 10px))
+    
+    #mobile-open-button
+        position: absolute
+        top: 0px
+        bottom: 0px
+        left: 0px
+        width: 18px
+        z-index: $zIndexMobileButton
+
+        &:hover
+            background-color: $materialYouColour3
+
+        i
+            position: absolute
+            top: 50%
+            transform: translateY(-50%)
+            left: 1px
+            font-size: 16px
+
+    &.footer
+        bottom: 0px
+
+        & > .row
+
+            & > .col-auto
+                height: 120px
+                clip-path: polygon(0% 25px, 25px 0%, calc(100% - 25px) 0%, 100% 25px, 100% 100%, 0% 100%)
+
+        i
+            display: block
+            text-align: center
+            line-height: 42px
+            width: 42px
+            height: 42px
+            font-size: 36px
+            margin-top: 16px !important
+            cursor: pointer
+            transition: 0.33s
+            padding: 4px
+            clip-path: polygon(0% 15px, 15px 0%, calc(100% - 15px) 0%, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0% calc(100% - 15px))
+            
+            &:hover
+                background-color: $materialYouColour4
 
 @include media-breakpoint-up(sm) // [768px] Larger Than Small
 @include media-breakpoint-up(md) // [992px] Larger Than Medium
