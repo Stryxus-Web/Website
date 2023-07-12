@@ -117,14 +117,27 @@ module.exports = (env, argv) => {
                 new ImageMinimizerPlugin({
                     generator: [
                         {
-                            type: "asset",
+                            type: 'asset',
                             implementation: ImageMinimizerPlugin.squooshGenerate,
                             options: {
                                 encodeOptions: {
                                     avif: {
-                                        cqLevel: 18,
+                                        cqLevel: 32,
+                                        sharpness: 3,
                                         speed: process.env.NODE_ENV === 'production' ? 0 : 10,
-                                        subsample: 3,
+                                    },
+                                },
+                            },
+                        },
+                        {
+                            type: 'asset',
+                            implementation: ImageMinimizerPlugin.squooshGenerate,
+                            options: {
+                                encodeOptions: {
+                                    webp: {
+                                        quality: 15,
+                                        method: process.env.NODE_ENV === 'production' ? 6 : 0,
+                                        thread_level: 8,
                                     },
                                 },
                             },

@@ -4,15 +4,7 @@ import { waitForElement } from "./standard/mutations";
 
 import gsap from "gsap";
 
-declare global {
-    interface Window {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        navigationBar: any
-    }
-}
-
 window.navigationBar = {
-
     animator: {
         transitionPage: (link: string, imageURLs: string) =>
         {

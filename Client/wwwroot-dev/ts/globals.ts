@@ -6,6 +6,12 @@ declare global {
         Blazor: {
             start: () => Promise<void>
         }
+
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        runtime: any
+
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        navigationBar: any
     }
 }
 

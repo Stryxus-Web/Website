@@ -9,11 +9,14 @@ import gsap from "gsap";
 
 document.addEventListener("DOMContentLoaded", async () => {
 
+    let supportAVIF = false;
+    localStorage.setItem("supportAVIF", (supportAVIF = await testForAVIF()).toString());
+
     const trans: HTMLElement | null = document.getElementById("page-transitioner-pre");
     if (trans !== null) {
         if (window.location.hostname === "www.stryxus.xyz") {
             determineTestResult(testForWebAssembly(), "test-wasm");
-            determineTestResult(await testForAVIF(), "test-avif");
+            determineTestResult(supportAVIF, "test-avif");
             determineTestResult(testForAV1(), "test-av1opus");
             determineTestResult(testForFLAC(), "test-flac");
 
@@ -137,4 +140,17 @@ function init() {
 
     addWindowSizeListener(adaptMobileButton);
     adaptMobileButton();
+}
+
+// .NET
+
+window.runtime = {
+    localstorage: {
+        set: (key: string, value: string) => {
+            localStorage.setItem(key, value);
+        },
+        get: (key: string) => {
+            return localStorage.getItem(key);
+        }
+    }
 }
