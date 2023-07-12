@@ -59,16 +59,13 @@ export function toggleNavbar(open: boolean)
     if (mobileButton !== null && mainBorder !== null && mainBody !== null && pageTransitioner !== null) {
         isNavbarOpen = open;
         if (open) {
-            mobileButton.style.display = "none";
             gsap.to(mainBody, { ease: "sine.out", duration: 0.33, top: "16px", bottom: "16px", left: "108px" });
             gsap.to(mainBorder, { ease: "sine.out", duration: 0.33, top: "8px", bottom: "8px", left: "99px" });
             gsap.to(pageTransitioner, { ease: "sine.out", duration: 0.33, top: "16px", bottom: "16px", left: "108px" });
         } else {
             gsap.to(mainBody, { ease: "sine.out", duration: 0.33, top: "0px", bottom: "0px", left: "18px" });
             gsap.to(mainBorder, { ease: "sine.out", duration: 0.33, top: "0px", bottom: "0px", left: "0px" });
-            gsap.to(pageTransitioner, { ease: "sine.out", duration: 0.33, top: "0px", bottom: "0px", left: "18px", onComplete: () => {
-                mobileButton.style.display = "unset";
-            }});
+            gsap.to(pageTransitioner, { ease: "sine.out", duration: 0.33, top: "0px", bottom: "0px", left: "18px" });
         }
     }
 }

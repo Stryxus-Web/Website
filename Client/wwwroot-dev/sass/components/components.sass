@@ -5,6 +5,26 @@
 @import "misc/loadingCircle"
 @import "misc/versionFooter"
 
+#mobile-open-button
+    position: absolute
+    top: 0px
+    bottom: 0px
+    left: 0px
+    width: 18px
+    height: 100vh
+    background-color: $materialYouColour1
+    z-index: $zIndexMobileButton
+
+    &:hover
+        background-color: $materialYouColour3
+
+    i
+        position: absolute
+        top: 50%
+        transform: translateY(-50%)
+        left: 1px
+        font-size: 16px
+
 .site-container
     position: fixed
     height: $siteContainerSectionHeight + px
@@ -56,24 +76,6 @@
 
                     img
                         clip-path: polygon(0% 10px, 10px 0%, calc(100% - 10px) 0%, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0% calc(100% - 10px))
-    
-    #mobile-open-button
-        position: absolute
-        top: 0px
-        bottom: 0px
-        left: 0px
-        width: 18px
-        z-index: $zIndexMobileButton
-
-        &:hover
-            background-color: $materialYouColour3
-
-        i
-            position: absolute
-            top: 50%
-            transform: translateY(-50%)
-            left: 1px
-            font-size: 16px
 
     &.footer
         bottom: 0px

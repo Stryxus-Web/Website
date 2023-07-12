@@ -95,45 +95,40 @@ function testForFLAC(): boolean {
 
 function init() {
 
-    document.getElementById("mobile-open-button")?.addEventListener("click", () => {
-        toggleNavbar(true);
-    });
+    document.getElementById("mobile-open-button")?.addEventListener("click", () => adaptMobileButton(true));
 
     const avatarImg: HTMLElement | null = document.getElementById("avatar-img");
     if (avatarImg !== null) {
-        avatarImg.addEventListener("click", () => {
-            if (isBreakpointDownMD) {
-                toggleNavbar(false);
-            }
-        });
+        avatarImg.addEventListener("click", () => adaptMobileButton());
     }
 
     const navButtons: HTMLCollection | null = document.getElementsByClassName("navbar-button");
     if (navButtons !== null) {
         Array.from(navButtons).forEach(el => {
-            el.addEventListener("click", () => {
-                if (isBreakpointDownMD) {
-                    toggleNavbar(false);
-                }
-            });
+            el.addEventListener("click", () => adaptMobileButton());
         });
     }
 
-    async function adaptMobileButton() {
+    let isFirstRender = true;
+    async function adaptMobileButton(forceOpen?: boolean) {
         const mobileButton: HTMLElement | null = document.getElementById("mobile-open-button");
         if (mobileButton !== null) {
-            if (isBreakpointDownMD) {
-                if (isNavbarOpen) {
-                    mobileButton.style.display = "unset";
-                    toggleNavbar(false);
-                } else {
-                    mobileButton.style.display = "none";
-                }
-            } else {
+            if (forceOpen) {
                 mobileButton.style.display = "none";
-                if (!isNavbarOpen) {
-                    toggleNavbar(true);
+                toggleNavbar(true);
+            } else {
+                if (isBreakpointDownMD) {
+                    if (isNavbarOpen || isFirstRender) {
+                        toggleNavbar(false);
+                        mobileButton.style.display = "unset";
+                    }
+                } else {
+                    if (!isNavbarOpen || isFirstRender) {
+                        mobileButton.style.display = "none";
+                        toggleNavbar(true);
+                    }
                 }
+                isFirstRender = false;
             }
         }
     }

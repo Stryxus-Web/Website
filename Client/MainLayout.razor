@@ -1,9 +1,9 @@
 ﻿@inherits LayoutComponentBase
 
+<div id="mobile-open-button">
+    <i class="bi bi-caret-right-fill"></i>
+</div>
 <div class="site-container header container-fluid@(UI.CurrentPageContext?.RelativeLink == "/" ? " active" : string.Empty) @(UI.PageIsTransitioning ? "disabled" : string.Empty)">
-    <div id="mobile-open-button">
-        <i class="bi bi-caret-right-fill"></i>
-    </div>
     <div class="row justify-content-center">
         <div class="col-auto">
             <div id="avatar-img-container">
