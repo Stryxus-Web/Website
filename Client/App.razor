@@ -44,6 +44,18 @@
             },
             new UIState.PageContext
             {
+                Name = "Gaming",
+                RelativeLink = "/gaming",
+                IconName = "joystick"
+            },
+            new UIState.PageContext
+            {
+                Name = "Setups",
+                RelativeLink = "/setups",
+                IconName = "pci-card"
+            },
+            new UIState.PageContext
+            {
                 Name = "Media",
                 RelativeLink = "/media",
                 IconName = "camera",
@@ -59,9 +71,9 @@
             },
             new UIState.PageContext
             {
-                Name = "Gaming",
-                RelativeLink = "/gaming",
-                IconName = "joystick"
+                Name = "Art",
+                RelativeLink = "/art",
+                IconName = "brush-fill"
             },
             new UIState.PageContext
             {
@@ -71,10 +83,10 @@
             },
             new UIState.PageContext
             {
-                Name = "Setups",
-                RelativeLink = "/setups",
-                IconName = "pci-card"
-            }
+                Name = "Music",
+                RelativeLink = "/music",
+                IconName = "music-note-beamed"
+            },
         });
         Uri navURI = new(Navigation.Uri);
         try
