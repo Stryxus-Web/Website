@@ -58,16 +58,14 @@
 
     .section
         position: relative
-        border-radius: #{math.div($borderRadius, 2)} + px
         margin-top: -$borderRadius + px
         margin-bottom: -$borderRadius + px
+        margin-right: 0px
         padding-top: $borderRadius + px
         padding-bottom: $borderRadius + px
         padding-left: $borderRadius + px
         padding-right: $borderRadius + px
-
-        &:last-child
-            border-bottom-right-radius: 0px
+        clip-path: polygon(0% 15px, 15px 0%, calc(100% - 15px) 0%, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0% calc(100% - 15px))
 
 @include media-breakpoint-up(sm)
     #main-body, #page-transitioner
