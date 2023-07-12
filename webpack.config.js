@@ -135,7 +135,7 @@ module.exports = (env, argv) => {
                             options: {
                                 encodeOptions: {
                                     webp: {
-                                        quality: 22,
+                                        quality: 50,
                                         method: process.env.NODE_ENV === 'production' ? 6 : 0,
                                         thread_level: 8,
                                     },
