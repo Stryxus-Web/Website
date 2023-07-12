@@ -122,7 +122,7 @@ module.exports = (env, argv) => {
                             options: {
                                 encodeOptions: {
                                     avif: {
-                                        cqLevel: 32,
+                                        cqLevel: 24,
                                         sharpness: 3,
                                         speed: process.env.NODE_ENV === 'production' ? 0 : 10,
                                     },
@@ -135,7 +135,7 @@ module.exports = (env, argv) => {
                             options: {
                                 encodeOptions: {
                                     webp: {
-                                        quality: 15,
+                                        quality: 22,
                                         method: process.env.NODE_ENV === 'production' ? 6 : 0,
                                         thread_level: 8,
                                     },
