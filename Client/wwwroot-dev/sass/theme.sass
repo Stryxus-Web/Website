@@ -37,9 +37,6 @@ button
     h1, h2, h3, h4, h5, h6, p, small
         margin: 0px
 
-small, i
-    display: block
-
 a
     color: white
     text-decoration: none
@@ -58,6 +55,9 @@ a
         display: inline-block
         content: ""
         filter: invert(100%)
+
+small, i
+    display: block
 
 h1, h2, h3, h4, h5, h6
     font-weight: normal
@@ -134,7 +134,22 @@ p, small
 @include media-breakpoint-up(xl)
 @include media-breakpoint-down(sm)
 @include media-breakpoint-down(md)
+    h1
+        font-size: 22px
+    h2
+        font-size: 20px
+    h3
+        font-size: 18px
+    h4
+        font-size: 16px
+    h5
+        font-size: 14px
 
+    p
+        font-size: 12px
+    small
+        font-size: 8px
+        
 @include media-breakpoint-down(lg)
 @include media-breakpoint-down(xl)
 @include media-breakpoint-only(sm)
