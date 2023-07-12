@@ -19,7 +19,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Client\Stryxus.Client.csproj" />
     <ProjectReference Include="..\Shared\Stryxus.Shared.csproj" />
-    <ProjectReference Include="..\Submodules\CompressedStaticFiles\CompressedStaticFiles\CompressedStaticFiles.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,16 +1,15 @@
-using Microsoft.AspNetCore.ResponseCompression;
-
-using CompressedStaticFiles;
-
 // The website will be proxied by Cloudflare so, no need to add some things like security headers.
+
+using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.Extensions.FileProviders;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
-builder.Services.AddCompressedStaticFiles(o => {
-    o.EnablePrecompressedFiles = true;
-    o.RemoveImageSubstitutionCostRatio();
-});
+
+FileExtensionContentTypeProvider provider = new();
+provider.Mappings[".avif"] = "image/avif";
+provider.Mappings[".webp"] = "image/webp";
 
 WebApplication app = builder.Build();
 if (app.Environment.IsDevelopment())
@@ -18,7 +17,11 @@ if (app.Environment.IsDevelopment())
     app.UseWebAssemblyDebugging();
 }
 app.UseBlazorFrameworkFiles();
-app.UseCompressedStaticFiles();
+app.UseStaticFiles(new StaticFileOptions
+{
+    ContentTypeProvider = provider
+});
+app.UseStaticFiles();
 app.UseRouting();
 app.MapRazorPages();
 app.MapFallbackToFile("index.html");
