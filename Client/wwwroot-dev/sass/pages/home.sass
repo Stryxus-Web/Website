@@ -21,9 +21,6 @@ $homeZIndexSection2: 2
                         padding-right: 35px
                         transform: translateX(-$borderRadius + px)
                         clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - 25px), calc(100% - 25px) 100%, calc(100% - 675px) 100%, calc(100% - 700px) calc(100% - 25px), 0% calc(100% - 25px))
-
-                    & > .row
-                        height: inherit
                 
                 #avatar-cutout-container
                     #avatar-cutout
@@ -41,8 +38,8 @@ $homeZIndexSection2: 2
             & > .row
                 &:nth-child(1)
                     #welcome-text
-                        h1
-                            font-size: 48px
+                        & > .row
+                            height: calc(100vh - #{$bootstrapMargin * 2}px)
 
 @include media-breakpoint-up(lg) // [1200px] Larger Than Larger
 @include media-breakpoint-up(xl) // [14000px] Larger Than XLarger
@@ -53,9 +50,9 @@ $homeZIndexSection2: 2
             & > .row
                 &:nth-child(1)
                     #welcome-text
-                        h1
-                            font-size: 24px
+                        h1, h2, h3
                             min-width: 100%
+                            padding-left: 10px
 
 @include media-breakpoint-down(lg) // [1199.98px] Smaller Than Large
 @include media-breakpoint-down(xl) // [1399.98px] Smaller Than XLarge
