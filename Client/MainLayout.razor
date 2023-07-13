@@ -42,10 +42,10 @@
 
 @code {
 
-    protected override async Task OnInitializedAsync()
+    protected override Task OnInitializedAsync()
     {
         UI.OnPageIsTransitioningChange += StateHasChanged;
-        await base.OnInitializedAsync();
+        return base.OnInitializedAsync();
     }
 
     private void NavigateToHome() => UI.CurrentPageContext = UI.PageContexts?.First(x => x.RelativeLink == "/");
