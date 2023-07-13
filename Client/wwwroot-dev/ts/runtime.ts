@@ -97,7 +97,7 @@ function init() {
 
     document.getElementById("mobile-open-button")?.addEventListener("click", () => adaptMobileButton(true));
 
-    const avatarImg: HTMLElement | null = document.getElementById("avatar-img");
+    const avatarImg: HTMLElement | null = document.getElementById("avatar-img-container");
     if (avatarImg !== null) {
         avatarImg.addEventListener("click", () => adaptMobileButton());
     }
