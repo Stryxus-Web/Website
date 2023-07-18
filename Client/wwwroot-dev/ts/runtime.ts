@@ -12,14 +12,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     let supportAVIF = false;
     localStorage.setItem("supportAVIF", (supportAVIF = await testForAVIF()).toString());
 
+    let preAppTrigger = false;
     const trans: HTMLElement | null = document.getElementById("page-transitioner-pre");
     if (trans !== null) {
-        if (window.location.hostname === "www.stryxus.xyz") {
-            determineTestResult(testForWebAssembly(), "test-wasm");
-            determineTestResult(supportAVIF, "test-avif");
-            determineTestResult(testForAV1(), "test-av1opus");
-            determineTestResult(testForFLAC(), "test-flac");
-
+        determineTestResult(testForWebAssembly(), "test-wasm");
+        determineTestResult(supportAVIF, "test-avif");
+        determineTestResult(testForAV1(), "test-av1opus");
+        determineTestResult(testForFLAC(), "test-flac");
+        if (window.location.hostname === "stryxus.xyz") {
             document.getElementById("start-button")?.addEventListener("click", () => loadWASM(trans, true));
         } else {
             loadWASM(trans, false);
@@ -49,6 +49,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             let button: HTMLElement | null;
             if ((button = document.getElementById("start-button")) !== null) {
                 button.getElementsByTagName("h1")[0].innerText = "I know what I'm doing! Start the Website!";
+            }
+            if (!preAppTrigger) {
+                preAppTrigger = true;
             }
         }
     }
