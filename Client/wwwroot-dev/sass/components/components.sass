@@ -3,7 +3,6 @@
 // Misc
 
 @import "misc/loadingCircle"
-@import "misc/versionFooter"
 
 #mobile-open-button
     position: absolute
@@ -30,7 +29,6 @@
     height: $siteContainerSectionHeight + px
     left: 0px
     right: 0px
-    background-color: $black
     z-index: $zIndexSiteContainer
 
     &.disabled
@@ -43,23 +41,19 @@
     & > .row 
         height: inherit
 
-        & > .col-auto
-            background-color: $black
-            width: $navigationBarWidth + px
-            height: inherit
+        & > .col
             margin-top: math.div(-$borderRadius, 2) + px
-            clip-path: polygon(0% 25px, 25px 0%, calc(100% - 25px) 0%, 100% 25px, 100% 100%, 0% 100%)
 
     &.header
         top: 0px
 
         & > .row
             margin-left: -$bootstrapMargin + px
-            width: 100px
 
-            & > .col-auto
+            & > .col
                 height: 120px
-                clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - 25px), calc(100% - 25px) 100%, 25px 100%, 0% calc(100% - 25px))
+                background-color: $black
+                clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - 25px), #{$navigationBarWidth + px} calc(100% - 25px), calc(#{$navigationBarWidth + px} - 25px) 100%, 25px 100%, 0% calc(100% - 25px))
 
                 #avatar-img-container
                     background-color: $black
@@ -84,26 +78,37 @@
         bottom: 0px
 
         & > .row
-
-            & > .col-auto
+            & > .col
                 height: 120px
-                clip-path: polygon(0% 25px, 25px 0%, calc(100% - 25px) 0%, 100% 25px, 100% 100%, 0% 100%)
+                background-color: $black
+                clip-path: polygon(0% 25px, 25px 0%, calc(#{$navigationBarWidth + px} - 25px) 0%, #{$navigationBarWidth + px} 25px, 100% 25px, 100% 100%, 0% 100%)
+                & > .row
+                    &:nth-child(1)
+                        & > .col
 
-        i
-            display: block
-            text-align: center
-            line-height: 42px
-            width: 42px
-            height: 42px
-            font-size: 36px
-            margin-top: 16px !important
-            cursor: pointer
-            transition: 0.33s
-            padding: 4px
-            clip-path: polygon(0% 15px, 15px 0%, calc(100% - 15px) 0%, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0% calc(100% - 15px))
-            
-            &:hover
-                background-color: $materialYouColour4
+                            i
+                                display: block
+                                text-align: center
+                                width: 42px
+                                line-height: 42px
+                                font-size: 36px
+                                padding: 8px
+                                margin-left: 10px
+                                margin-top: 12px
+                                cursor: pointer
+                                transition: 0.33s
+                                clip-path: polygon(0% 15px, 15px 0%, calc(100% - 15px) 0%, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0% calc(100% - 15px))
+                                
+                                &:hover
+                                    background-color: $materialYouColour4
+
+                    &:nth-child(2)
+                        & > .col
+                            padding-left: 6px
+                            padding-top: 7px
+
+                            small
+                                font-size: 10px
 
 @include media-breakpoint-up(sm) // [768px] Larger Than Small
 @include media-breakpoint-up(md) // [992px] Larger Than Medium

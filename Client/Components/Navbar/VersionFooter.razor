@@ -1,15 +1,15 @@
-﻿<div class="row justify-content-center">
-    <div class="col-auto">
+﻿<div class="row">
+    <div class="col">
         <i class="bi bi-gear-wide-connected"></i>
     </div>
 </div>
-<!--<div id="version-footer" class="row">
-    <div class="col-auto">
-        <small>@(RuntimeBuildDate.Year + "/" + RuntimeBuildDate.Month + "/" + RuntimeBuildDate.Day + " UTC")</small>
-        <small>@(RuntimeBuildDate.Hour + ":" + RuntimeBuildDate.Minute + ":" + RuntimeBuildDate.Second + " UTC")</small>
-        <small>v@(RuntimeVersion)</small>
+<div class="row">
+    <div class="col">
+        <small>
+            @(RuntimeBuildDate.Year + "/" + RuntimeBuildDate.Month + "/" + RuntimeBuildDate.Day + " " + RuntimeBuildDate.Hour + ":" + RuntimeBuildDate.Minute + ":" + RuntimeBuildDate.Second + " UTC")
+        </small>
     </div>
-</div>-->
+</div>
 
 @code {
     public static Assembly? RuntimeAssembly { get; } = Assembly.GetAssembly(typeof(Program));

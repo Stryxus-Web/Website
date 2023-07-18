@@ -5,7 +5,7 @@
 </div>
 <div class="site-container header container-fluid">
     <div class="row justify-content-center">
-        <div class="col-auto">
+        <div class="col">
             <div id="avatar-img-container" class="@(UI.CurrentPageContext?.RelativeLink == "/" ? " active" : string.Empty) @(UI.PageIsTransitioning ? "disabled" : string.Empty)">
                 <img src="@(AC.Asset("/img/avatar.avif"))" @onclick="NavigateToHome" />
             </div>
@@ -30,7 +30,7 @@
 <div id="main-border"></div>
 <div class="site-container footer container-fluid">
     <div class="row">
-        <div class="col-auto">
+        <div class="col">
             <VersionFooter />
         </div>
     </div>
