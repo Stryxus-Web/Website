@@ -108,7 +108,7 @@ p, small
 
 //[class*='col-'], .col
 
-@include media-breakpoint-up(sm) // [768px] Larger Than Small
+@include media-breakpoint-up(sm) // Small devices (landscape phones, 576px and up)
 
     // Scrollbar
 
@@ -129,11 +129,7 @@ p, small
     ::-webkit-scrollbar-thumb:hover
         background: $materialYouColour3
 
-@include media-breakpoint-up(md)
-@include media-breakpoint-up(lg)
-@include media-breakpoint-up(xl)
-@include media-breakpoint-down(sm)
-@include media-breakpoint-down(md)
+@include media-breakpoint-down(lg)
     h1
         font-size: 22px
     h2
@@ -151,8 +147,18 @@ p, small
         font-size: 8px
         
 @include media-breakpoint-down(lg)
-@include media-breakpoint-down(xl)
-@include media-breakpoint-only(sm)
-@include media-breakpoint-only(md)
-@include media-breakpoint-only(lg)
-@include media-breakpoint-only(xl)
+    h1
+        font-size: 22px
+    h2
+        font-size: 20px
+    h3
+        font-size: 18px
+    h4
+        font-size: 16px
+    h5
+        font-size: 14px
+
+    p
+        font-size: 12px
+    small
+        font-size: 8px

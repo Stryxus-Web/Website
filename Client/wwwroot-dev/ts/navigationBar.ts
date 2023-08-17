@@ -4,6 +4,30 @@ import { waitForElement } from "./standard/mutations";
 
 import gsap from "gsap";
 
+export let isNavbarOpen = !isBreakpointDownMD;
+export function toggleNavbar(open: boolean)
+{
+    const mobileButton: HTMLElement | null = document.getElementById("mobile-open-button");
+    const mainBorder: HTMLElement | null = document.getElementById("main-border");
+    const mainBody: HTMLElement | null = document.getElementById("main-body");
+    const pageTransitioner: HTMLElement | null = document.getElementById("page-transitioner");
+
+    if (mobileButton !== null && mainBorder !== null && mainBody !== null && pageTransitioner !== null) {
+        isNavbarOpen = open;
+        if (open) {
+            gsap.to(mainBody, { ease: "sine.out", duration: 0.33, top: "16px", bottom: "16px", left: "108px" });
+            gsap.to(mainBorder, { ease: "sine.out", duration: 0.33, top: "8px", bottom: "8px", left: "99px" });
+            gsap.to(pageTransitioner, { ease: "sine.out", duration: 0.33, top: "16px", bottom: "16px", left: "108px" });
+        } else {
+            gsap.to(mainBody, { ease: "sine.out", duration: 0.33, top: "0px", bottom: "0px", left: "18px" });
+            gsap.to(mainBorder, { ease: "sine.out", duration: 0.33, top: "0px", bottom: "0px", left: "0px" });
+            gsap.to(pageTransitioner, { ease: "sine.out", duration: 0.33, top: "0px", bottom: "0px", left: "18px" });
+        }
+    }
+}
+
+// .NET Interop
+
 window.navigationBar = {
     animator: {
         transitionPage: (link: string, imageURLs: string) =>
@@ -44,28 +68,6 @@ window.navigationBar = {
                 const imgurls = JSON.parse(imageURLs);
                 if (imgurls !== null) navbar.style.backgroundImage = `url('${imgurls[Math.floor(Math.random() * imgurls.length)]}')`;
             }
-        }
-    }
-}
-
-export let isNavbarOpen = !isBreakpointDownMD;
-export function toggleNavbar(open: boolean)
-{
-    const mobileButton: HTMLElement | null = document.getElementById("mobile-open-button");
-    const mainBorder: HTMLElement | null = document.getElementById("main-border");
-    const mainBody: HTMLElement | null = document.getElementById("main-body");
-    const pageTransitioner: HTMLElement | null = document.getElementById("page-transitioner");
-
-    if (mobileButton !== null && mainBorder !== null && mainBody !== null && pageTransitioner !== null) {
-        isNavbarOpen = open;
-        if (open) {
-            gsap.to(mainBody, { ease: "sine.out", duration: 0.33, top: "16px", bottom: "16px", left: "108px" });
-            gsap.to(mainBorder, { ease: "sine.out", duration: 0.33, top: "8px", bottom: "8px", left: "99px" });
-            gsap.to(pageTransitioner, { ease: "sine.out", duration: 0.33, top: "16px", bottom: "16px", left: "108px" });
-        } else {
-            gsap.to(mainBody, { ease: "sine.out", duration: 0.33, top: "0px", bottom: "0px", left: "18px" });
-            gsap.to(mainBorder, { ease: "sine.out", duration: 0.33, top: "0px", bottom: "0px", left: "0px" });
-            gsap.to(pageTransitioner, { ease: "sine.out", duration: 0.33, top: "0px", bottom: "0px", left: "18px" });
         }
     }
 }

@@ -47,17 +47,6 @@
     & > .col
         height: inherit
 
-        & > .row
-            background-repeat: no-repeat
-            background-size: cover
-            background-attachment: fixed
-
-            &.f-h
-                height: 100%
-
-            &:nth-child(1)
-                min-height: 100%
-
     .section
         position: relative
         margin-top: -$borderRadius + px
@@ -68,7 +57,7 @@
         padding-right: $borderRadius + px
         clip-path: polygon(0% 15px, 15px 0%, calc(100% - 15px) 0%, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0% calc(100% - 15px))
 
-@include media-breakpoint-up(sm)
+@include media-breakpoint-up(lg)
     #main-body, #page-transitioner
         top: #{$bootstrapMargin * 2 - 8} + px
         bottom: #{$bootstrapMargin * 2 - 8} + px
@@ -84,11 +73,7 @@
     #page-transitioner
         clip-path: polygon(0% 40px, 40px 0%, 100% 0%, 100% 100%, 40px 100%, 0% calc(100% - 40px))
 
-@include media-breakpoint-up(md)
-@include media-breakpoint-up(lg)
-@include media-breakpoint-up(xl)
-@include media-breakpoint-down(sm)
-@include media-breakpoint-down(md)
+@include media-breakpoint-down(lg)
     #main-body, #page-transitioner
         top: 0px
         bottom: 0px
@@ -99,10 +84,3 @@
         top: 0px
         bottom: 0px
         left: 0px
-
-@include media-breakpoint-down(lg)
-@include media-breakpoint-down(xl)
-@include media-breakpoint-only(sm)
-@include media-breakpoint-only(md)
-@include media-breakpoint-only(lg)
-@include media-breakpoint-only(xl)

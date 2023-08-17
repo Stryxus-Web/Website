@@ -1,5 +1,5 @@
 import { } from "./globals";
-import { addWindowSizeListener, isBreakpointDownMD } from "./mediaQueries";
+import { addWindowSizeListener, isBreakpointDownLG } from "./mediaQueries";
 import { isNavbarOpen, toggleNavbar } from "./navigationBar";
 import { waitForElement } from "./standard/mutations";
 
@@ -120,7 +120,7 @@ function init() {
                 mobileButton.style.display = "none";
                 toggleNavbar(true);
             } else {
-                if (isBreakpointDownMD) {
+                if (isBreakpointDownLG) {
                     if (isNavbarOpen || isFirstRender) {
                         toggleNavbar(false);
                         mobileButton.style.display = "unset";
@@ -140,7 +140,7 @@ function init() {
     adaptMobileButton();
 }
 
-// .NET
+// .NET Interop
 
 window.runtime = {
     localstorage: {
