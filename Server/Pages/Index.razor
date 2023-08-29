@@ -1,0 +1,137 @@
+﻿@page "/"
+
+<PageTitle>Stryxus</PageTitle>
+
+<div id="page-transitioner-pre">
+    <div class="loading-circle-container">
+        <svg class="loading-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 340">
+            <circle cx="170" cy="170" r="160" />
+            <circle cx="170" cy="170" r="135" />
+            <circle cx="170" cy="170" r="110" />
+            <circle cx="170" cy="170" r="85" />
+        </svg>
+    </div>
+</div>
+<div id="app">
+    <div id="preapp" class="container-fluid p-0">
+        <div class="row justify-content-center align-items-center g-0">
+            <div class="col col-md-8">
+                <div class="row justify-content-center">
+                    <div class="col-auto">
+                        <h1>Welcome, please read below!</h1>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8 warn-desc">
+                        <p>
+                            Due to the cutting edge nature of this website, a few feature tests are run before loading, determining how many features your browser supports.
+                            <br />
+                            <br />
+                            This page is here to also make the app preemptively friendly for battery based devices and those with slow networks.
+                        </p>
+                    </div>
+                    <div class="col-12 col-md-8 warn-desc">
+                        <p>
+                            This page will only show up on your first visit or when one of the tests is flagged. You will also get a similar page when there is an update
+                            to alert those on limited data about the update size. You will be able to modify the behaviour of this page or come back here in the websites settings.
+                        </p>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col">
+                        <h2>Battery & limited data devices information</h2>
+                    </div>
+                </div>
+                <hr />
+                <div class="row justify-content-center">
+                    <div class="col-auto">
+                        <button id="start-button">
+                            <h1>Start The Website</h1>
+                        </button>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div id="test-card-grid" class="col">
+                        <div class="row justify-content-center">
+
+                            <div id="test-wasm" class="col-12 col-md-5 test-card">
+                                <div class="row">
+                                    <div class="col-auto">
+                                        <i class="bi bi-question-lg"></i>
+                                    </div>
+                                    <div class="col">
+                                        <p>WebAssembly</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <small>
+                                            Some browsers have WebAssembly disabled, most commonly on organisational devices over fears of security.
+                                            <br />
+                                            <br />
+                                            WebAssembly is the core of what runs this website allowing the .NET Runtime to be run in your browser and C# code to be executed.
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="test-avif" class="col-12 col-md-5 test-card">
+                                <div class="row">
+                                    <div class="col-auto">
+                                        <i class="bi bi-question-lg"></i>
+                                    </div>
+                                    <div class="col">
+                                        <p>AVIF Decoding</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <small>
+                                            AVIF is used for this websites imagery and animations due to its extreme effeciency and superior feature set when compared to legacy formats like JPEG, PNG and GIF.
+                                            AVIF is based off AV1 but implemented seperatly.
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="test-av1opus" class="col-12 col-md-5 test-card">
+                                <div class="row">
+                                    <div class="col-auto">
+                                        <i class="bi bi-question-lg"></i>
+                                    </div>
+                                    <div class="col">
+                                        <p>MP4 [AV1/Opus] Decoding</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <small>
+                                            MP4 is a standardised video/audio container which supports AV1 (Video) and Opus (Audio), it is used for this websites videos due
+                                            to its extreme effeciency when compared to that of h264, h265 and more including capabilities like HDR formatting.
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="test-flac" class="col-12 col-md-5 test-card">
+                                <div class="row">
+                                    <div class="col-auto">
+                                        <i class="bi bi-question-lg"></i>
+                                    </div>
+                                    <div class="col">
+                                        <p>FLAC Decoding</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <small>
+                                            FLAC is used for this website and is a royalty free audio format designed for hi-res audio at about half the size of formats like WAV.
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer" class="row justify-content-center align-items-center g-0">
+            <div class="col-auto">
+                <i class="bi bi-github"></i>
+            </div>
+        </div>
+    </div>
+</div>

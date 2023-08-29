@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="en" prefix="og: https://ogp.me/ns#">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <base href="/" />
+
+    <link rel="icon" type="image/png" sizes="192x192" href="<%= require('.//favicon-192x192.png') %>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<%= require('.//favicon-32x32.png') %>">
+
+    <link rel="me" href="@("https://mastodon.social/@stryxus")">
+
+    <link rel="stylesheet" href="@css_path">
+
+    <HeadOutlet />
+</head>
+<body>
+    <noscript>
+        This website requires Javascript. If you dont have Javascript enabled, you must find out how to enable it.
+        For no reason should Javascript be disabled in the modern day.
+    </noscript>
+    <Router AppAssembly="@typeof(App).Assembly">
+        <Found Context="routeData">
+            <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+            <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+        </Found>
+        <NotFound>
+            <PageTitle>Not found</PageTitle>
+            <LayoutView Layout="@typeof(MainLayout)">
+                <p role="alert">Sorry, there's nothing at this address.</p>
+            </LayoutView>
+        </NotFound>
+    </Router>
+    <script type="text/javascript" src="_framework/blazor.web.js" suppress-error="BL9992"></script>
+    <script type="text/javascript" src="_framework/blazor.webassembly.js" autostart="false"></script>
+    <script type="text/javascript" src="@js_path" defer></script>
+</body>
+</html>
+
+@inject IWebHostEnvironment env
+
+@code {
+
+    private string? js_path { get; set; }
+    private string? css_path { get; set; }
+
+    protected override Task OnParametersSetAsync()
+    {
+#if DEBUG
+        string content_path = Path.Join(Directory.GetCurrentDirectory()[..(Directory.GetCurrentDirectory().LastIndexOf("\\"))], "Client", "wwwroot");
+#else
+        string content_path = env.ContentRootPath;
+#endif
+        FileInfo js = new(new List<string>(Directory.GetFiles(content_path)).Where(x => x.EndsWith(".js")).First());
+        FileInfo css = new(new List<string>(Directory.GetFiles(content_path)).Where(x => x.EndsWith(".css")).First());
+        js_path = js.FullName.Substring(js.FullName.LastIndexOf("\\wwwroot") + 8, js.FullName.Length - (js.FullName.LastIndexOf("\\wwwroot") + 8));
+        css_path = css.FullName.Substring(css.FullName.LastIndexOf("\\wwwroot") + 8, css.FullName.Length - (css.FullName.LastIndexOf("\\wwwroot") + 8))[1..];
+        return base.OnParametersSetAsync();
+    }
+}

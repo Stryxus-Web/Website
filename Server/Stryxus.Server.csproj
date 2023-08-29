@@ -23,4 +23,8 @@
     <ProjectReference Include="..\Shared\Stryxus.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
 </Project>
