@@ -8,6 +8,7 @@
 
   <PropertyGroup>
 	<SourceRevisionId>build$([System.DateTime]::UtcNow.ToString("yyyyMMddHHmmss"))</SourceRevisionId>
+	<UserSecretsId>0f26e9d7-604a-4ffd-a169-c4e37647cb02</UserSecretsId>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'HTTPS' " />
