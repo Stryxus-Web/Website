@@ -1,9 +1,12 @@
 // The website will be proxied by Cloudflare so, no need to add some things like security headers.
 
 using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.Extensions.Logging.Console;
 using Stryxus.Module.Discord;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+builder.Logging.AddFilter<ConsoleLoggerProvider>(level => level == LogLevel.None);
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
