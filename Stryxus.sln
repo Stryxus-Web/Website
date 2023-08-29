@@ -39,6 +39,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflow", "Workflow", "{F5
 		.github\workflows\main_stryxus.yml = .github\workflows\main_stryxus.yml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stryxus.Module.Discord", "Modules\Stryxus.Module.Discord\Stryxus.Module.Discord.csproj", "{1301A4FD-86EE-4F09-82C3-77C55546835F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{BD07F3CF-96BA-43F8-B62C-1F96CE044AA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD07F3CF-96BA-43F8-B62C-1F96CE044AA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD07F3CF-96BA-43F8-B62C-1F96CE044AA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1301A4FD-86EE-4F09-82C3-77C55546835F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1301A4FD-86EE-4F09-82C3-77C55546835F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1301A4FD-86EE-4F09-82C3-77C55546835F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1301A4FD-86EE-4F09-82C3-77C55546835F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +75,7 @@ Global
 		{66D6808F-87DC-4574-A7B3-E0878C778163} = {6F12E418-C289-4835-A4F5-9B9E6017DA55}
 		{BD07F3CF-96BA-43F8-B62C-1F96CE044AA5} = {66D6808F-87DC-4574-A7B3-E0878C778163}
 		{F5588EDC-B18F-4AC7-8CE7-9A5BD7B99784} = {3C7063DB-5F03-4663-A306-2D3F6DAECC92}
+		{1301A4FD-86EE-4F09-82C3-77C55546835F} = {B5591EE8-EBD5-4CAD-9520-DFE43AD48D26}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {687EFF39-46B7-470C-9C18-7B3FAB48556A}
