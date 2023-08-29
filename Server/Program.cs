@@ -3,14 +3,24 @@
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Logging.Console;
 using Stryxus.Module.Discord;
+using System.Reflection;
 
-WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+IConfiguration configuration = new ConfigurationBuilder()
+    .AddEnvironmentVariables()
+    .AddCommandLine(args)
+    .AddJsonFile("appsettings.json")
+    .AddUserSecrets(Assembly.GetExecutingAssembly())
+    .Build();
+
+WebApplicationBuilder builder = WebApplication.CreateBuilder();
+builder.Configuration.AddConfiguration(configuration);
 builder.Logging.AddFilter<ConsoleLoggerProvider>(level => level == LogLevel.None);
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllers();
 builder.Services.AddRazorPages();
 
-builder.Services.AddSingleton<StryxBot>();
+string? discordToken;
+if ((discordToken = configuration["discord_token"]) is not null) builder.Services.AddSingleton(new StryxBot(discordToken));
 
 FileExtensionContentTypeProvider provider = new();
 provider.Mappings[".avif"] = "image/avif";
@@ -28,14 +38,24 @@ app.UseStaticFiles(new StaticFileOptions
 });
 app.UseStaticFiles();
 app.UseRouting();
+app.MapControllers();
 app.MapRazorPages();
 app.MapFallbackToFile("index.html");
 
-string? discordToken;
-if ((discordToken = app.Configuration["discord_token"]) is not null) app.Services.GetService<StryxBot>()?.Start(discordToken);
+Core.app = app;
 
 #if DEBUG
 await app.RunAsync("https://0.0.0.0:7076");
 #else
 await app.RunAsync();
 #endif
+
+internal static class Core
+{
+    internal static WebApplication app;
+
+    internal static void Shutdown()
+    {
+        app.Lifetime.StopApplication();
+    }
+}

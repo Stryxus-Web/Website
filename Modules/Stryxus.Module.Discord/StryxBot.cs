@@ -1,51 +1,85 @@
 ﻿using Discord;
 using Discord.WebSocket;
-
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.Metrics;
-using System.Linq;
-using System.Text;
-using System.Threading.Channels;
-using System.Threading.Tasks;
-
 using ProfFilter = ProfanityFilter.ProfanityFilter;
 
 namespace Stryxus.Module.Discord;
 
-public class StryxBot
+public class StryxBot : IAsyncDisposable
 {
-    private ProfFilter filter = new();
+    private readonly DiscordSocketClient Client;
+    private SocketGuild Guild;
+    private readonly ProfFilter Filter = new();
 
-    public void Start(string discordToken)
+#pragma warning disable CS8618
+    public StryxBot(string discordToken)
+#pragma warning restore CS8618
     {
-        DiscordSocketClient client = new(new DiscordSocketConfig
+        Client = new(new DiscordSocketConfig
         {
             AlwaysDownloadUsers = true,
             GatewayIntents = GatewayIntents.All,
             MessageCacheSize = 100
         });
-        client.Log += async (LogMessage msg) => Console.WriteLine($"StryxBot: {msg.Message}");
 
-        client.MessageReceived += async (SocketMessage msg) =>
+        Client.Log += async (LogMessage msg) => Console.WriteLine($"StryxBot: {msg.Message}");
+
+        Client.MessageReceived += async (SocketMessage msg) =>
         {
             await FilterProfanity(msg);
         };
 
-        client.MessageUpdated += async (Cacheable<IMessage, ulong> before, SocketMessage after, ISocketMessageChannel channel) =>
+        Client.MessageUpdated += async (Cacheable<IMessage, ulong> before, SocketMessage after, ISocketMessageChannel channel) =>
         {
             await FilterProfanity(after);
         };
 
-        client.LoginAsync(TokenType.Bot, discordToken);
-        client.StartAsync();
+        Client.Ready += async () => 
+        {
+            await Client.SetStatusAsync(UserStatus.AFK);
+            await Client.SetGameAsync("Loading...");
+
+            Guild = Client.GetGuild(1050396378767032371);
+
+            await DiscordPermissions.SetPermission(Guild.EveryoneRole, GuildPermission.SendMessages, true);
+            await DiscordPermissions.SetPermission(Guild.EveryoneRole, GuildPermission.SendTTSMessages, true);
+            await DiscordPermissions.SetPermission(Guild.EveryoneRole, GuildPermission.Connect, true);
+            await DiscordPermissions.SetPermission(Guild.EveryoneRole, GuildPermission.Speak, true);
+            await DiscordPermissions.SetPermission(Guild.EveryoneRole, GuildPermission.CreatePublicThreads, true);
+            await DiscordPermissions.SetPermission(Guild.EveryoneRole, GuildPermission.CreatePrivateThreads, true);
+            await DiscordPermissions.SetPermission(Guild.EveryoneRole, GuildPermission.SendMessagesInThreads, true);
+            await DiscordPermissions.SetPermission(Guild.EveryoneRole, GuildPermission.SendVoiceMessages, true);
+
+            await Client.SetStatusAsync(UserStatus.Online);
+            await Client.SetGameAsync("You...", null, ActivityType.Watching);
+        };
+
+        Client.LoginAsync(TokenType.Bot, discordToken);
+        Client.StartAsync();
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        await Client.SetStatusAsync(UserStatus.DoNotDisturb);
+        await Client.SetGameAsync("Shutting Down...");
+
+        await DiscordPermissions.SetPermission(Guild.EveryoneRole, GuildPermission.SendMessages, false);
+        await DiscordPermissions.SetPermission(Guild.EveryoneRole, GuildPermission.SendTTSMessages, false);
+        await DiscordPermissions.SetPermission(Guild.EveryoneRole, GuildPermission.Connect, false);
+        await DiscordPermissions.SetPermission(Guild.EveryoneRole, GuildPermission.Speak, false);
+        await DiscordPermissions.SetPermission(Guild.EveryoneRole, GuildPermission.CreatePublicThreads, false);
+        await DiscordPermissions.SetPermission(Guild.EveryoneRole, GuildPermission.CreatePrivateThreads, false);
+        await DiscordPermissions.SetPermission(Guild.EveryoneRole, GuildPermission.SendMessagesInThreads, false);
+        await DiscordPermissions.SetPermission(Guild.EveryoneRole, GuildPermission.SendVoiceMessages, false);
+
+        await Client.StopAsync();
+        await Client.LogoutAsync();
+        GC.SuppressFinalize(this);
     }
 
     private async Task FilterProfanity(SocketMessage msg, Cacheable<IMessage, ulong>? before = null)
     {
         List<string> profanity;
-        if ((profanity = filter.DetectAllProfanities(msg.Content).ToList()).Count > 0)
+        if ((profanity = Filter.DetectAllProfanities(msg.Content).ToList()).Count > 0)
         {
             string profmsg;
             if (before is null)
