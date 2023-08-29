@@ -51,7 +51,6 @@ app.UseAntiforgery();
 app.MapControllers();
 app.MapRazorPages();
 app.MapRazorComponents<App>();
-app.MapFallbackToFile("index.html");
 
 Core.app = app;
 
