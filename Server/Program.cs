@@ -32,7 +32,7 @@ app.MapRazorPages();
 app.MapFallbackToFile("index.html");
 
 string? discordToken;
-if ((discordToken = app.Configuration["discord_token"]) is not null) app.Services.GetService<StryxBot>()?.Connect(discordToken);
+if ((discordToken = app.Configuration["discord_token"]) is not null) app.Services.GetService<StryxBot>()?.Start(discordToken);
 
 #if DEBUG
 await app.RunAsync("https://0.0.0.0:7076");
