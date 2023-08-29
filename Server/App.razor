@@ -47,9 +47,9 @@
     protected override Task OnParametersSetAsync()
     {
 #if DEBUG
-        string content_path = Path.Join(Directory.GetCurrentDirectory()[..(Directory.GetCurrentDirectory().LastIndexOf("\\"))], "Client", "wwwroot");
+    string content_path = Path.Join(Directory.GetCurrentDirectory()[..(Directory.GetCurrentDirectory().LastIndexOf("\\"))], "Client", "wwwroot");
 #else
-        string content_path = env.ContentRootPath;
+        string content_path = Path.Join(Directory.GetCurrentDirectory(), "wwwroot");
 #endif
         FileInfo js = new(new List<string>(Directory.GetFiles(content_path)).Where(x => x.Contains($"{Path.DirectorySeparatorChar}main.") && x.EndsWith(".js")).First());
         FileInfo css = new(new List<string>(Directory.GetFiles(content_path)).Where(x => x.Contains($"{Path.DirectorySeparatorChar}main.") && x.EndsWith(".css")).First());

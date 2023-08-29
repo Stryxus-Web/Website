@@ -58,7 +58,7 @@ Core.app = app;
 #if DEBUG
 await app.RunAsync("https://0.0.0.0:7076");
 #else
-await app.RunAsync();
+await app.RunAsync("https://0.0.0.0:7076");
 #endif
 
 internal static class Core
