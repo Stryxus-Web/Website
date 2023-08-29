@@ -55,6 +55,8 @@
         FileInfo css = new(new List<string>(Directory.GetFiles(content_path)).Where(x => x.Contains($"{Path.DirectorySeparatorChar}main.") && x.EndsWith(".css")).First());
         js_path = js.FullName.Substring(js.FullName.LastIndexOf("\\wwwroot") + 8, js.FullName.Length - (js.FullName.LastIndexOf("\\wwwroot") + 8));
         css_path = css.FullName.Substring(css.FullName.LastIndexOf("\\wwwroot") + 8, css.FullName.Length - (css.FullName.LastIndexOf("\\wwwroot") + 8))[1..];
+        js_path = js_path[(js_path.LastIndexOf("/") + 1)..];
+        css_path = css_path[(js_path.LastIndexOf("/") + 1)..];
         return base.OnParametersSetAsync();
     }
 }
