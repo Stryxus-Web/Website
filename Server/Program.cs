@@ -1,11 +1,12 @@
 // The website will be proxied by Cloudflare so, no need to add some things like security headers.
 
+using System.Reflection;
+
 using Microsoft.AspNetCore.StaticFiles;
-using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging.Console;
+
 using Stryxus.Module.Discord;
 using Stryxus.Server;
-using System.Reflection;
 
 IConfiguration configuration = new ConfigurationBuilder()
     .AddEnvironmentVariables()
