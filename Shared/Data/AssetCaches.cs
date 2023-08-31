@@ -27,7 +27,7 @@ public class AssetCaches
         }
         if (BAC is not null && BAC.Files is not null)
         {
-            for (int i = 0; i < BAC.Files.Count; i++)
+            for (int i = 0; i < BAC.Files.Count - 1; i++)
             {
                 if (BAC.Files[i].EndsWith(".avif"))
                 {
