@@ -14,7 +14,7 @@ import './img/avatar.png?as=avif'
 import './img/cutout.png?as=avif'
 
 // PNG - Home
-//import './img/home/background-0.png?as=avif'
+import './img/home/back_main.png?as=avif'
 
 // PNG - Media
 import './img/media/background-0.png?as=avif'
