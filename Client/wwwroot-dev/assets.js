@@ -10,8 +10,7 @@ import './ts/navigationBar.ts'
 //
 
 // Favicons
-import './favicon-32x32.png'
-import './favicon-192x192.png'
+import './favicon.png'
 
 // PNG
 import './img/avatar.png?as=avif'
