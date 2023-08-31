@@ -4,9 +4,10 @@ using System.Reflection;
 
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Logging.Console;
-
+using Stryxus.Data;
 using Stryxus.Module.Discord;
 using Stryxus.Server;
+using Stryxus.Server.Data.State;
 
 IConfiguration configuration = new ConfigurationBuilder()
     .AddEnvironmentVariables()
@@ -19,10 +20,14 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder();
 builder.Configuration.AddConfiguration(configuration);
 builder.Logging.AddFilter<ConsoleLoggerProvider>(level => level == LogLevel.None);
 
+builder.Services.AddHttpClient();
 builder.Services.AddControllersWithViews();
 builder.Services.AddAntiforgery();
 builder.Services.AddRazorPages();
 builder.Services.AddRazorComponents();
+
+builder.Services.AddScoped<RuntimeState>();
+builder.Services.AddScoped<AssetCaches>();
 
 string? discordToken;
 if ((discordToken = configuration["discord_token"]) is not null) builder.Services.AddSingleton(new StryxBot(discordToken));
@@ -54,6 +59,10 @@ app.MapRazorPages();
 app.MapRazorComponents<App>();
 
 Core.app = app;
+
+await AssetCaches.ReadBacServer();
+
+Services.SetServiceProvider(app.Services);
 
 #if DEBUG
 await app.RunAsync("https://0.0.0.0:7076");

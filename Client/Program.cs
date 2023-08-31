@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
+using Stryxus.Data;
 using Stryxus.Client;
-using Stryxus.Client.Data;
 using Stryxus.Client.Data.State;
+using Stryxus.Data.State;
+using Microsoft.JSInterop;
 
 WebAssemblyHost Host;
 WebAssemblyHostBuilder HostBuilder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -13,13 +15,23 @@ HostBuilder.RootComponents.Add<HeadOutlet>("head::after");
 
 HostBuilder.Services.AddHttpClient("Stryxus.ServerAPI", client => client.BaseAddress = new Uri(HostBuilder.HostEnvironment.BaseAddress));
 HostBuilder.Services.AddSingleton(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("Stryxus.ServerAPI"));
-HostBuilder.Services.AddSingleton(typeof(RuntimeState));
-HostBuilder.Services.AddSingleton(typeof(AssetCaches));
-HostBuilder.Services.AddSingleton(typeof(UIState));
+HostBuilder.Services.AddSingleton<RuntimeState>();
+HostBuilder.Services.AddSingleton<AssetCaches>();
+HostBuilder.Services.AddSingleton<UIState>();
 
 Host = HostBuilder.Build();
 
-await Host.Services.GetRequiredService<AssetCaches>().Init();
+RuntimeState? rState;
+if ((rState = Host.Services.GetRequiredService<RuntimeState>()) != null)
+{
+    HttpClient Client;
+    IJSRuntime? IJS;
+    if ((Client = Host.Services.GetRequiredService<HttpClient>()) != null && (IJS = Host.Services.GetRequiredService<IJSRuntime>()) != null)
+    {
+        rState.IJS = IJS;
+        await Host.Services.GetRequiredService<AssetCaches>().Init(false, rState, Client);
+    }
+}
 
 Services.SetServiceProvider(Host.Services);
 await Host.RunAsync();

@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="/" />
 
-    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="@(AC.Asset("favicon-192x192.png"))">
+    <link rel="icon" type="image/png" sizes="32x32" href="@(AC.Asset("favicon-32x32.png"))">
 
     <link rel="me" href="@("https://mastodon.social/@stryxus")">
 
@@ -37,26 +37,33 @@
 </body>
 </html>
 
-@inject IWebHostEnvironment env
+@inject IJSRuntime IJS
+
+@inject RuntimeState RS
+@inject AssetCaches AC
 
 @code {
 
     private string? js_path { get; set; }
     private string? css_path { get; set; }
 
-    protected override Task OnParametersSetAsync()
+    protected override async Task OnParametersSetAsync()
     {
-#if DEBUG
-    string content_path = Path.Join(Directory.GetCurrentDirectory()[..(Directory.GetCurrentDirectory().LastIndexOf("\\"))], "Client", "wwwroot");
-#else
-        string content_path = Path.Join(Directory.GetCurrentDirectory(), "wwwroot");
-#endif
-        FileInfo js = new(new List<string>(Directory.GetFiles(content_path)).Where(x => x.Contains($"{Path.DirectorySeparatorChar}main.") && x.EndsWith(".js")).First());
-        FileInfo css = new(new List<string>(Directory.GetFiles(content_path)).Where(x => x.Contains($"{Path.DirectorySeparatorChar}main.") && x.EndsWith(".css")).First());
+        FileInfo js = new(new List<string>(Directory.GetFiles(Globals.Content_Path)).Where(x => x.Contains($"{Path.DirectorySeparatorChar}main.") && x.EndsWith(".js")).First());
+        FileInfo css = new(new List<string>(Directory.GetFiles(Globals.Content_Path)).Where(x => x.Contains($"{Path.DirectorySeparatorChar}main.") && x.EndsWith(".css")).First());
         js_path = js.FullName.Substring(js.FullName.LastIndexOf("\\wwwroot") + 8, js.FullName.Length - (js.FullName.LastIndexOf("\\wwwroot") + 8));
         css_path = css.FullName.Substring(css.FullName.LastIndexOf("\\wwwroot") + 8, css.FullName.Length - (css.FullName.LastIndexOf("\\wwwroot") + 8))[1..];
         js_path = js_path[(js_path.LastIndexOf("/") + 1)..];
         css_path = css_path[(css_path.LastIndexOf("/") + 1)..];
-        return base.OnParametersSetAsync();
+
+        RS.IJS = IJS;
+        await AC.Init(true);
+        await base.OnParametersSetAsync();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender) await AC.GetAVIFSupport(RS);
+        await base.OnAfterRenderAsync(firstRender);
     }
 }

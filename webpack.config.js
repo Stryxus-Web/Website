@@ -115,9 +115,20 @@ module.exports = (env, argv) => {
                     parallel: true,
                 }),
                 new ImageMinimizerPlugin({
+                    // TODO: I really need to find a way to make 'preset: 'png'' among others work. It refuses to work no matter what for some reason.
+                    minimizer: {
+                        implementation: ImageMinimizerPlugin.squooshMinify,
+                        options: {
+                            encodeOptions: {
+                                oxipng: {
+                                    effort: process.env.NODE_ENV === 'production' ? 3 : 0
+                                },
+                            },
+                        },
+                    },
                     generator: [
                         {
-                            type: 'asset',
+                            preset: 'avif',
                             implementation: ImageMinimizerPlugin.squooshGenerate,
                             options: {
                                 encodeOptions: {
@@ -130,7 +141,7 @@ module.exports = (env, argv) => {
                             },
                         },
                         {
-                            type: 'asset',
+                            preset: 'webp', // This is here for compatibility
                             implementation: ImageMinimizerPlugin.squooshGenerate,
                             options: {
                                 encodeOptions: {

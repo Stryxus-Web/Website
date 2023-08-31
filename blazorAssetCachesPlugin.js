@@ -5,7 +5,7 @@ class BlazorAssetCachesPlugin {
 
             for (var filename in compilation.assets) {
                 if (!filename.endsWith('.html') && !filename.endsWith('.js') && !filename.endsWith('.css') && !filename.endsWith('.woff') && !filename.endsWith('.woff2')) {
-                    a.files.push(filename);
+                    a.files.push(filename.startsWith('/') ? filename.substring(1) : filename);
                 }
             }
 
