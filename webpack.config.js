@@ -6,7 +6,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
-const BlazorAssetCachesPlugin = require('./blazorAssetCachesPlugin');
+const BlazorAssetCachesPlugin = require('./plugins/blazorAssetCachesPlugin');
 
 module.exports = (env, argv) => {
     return {
