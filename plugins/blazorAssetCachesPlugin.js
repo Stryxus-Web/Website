@@ -1,19 +1,21 @@
 class BlazorAssetCachesPlugin {
     apply(compiler) {
-        compiler.hooks.emit.tapAsync('BlazorAssetCachesPlugin', (compilation, callback) => {
-            var a = { files: [] };
-
-            for (var filename in compilation.assets) {
-                if (!filename.endsWith('.html') && !filename.endsWith('.js') && !filename.endsWith('.css') && !filename.endsWith('.woff') && !filename.endsWith('.woff2')) {
-                    a.files.push(filename.startsWith('/') ? filename.substring(1) : filename);
-                }
-            }
-
-            a = JSON.stringify(a);
-            compilation.assets['bac.json'] = {
-                source: () => { return a }
-            };
-            callback();
+        compiler.hooks.compilation.tap('BlazorAssetCachesPlugin', compilation => {
+            compilation.hooks.processAssets.tap({
+                name: 'BlazorAssetCachesPlugin',
+                stage: compilation.PROCESS_ASSETS_STAGE_ADDITIONAL,
+            }, assets => {
+                const sources = compilation.compiler.webpack.sources;
+                
+                var a = { files: [] };
+                Object.entries(assets).forEach(([pathname, source]) => {
+                    if (!pathname.endsWith('.html') && !pathname.endsWith('.js') && !pathname.endsWith('.css') && !pathname.endsWith('.woff') && !pathname.endsWith('.woff2')) {
+                        a.files.push(pathname.startsWith('/') ? pathname.substring(1) : pathname);
+                    }
+                });
+                compilation.deleteAsset('bac.json');
+                compilation.emitAsset('bac.json', new sources.RawSource(JSON.stringify(a)));
+            });
         });
     }
 }
