@@ -5,7 +5,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
-const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
+const BlazorAssetOptimiserPlugin = require('./plugins/blazorAssetOptimiserPlugin');
 const BlazorAssetCachesPlugin = require('./plugins/blazorAssetCachesPlugin');
 
 module.exports = (env, argv) => {
@@ -78,7 +79,7 @@ module.exports = (env, argv) => {
                     test: /\.woff2?$/,
                     type: 'asset',
                     generator: {
-                        filename: './fonts/[name][contenthash][ext]',
+                        filename: './fonts/[name].[contenthash][ext]',
                     },
                 },
             ],
@@ -102,6 +103,7 @@ module.exports = (env, argv) => {
                     }
                 }
             },
+            //new BlazorAssetOptimiserPlugin(),
             new BlazorAssetCachesPlugin(),
         ],
         optimization: {
@@ -115,9 +117,8 @@ module.exports = (env, argv) => {
                     parallel: true,
                 }),
                 new ImageMinimizerPlugin({
-                    // TODO: I really need to find a way to make 'preset: 'png'' among others work. It refuses to work no matter what for some reason.
                     minimizer: {
-                        implementation: ImageMinimizerPlugin.squooshMinify,
+                        implementation: ImageMinimizerPlugin.sharpMinify,
                         options: {
                             encodeOptions: {
                                 oxipng: {
@@ -129,7 +130,7 @@ module.exports = (env, argv) => {
                     generator: [
                         {
                             preset: 'avif',
-                            implementation: ImageMinimizerPlugin.squooshGenerate,
+                            implementation: ImageMinimizerPlugin.sharpGenerate,
                             options: {
                                 encodeOptions: {
                                     avif: {
@@ -142,7 +143,7 @@ module.exports = (env, argv) => {
                         },
                         {
                             preset: 'webp', // This is here for compatibility
-                            implementation: ImageMinimizerPlugin.squooshGenerate,
+                            implementation: ImageMinimizerPlugin.sharpGenerate,
                             options: {
                                 encodeOptions: {
                                     webp: {

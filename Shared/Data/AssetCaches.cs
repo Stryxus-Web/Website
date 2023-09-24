@@ -49,7 +49,11 @@ public class AssetCaches
         {
             if (val is not null)
             {
-                if (val.Item2 is not null) return $"{(hasRelative ? "/" : string.Empty)}{(SupportsAVIF ? val.Item1 : val.Item2)}";
+                if (val.Item1.StartsWith("img/"))
+                {
+                    if (val.Item2 is not null) return $"{(hasRelative ? "/" : string.Empty)}{(SupportsAVIF ? val.Item1 : val.Item2)}";
+                    else return $"{(hasRelative ? "/" : string.Empty)}{val.Item1}";
+                }
                 else return $"{(hasRelative ? "/" : string.Empty)}{val.Item1}";
             }
             else return "unknown";
