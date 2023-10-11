@@ -25,9 +25,6 @@
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
             },
-            "presentation": {
-                "hidden": true
-            }
         },
         {
             "type": "msedge",
