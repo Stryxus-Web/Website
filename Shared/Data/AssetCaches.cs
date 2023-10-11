@@ -29,7 +29,11 @@ public class AssetCaches
         {
             for (int i = 0; i < BAC.Files.Count - 1; i++)
             {
-                if (BAC.Files[i].EndsWith(".avif")) BACLinks.Add(BAC.Files[i][..BAC.Files[i].IndexOf('.')], new(BAC.Files[i], BAC.Files[i++]));
+                if (BAC.Files[i].EndsWith(".avif"))
+                {
+                    BACLinks.Add(BAC.Files[i][..BAC.Files[i].IndexOf('.')], new(BAC.Files[i], BAC.Files[i + 1]));
+                    i++;
+                } 
                 else BACLinks.Add(BAC.Files[i][..BAC.Files[i].IndexOf('.')], new(BAC.Files[i], null));
             }
         }
