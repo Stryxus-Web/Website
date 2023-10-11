@@ -41,7 +41,20 @@ module.exports = (env, argv) => {
         },
         watch: argv.mode === 'development',
         watchOptions: {
-            ignored: [ '**/Stryxus/Client/wwwroot/**', '**/node_modules' ],
+            ignored: [ 
+                '**/node_modules',
+                '**/plugins/**',
+                '**/Components/**',
+                '**/Client/bin/**',
+                '**/Client/obj/**',
+                '**/Client/wwwroot/**',
+                '**/Server/bin/**',
+                '**/Server/obj/**',
+                '**/Server/wwwroot/**',
+                '**/Shared/**',
+                '**/Vault/**',
+                '**/Modules/**',
+            ],
         },
         module: {
             rules: [
