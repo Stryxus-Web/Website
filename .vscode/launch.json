@@ -2,10 +2,86 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch and Debug Standalone Blazor WebAssembly App",
-            "type": "blazorwasm",
+            // Use IntelliSense to find out which attributes exist for C# debugging
+            // Use hover for the description of the existing attributes
+            // For further information visit https://github.com/dotnet/vscode-csharp/blob/main/debugger-launchjson.md.
+            "name": "Launch & Debug",
+            "type": "coreclr",
             "request": "launch",
-            "cwd": "${workspaceFolder}/Stryxus/Server"
+            "preLaunchTask": "build",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/Server/bin/Debug/net8.0/Stryxus.Server.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Server",
+            "stopAtEntry": false,
+            "launchBrowser": {
+                "enabled": false
+            },
+            // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
+        //  "serverReadyAction": {
+        //      "action": "openExternally",
+        //      "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+        //  },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "presentation": {
+                "hidden": true
+            }
+        },
+        {
+            "type": "msedge",
+            "name": "Launch Microsoft Edge",
+            "request": "launch",
+            "runtimeArgs": [
+                "--remote-debugging-port=9222"
+            ],
+            "url": "https://localhost:7076",
+            "presentation": {
+                "hidden": true
+            }
+        },
+        {
+            "type": "msedge",
+            "name": "Launch Microsoft Edge in headless mode",
+            "request": "launch",
+            "runtimeArgs": [
+                "--headless",
+                "--remote-debugging-port=9222"
+            ],
+            "url": "https://localhost:7076",
+            "presentation": {
+                "hidden": true
+            }
+        },
+        {
+            "type": "vscode-edge-devtools.debug",
+            "name": "Open Edge DevTools",
+            "request": "attach",
+            "url": "https://localhost:7076",
+            "presentation": {
+                "hidden": true
+            }
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Edge Headless & DevTools",
+            "preLaunchTask": "build",
+            "configurations": [
+                "Launch & Debug",
+                "Launch Microsoft Edge in headless mode",
+                "Open Edge DevTools",
+            ]
+        },
+        {
+            "name": "Edge & DevTools",
+            "preLaunchTask": "build",
+            "configurations": [
+                "Launch & Debug",
+                "Launch Microsoft Edge",
+                "Open Edge DevTools",
+            ]
         }
     ]
 }

@@ -7,21 +7,9 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/Stryxus/Server/Stryxus.Server.csproj",
+                "${workspaceFolder}/Stryxus.sln",
                 "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "publish",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "publish",
-                "${workspaceFolder}/Stryxus/Server/Stryxus.Server.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -33,9 +21,9 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/Stryxus/Server/Stryxus.Server.csproj"
+                "${workspaceFolder}/Stryxus.sln"
             ],
             "problemMatcher": "$msCompile"
-        }
+        },
     ]
 }

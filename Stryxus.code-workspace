@@ -1,9 +1,11 @@
 {
 	"folders": [
 		{
+			"name": "Root",
 			"path": "."
 		},
 		{
+			"name": "Assets",
 			"path": "Client/wwwroot-dev"
 		}
 	],
@@ -11,6 +13,5 @@
 		"eslint.workingDirectories": [
 			"./Client"
 		],
-		"dotnet.defaultSolution": "c:\\Users\\conno\\Projects\\Stryxus\\Website\\Stryxus.sln"
-	}
+	},
 }
