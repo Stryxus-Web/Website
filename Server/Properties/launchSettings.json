@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Stryxus.Server": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:54456;http://localhost:54458"
+    }
+  }
+}
