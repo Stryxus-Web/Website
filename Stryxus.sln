@@ -9,15 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stryxus.Client", "Client\St
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stryxus.Shared", "Shared\Stryxus.Shared.csproj", "{A94EF7E7-3667-441D-85A5-128A9A2CB1BB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Node", "Node", "{030A4210-4C5F-49A7-BB87-C6D1173037DF}"
-	ProjectSection(SolutionItems) = preProject
-		optimiser.js = optimiser.js
-		package-lock.json = package-lock.json
-		package.json = package.json
-		tsconfig.json = tsconfig.json
-		webpack.config.js = webpack.config.js
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{B5591EE8-EBD5-4CAD-9520-DFE43AD48D26}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Components", "Components", "{6F12E418-C289-4835-A4F5-9B9E6017DA55}"
@@ -39,7 +30,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflow", "Workflow", "{F5
 		.github\workflows\main_stryxus.yml = .github\workflows\main_stryxus.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stryxus.Module.Discord", "Modules\Stryxus.Module.Discord\Stryxus.Module.Discord.csproj", "{1301A4FD-86EE-4F09-82C3-77C55546835F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stryxus.Module.Discord", "Modules\Stryxus.Module.Discord\Stryxus.Module.Discord.csproj", "{1301A4FD-86EE-4F09-82C3-77C55546835F}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Stryxus.Typescript", "Stryxus.Typescript\Stryxus.Typescript.esproj", "{F7C49FF4-8352-40C4-AE36-C96A164682AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +60,12 @@ Global
 		{1301A4FD-86EE-4F09-82C3-77C55546835F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1301A4FD-86EE-4F09-82C3-77C55546835F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1301A4FD-86EE-4F09-82C3-77C55546835F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7C49FF4-8352-40C4-AE36-C96A164682AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7C49FF4-8352-40C4-AE36-C96A164682AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7C49FF4-8352-40C4-AE36-C96A164682AB}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{F7C49FF4-8352-40C4-AE36-C96A164682AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7C49FF4-8352-40C4-AE36-C96A164682AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7C49FF4-8352-40C4-AE36-C96A164682AB}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

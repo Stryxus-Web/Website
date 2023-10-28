@@ -12,6 +12,13 @@
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'HTTPS' " />
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\**" />
+    <Content Remove="wwwroot\**" />
+    <EmbeddedResource Remove="wwwroot\**" />
+    <None Remove="wwwroot\**" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.0-rc.2.23480.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
@@ -21,10 +28,6 @@
     <ProjectReference Include="..\Client\Stryxus.Client.csproj" />
     <ProjectReference Include="..\Modules\Stryxus.Module.Discord\Stryxus.Module.Discord.csproj" />
     <ProjectReference Include="..\Shared\Stryxus.Shared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 </Project>
