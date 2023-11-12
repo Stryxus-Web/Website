@@ -1,6 +1,6 @@
 ﻿using Discord;
 
-namespace Stryxus.Module.Discord;
+namespace Stryxus.Components.Server.Discord;
 
 public static class DiscordPermissions
 {

@@ -2,7 +2,7 @@
 using Discord.WebSocket;
 using ProfFilter = ProfanityFilter.ProfanityFilter;
 
-namespace Stryxus.Module.Discord;
+namespace Stryxus.Components.Server.Discord;
 
 public class StryxBot : IAsyncDisposable
 {

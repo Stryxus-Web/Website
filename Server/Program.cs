@@ -5,7 +5,7 @@ using System.Reflection;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Logging.Console;
 using Stryxus.Data;
-using Stryxus.Module.Discord;
+using Stryxus.Components.Server.Discord;
 using Stryxus.Server;
 using Stryxus.Server.Data.State;
 
