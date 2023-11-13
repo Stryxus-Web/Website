@@ -1,5 +1,6 @@
 ﻿using System.Net.Http.Json;
 using System.Reflection;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Stryxus.Data.State;
 
@@ -70,8 +71,14 @@ public class AssetCaches
 
     public static async Task ReadBacServer()
     {
-        FileInfo bac = new(new List<string>(Directory.GetFiles(Globals.Content_Path)).Where(x => x.Contains("assets.json")).First());
-        using StreamReader stream = new(bac.OpenRead());
-        BAC = JsonConvert.DeserializeObject<BACList?>(await stream.ReadToEndAsync());
+        try
+        {
+            FileInfo bac = new(new List<string>(Directory.GetFiles(Globals.Content_Path)).Where(x => x.Contains("assets.json")).First());
+            using StreamReader stream = new(bac.OpenRead());
+            BAC = JsonConvert.DeserializeObject<BACList?>(await stream.ReadToEndAsync());
+        } catch
+        {
+            Console.Error.WriteLine("Blazing has not been run to generate the assets.json!");
+        }
     }
 }
