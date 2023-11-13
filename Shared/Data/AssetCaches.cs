@@ -23,7 +23,7 @@ public class AssetCaches
         if (!isServer && RS is not null && client is not null)
         {
             await GetAVIFSupport(RS);
-            BAC = await client.GetFromJsonAsync<BACList?>("bac.json");
+            BAC = await client.GetFromJsonAsync<BACList?>("assets.json");
         }
         if (BAC is not null && BAC.Files is not null)
         {
@@ -70,7 +70,7 @@ public class AssetCaches
 
     public static async Task ReadBacServer()
     {
-        FileInfo bac = new(new List<string>(Directory.GetFiles(Globals.Content_Path)).Where(x => x.Contains("bac.json")).First());
+        FileInfo bac = new(new List<string>(Directory.GetFiles(Globals.Content_Path)).Where(x => x.Contains("assets.json")).First());
         using StreamReader stream = new(bac.OpenRead());
         BAC = JsonConvert.DeserializeObject<BACList?>(await stream.ReadToEndAsync());
     }
