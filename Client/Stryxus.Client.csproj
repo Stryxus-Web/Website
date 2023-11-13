@@ -9,32 +9,11 @@
   <PropertyGroup>
 	<SourceRevisionId>build$([System.DateTime]::UtcNow.ToString("yyyyMMddHHmmss"))</SourceRevisionId>
   </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' ">
-    <ExternalConsole>true</ExternalConsole>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' ">
-    <ExternalConsole>true</ExternalConsole>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(RunConfiguration)' == 'HTTPS' " />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <RunAOTCompilation>False</RunAOTCompilation>
-    <DebugType>embedded</DebugType>
-    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <RunAOTCompilation>False</RunAOTCompilation>
-    <DebugType>embedded</DebugType>
-    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
-  </PropertyGroup>
+	
   <ItemGroup>
-    <Compile Remove="Enumerables\**" />
     <Compile Remove="wwwroot-dev\**" />
-    <Content Remove="Enumerables\**" />
     <Content Remove="wwwroot-dev\**" />
-    <EmbeddedResource Remove="Enumerables\**" />
     <EmbeddedResource Remove="wwwroot-dev\**" />
-    <None Remove="Enumerables\**" />
     <None Remove="wwwroot-dev\**" />
   </ItemGroup>
 
@@ -47,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Components\Media\Stryxus.Client.Components.Media\Stryxus.Client.Components.Media.csproj" />
+    <ProjectReference Include="..\Modules\Blazing\Blazing\Blazing.csproj" />
     <ProjectReference Include="..\Shared\Stryxus.Shared.csproj" />
   </ItemGroup>
 

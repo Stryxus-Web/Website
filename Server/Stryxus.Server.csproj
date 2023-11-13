@@ -11,14 +11,6 @@
 	<UserSecretsId>0f26e9d7-604a-4ffd-a169-c4e37647cb02</UserSecretsId>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(RunConfiguration)' == 'HTTPS' " />
-
-  <ItemGroup>
-    <Compile Remove="wwwroot\**" />
-    <Content Remove="wwwroot\**" />
-    <EmbeddedResource Remove="wwwroot\**" />
-    <None Remove="wwwroot\**" />
-  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.0-rc.2.23480.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
@@ -27,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Client\Stryxus.Client.csproj" />
     <ProjectReference Include="..\Components\Server\Stryxus.Components.Server.Discord\Stryxus.Components.Server.Discord.csproj" />
+    <ProjectReference Include="..\Modules\Blazing\Blazing\Blazing.csproj" />
     <ProjectReference Include="..\Shared\Stryxus.Shared.csproj" />
   </ItemGroup>
 
