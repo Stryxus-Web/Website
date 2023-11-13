@@ -1,0 +1,3 @@
+[submodule "Modules/Blazing"]
+	path = Modules/Blazing
+	url = https://github.com/Stryxus/Blazing

@@ -1,3 +1,4 @@
+import { window } from './globals';
 
 const sm = 576;
 const md = 768;
@@ -29,7 +30,7 @@ export function addWindowSizeListener(func: () => void) {
     listening.push(func);
 }
 
-window.addEventListener("resize", () => {
+window.addEventListener('resize', () => {
 
     let update = false;
 

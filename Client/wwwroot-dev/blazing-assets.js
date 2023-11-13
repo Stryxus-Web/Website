@@ -5,8 +5,7 @@ import './bundle.sass'
 //
 
 // TS
-import './ts/runtime.ts'
-import './ts/navigationBar.ts'
+import './bundle'
 //
 
 // Favicons

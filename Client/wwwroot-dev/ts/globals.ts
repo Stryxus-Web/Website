@@ -1,3 +1,7 @@
+// Variables
+
+export const window = global.window;
+
 // DotNet
 
 declare global {
@@ -22,6 +26,3 @@ export declare let DotNet: {
 window.setNavigationAnimatorDotNetReference = (ref: never) => {
     DotNet = ref;
 };
-
-// Variables
-
