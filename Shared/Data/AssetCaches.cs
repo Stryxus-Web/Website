@@ -43,19 +43,16 @@ public class AssetCaches
 
     public string Asset(string relativePath)
     {
-        bool hasRelative;
-        if (hasRelative = relativePath.StartsWith("/")) relativePath = relativePath[1..];
-        relativePath = relativePath[..relativePath.IndexOf('.')];
         if (BACLinks.TryGetValue(relativePath, out Tuple<string, string?>? val))
         {
             if (val is not null)
             {
                 if (val.Item1.StartsWith("img/"))
                 {
-                    if (val.Item2 is not null) return $"{(hasRelative ? "/" : string.Empty)}{(SupportsAVIF ? val.Item1 : val.Item2)}";
-                    else return $"{(hasRelative ? "/" : string.Empty)}{val.Item1}";
+                    if (val.Item2 is not null) return $"/{(SupportsAVIF ? val.Item1 : val.Item2)}";
+                    else return $"/{val.Item1}";
                 }
-                else return $"{(hasRelative ? "/" : string.Empty)}{val.Item1}";
+                else return $"/{val.Item1}";
             }
             else return "unknown";
         }
