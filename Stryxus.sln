@@ -32,7 +32,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflow", "Workflow", "{F5
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{8AE8C55B-7E45-4AD8-8B3C-0964B09D9B19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stryxus.Components.Server.Discord", "Components\Server\Stryxus.Components.Server.Discord\Stryxus.Components.Server.Discord.csproj", "{BEBB2F4F-1689-4AA2-9D48-07275254358E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stryxus.Components.Server.Discord", "Components\Server\Stryxus.Components.Server.Discord\Stryxus.Components.Server.Discord.csproj", "{BEBB2F4F-1689-4AA2-9D48-07275254358E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blazing", "Blazing", "{8B9BB341-010E-4237-9C58-D8E197EF0793}"
+	ProjectSection(SolutionItems) = preProject
+		Blazing.cmd = Blazing.cmd
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazing", "Modules\Blazing\Blazing\Blazing.csproj", "{EBCB15DC-A8D0-4585-AA5A-BA51DA38F6D5}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Blazing.Webpack", "Modules\Blazing\Blazing.Webpack\Blazing.Webpack.esproj", "{8467E963-5CD8-44B9-AC82-6D6AEA0B7AC9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,6 +69,16 @@ Global
 		{BEBB2F4F-1689-4AA2-9D48-07275254358E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEBB2F4F-1689-4AA2-9D48-07275254358E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEBB2F4F-1689-4AA2-9D48-07275254358E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBCB15DC-A8D0-4585-AA5A-BA51DA38F6D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBCB15DC-A8D0-4585-AA5A-BA51DA38F6D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBCB15DC-A8D0-4585-AA5A-BA51DA38F6D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBCB15DC-A8D0-4585-AA5A-BA51DA38F6D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8467E963-5CD8-44B9-AC82-6D6AEA0B7AC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8467E963-5CD8-44B9-AC82-6D6AEA0B7AC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8467E963-5CD8-44B9-AC82-6D6AEA0B7AC9}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{8467E963-5CD8-44B9-AC82-6D6AEA0B7AC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8467E963-5CD8-44B9-AC82-6D6AEA0B7AC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8467E963-5CD8-44B9-AC82-6D6AEA0B7AC9}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,6 +89,9 @@ Global
 		{F5588EDC-B18F-4AC7-8CE7-9A5BD7B99784} = {3C7063DB-5F03-4663-A306-2D3F6DAECC92}
 		{8AE8C55B-7E45-4AD8-8B3C-0964B09D9B19} = {6F12E418-C289-4835-A4F5-9B9E6017DA55}
 		{BEBB2F4F-1689-4AA2-9D48-07275254358E} = {8AE8C55B-7E45-4AD8-8B3C-0964B09D9B19}
+		{8B9BB341-010E-4237-9C58-D8E197EF0793} = {B5591EE8-EBD5-4CAD-9520-DFE43AD48D26}
+		{EBCB15DC-A8D0-4585-AA5A-BA51DA38F6D5} = {8B9BB341-010E-4237-9C58-D8E197EF0793}
+		{8467E963-5CD8-44B9-AC82-6D6AEA0B7AC9} = {8B9BB341-010E-4237-9C58-D8E197EF0793}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {687EFF39-46B7-470C-9C18-7B3FAB48556A}
