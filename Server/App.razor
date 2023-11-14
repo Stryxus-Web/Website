@@ -8,6 +8,8 @@
     <link rel="icon" type="image/png" href="@(AC.Asset("favicon.png"))">
     <link rel="me" href="@("https://mastodon.social/@stryxus")">
 
+    <link rel="stylesheet" href="0.css">
+
     <HeadOutlet />
 </head>
 <body>
@@ -29,7 +31,7 @@
     </Router>
     <script type="text/javascript" src="_framework/blazor.web.js" suppress-error="BL9992"></script>
     <script type="text/javascript" src="_framework/blazor.webassembly.js" autostart="false"></script>
-    <script type="text/javascript" src="@js_path" defer></script>
+    <script defer src="0.js"></script>
 </body>
 </html>
 
@@ -40,17 +42,10 @@
 
 @code {
 
-    private string? js_path { get; set; }
-    private string? css_path { get; set; }
-
     protected override async Task OnParametersSetAsync()
     {
-        FileInfo js = new(new List<string>(Directory.GetFiles(Globals.Content_Path)).Where(x => x.Contains($"{Path.DirectorySeparatorChar}main.") && x.EndsWith(".js")).First());
-        js_path = js.FullName.Substring(js.FullName.LastIndexOf("\\wwwroot") + 8, js.FullName.Length - (js.FullName.LastIndexOf("\\wwwroot") + 8));
-        js_path = js_path[(js_path.LastIndexOf("/") + 1)..];
-
-        RS.IJS = IJS;
         await AC.Init(true);
+        RS.IJS = IJS;
         await base.OnParametersSetAsync();
     }
 

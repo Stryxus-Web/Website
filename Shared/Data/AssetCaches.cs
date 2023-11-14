@@ -1,7 +1,7 @@
 ﻿using System.Net.Http.Json;
-using System.Reflection;
-using Microsoft.Extensions.Logging;
+
 using Newtonsoft.Json;
+
 using Stryxus.Data.State;
 
 namespace Stryxus.Data;
@@ -10,10 +10,10 @@ public class AssetCaches
 {
     public class BACList
     {
-        public List<string>? Files { get; set; }
+        public List<List<string>>? Files { get; set; }
     }
 
-    private Dictionary<string, Tuple<string, string?>> BACLinks { get; set; } = new();
+    private List<Tuple<string, string?>>? BACLinks { get; set; }
 
     private bool SupportsAVIF = false;
 
@@ -28,35 +28,28 @@ public class AssetCaches
         }
         if (BAC is not null && BAC.Files is not null)
         {
-            for (int i = 0; i < BAC.Files.Count - 1; i++)
+            BACLinks = [];
+            foreach (List<string> item in BAC.Files)
             {
-                if (BAC.Files[i].EndsWith(".avif"))
+                if (item.Count == 1)
                 {
-                    BACLinks.Add(BAC.Files[i][..BAC.Files[i].IndexOf('.')], new(BAC.Files[i], BAC.Files[i + 1]));
-                    i++;
-                } 
-                else BACLinks.Add(BAC.Files[i][..BAC.Files[i].IndexOf('.')], new(BAC.Files[i], null));
+                    BACLinks.Add(new(item[0], null));
+                }
+                else BACLinks.Add(new(item[0], item[1]));
             }
         }
-        else throw new InvalidOperationException("The Blazor Asset Caches JSON was not retreived.");
+        else throw new InvalidOperationException("The Blazor Asset Caches JSON was not retreived!");
     }
 
     public string Asset(string relativePath)
     {
-        if (BACLinks.TryGetValue(relativePath, out Tuple<string, string?>? val))
+        if (BACLinks is not null)
         {
-            if (val is not null)
-            {
-                if (val.Item1.StartsWith("img/"))
-                {
-                    if (val.Item2 is not null) return $"/{(SupportsAVIF ? val.Item1 : val.Item2)}";
-                    else return $"/{val.Item1}";
-                }
-                else return $"/{val.Item1}";
-            }
-            else return "unknown";
+            Tuple<string, string?> asset = BACLinks.First(x => x.Item1 == (relativePath.Contains('/') ? relativePath[(relativePath.LastIndexOf('/') + 1)..] : relativePath));
+            if (relativePath.EndsWith(".avif")) return $"/{(SupportsAVIF ? $"{asset.Item2}.avif" : $"{asset.Item2}.webp")}";
+            else return $"/{asset.Item2}";
         }
-        else return "unknown";
+        else throw new InvalidOperationException("Asset Caches have not been initialised!");
     }
 
     public async Task GetAVIFSupport(IRuntimeState RS)
