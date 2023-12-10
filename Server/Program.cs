@@ -4,6 +4,8 @@ using System.Reflection;
 
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Logging.Console;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
+
 using Stryxus.Data;
 using Stryxus.Components.Server.Discord;
 using Stryxus.Server;
@@ -18,6 +20,14 @@ IConfiguration configuration = new ConfigurationBuilder()
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder();
 builder.Configuration.AddConfiguration(configuration);
+builder.WebHost.ConfigureKestrel((context, options) =>
+{
+    options.ConfigureEndpointDefaults(listenOptions =>
+    {
+        listenOptions.Protocols = HttpProtocols.Http1AndHttp2AndHttp3;
+        listenOptions.UseHttps();
+    });
+});
 builder.Logging.AddFilter<ConsoleLoggerProvider>(level => level == LogLevel.None);
 
 builder.Services.AddHttpClient();
