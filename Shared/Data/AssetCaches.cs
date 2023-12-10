@@ -51,11 +51,7 @@ public class AssetCaches
                 if (relativePath.EndsWith(".avif")) return $"/{(SupportsAVIF ? $"{asset.Item2}.avif" : $"{asset.Item2}.webp")}";
                 else return $"/{asset.Item2}";
             }
-            catch
-            {
-                //Console.Error.WriteLine(e.Message);
-                return relativePath;
-            }
+            catch { return relativePath; }
         }
         else throw new InvalidOperationException("Asset Caches have not been initialised!");
     }
