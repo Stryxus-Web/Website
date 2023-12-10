@@ -15,25 +15,34 @@ $homeZIndexSection2: 2
                 #welcome-text
                     padding-left: 0px
                     text-align: right
+
+                    #welcome-text-inner
+                        backdrop-filter: blur(24px)
+                        margin-bottom: 24px
+                        padding: 16px
                     
-                    h1, h2, h3
-                        font-family: 'RaiderCrusader'
-                        background-color: $blackTransparencyLow
-                        padding-top: 20px
-                        padding-bottom: 20px
-                        padding-left: 100px
-                        padding-right: 35px
-                        display: inline-block
-                        transform: translateX(-$borderRadius + px)
-                        clip-path: polygon(0% 25px, 25px 0%, 100% 0%, 100% calc(100% - 25px), calc(100% - 25px) 100%, 0px 100%)
+                        h1, h3
+                            font-family: 'RaiderCrusader'
+                            display: inline-block
+
+                        h1
+                            margin-left: 20px
+                            margin-right: 20px
+
+                        h3
+                            margin-top: 8px
+                            margin-bottom: 8px
+                            margin-left: 20px
+                            margin-right: 20px
                 
                 #avatar-cutout-container
                     #avatar-cutout
                         padding-top: $borderRadius + px
-                        max-height: 80vh
+                        max-height: 90vh
             &:nth-child(2)
                 z-index: $homeZIndexSection2
-                background-color: $black
+                background-color: $blackTransparencyLow
+                backdrop-filter: blur(6px)
                 color: $white
 
 @include media-breakpoint-up(lg) // [1200px] Larger Than Larger

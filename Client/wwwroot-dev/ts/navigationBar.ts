@@ -64,10 +64,14 @@ window.navigationBar = {
         },
         setNavbarBackground(imageURLs: string) {
             const navbar: HTMLElement | null = document.getElementById('navbar');
-            if (navbar !== null && imageURLs.length !== 0) {
+            const mainBody: HTMLElement | null = document.getElementById('main-body');
+            if (navbar !== null && mainBody !== null && imageURLs.length !== 0) {
                 const imgurls = JSON.parse(imageURLs);
-                if (imgurls !== null) navbar.style.backgroundImage = `url('${imgurls[Math.floor(Math.random() * imgurls.length)]}')`;
+                if (imgurls !== null) {
+                    navbar.style.backgroundImage = `url('${imgurls[Math.floor(Math.random() * imgurls.length)]}')`;
+                    mainBody.style.backgroundImage = `url('${imgurls[Math.floor(Math.random() * imgurls.length)]}')`;
+                }
             }
-        }
+        },
     }
 }

@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     function loadWASM(trans: HTMLElement, delay: boolean) {
         trans.style.zIndex = '10000';
         gsap.to(trans, { opacity: 1, duration: 0.33, onComplete: () => {
-            document.body.style.fontFamily = 'SF-Pro-Display';
+            document.body.style.fontFamily = 'Open Sans';
             window.Blazor.start().then(() => {
                 waitForElement('.page').then(() => {
                     setTimeout(() => {
