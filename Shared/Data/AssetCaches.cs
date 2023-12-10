@@ -45,9 +45,17 @@ public class AssetCaches
     {
         if (BACLinks is not null)
         {
-            Tuple<string, string?> asset = BACLinks.First(x => x.Item1 == (relativePath.Contains('/') ? relativePath[(relativePath.LastIndexOf('/') + 1)..] : relativePath));
-            if (relativePath.EndsWith(".avif")) return $"/{(SupportsAVIF ? $"{asset.Item2}.avif" : $"{asset.Item2}.webp")}";
-            else return $"/{asset.Item2}";
+            try
+            {
+                Tuple<string, string?> asset = BACLinks.First(x => x.Item1 == (relativePath.Contains('/') ? relativePath[(relativePath.LastIndexOf('/') + 1)..] : relativePath));
+                if (relativePath.EndsWith(".avif")) return $"/{(SupportsAVIF ? $"{asset.Item2}.avif" : $"{asset.Item2}.webp")}";
+                else return $"/{asset.Item2}";
+            }
+            catch
+            {
+                //Console.Error.WriteLine(e.Message);
+                return relativePath;
+            }
         }
         else throw new InvalidOperationException("Asset Caches have not been initialised!");
     }
