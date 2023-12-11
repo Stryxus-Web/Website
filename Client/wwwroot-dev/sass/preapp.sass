@@ -1,119 +1,59 @@
-#preapp
-    color: $white
-
-    & > .row
-        height: 100%
-
-        h1, h2, h3
-            text-align: center
-
-        .warn-desc
-            background-color: rgba($white, 0.2)
-            padding: 24px
-            border-radius: 10px
-            
-            p
-                margin: 0px
-
-        #start-button
-            border-radius: 10px
-            background-color: $materialYouColour4
-            color: $white
-            transition: 0.33s
-            cursor: pointer
-            margin-top: 24px
-
-            &:hover
-                background-color: $white
-                color: $materialYouColour4
-
-        #test-card-grid
-            margin-top: 24px
-            margin-bottom: 24px
-
-            h2
-                margin-top: 48px
-
-            .test-card
-                background-color: $white
-                border-radius: 10px
-                color: $black
-
-                & > .row
-                    margin-top: 12px
-                    margin-bottom: 12px
-                    margin-left: 0px
-                    margin-right: 0px
-
-                    & > .col-auto
-                        padding-top: 18px
-                        padding-bottom: 18px
-                        padding-right: 6px
-
-                i
-                    font-size: 30px
-                    background-color: $black
-                    color: $white
-                    padding-top: 6px
-                    padding-bottom: 3px
-                    padding-left: 6px
-                    padding-right: 5px
-                    border-radius: 10px
-
-                p
-                    font-weight: bold
-
-                small
-                    margin-bottom: 18px
-
-                &.good, &.bad
-                    i
-                        background-color: $white
-
-                &.good
-                    background-color: green
-                    color: $white
-
-                    i
-                        color: green
-
-                &.bad
-                    background-color: red
-                    color: $white
-
-                    i
-                        color: red
-
-    #footer
-        font-size: 40px
-        height: 80px
-
-        & > .row
-            height: inherit
-
-@include media-breakpoint-up(lg) // [992px] Larger Than Medium
+#app
+    background-color: $black
+    height: 100vh
     #preapp
-        padding-top: 24px !important
+        color: $white
+        margin-bottom: 120px
 
         & > .row
+            height: 100%
+
+            h1, h2, h3
+                text-align: center
 
             .warn-desc
-                margin: 24px
+                background-color: rgba($white, 0.2)
+                padding: 24px
+                border-radius: 10px
+                
+                p
+                    margin: 0px
 
-            #test-card-grid
+            #start-button
+                border-radius: 10px
+                background-color: $materialYouColour2
+                color: $white
+                transition: 0.33s
+                cursor: pointer
+                margin-top: 24px
 
-                .test-card
+                &:hover
+                    background-color: $white
+                    color: $materialYouColour4
+
+        #footer
+            position: absolute
+            bottom: 0px
+            left: 0px
+            right: 0px
+            font-size: 40px
+            height: 80px
+            backdrop-filter: blur(24px)
+
+            & > .row
+                height: inherit
+
+@include media-breakpoint-up(lg) // [992px] Larger Than Medium
+    #app
+        #preapp
+            padding-top: 24px !important
+            & > .row
+                .warn-desc
                     margin: 24px
 
 @include media-breakpoint-down(lg) // [991.98px] Smaller Than Medium
-    #preapp
-        
-        & > .row
-
-            .warn-desc
-                margin: 8px
-
-            #test-card-grid
-
-                .test-card
+    #app
+        #preapp
+            & > .row
+                .warn-desc
                     margin: 8px

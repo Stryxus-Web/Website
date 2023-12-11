@@ -21,109 +21,59 @@
                         <h1>Welcome, please read below!</h1>
                     </div>
                 </div>
+                <hr />
                 <div class="row justify-content-center">
                     <div class="col-12 col-md-8 warn-desc">
                         <p>
-                            Due to the cutting edge nature of this website, a few feature tests are run before loading, determining how many features your browser supports.
-                            <br />
-                            <br />
-                            This page is here to also make the app preemptively friendly for battery based devices and those with slow networks.
+                            This page is here to make the app preemptively friendly for battery based devices and those with slow/limited network connections.
                         </p>
                     </div>
                     <div class="col-12 col-md-8 warn-desc">
                         <p>
-                            This page will only show up on your first visit or when one of the tests is flagged. You will also get a similar page when there is an update
-                            to alert those on limited data about the update size. You will be able to modify the behaviour of this page or come back here in the websites settings.
+                            This page will only show up on your first visit. You will also get a similar page when there is an update
+                            to alert those on limited data about the update size. You will be able to modify the behaviour of this page or come back here via the websites settings menu.
                         </p>
                     </div>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col">
-                        <h2>Battery & limited data devices information</h2>
+                        <h2>Information for devices containing batteries or use slow/limited data</h2>
+                    </div>
+                </div>
+                <hr />
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8 warn-desc">
+                        <p>
+                            If your device contains a small battery, like a mobile phone or small tablet, then, depending on what you do, this app could strain said battery so it is ill advised
+                            that you do anything intensive. This website contains tools which perform tasks like image resizing on the Media page and much more.
+                        </p>
+                    </div>
+                    <div class="col-12 col-md-8 warn-desc">
+                        <p>
+                            If your device is on a slow network, the website may load slower than normal. If however, you are on limited data, it is ill advised that you continue. This website
+                            uses technology which is optimised for speed over size and may drain your remaining data allowance.
+                        </p>
+                    </div>
+                    <div class="col-12 col-md-8 warn-desc">
+                        <p>
+                            This website is based on .NET Blazor WebAssembly. WebAssembly is an industry standard for running 'native' code on the browser within an isolated sandbox
+                            (it cant touch your system). This allows for increased speed and the ability to do a lot which wasnt possible prior however, the size of the website is much larger
+                            and therefore may not be suitable for those on limited data allowances.
+                        </p>
+                    </div>
+                    <div class="col-12 col-md-8 warn-desc">
+                        <p>
+                            When you load the website, it will download the .NET Runtime WASM, which is quite large and store it in your browser only for this website for the next time you
+                            visit but, not all of it will be stored and updates to the website could trigger a re-download of the entire runtime.
+                        </p>
                     </div>
                 </div>
                 <hr />
                 <div class="row justify-content-center">
                     <div class="col-auto">
                         <button id="start-button">
-                            <h1>Start The Website</h1>
+                            <h1>Enter The Website</h1>
                         </button>
-                    </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div id="test-card-grid" class="col">
-                        <div class="row justify-content-center">
-
-                            <div id="test-wasm" class="col-12 col-md-5 test-card">
-                                <div class="row">
-                                    <div class="col-auto">
-                                        <i class="bi bi-question-lg"></i>
-                                    </div>
-                                    <div class="col">
-                                        <p>WebAssembly</p>
-                                    </div>
-                                    <div class="col-12">
-                                        <small>
-                                            Some browsers have WebAssembly disabled, most commonly on organisational devices over fears of security.
-                                            <br />
-                                            <br />
-                                            WebAssembly is the core of what runs this website allowing the .NET Runtime to be run in your browser and C# code to be executed.
-                                        </small>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="test-avif" class="col-12 col-md-5 test-card">
-                                <div class="row">
-                                    <div class="col-auto">
-                                        <i class="bi bi-question-lg"></i>
-                                    </div>
-                                    <div class="col">
-                                        <p>AVIF Decoding</p>
-                                    </div>
-                                    <div class="col-12">
-                                        <small>
-                                            AVIF is used for this websites imagery and animations due to its extreme effeciency and superior feature set when compared to legacy formats like JPEG, PNG and GIF.
-                                            AVIF is based off AV1 but implemented seperatly.
-                                        </small>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="test-av1opus" class="col-12 col-md-5 test-card">
-                                <div class="row">
-                                    <div class="col-auto">
-                                        <i class="bi bi-question-lg"></i>
-                                    </div>
-                                    <div class="col">
-                                        <p>MP4 [AV1/Opus] Decoding</p>
-                                    </div>
-                                    <div class="col-12">
-                                        <small>
-                                            MP4 is a standardised video/audio container which supports AV1 (Video) and Opus (Audio), it is used for this websites videos due
-                                            to its extreme effeciency when compared to that of h264, h265 and more including capabilities like HDR formatting.
-                                        </small>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="test-flac" class="col-12 col-md-5 test-card">
-                                <div class="row">
-                                    <div class="col-auto">
-                                        <i class="bi bi-question-lg"></i>
-                                    </div>
-                                    <div class="col">
-                                        <p>FLAC Decoding</p>
-                                    </div>
-                                    <div class="col-12">
-                                        <small>
-                                            FLAC is used for this website and is a royalty free audio format designed for hi-res audio at about half the size of formats like WAV.
-                                        </small>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
                     </div>
                 </div>
             </div>

@@ -15,21 +15,29 @@ document.addEventListener('DOMContentLoaded', async () => {
     let preAppTrigger = false;
     const trans: HTMLElement | null = document.getElementById('page-transitioner-pre');
     if (trans !== null) {
-        determineTestResult(testForWebAssembly(), 'test-wasm');
-        determineTestResult(supportAVIF, 'test-avif');
-        determineTestResult(testForAV1(), 'test-av1opus');
-        determineTestResult(testForFLAC(), 'test-flac');
+        // TODO: Make better use of these tests
+        testForWebAssembly();
+        testForAV1();
+        testForFLAC();
+        /* TODO: Use the local storage to store a load mode value
         if (window.location.hostname === 'stryxus.xyz') {
             document.getElementById('start-button')?.addEventListener('click', () => loadWASM(trans, true));
         } else {
             loadWASM(trans, false);
-        }   
+        }
+        */
+        document.getElementById('start-button')?.addEventListener('click', () => loadWASM(trans, true));
+        //
     }
 
     function loadWASM(trans: HTMLElement, delay: boolean) {
         trans.style.zIndex = '10000';
         gsap.to(trans, { opacity: 1, duration: 0.33, onComplete: () => {
-            document.body.style.fontFamily = 'Open Sans';
+            const appEl = document.getElementById('app');
+            if (appEl) {
+                appEl.style.backgroundColor = 'unset';
+                appEl.style.height = 'unset';
+            }
             window.Blazor.start().then(() => {
                 waitForElement('.page').then(() => {
                     setTimeout(() => {
@@ -39,21 +47,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 });
             });
         }});
-    }
-
-    function determineTestResult(result: boolean, elementName: string) {
-        const card: HTMLElement | null = document.getElementById(elementName);
-        card?.classList.add(result ? 'good' : 'bad');
-        card?.getElementsByTagName('i')[0].classList.replace('bi-question-lg', result ? 'bi-check-circle' : 'bi-x-circle');
-        if (!result) {
-            let button: HTMLElement | null;
-            if ((button = document.getElementById('start-button')) !== null) {
-                button.getElementsByTagName('h1')[0].innerText = 'I know what I\'m doing! Start the Website!';
-            }
-            if (!preAppTrigger) {
-                preAppTrigger = true;
-            }
-        }
     }
 
 }, false);
