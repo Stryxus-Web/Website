@@ -1,4 +1,4 @@
-#navbar
+nav
     position: fixed
     top: 0px
     bottom: 0px
@@ -10,42 +10,32 @@
     background-position: right
     background-size: cover
     background-attachment: fixed
-
     & > .row
         backdrop-filter: blur(6px)
         height: calc(100% - #{$siteContainerSectionHeight}px)
         overflow-y: scroll
-
         & > .col-auto
             padding-top: #{$siteContainerSectionHeight + 40}px
             padding-bottom: #{math.div($siteContainerSectionHeight, 4)}px
-
-            .navbar-button
+            .nav-button
                 width: $navigationBarWidth + px
-                
-                .icon-container, .icon, .active-bullet
-                    transition: 0.33s
-
-                *
+                i, p, h1, h2, h3, h4
                     color: white
                     text-decoration: none
-
                 &.disabled
                     pointer-events: none
-
                 &.active
                     .icon-container
-                        background-color: $materialYouColour1TransparencyHigh
-
+                        background-color: $materialYouColour2TransparencyHigh
                     .bullet-container
                         .active-bullet
                             opacity: 0.5 !important
-
                 &:hover
                     cursor: pointer
                     .icon-container
-                        background-color: $materialYouColour1TransparencyHigh
-                
+                        background-color: $materialYouColour3TransparencyHigh
+                .icon-container, .icon, .active-bullet
+                    transition: 0.33s
                 .icon-container
                     background-color: $blackTransparencyLow
                     clip-path: polygon(0% 15px, 15px 0%, calc(100% - 15px) 0%, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0% calc(100% - 15px))
@@ -54,18 +44,15 @@
                     margin-left: auto
                     margin-right: auto
                     margin-bottom: 16px
-
                     & > .col
                         padding: 0px
-
                     i
                         display: block
                         font-size: 32px
                         width: 32px
                         height: 32px
                         margin: 16px
-                        transform: translateY(-2px)
-
+                        transform: translateY(-6px)
                 .bullet-container
                     margin-top: -4px !important
                     margin-bottom: -4px !important

@@ -44,7 +44,7 @@ window.navigationBar = {
                                 console.log(data);
                             } else {
                                 // TODO: If there is a timeout after 30 seconds, ask if they would like to continue or go back.
-                                waitForElement('#main-body').then(() => {
+                                waitForElement('main').then(() => {
                                     const trans = document.getElementById('page-transitioner');
                                     gsap.to(trans, { ease: 'sine.out', duration: 0.33, delay: 0.5, opacity: 0, onComplete: () => {
                                         gsap.to(trans, { zIndex: -4, onComplete: () => {
@@ -63,8 +63,8 @@ window.navigationBar = {
             }
         },
         setNavbarBackground(imageURLs: string) {
-            const navbar: HTMLElement | null = document.getElementById('navbar');
-            const mainBody: HTMLElement | null = document.getElementById('main-body');
+            const navbar: HTMLElement | null = document.getElementsByTagName('nav')[0];
+            const mainBody: HTMLElement | null = document.getElementsByTagName('main')[0];
             if (navbar !== null && mainBody !== null && imageURLs.length !== 0) {
                 const imgurls = JSON.parse(imageURLs);
                 if (imgurls !== null) {

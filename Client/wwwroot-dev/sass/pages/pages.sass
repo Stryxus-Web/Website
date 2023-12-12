@@ -5,43 +5,6 @@
 @import "media"
 @import "setups"
 
-#main-body, #main-border, #page-transitioner, #page-transitioner-pre
-    position: fixed
-    right: 0px
-    overflow-x: hidden
-    overflow-y: visible
-
-#main-body, #page-transitioner
-    width: unset !important
-    z-index: $zIndexMain
-
-#page-transitioner
-    opacity: 0
-    z-index: $zIndexPageTransitioner
-
-#page-transitioner
-    background-color: $black
-
-#page-transitioner-pre
-    background-color: $black
-    top: 0px
-    bottom: 0px
-    left: 0px
-    z-index: $zIndexPageTransitioner
-    opacity: 1
-
-#main-border
-    background-color: $materialYouColour2TransparencyHigh
-    backdrop-filter: blur(6px)
-    z-index: $zIndexMainBorder
-
-#background-img
-    position: fixed
-    top: 0px
-    bottom: 0px
-    left: 0px
-    right: 0px
-
 .page
     height: 100%
     background-color: $black
@@ -58,31 +21,3 @@
         padding-left: $borderRadius + px
         padding-right: $borderRadius + px
         clip-path: polygon(0% 15px, 15px 0%, calc(100% - 15px) 0%, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0% calc(100% - 15px))
-
-@include media-breakpoint-up(lg)
-    #main-body, #page-transitioner
-        top: #{$bootstrapMargin * 2 - 8} + px
-        bottom: #{$bootstrapMargin * 2 - 8} + px
-        left: #{$navigationBarWidth + $bootstrapMargin - 4} + px
-    #main-body
-        clip-path: polygon(0% 46px, 46px 0%, 100% 0%, 100% 100%, 46px 100%, 0% calc(100% - 46px))
-    #main-border
-        clip-path: polygon(0% 50px, 50px 0%, 100% 0%, 100% 100%, 50px 100%, 0% calc(100% - 50px))
-    #main-border
-        top: #{$bootstrapMargin - 4} + px
-        bottom: #{$bootstrapMargin - 4} + px
-        left: $navigationBarWidth + px
-    #page-transitioner
-        clip-path: polygon(0% 40px, 40px 0%, 100% 0%, 100% 100%, 40px 100%, 0% calc(100% - 40px))
-
-@include media-breakpoint-down(lg)
-    #main-body, #page-transitioner
-        top: 0px
-        bottom: 0px
-        left: 18px
-    #main-body, #main-border, #page-transitioner
-        clip-path: polygon(0% 10px, 10px 0%, 100% 0%, 100% 100%, 10px 100%, 0% calc(100% - 10px))
-    #main-border
-        top: 0px
-        bottom: 0px
-        left: 0px

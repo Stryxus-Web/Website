@@ -1,0 +1,34 @@
+﻿<div id="mobile-button">
+    <i class="bi bi-caret-right-fill"></i>
+</div>
+<div class="site-container header container-fluid">
+    <div class="row justify-content-center">
+        <div class="col">
+            <div id="avatar-img-container" class="@(UI.CurrentPageContext?.RelativeLink == "/" ? " active" : string.Empty) @(UI.PageIsTransitioning ? "disabled" : string.Empty)">
+                <img src="@(AC.Asset("/img/avatar.avif"))" @onclick="NavigateToHome" />
+            </div>
+        </div>
+    </div>
+</div>
+<main class="container-fluid">
+    @ChildContent
+</main>
+<div id="border"></div>
+<div class="site-container footer container-fluid">
+    <div class="row">
+        <div class="col">
+            <VersionFooter />
+        </div>
+    </div>
+</div>
+
+@inject AssetCaches AC
+@inject UIState UI
+
+@code {
+
+    [Parameter, EditorRequired]
+    public RenderFragment? ChildContent { get; set; }
+
+    private void NavigateToHome() => UI.CurrentPageContext = UI.PageContexts?.First(x => x.RelativeLink == "/");
+}

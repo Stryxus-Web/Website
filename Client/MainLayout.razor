@@ -1,17 +1,5 @@
 ﻿@inherits LayoutComponentBase
 
-<div id="mobile-open-button">
-    <i class="bi bi-caret-right-fill"></i>
-</div>
-<div class="site-container header container-fluid">
-    <div class="row justify-content-center">
-        <div class="col">
-            <div id="avatar-img-container" class="@(UI.CurrentPageContext?.RelativeLink == "/" ? " active" : string.Empty) @(UI.PageIsTransitioning ? "disabled" : string.Empty)">
-                <img src="@(AC.Asset("/img/avatar.avif"))" @onclick="NavigateToHome" />
-            </div>
-        </div>
-    </div>
-</div>
 <NavigationBar>
     @if (UI.PageContexts is not null)
     {
@@ -21,22 +9,12 @@
         }
     }
 </NavigationBar>
-<main id="main-body" class="container-fluid">
+<BodyContainer>
     @Body
-</main>
+</BodyContainer>
 <div id="page-transitioner">
     <LoadingCircle />
 </div>
-<div id="main-border"></div>
-<div class="site-container footer container-fluid">
-    <div class="row">
-        <div class="col">
-            <VersionFooter />
-        </div>
-    </div>
-</div>
-
-@inject AssetCaches AC
 
 @inject UIState UI
 
@@ -47,6 +25,4 @@
         UI.OnPageIsTransitioningChange += StateHasChanged;
         return base.OnInitializedAsync();
     }
-
-    private void NavigateToHome() => UI.CurrentPageContext = UI.PageContexts?.First(x => x.RelativeLink == "/");
 }
