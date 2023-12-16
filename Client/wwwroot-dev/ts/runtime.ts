@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     localStorage.setItem('supportAVIF', (supportAVIF = await testForAVIF()).toString());
 
     let preAppTrigger = false;
-    const trans: HTMLElement | null = document.getElementById('page-transitioner-pre');
+    const trans: HTMLElement | null = document.getElementById('preapp-transit');
     if (trans !== null) {
         // TODO: Make better use of these tests
         testForWebAssembly();
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             loadWASM(trans, false);
         }
         */
-        document.getElementById('start-button')?.addEventListener('click', () => loadWASM(trans, true));
+        document.getElementById('start')?.addEventListener('click', () => loadWASM(trans, true));
         //
     }
 

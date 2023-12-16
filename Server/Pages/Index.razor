@@ -2,7 +2,7 @@
 
 <PageTitle>Stryxus</PageTitle>
 
-<div id="page-transitioner-pre">
+<div id="preapp-transit">
     <div class="loading-circle-container">
         <svg class="loading-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 340">
             <circle cx="170" cy="170" r="160" />
@@ -21,14 +21,21 @@
                         <h1>Welcome, please read below!</h1>
                     </div>
                 </div>
+                <div class="row justify-content-center">
+                    <div class="col-auto">
+                        <button id="start">
+                            <h1>Enter The Website</h1>
+                        </button>
+                    </div>
+                </div>
                 <hr />
                 <div class="row justify-content-center">
-                    <div class="col-12 col-md-8 warn-desc">
+                    <div class="col-12 col-md-8 desc">
                         <p>
                             This page is here to make the app preemptively friendly for battery based devices and those with slow/limited network connections.
                         </p>
                     </div>
-                    <div class="col-12 col-md-8 warn-desc">
+                    <div class="col-12 col-md-8 desc">
                         <p>
                             This page will only show up on your first visit. You will also get a similar page when there is an update
                             to alert those on limited data about the update size. You will be able to modify the behaviour of this page or come back here via the websites settings menu.
@@ -37,50 +44,58 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class="col">
-                        <h2>Information for devices containing batteries or use slow/limited data</h2>
+                        <h2>Information for devices containing batteries or use slow/limited data.</h2>
                     </div>
                 </div>
                 <hr />
                 <div class="row justify-content-center">
-                    <div class="col-12 col-md-8 warn-desc">
+                    <div class="col-12 col-md-8 desc">
                         <p>
                             If your device contains a small battery, like a mobile phone or small tablet, then, depending on what you do, this app could strain said battery so it is ill advised
                             that you do anything intensive. This website contains tools which perform tasks like image resizing on the Media page and much more.
                         </p>
                     </div>
-                    <div class="col-12 col-md-8 warn-desc">
+                    <div class="col-12 col-md-8 desc">
                         <p>
                             If your device is on a slow network, the website may load slower than normal. If however, you are on limited data, it is ill advised that you continue. This website
                             uses technology which is optimised for speed over size and may drain your remaining data allowance.
                         </p>
                     </div>
-                    <div class="col-12 col-md-8 warn-desc">
+                    <div class="col-12 col-md-8 desc">
                         <p>
                             This website is based on .NET Blazor WebAssembly. WebAssembly is an industry standard for running 'native' code on the browser within an isolated sandbox
                             (it cant touch your system). This allows for increased speed and the ability to do a lot which wasnt possible prior however, the size of the website is much larger
                             and therefore may not be suitable for those on limited data allowances.
                         </p>
                     </div>
-                    <div class="col-12 col-md-8 warn-desc">
+                    <div class="col-12 col-md-8 desc">
                         <p>
                             When you load the website, it will download the .NET Runtime WASM, which is quite large and store it in your browser only for this website for the next time you
                             visit but, not all of it will be stored and updates to the website could trigger a re-download of the entire runtime.
                         </p>
                     </div>
                 </div>
-                <hr />
                 <div class="row justify-content-center">
-                    <div class="col-auto">
-                        <button id="start-button">
-                            <h1>Enter The Website</h1>
-                        </button>
+                    <div class="col">
+                        <h2>Privacy Information.</h2>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div id="footer" class="row justify-content-center align-items-center g-0">
-            <div class="col-auto">
-                <i class="bi bi-github"></i>
+                <hr />
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8 desc">
+                        <p>
+                            This website is created using Mozilla Firefox Stable and Apple Safari Stable with the harshest security and privacy settings available, while also using
+                            using uBlock Origin, Ad Guard, Privacy Badger and CanvasBlocker. The goal is to keep all of these from blocking anything to create the best experience possible.
+                        </p>
+                    </div>
+                    <div class="col-12 col-md-8 desc">
+                        <p>
+                            This website does not condone tracking of any sort, which is why this very page exists, to fend off bots, scrapers and corporate tracking tools of all kinds.
+                            There are also NO ads and NO cookies on this website since that would inject corporate tracking code into the website and I (Stryxus) dont want to be responsible for making
+                            money off your harvested data. I dont want to feed the machine further.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
