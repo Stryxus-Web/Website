@@ -19,15 +19,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         testForWebAssembly();
         testForAV1();
         testForFLAC();
-        /* TODO: Use the local storage to store a load mode value
+        // TODO: Use the local storage to store a load mode value
         if (window.location.hostname === 'stryxus.xyz') {
             document.getElementById('start-button')?.addEventListener('click', () => loadWASM(trans, true));
         } else {
             loadWASM(trans, false);
         }
-        */
-        document.getElementById('start')?.addEventListener('click', () => loadWASM(trans, true));
-        //
     }
 
     function loadWASM(trans: HTMLElement, delay: boolean) {
