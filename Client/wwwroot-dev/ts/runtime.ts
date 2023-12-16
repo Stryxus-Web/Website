@@ -91,14 +91,14 @@ function testForFLAC(): boolean {
 
 function init() {
 
-    document.getElementById('mobile-open-button')?.addEventListener('click', () => adaptMobileButton(true));
+    document.getElementById('mobile-button')?.addEventListener('click', () => adaptMobileButton(true));
 
     const avatarImg: HTMLElement | null = document.getElementById('avatar-img-container');
     if (avatarImg !== null) {
         avatarImg.addEventListener('click', () => adaptMobileButton());
     }
 
-    const navButtons: HTMLCollection | null = document.getElementsByClassName('navbar-button');
+    const navButtons: HTMLCollection | null = document.getElementsByClassName('nav-button');
     if (navButtons !== null) {
         Array.from(navButtons).forEach(el => {
             el.addEventListener('click', () => adaptMobileButton());
@@ -107,7 +107,7 @@ function init() {
 
     let isFirstRender = true;
     async function adaptMobileButton(forceOpen?: boolean) {
-        const mobileButton: HTMLElement | null = document.getElementById('mobile-open-button');
+        const mobileButton: HTMLElement | null = document.getElementById('mobile-button');
         if (mobileButton !== null) {
             if (forceOpen) {
                 mobileButton.style.display = 'none';
