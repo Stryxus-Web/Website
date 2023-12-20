@@ -12,9 +12,15 @@ on:
 jobs:
   build:
     runs-on: macos-latest
-
+    permissions:
+      contents: write
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+
+      - name: Create Release
+        uses: ncipollo/release-action@v1.13.0
+        with:
+          makeLatest: true
 
       - name: Set up Node 16
         uses: actions/setup-node@v1
@@ -53,14 +59,13 @@ jobs:
         with:
           name: .net-app
           path: ${{env.DOTNET_ROOT}}/myapp
-
+  
   deploy:
     runs-on: macos-latest
     needs: build
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
     steps:
       - name: Download Artifacts For Azure Deployment
         uses: actions/download-artifact@v2
