@@ -23,6 +23,7 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder();
 builder.Configuration.AddConfiguration(configuration);
 builder.WebHost.ConfigureKestrel((context, options) =>
 {
+    options.AddServerHeader = false;
     options.ConfigureEndpointDefaults(listenOptions =>
     {
         listenOptions.Protocols = HttpProtocols.Http1AndHttp2AndHttp3;
