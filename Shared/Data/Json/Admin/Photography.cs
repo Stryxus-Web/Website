@@ -1,4 +1,4 @@
-﻿namespace Stryxus.Shared.Json.Admin;
+﻿namespace Stryxus.Data.Json.Admin;
 
 public class Photography
 {

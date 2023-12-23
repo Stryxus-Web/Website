@@ -1,4 +1,4 @@
-// The website will be proxied by Cloudflare so, no need to add some things like security headers.
+// The website will be proxied by Cloudflare.
 
 using System.Reflection;
 
@@ -10,6 +10,7 @@ using Stryxus.Data;
 using Stryxus.Components.Server.Discord;
 using Stryxus.Server;
 using Stryxus.Server.Data.State;
+using Stryxus.Server.Data;
 
 IConfiguration configuration = new ConfigurationBuilder()
     .AddEnvironmentVariables()
@@ -33,11 +34,15 @@ builder.Logging.AddFilter<ConsoleLoggerProvider>(level => level == LogLevel.None
 builder.Services.AddHttpClient();
 builder.Services.AddControllersWithViews();
 builder.Services.AddAntiforgery();
+#if RELEASE
+builder.Services.AddCors();
+#endif
 builder.Services.AddRazorPages();
 builder.Services.AddRazorComponents();
 
 builder.Services.AddScoped<RuntimeState>();
 builder.Services.AddScoped<AssetCaches>();
+builder.Services.AddSingleton<Github>();
 
 string? discordToken;
 if ((discordToken = configuration["discord_token"]) is not null) builder.Services.AddSingleton(new StryxBot(discordToken));
@@ -61,9 +66,15 @@ app.UseStaticFiles(new StaticFileOptions
 {
     ContentTypeProvider = provider
 });
+#if DEBUG
+app.UseHttpsRedirection();
+#endif
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAntiforgery();
+#if RELEASE
+app.UseCors();
+#endif
 app.MapControllers();
 app.MapRazorPages();
 app.MapRazorComponents<App>();
@@ -71,6 +82,7 @@ app.MapRazorComponents<App>();
 Core.app = app;
 
 await AssetCaches.ReadBacServer();
+app.Services.GetService<Github>()?.GetCommits();
 
 Services.SetServiceProvider(app.Services);
 

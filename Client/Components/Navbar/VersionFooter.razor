@@ -3,30 +3,7 @@
         <i class="bi bi-gear-wide-connected"></i>
     </div>
 </div>
-<div class="row">
-    <div class="col">
-        <small>
-            @(RuntimeBuildDate.Year + "/" + RuntimeBuildDate.Month + "/" + RuntimeBuildDate.Day + " " + RuntimeBuildDate.Hour + ":" + RuntimeBuildDate.Minute + ":" + RuntimeBuildDate.Second + " UTC")
-        </small>
-    </div>
-</div>
 
 @code {
-    public static Assembly? RuntimeAssembly { get; } = Assembly.GetAssembly(typeof(Program));
 
-    public static DateTime RuntimeBuildDate = GetBuildDate(RuntimeAssembly?.GetCustomAttribute<AssemblyInformationalVersionAttribute>());
-
-    public static long RuntimeVersion { get; } = long.Parse($"{RuntimeBuildDate.Year}{RuntimeBuildDate.Month}{RuntimeBuildDate.Day}{RuntimeBuildDate.Hour}{RuntimeBuildDate.Minute}{RuntimeBuildDate.Second}");
-
-    public static DateTime GetBuildDate(AssemblyInformationalVersionAttribute? attribute)
-    {
-        string BuildVersionMetadataPrefix = "+build";
-        if (attribute?.InformationalVersion != null)
-        {
-            string value = attribute.InformationalVersion;
-            int index = value.IndexOf(BuildVersionMetadataPrefix);
-            if (index > 0 && DateTime.TryParseExact(value[(index + BuildVersionMetadataPrefix.Length)..], "yyyyMMddHHmmss", CultureInfo.InvariantCulture, DateTimeStyles.None, out var result)) return result;
-        }
-        return default;
-    }
 }

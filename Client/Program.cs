@@ -1,11 +1,10 @@
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.JSInterop;
 
 using Stryxus.Data;
 using Stryxus.Client;
 using Stryxus.Client.Data.State;
-using Stryxus.Data.State;
-using Microsoft.JSInterop;
 
 WebAssemblyHost Host;
 WebAssemblyHostBuilder HostBuilder = WebAssemblyHostBuilder.CreateDefault(args);
