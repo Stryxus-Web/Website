@@ -54,12 +54,14 @@ public class Github
 						{
 							JToken? title = commit.GetValue("message");
 							JToken? author = (commit.GetValue("author") as JObject)?.GetValue("name");
-							if (title is not null && author is not null) // This should never fail but it makes the analyser happy
+                            JToken? date = (commit.GetValue("author") as JObject)?.GetValue("date");
+                            if (title is not null && author is not null && date is not null) // This should never fail but it makes the analyser happy
 							{
 								Commits.Add(new GithubJson.CommitJson
 								{
 									Title = title.ToString(),
 									Author = author.ToString(),
+									PublishDateTime = DateTime.Parse(date.ToString())
 								});
 							}
 						}

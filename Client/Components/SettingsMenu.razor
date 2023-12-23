@@ -17,7 +17,7 @@
 					<div class="row">
 						<div class="col">
 							<label class="container">
-								Battery Saver Mode
+								<small>Battery Saver Mode (Not yet implemented)</small>
 								<input type="checkbox" checked="checked">
 								<span class="checkmark"></span>
 								<small>Battery Saver Mode will prevent intensive operations from being performance and will block certain pages from loading.</small>
@@ -27,18 +27,10 @@
 					<div class="row">
 						<div class="col">
 							<label class="container">
-								Data Saver Mode
+								<small>Data Saver Mode (Not yet implemented)</small>
 								<input type="checkbox" checked="checked">
 								<span class="checkmark"></span>
-							</label>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							<label class="container">
-								Battery Saver Mode
-								<input type="checkbox" checked="checked">
-								<span class="checkmark"></span>
+								<small>Data Saver Mode will minimise the amount of downloads for certain experiences and will block access to certain user downloads like photos from the photography page.</small>
 							</label>
 						</div>
 					</div>
@@ -70,7 +62,7 @@
 					</a>
 					<div class="row">
 						<div class="col">
-							<h2>Git Commits (Last 100)</h2>
+							<h2>Git Commits (Last 100) (UTC Time)</h2>
 						</div>
 					</div>
 					<div class="row">
@@ -80,7 +72,7 @@
 								{
 									@foreach (GithubJson.CommitJson commit in Commits)
 									{
-										<small>@(commit.Title) ~ @(commit.Author)</small>
+										<small>(@($"{commit.PublishDateTime.ToUniversalTime().ToShortDateString()} {commit.PublishDateTime.ToUniversalTime().ToShortTimeString()}")) ~ @(commit.Author): @(commit.Title)</small>
 									}
 								}
 							</div>
