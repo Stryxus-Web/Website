@@ -91,12 +91,12 @@ function init() {
     document.getElementById('mobile-button')?.addEventListener('click', () => adaptMobileButton(true));
 
     const avatarImg: HTMLElement | null = document.getElementById('avatar-img-container');
-    if (avatarImg !== null) {
+    if (avatarImg) {
         avatarImg.addEventListener('click', () => adaptMobileButton());
     }
 
     const navButtons: HTMLCollection | null = document.getElementsByClassName('nav-button');
-    if (navButtons !== null) {
+    if (navButtons) {
         Array.from(navButtons).forEach(el => {
             el.addEventListener('click', () => adaptMobileButton());
         });
@@ -105,7 +105,7 @@ function init() {
     let isFirstRender = true;
     async function adaptMobileButton(forceOpen?: boolean) {
         const mobileButton: HTMLElement | null = document.getElementById('mobile-button');
-        if (mobileButton !== null) {
+        if (mobileButton) {
             if (forceOpen) {
                 mobileButton.style.display = 'none';
                 toggleNavbar(true);
@@ -140,5 +140,5 @@ window.runtime = {
         get: (key: string) => {
             return localStorage.getItem(key);
         }
-    }
+    },
 }

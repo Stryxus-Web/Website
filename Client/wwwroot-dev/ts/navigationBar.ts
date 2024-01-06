@@ -12,7 +12,7 @@ export function toggleNavbar(open: boolean)
     const mainBody: HTMLElement | null = document.getElementById('main-body');
     const pageTransitioner: HTMLElement | null = document.getElementById('page-transitioner');
 
-    if (mobileButton !== null && mainBorder !== null && mainBody !== null && pageTransitioner !== null) {
+    if (mobileButton && mainBorder && mainBody && pageTransitioner) {
         isNavbarOpen = open;
         if (open) {
             gsap.to(mainBody, { ease: 'sine.out', duration: 0.33, top: '16px', bottom: '16px', left: '108px' });
@@ -65,9 +65,10 @@ window.navigationBar = {
         setNavbarBackground(imageURLs: string) {
             const navbar: HTMLElement | null = document.getElementsByTagName('nav')[0];
             const mainBody: HTMLElement | null = document.getElementsByTagName('main')[0];
-            if (navbar !== null && mainBody !== null && imageURLs.length !== 0) {
+            if (navbar && mainBody && imageURLs.length !== 0) {
                 const imgurls = JSON.parse(imageURLs);
                 if (imgurls !== null) {
+                    // TODO: Make this fade in and out like the page
                     navbar.style.backgroundImage = `url('${imgurls[Math.floor(Math.random() * imgurls.length)]}')`;
                     mainBody.style.backgroundImage = `url('${imgurls[Math.floor(Math.random() * imgurls.length)]}')`;
                 }
