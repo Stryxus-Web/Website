@@ -17,11 +17,18 @@
 <div class="site-container footer container-fluid">
     <div class="row">
         <div class="col">
-            <VersionFooter />
+            <div class="row">
+                <div class="col">
+                    <i class="bi bi-gear-wide-connected" @onclick="ToggleSettingsMenu"></i>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<SettingsMenu />
+@if (UI.IsSettingsMenuVisible)
+{
+    <SettingsMenu />
+}
 
 @inject AssetCaches AC
 @inject UIState UI
@@ -32,4 +39,5 @@
     public RenderFragment? ChildContent { get; set; }
 
     private void NavigateToHome() => UI.CurrentPageContext = UI.PageContexts?.First(x => x.RelativeLink == "/");
+    private void ToggleSettingsMenu() => UI.IsSettingsMenuVisible = !UI.IsSettingsMenuVisible;
 }

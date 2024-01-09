@@ -61,4 +61,16 @@ internal class UIState
     }
 
     internal bool IsFirstNavigation { get; set; } = true;
+
+    internal Action? OnSettingsMenuToggle;
+    private bool isSettingsMenuVisible;
+    internal bool IsSettingsMenuVisible
+    {
+        get => isSettingsMenuVisible;
+        set
+        {
+            isSettingsMenuVisible = value;
+            OnSettingsMenuToggle?.Invoke();
+        }
+    }
 }
