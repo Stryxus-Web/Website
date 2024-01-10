@@ -88,7 +88,7 @@ function testForFLAC(): boolean {
 
 function init() {
 
-    document.getElementById('mobile-button')?.addEventListener('click', () => adaptMobileButton(true));
+    document.getElementById('m-button')?.addEventListener('click', () => adaptMobileButton(true));
 
     const avatarImg: HTMLElement | null = document.getElementById('avatar-img-container');
     if (avatarImg) {
