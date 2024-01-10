@@ -19,7 +19,7 @@
         <div class="col">
             <div class="row">
                 <div class="col">
-                    <i class="bi bi-gear-wide-connected" @onclick="ToggleSettingsMenu"></i>
+                    <i class="bi bi-gear-wide-connected@(UI.IsSettingsMenuVisible ? " active" : string.Empty)" @onclick="ToggleSettingsMenu"></i>
                 </div>
             </div>
         </div>
