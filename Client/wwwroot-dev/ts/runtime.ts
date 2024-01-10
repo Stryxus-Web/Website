@@ -104,7 +104,7 @@ function init() {
 
     let isFirstRender = true;
     async function adaptMobileButton(forceOpen?: boolean) {
-        const mobileButton: HTMLElement | null = document.getElementById('mobile-button');
+        const mobileButton: HTMLElement | null = document.getElementById('m-button');
         if (mobileButton) {
             if (forceOpen) {
                 mobileButton.style.display = 'none';

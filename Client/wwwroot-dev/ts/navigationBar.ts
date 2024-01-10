@@ -7,9 +7,9 @@ import gsap from 'gsap';
 export let isNavbarOpen = !isBreakpointDownMD;
 export function toggleNavbar(open: boolean)
 {
-    const mobileButton: HTMLElement | null = document.getElementById('mobile-open-button');
-    const mainBorder: HTMLElement | null = document.getElementById('main-border');
-    const mainBody: HTMLElement | null = document.getElementById('main-body');
+    const mobileButton: HTMLElement | null = document.getElementById('m-button');
+    const mainBorder: HTMLElement | null = document.getElementById('border');
+    const mainBody: HTMLElement | null = document.getElementsByTagName('main')[0];
     const pageTransitioner: HTMLElement | null = document.getElementById('page-transitioner');
 
     if (mobileButton && mainBorder && mainBody && pageTransitioner) {
