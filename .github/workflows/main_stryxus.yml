@@ -37,15 +37,15 @@ jobs:
         run: dotnet restore "${{ env.WORKING_DIRECTORY }}"
           
       - name: Restore Blazing NPM Dependencies
-        working-directory: ./MModules/Blazing/Blazing.Webpack
+        working-directory: Modules/Blazing/Blazing.Webpack
         run: npm i
 
       - name: Restore Website NPM Dependencies
-        working-directory: ./Client/wwwroot-dev
+        working-directory: Client/wwwroot-dev
         run: npm i
         
       - name: Package Website Resources
-        working-directory: ./Modules/Blazing/Blazing.Webpack
+        working-directory: Modules/Blazing/Blazing.Webpack
         run: npx ts-node app.ts --env dev --path ../../../Client
 
       - name: Build Website
