@@ -17,11 +17,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Create Release
-        uses: ncipollo/release-action@v1.13.0
-        with:
-          makeLatest: true
-
       - name: Set up Node 16
         uses: actions/setup-node@v1
         with:
