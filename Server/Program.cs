@@ -23,11 +23,6 @@ builder.Configuration.AddConfiguration(configuration);
 builder.WebHost.ConfigureKestrel((context, options) =>
 {
     options.AddServerHeader = false;
-    options.ConfigureEndpointDefaults(listenOptions =>
-    {
-        listenOptions.Protocols = HttpProtocols.Http1AndHttp2AndHttp3;
-        listenOptions.UseHttps();
-    });
 });
 builder.Logging.AddFilter<ConsoleLoggerProvider>(level => level == LogLevel.None);
 
