@@ -19,7 +19,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Client\Stryxus.Client.csproj" />
-    <ProjectReference Include="..\Components\Server\Stryxus.Components.Server.Discord\Stryxus.Components.Server.Discord.csproj" />
     <ProjectReference Include="..\Modules\Blazing\Blazing\Blazing.csproj" />
     <ProjectReference Include="..\Shared\Stryxus.Shared.csproj" />
   </ItemGroup>

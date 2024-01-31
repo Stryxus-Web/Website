@@ -7,7 +7,6 @@ using Microsoft.Extensions.Logging.Console;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 
 using Stryxus.Data;
-using Stryxus.Components.Server.Discord;
 using Stryxus.Server;
 using Stryxus.Server.Data.State;
 using Stryxus.Server.Data;
@@ -45,8 +44,9 @@ builder.Services.AddScoped<RuntimeState>();
 builder.Services.AddScoped<AssetCaches>();
 builder.Services.AddSingleton<Github>();
 
-string? discordToken;
-if ((discordToken = configuration["discord_token"]) is not null) builder.Services.AddSingleton(new StryxBot(discordToken));
+// Save this to remember server component initilisation
+//string? discordToken;
+//if ((discordToken = configuration["discord_token"]) is not null) builder.Services.AddSingleton(new StryxBot(discordToken));
 
 FileExtensionContentTypeProvider provider = new();
 provider.Mappings[".avif"] = "image/avif";
