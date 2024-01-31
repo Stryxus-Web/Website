@@ -15,10 +15,10 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Node Latest
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: 'latest'
 
@@ -55,7 +55,7 @@ jobs:
         run: dotnet publish Server -c Release -r linux-x64 -o ${{env.DOTNET_ROOT}}/myapp --self-contained true
 
       - name: Upload Artifacts For Azure Deployment
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: .net-app
           path: ${{env.DOTNET_ROOT}}/myapp
@@ -68,13 +68,13 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     steps:
       - name: Download Artifacts For Azure Deployment
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: .net-app
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
+        uses: azure/webapps-deploy@v3
         with:
           app-name: 'stryxus'
           slot-name: 'Production'
