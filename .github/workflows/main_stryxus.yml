@@ -46,7 +46,7 @@ jobs:
         
       - name: Package Website Resources
         working-directory: Modules/Blazing/Blazing.Webpack
-        run: npx ts-node app.ts --env dev --path ../../../Client
+        run: npx ts-node app.ts --env prod --path ../../../Client
 
       - name: Build Website
         run: dotnet build Server --configuration Release -r linux-x64 --self-contained true
