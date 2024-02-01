@@ -12,6 +12,8 @@ on:
 jobs:
   build:
     runs-on: macos-latest
+    env:
+      NODE_ENV: prod
     permissions:
       contents: write
     steps:
