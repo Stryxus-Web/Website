@@ -8,16 +8,10 @@ import gsap from 'gsap';
 // Pre-App
 
 document.addEventListener('DOMContentLoaded', async () => {
-
-    let supportAVIF = false;
-    localStorage.setItem('supportAVIF', (supportAVIF = await testForAVIF()).toString());
-
-    let preAppTrigger = false;
     const trans: HTMLElement | null = document.getElementById('preapp-transit');
     if (trans !== null) {
         // TODO: Make better use of these tests
         testForWebAssembly();
-        testForAV1();
         testForFLAC();
         // TODO: Use the local storage to store a load mode value
         if (window.location.hostname === 'stryxus.xyz') {
@@ -58,23 +52,6 @@ function testForWebAssembly(): boolean {
         return false;
     }
     return false;
-}
-
-function testForAVIF(): Promise<boolean> {
-    return new Promise<boolean>((resolve) => {
-        const img = new Image();
-        img.onerror = () => resolve(false);
-        img.onload = () => resolve(true);
-        img.src = 'data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D///8WfhwB8+ErK42A=';
-        img.remove();
-    }).catch(() => false);
-}
-
-function testForAV1(): boolean {
-    const testVid: HTMLVideoElement = document.createElement('video');
-    const sup = testVid.canPlayType('video/mp4; codecs=\'av01.2.15M.10.0.100.09.16.09.0, opus\'') !== '';
-    testVid.remove();
-    return sup;
 }
 
 function testForFLAC(): boolean {

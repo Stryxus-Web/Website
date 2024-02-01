@@ -15,26 +15,17 @@ public class AssetCaches
 
     private List<Tuple<string, string?>>? BACLinks { get; set; }
 
-    private bool SupportsAVIF = false;
-
     private static BACList? BAC;
 
     public async Task Init(bool isServer, IRuntimeState? RS = null, HttpClient? client = null)
     {
-        if (!isServer && RS is not null && client is not null)
-        {
-            await GetAVIFSupport(RS);
-            BAC = await client.GetFromJsonAsync<BACList?>("assets.json");
-        }
+        if (!isServer && RS is not null && client is not null) BAC = await client.GetFromJsonAsync<BACList?>("assets.json");
         if (BAC is not null && BAC.Files is not null)
         {
             BACLinks = [];
             foreach (List<string> item in BAC.Files)
             {
-                if (item.Count == 1)
-                {
-                    BACLinks.Add(new(item[0], null));
-                }
+                if (item.Count == 1) BACLinks.Add(new(item[0], null));
                 else BACLinks.Add(new(item[0], item[1]));
             }
         }
@@ -48,17 +39,12 @@ public class AssetCaches
             try
             {
                 Tuple<string, string?> asset = BACLinks.First(x => x.Item1 == (relativePath.Contains('/') ? relativePath[(relativePath.LastIndexOf('/') + 1)..] : relativePath));
-                if (relativePath.EndsWith(".avif")) return $"/{(SupportsAVIF ? $"{asset.Item2}.avif" : $"{asset.Item2}.webp")}";
+                if (relativePath.EndsWith(".avif")) return $"/{asset.Item2}.avif";
                 else return $"/{asset.Item2}";
             }
             catch { return relativePath; }
         }
         else throw new InvalidOperationException("Asset Caches have not been initialised!");
-    }
-
-    public async Task GetAVIFSupport(IRuntimeState RS)
-    {
-        if (bool.TryParse(await RS.GetLocalStorageItem("supportAVIF"), out bool supports)) SupportsAVIF = supports;
     }
 
     //
