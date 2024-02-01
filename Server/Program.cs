@@ -4,7 +4,6 @@ using System.Reflection;
 
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Logging.Console;
-using Microsoft.AspNetCore.Server.Kestrel.Core;
 
 using Stryxus.Data;
 using Stryxus.Server;
