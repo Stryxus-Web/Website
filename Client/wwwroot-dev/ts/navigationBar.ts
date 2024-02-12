@@ -64,13 +64,13 @@ window.navigationBar = {
         },
         setNavbarBackground(imageURLs: string) {
             const navbar: HTMLElement | null = document.getElementsByTagName('nav')[0];
-            const mainBody: HTMLElement | null = document.getElementsByTagName('main')[0];
-            if (navbar && mainBody && imageURLs.length !== 0) {
+            //const mainBody: HTMLElement | null = document.getElementsByTagName('main')[0];
+            if (navbar /*&& mainBody*/ && imageURLs.length !== 0) {
                 const imgurls = JSON.parse(imageURLs);
                 if (imgurls !== null) {
                     // TODO: Make this fade in and out like the page
                     navbar.style.backgroundImage = `url('${imgurls[Math.floor(Math.random() * imgurls.length)]}')`;
-                    mainBody.style.backgroundImage = `url('${imgurls[Math.floor(Math.random() * imgurls.length)]}')`;
+                    //mainBody.style.backgroundImage = `url('${imgurls[Math.floor(Math.random() * imgurls.length)]}')`;
                 }
             }
         },
