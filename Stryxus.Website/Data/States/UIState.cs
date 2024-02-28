@@ -1,11 +1,93 @@
-﻿using Microsoft.JSInterop;
+﻿using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 
 using Newtonsoft.Json;
 
 namespace Stryxus.Website.Data.States;
 
-internal class UIState(IJSRuntime jSRuntime, AssetCaches assetCaches)
+internal class UIState
 {
+    private IJSRuntime JSRuntime { get; set; }
+    private AssetCaches AC { get; set; }
+    private NavigationManager Navigation { get; set; }
+
+    public UIState(IJSRuntime jSRuntime, NavigationManager navigationManager, AssetCaches assetCaches)
+    {
+        JSRuntime = jSRuntime;
+        AC = assetCaches;
+        Navigation = navigationManager;
+
+        PageContexts = [
+            new() {
+                    Name = "Home",
+                    RelativeLink = "/",
+                    IconName = "home",
+                    RelativeNavbarImageURLs = new[] { AC.Asset("/img/home/back_main.avif") }
+                },
+            new() {
+                    Name = "Blog",
+                    RelativeLink = "/blog",
+                    IconName = "newspaper"
+                },
+            new() {
+                    Name = "Projects",
+                    RelativeLink = "/projects",
+                    IconName = "code"
+                },
+            new() {
+                    Name = "Gaming",
+                    RelativeLink = "/gaming",
+                    IconName = "joystick"
+                },
+            new() {
+                    Name = "Setups",
+                    RelativeLink = "/setups",
+                    IconName = "pci-card"
+                },
+            new() {
+                    Name = "Media",
+                    RelativeLink = "/media",
+                    IconName = "camera-fill",
+                    RelativeNavbarImageURLs = new[]
+                {
+                    AC.Asset("/img/media/background-0.avif"),
+                    AC.Asset("/img/media/background-1.avif"),
+                    AC.Asset("/img/media/background-2.avif"),
+                    AC.Asset("/img/media/background-3.avif"),
+                    AC.Asset("/img/media/background-4.avif"),
+                    AC.Asset("/img/media/background-5.avif"),
+                }
+                 },
+            new() {
+                    Name = "Art",
+                    RelativeLink = "/art",
+                    IconName = "brush-fill"
+                },
+            new() {
+                    Name = "Health",
+                    RelativeLink = "/health",
+                    IconName = "heart-pulse-fill"
+                },
+            new() {
+                    Name = "Music",
+                    RelativeLink = "/music",
+                    IconName = "music-note-beamed"
+                },
+        ];
+
+        Uri navURI = new(Navigation.Uri);
+        try
+        {
+            if (Navigation.Uri == Navigation.BaseUri || !PageContexts.Any(o => o.RelativeLink == navURI.AbsolutePath)) CurrentPageContext = PageContexts.First(x => x.RelativeLink == "/");
+            else
+            {
+                PageContext newConext = PageContexts.First(x => x.RelativeLink == navURI.AbsolutePath);
+                if (!PageIsTransitioning && !CurrentPageContext.Equals(newConext)) CurrentPageContext = newConext;
+            }
+        }
+        catch { Navigation.NavigateTo(string.Empty); }
+    }
+
     internal struct PageContext
     {
         internal string Name;
@@ -14,76 +96,11 @@ internal class UIState(IJSRuntime jSRuntime, AssetCaches assetCaches)
         internal object[]? RelativeNavbarImageURLs;
     }
 
-    internal List<PageContext> PageContexts { get; private set; } =
-        [
-            new() {
-                Name = "Home",
-                RelativeLink = "/",
-                IconName = "home",
-                RelativeNavbarImageURLs = new[] { assetCaches.Asset("/img/home/back_main.avif") }
-            },
-            new()
-            {
-                Name = "Blog",
-                RelativeLink = "/blog",
-                IconName = "newspaper"
-            },
-            new()
-            {
-                Name = "Projects",
-                RelativeLink = "/projects",
-                IconName = "code"
-            },
-            new()
-            {
-                Name = "Gaming",
-                RelativeLink = "/gaming",
-                IconName = "joystick"
-            },
-            new()
-            {
-                Name = "Setups",
-                RelativeLink = "/setups",
-                IconName = "pci-card"
-            },
-            new()
-            {
-                Name = "Media",
-                RelativeLink = "/media",
-                IconName = "camera-fill",
-                RelativeNavbarImageURLs = new[]
-                {
-                    assetCaches.Asset("/img/media/background-0.avif"),
-                    assetCaches.Asset("/img/media/background-1.avif"),
-                    assetCaches.Asset("/img/media/background-2.avif"),
-                    assetCaches.Asset("/img/media/background-3.avif"),
-                    assetCaches.Asset("/img/media/background-4.avif"),
-                    assetCaches.Asset("/img/media/background-5.avif"),
-                }
-            },
-            new()
-            {
-                Name = "Art",
-                RelativeLink = "/art",
-                IconName = "brush-fill"
-            },
-            new()
-            {
-                Name = "Health",
-                RelativeLink = "/health",
-                IconName = "heart-pulse-fill"
-            },
-            new()
-            {
-                Name = "Music",
-                RelativeLink = "/music",
-                IconName = "music-note-beamed"
-            },
-        ];
+    internal List<PageContext> PageContexts { get; private set; }
 
     internal Action? OnCurrentPageContextChange;
-    private PageContext? currentPageContext;
-    internal PageContext? CurrentPageContext
+    private PageContext currentPageContext;
+    internal PageContext CurrentPageContext
     {
         get => currentPageContext;
         set
@@ -91,22 +108,11 @@ internal class UIState(IJSRuntime jSRuntime, AssetCaches assetCaches)
             if (!currentPageContext.Equals(value))
             {
                 currentPageContext = value;
-                Task.Run(() =>
+                Task.Run(async () =>
                 {
                     OnCurrentPageContextChange?.Invoke();
-                    if (!IsFirstNavigation)
-                    {
-                        PageIsTransitioning = true;
-                        jSRuntime.InvokeVoidAsync("navigationBar.animator.transitionPage", value?.RelativeLink, JsonConvert.SerializeObject(value?.RelativeNavbarImageURLs));
-                    }
-                    else
-                    {
-                        if (value?.RelativeNavbarImageURLs is not null && value?.RelativeNavbarImageURLs.Length is not 0)
-                        {
-                            jSRuntime.InvokeVoidAsync("navigationBar.animator.setNavbarBackground", JsonConvert.SerializeObject(value?.RelativeNavbarImageURLs));
-                        }
-                        IsFirstNavigation = false;
-                    }
+                    PageIsTransitioning = true;
+                    await JSRuntime.InvokeVoidAsync("navigationBar.animator.transitionPage", value.RelativeLink, JsonConvert.SerializeObject(value.RelativeNavbarImageURLs));
                 });
             }
         }
@@ -123,8 +129,6 @@ internal class UIState(IJSRuntime jSRuntime, AssetCaches assetCaches)
             OnPageIsTransitioningChange?.Invoke();
         }
     }
-
-    internal bool IsFirstNavigation { get; set; } = true;
 
     internal Action? OnSettingsMenuToggle;
     private bool isSettingsMenuVisible;

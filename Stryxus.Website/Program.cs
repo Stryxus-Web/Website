@@ -32,10 +32,10 @@ builder.Services.AddCors();
 #endif
 builder.Services.AddRazorComponents().AddInteractiveServerComponents();
 
+builder.Services.AddSingleton<Github>();
 builder.Services.AddScoped<RuntimeState>();
 builder.Services.AddScoped<AssetCaches>();
 builder.Services.AddScoped<UIState>();
-builder.Services.AddSingleton<Github>();
 
 FileExtensionContentTypeProvider provider = new();
 provider.Mappings[".avif"] = "image/avif";
@@ -65,7 +65,6 @@ app.UseCors();
 app.MapControllers();
 app.MapRazorComponents<App>().AddInteractiveServerRenderMode();
 
-Core.app = app;
 app.Services.GetService<Github>()?.GetCommits();
 
 #if DEBUG
@@ -73,45 +72,3 @@ await app.RunAsync("https://0.0.0.0:7076");
 #else
 await app.RunAsync();
 #endif
-
-internal static class Core
-{
-    internal static WebApplication app;
-
-    internal static void Shutdown()
-    {
-        app.Lifetime.StopApplication();
-    }
-}
-
-// Old WASM Program code
-/*
-WebAssemblyHost Host;
-WebAssemblyHostBuilder HostBuilder = WebAssemblyHostBuilder.CreateDefault(args);
-Services.SetConfiguration(HostBuilder.Configuration);
-HostBuilder.RootComponents.Add<App>("#app");
-HostBuilder.RootComponents.Add<HeadOutlet>("head::after");
-
-HostBuilder.Services.AddHttpClient("Stryxus.ServerAPI", client => client.BaseAddress = new Uri(HostBuilder.HostEnvironment.BaseAddress));
-HostBuilder.Services.AddSingleton(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("Stryxus.ServerAPI"));
-HostBuilder.Services.AddSingleton<RuntimeState>();
-HostBuilder.Services.AddSingleton<AssetCaches>();
-HostBuilder.Services.AddSingleton<UIState>();
-
-Host = HostBuilder.Build();
-
-RuntimeState? rState;
-if ((rState = Host.Services.GetRequiredService<RuntimeState>()) != null)
-{
-    HttpClient Client;
-    IJSRuntime? IJS;
-    if ((Client = Host.Services.GetRequiredService<HttpClient>()) != null && (IJS = Host.Services.GetRequiredService<IJSRuntime>()) != null)
-    {
-        rState.IJS = IJS;
-        await Host.Services.GetRequiredService<AssetCaches>().Init(false, rState, Client);
-    }
-}
-
-Services.SetServiceProvider(Host.Services);
-await Host.RunAsync();
-*/

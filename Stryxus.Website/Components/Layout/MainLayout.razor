@@ -16,9 +16,22 @@
     <LoadingCircle />
 </div>
 
+@inject IJSRuntime JS
 @inject UIState UI
 
 @code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if (UI.CurrentPageContext.RelativeNavbarImageURLs is not null && UI.CurrentPageContext.RelativeNavbarImageURLs?.Length is not 0)
+            {
+                await JS.InvokeVoidAsync("navigationBar.animator.setNavbarBackground", JsonConvert.SerializeObject(UI.CurrentPageContext.RelativeNavbarImageURLs));
+            }
+        }
+        await base.OnAfterRenderAsync(firstRender);
+    }
 
     protected override Task OnInitializedAsync()
     {

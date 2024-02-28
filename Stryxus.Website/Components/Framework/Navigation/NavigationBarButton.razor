@@ -1,4 +1,4 @@
-﻿<div class="row align-items-center nav-button@(UI.CurrentPageContext?.RelativeLink == RelativeLink ? " active" : string.Empty) @(UI.PageIsTransitioning ? "disabled" : string.Empty)" @onclick="ChangePage">
+﻿<div class="row align-items-center nav-button@(UI.CurrentPageContext.RelativeLink == RelativeLink ? " active" : string.Empty) @(UI.PageIsTransitioning ? "disabled" : string.Empty)" @onclick="ChangePage">
     <div class="col">
         <div class="row icon-container">
             <div class="col">
@@ -26,12 +26,12 @@
     [Parameter, EditorRequired]
     public string? IconName { get; set; }
 
-    protected override Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        UI.OnPageIsTransitioningChange += () => { InvokeAsync(StateHasChanged); };
-        return base.OnInitializedAsync();
+        UI.OnPageIsTransitioningChange += async () => { await InvokeAsync(StateHasChanged); };
+        base.OnInitializedAsync();
     }
 
-    public void ChangePage() => UI.CurrentPageContext = UI.PageContexts?.First(x => x.RelativeLink == RelativeLink);
+    public void ChangePage() => UI.CurrentPageContext = UI.PageContexts.First(x => x.RelativeLink == RelativeLink);
 
 }

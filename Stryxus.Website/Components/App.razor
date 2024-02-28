@@ -40,27 +40,8 @@
 </body>
 </html>
 
-@inject RuntimeState RS
 @inject AssetCaches AC
-@inject UIState UI
-@inject NavigationManager Navigation
-
 
 @code {
 
-    protected override async Task OnParametersSetAsync()
-    {
-        Uri navURI = new(Navigation.Uri);
-        try
-        {
-            if (Navigation.Uri == Navigation.BaseUri || !UI.PageContexts.Any(o => o.RelativeLink == navURI.AbsolutePath)) UI.CurrentPageContext = UI.PageContexts?.First(x => x.RelativeLink == "/");
-            else
-            {
-                UIState.PageContext newConext = UI.PageContexts.First(x => x.RelativeLink == navURI.AbsolutePath);
-                if (!UI.PageIsTransitioning && !UI.CurrentPageContext.Equals(newConext)) UI.CurrentPageContext = newConext;
-            }
-        }
-        catch { Navigation.NavigateTo(string.Empty); }
-        await base.OnParametersSetAsync();
-    }
 }

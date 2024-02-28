@@ -4,7 +4,7 @@
 <div id="header" class="container-fluid">
     <div class="row justify-content-center">
         <div class="col">
-            <div id="avatar-img-container" class="@(UI.CurrentPageContext?.RelativeLink == "/" ? " active" : string.Empty) @(UI.PageIsTransitioning ? "disabled" : string.Empty)">
+            <div id="avatar-img-container" class="@(UI.CurrentPageContext.RelativeLink == "/" ? " active" : string.Empty) @(UI.PageIsTransitioning ? "disabled" : string.Empty)">
                 <img src="@(AC.Asset("/img/avatar.avif"))" @onclick="NavigateToHome" />
             </div>
         </div>
@@ -38,6 +38,6 @@
     [Parameter, EditorRequired]
     public RenderFragment? ChildContent { get; set; }
 
-    private void NavigateToHome() => UI.CurrentPageContext = UI.PageContexts?.First(x => x.RelativeLink == "/");
+    private void NavigateToHome() => UI.CurrentPageContext = UI.PageContexts.First(x => x.RelativeLink == "/");
     private void ToggleSettingsMenu() => UI.IsSettingsMenuVisible = !UI.IsSettingsMenuVisible;
 }
