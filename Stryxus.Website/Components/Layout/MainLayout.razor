@@ -1,0 +1,28 @@
+﻿@inherits LayoutComponentBase
+
+<NavigationBar>
+    @if (UI.PageContexts is not null)
+    {
+        @foreach (UIState.PageContext c in UI.PageContexts.GetRange(1, UI.PageContexts.Count - 1))
+        {
+            <NavigationBarButton Title="@c.Name" RelativeLink="@c.RelativeLink" IconName="@c.IconName" />
+        }
+    }
+</NavigationBar>
+<BodyContainer>
+    @Body
+</BodyContainer>
+<div id="page-transitioner">
+    <LoadingCircle />
+</div>
+
+@inject UIState UI
+
+@code {
+
+    protected override Task OnInitializedAsync()
+    {
+        UI.OnPageIsTransitioningChange += () => { InvokeAsync(StateHasChanged); };
+        return base.OnInitializedAsync();
+    }
+}

@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en" prefix="og: https://ogp.me/ns#">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+
+    <link rel="icon" type="image/png" href="@(AC.Asset("favicon.png"))">
+    <link rel="me" href="@("https://mastodon.social/@stryxus")">
+
+    <link rel="stylesheet" href="0.css">
+
+    <!-- Primary Meta Tags -->
+    <title>Stryxus' Personal Website</title>
+    <meta name="title" content="Stryxus' Personal Website">
+    <meta name="description" content="My personal website where I keep all my creations, guides, tools and more!">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://stryxus.xyz/">
+    <meta property="og:title" content="Stryxus' Personal Website">
+    <meta property="og:description" content="My personal website where I keep all my creations, guides, tools and more!">
+    <meta property="og:image" content="http://www.stryxus.xyz/og.png">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://stryxus.xyz/">
+    <meta property="twitter:title" content="Stryxus' Personal Website">
+    <meta property="twitter:description" content="My personal website where I keep all my creations, guides, tools and more!">
+    <meta property="twitter:image" content="http://www.stryxus.xyz/og.png">
+
+    <HeadOutlet @rendermode="InteractiveServer" />
+</head>
+<body>
+    <noscript>
+        This website requires Javascript. If you dont have Javascript enabled, you must find out how to enable it.
+        For no reason should Javascript be disabled in the modern day.
+    </noscript>
+    <Routes @rendermode="InteractiveServer" />
+    <script type="text/javascript" src="_framework/blazor.web.js"></script>
+    <script defer src="0.js"></script>
+</body>
+</html>
+
+@inject RuntimeState RS
+@inject AssetCaches AC
+@inject UIState UI
+@inject NavigationManager Navigation
+
+
+@code {
+
+    protected override async Task OnParametersSetAsync()
+    {
+        Uri navURI = new(Navigation.Uri);
+        try
+        {
+            if (Navigation.Uri == Navigation.BaseUri || !UI.PageContexts.Any(o => o.RelativeLink == navURI.AbsolutePath)) UI.CurrentPageContext = UI.PageContexts?.First(x => x.RelativeLink == "/");
+            else
+            {
+                UIState.PageContext newConext = UI.PageContexts.First(x => x.RelativeLink == navURI.AbsolutePath);
+                if (!UI.PageIsTransitioning && !UI.CurrentPageContext.Equals(newConext)) UI.CurrentPageContext = newConext;
+            }
+        }
+        catch { Navigation.NavigateTo(string.Empty); }
+        await base.OnParametersSetAsync();
+    }
+}

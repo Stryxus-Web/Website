@@ -1,0 +1,138 @@
+﻿<div id="settings-menu" class="container-fluid">
+	<div class="row">
+		<div class="col">
+			<div class="row">
+				<div class="col">
+					<h1>Settings</h1>
+				</div>
+			</div>
+			<hr />
+			<div class="row">
+				<div class="col">
+					<div class="row">
+						<div class="col">
+							<h2>General</h2>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<label class="container">
+								<small>Battery Saver Mode (Not yet implemented)</small>
+								<input type="checkbox" checked="checked">
+								<span class="checkmark"></span>
+								<small>Battery Saver Mode will prevent intensive operations from being performance and will block certain pages from loading.</small>
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<label class="container">
+								<small>Data Saver Mode (Not yet implemented)</small>
+								<input type="checkbox" checked="checked">
+								<span class="checkmark"></span>
+								<small>Data Saver Mode will minimise the amount of downloads for certain experiences and will block access to certain user downloads like photos from the photography page.</small>
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<label class="container">
+								<small>Data Saver Mode (Not yet implemented)</small>
+								<input type="checkbox" checked="checked">
+								<span class="checkmark"></span>
+								<small>Data Saver Mode will minimise the amount of downloads for certain experiences and will block access to certain user downloads like photos from the photography page.</small>
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="row">
+						<div class="col">
+							<p>
+								@(RuntimeBuildDate.Year + "/" + RuntimeBuildDate.Month + "/" + RuntimeBuildDate.Day + " " + RuntimeBuildDate.Hour + ":" + RuntimeBuildDate.Minute + ":" + RuntimeBuildDate.Second + " UTC")
+								<br />
+								v@($"{RuntimeBuildDate.Year}{RuntimeBuildDate.Month}{RuntimeBuildDate.Day}{RuntimeBuildDate.Hour}{RuntimeBuildDate.Minute}{RuntimeBuildDate.Second}")
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<div id="app-info">
+							</div>
+						</div>
+					</div>
+					<a class="row" rel="noopener noreferrer nofollow" href="https://github.com/Stryxus/Website">
+						<div class="col-auto">
+							<i class="bi bi-github"></i>
+						</div>
+						<div class="col">
+							<small>Stryxus/Website</small>
+						</div>
+					</a>
+					<div class="row">
+						<div class="col">
+							<h2>Git Commits (Last 100) (UTC Time)</h2>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<div id="git-commits">
+								@if (Commits is not null)
+								{
+									@foreach (GithubJson.CommitJson commit in Commits)
+									{
+										<small>(@($"{commit.PublishDateTime.ToUniversalTime().ToShortDateString()} {commit.PublishDateTime.ToUniversalTime().ToShortTimeString()}")) ~ @(commit.Author): @(commit.Title)</small>
+									}
+								}
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<small>Updates every hour</small>
+						</div>
+					</div>
+					<hr />
+					<div class="row">
+						<div class="col">
+							<a id="bmac" rel="noopener noreferrer nofollow" target="_blank" href="https://www.buymeacoffee.com/Stryxus">
+								<img src="https://img.buymeacoffee.com/button-api/?text=Want to support my work?&emoji=&slug=Stryxus&button_colour=003c05&font_colour=ffffff&font_family=Lato&outline_colour=000000&coffee_colour=FFDD00" />
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+@inject HttpClient Http
+
+@code {
+
+	private List<GithubJson.CommitJson>? Commits;
+
+	protected override async Task OnInitializedAsync()
+	{
+		await base.OnInitializedAsync();
+		//Commits = JsonConvert.DeserializeObject<List<GithubJson.CommitJson>>(await Http.GetStringAsync($"api/github/{(int)APIEnums.GithubAPIJson.Commits}"));
+	}
+
+	public static Assembly? RuntimeAssembly { get; } = Assembly.GetAssembly(typeof(Program));
+
+	public static DateTime RuntimeBuildDate = GetBuildDate(RuntimeAssembly?.GetCustomAttribute<AssemblyInformationalVersionAttribute>());
+
+	public static long RuntimeVersion { get; } = long.Parse($"{RuntimeBuildDate.Year}{RuntimeBuildDate.Month}{RuntimeBuildDate.Day}{RuntimeBuildDate.Hour}{RuntimeBuildDate.Minute}{RuntimeBuildDate.Second}");
+
+	public static DateTime GetBuildDate(AssemblyInformationalVersionAttribute? attribute)
+	{
+		string BuildVersionMetadataPrefix = "+build";
+		if (attribute?.InformationalVersion != null)
+		{
+			string value = attribute.InformationalVersion;
+			int index = value.IndexOf(BuildVersionMetadataPrefix);
+			//if (index > 0 && DateTime.TryParseExact(value[(index + BuildVersionMetadataPrefix.Length)..], "yyyyMMddHHmmss", CultureInfo.InvariantCulture, DateTimeStyles.None, out var result)) return result;
+		}
+		return default;
+	}
+}

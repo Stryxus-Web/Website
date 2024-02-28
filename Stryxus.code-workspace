@@ -6,7 +6,7 @@
 		},
 		{
 			"name": "Assets",
-			"path": "Client/wwwroot-dev"
+			"path": "Stryxus.Website/wwwroot-dev"
 		}
 	],
 	"settings": {
