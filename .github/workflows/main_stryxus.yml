@@ -29,9 +29,6 @@ jobs:
         with:
           dotnet-version: '8.x'
 
-      - name: Setup .NET WASM
-        run: dotnet workload install wasm-tools
-
       - name: Restore Git Submodules
         run: git submodule update --init --recursive
 
