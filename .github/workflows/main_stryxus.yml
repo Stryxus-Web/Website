@@ -40,7 +40,7 @@ jobs:
         run: npm i
 
       - name: Restore Website NPM Dependencies
-        working-directory: Client/wwwroot-dev
+        working-directory: Stryxus.Website/wwwroot-dev
         run: npm i
         
       - name: Package Website Resources
