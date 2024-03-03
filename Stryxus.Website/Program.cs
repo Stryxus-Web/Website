@@ -24,12 +24,20 @@ builder.WebHost.ConfigureKestrel((context, options) =>
     options.AddServerHeader = false;
 });
 builder.Logging.AddFilter<ConsoleLoggerProvider>(level => level == LogLevel.None);
+#if RELEASE
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+                      policy =>
+                      {
+                          policy.WithOrigins("https://stryxus.xyz",
+                                              "https://www.stryxus.xyz");
+                      });
+});
+#endif
 builder.Services.AddHttpClient();
 builder.Services.AddControllersWithViews();
 builder.Services.AddAntiforgery();
-#if RELEASE
-builder.Services.AddCors();
-#endif
 builder.Services.AddRazorComponents().AddInteractiveServerComponents();
 
 builder.Services.AddSingleton<Github>();
