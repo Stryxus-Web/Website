@@ -35,7 +35,6 @@ builder.Services.AddScoped<UIState>();
 
 FileExtensionContentTypeProvider provider = new();
 provider.Mappings[".avif"] = "image/avif";
-provider.Mappings[".webp"] = "image/webp";
 
 WebApplication app = builder.Build();
 if (app.Environment.IsDevelopment())
