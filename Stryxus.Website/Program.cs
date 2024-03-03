@@ -25,8 +25,8 @@ builder.WebHost.ConfigureKestrel((context, options) =>
 });
 builder.Logging.AddFilter<ConsoleLoggerProvider>(level => level == LogLevel.None);
 builder.Services.AddHttpClient();
-builder.Services.AddControllersWithViews();
 builder.Services.AddAntiforgery();
+builder.Services.AddControllers();
 builder.Services.AddRazorComponents().AddInteractiveServerComponents();
 
 builder.Services.AddSingleton<Github>();
