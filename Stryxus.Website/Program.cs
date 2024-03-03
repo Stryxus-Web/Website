@@ -33,7 +33,6 @@ builder.Services.AddCors();
 builder.Services.AddRazorComponents().AddInteractiveServerComponents();
 
 builder.Services.AddSingleton<Github>();
-builder.Services.AddScoped<RuntimeState>();
 builder.Services.AddScoped<AssetCaches>();
 builder.Services.AddScoped<UIState>();
 
