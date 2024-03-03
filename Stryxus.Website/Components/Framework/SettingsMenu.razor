@@ -77,12 +77,9 @@
 					<div class="row">
 						<div class="col">
 							<div id="git-commits">
-								@if (Commits is not null)
+								@foreach (GithubJson.CommitJson commit in Git.GetCommits())
 								{
-									@foreach (GithubJson.CommitJson commit in Commits)
-									{
-										<small>(@($"{commit.PublishDateTime.ToUniversalTime().ToShortDateString()} {commit.PublishDateTime.ToUniversalTime().ToShortTimeString()}")) ~ @(commit.Author): @(commit.Title)</small>
-									}
+									<small>(@($"{commit.PublishDateTime.ToUniversalTime().ToShortDateString()} {commit.PublishDateTime.ToUniversalTime().ToShortTimeString()}")) ~ @(commit.Author): @(commit.Title)</small>
 								}
 							</div>
 						</div>
@@ -107,16 +104,9 @@
 </div>
 
 @inject HttpClient Http
+@inject Github Git
 
 @code {
-
-	private List<GithubJson.CommitJson>? Commits;
-
-	protected override async Task OnInitializedAsync()
-	{
-		await base.OnInitializedAsync();
-		//Commits = JsonConvert.DeserializeObject<List<GithubJson.CommitJson>>(await Http.GetStringAsync($"api/github/{(int)APIEnums.GithubAPIJson.Commits}"));
-	}
 
 	public static Assembly? RuntimeAssembly { get; } = Assembly.GetAssembly(typeof(Program));
 
@@ -131,7 +121,7 @@
 		{
 			string value = attribute.InformationalVersion;
 			int index = value.IndexOf(BuildVersionMetadataPrefix);
-			//if (index > 0 && DateTime.TryParseExact(value[(index + BuildVersionMetadataPrefix.Length)..], "yyyyMMddHHmmss", CultureInfo.InvariantCulture, DateTimeStyles.None, out var result)) return result;
+			if (index > 0 && DateTime.TryParseExact(value[(index + BuildVersionMetadataPrefix.Length)..], "yyyyMMddHHmmss", CultureInfo.InvariantCulture, DateTimeStyles.None, out var result)) return result;
 		}
 		return default;
 	}
