@@ -24,17 +24,8 @@ builder.WebHost.ConfigureKestrel((context, options) =>
     options.AddServerHeader = false;
 });
 builder.Logging.AddFilter<ConsoleLoggerProvider>(level => level == LogLevel.None);
-#if Debug
-builder.Services.AddHsts(options =>
-{
-    options.Preload = true;
-    options.IncludeSubDomains = true;
-    options.MaxAge = TimeSpan.FromDays(60);
-});
-#endif
 builder.Services.AddHttpClient();
 builder.Services.AddControllersWithViews();
-builder.Services.AddResponseCaching();
 builder.Services.AddAntiforgery();
 builder.Services.AddRazorComponents().AddInteractiveServerComponents();
 
@@ -54,7 +45,6 @@ if (app.Environment.IsDevelopment())
 else
 {
     app.UseExceptionHandler("/Error", createScopeForErrors: true);
-    app.UseHsts();
 }
 app.UseStaticFiles(new StaticFileOptions
 {
@@ -62,7 +52,6 @@ app.UseStaticFiles(new StaticFileOptions
 });
 app.UseStaticFiles();
 app.UseRouting();
-app.UseResponseCaching();
 app.UseAntiforgery();
 app.MapControllers();
 app.MapRazorComponents<App>().AddInteractiveServerRenderMode();
