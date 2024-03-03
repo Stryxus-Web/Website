@@ -49,8 +49,18 @@ if (app.Environment.IsDevelopment())
 else
 {
     app.UseExceptionHandler("/Error", createScopeForErrors: true);
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+    builder.Services.AddHsts(options =>
+    {
+        options.Preload = true;
+        options.IncludeSubDomains = true;
+        options.MaxAge = TimeSpan.FromDays(60);
+#if DEBUG
+        options.ExcludedHosts.Add("localhost");
+#else
+        options.ExcludedHosts.Add("stryxus.xyz");
+        options.ExcludedHosts.Add("www.stryxus.xyz");
+#endif
+    });
 }
 app.UseStaticFiles(new StaticFileOptions
 {
