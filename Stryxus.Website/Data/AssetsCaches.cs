@@ -13,9 +13,9 @@ public class AssetCaches
 
     private static BACList? BAC;
 
-    public static async Task Init(bool isServer, IRuntimeState? RS = null, HttpClient? client = null)
+    public static async Task Init(bool isServer, HttpClient? client = null)
     {
-        if (!isServer && RS is not null && client is not null) BAC = await client.GetFromJsonAsync<BACList?>("assets.json");
+        if (!isServer && client is not null) BAC = await client.GetFromJsonAsync<BACList?>("assets.json");
         if (BAC is not null && BAC.Files is not null)
         {
             BACLinks = [];
