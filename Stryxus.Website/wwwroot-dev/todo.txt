@@ -3,14 +3,14 @@
     - Start including WOFF2 files into the name obfuscator
     - Figure out a way to obfuscate third party CSS referenced resources.
     - Figure out a way to trim the CSS based on used selectors.
-
-- Blazor WASM
-    - Lazy Load assemblies per page requirement.
+    - Split the CSS up into different files per third party library and media query.
 
 - Assets
     - Make all applicable images/videos HDR 10-bit Rec.2020. Requires monitor with high Rec.2020 support at least.
+    - Make sure to enable ZSTD compression as soon as its available in Blazor
 
 - Media page
     - Create a simple category grid where each image/video has the name, description and when it was captured.
     - Each image/video in the grid must be a highly compressed thumbnail which you can hover over, darkens the thumbnail and shows a fullscreen icon.
-    - Opening an image in 'fullscreen' must show the title, description, date/time and other details like the game or/and where, 
+    - Opening an image in 'fullscreen' must show the title, description, date/time and other details like the game or/and where.
+    - Setup an Azure Blob Storage account to store all lossless AVIF files, of 16bit and 32bit (HDR) variants.
