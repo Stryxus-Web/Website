@@ -37,6 +37,7 @@ builder.Services.AddCors(options =>
 #endif
 builder.Services.AddHttpClient();
 builder.Services.AddControllersWithViews();
+builder.Services.AddResponseCaching();
 builder.Services.AddAntiforgery();
 builder.Services.AddRazorComponents().AddInteractiveServerComponents();
 
@@ -75,6 +76,7 @@ app.UseStaticFiles(new StaticFileOptions
 });
 app.UseStaticFiles();
 app.UseRouting();
+app.UseResponseCaching();
 app.UseAntiforgery();
 #if RELEASE
 app.UseCors();
