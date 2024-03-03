@@ -25,6 +25,14 @@ builder.WebHost.ConfigureKestrel((context, options) =>
 });
 builder.Logging.AddFilter<ConsoleLoggerProvider>(level => level == LogLevel.None);
 #if RELEASE
+builder.Services.AddHsts(options =>
+{
+    options.Preload = true;
+    options.IncludeSubDomains = true;
+    options.MaxAge = TimeSpan.FromDays(60);
+    options.ExcludedHosts.Add("stryxus.xyz");
+    options.ExcludedHosts.Add("www.stryxus.xyz");
+});
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(
@@ -57,18 +65,7 @@ if (app.Environment.IsDevelopment())
 else
 {
     app.UseExceptionHandler("/Error", createScopeForErrors: true);
-    builder.Services.AddHsts(options =>
-    {
-        options.Preload = true;
-        options.IncludeSubDomains = true;
-        options.MaxAge = TimeSpan.FromDays(60);
-#if DEBUG
-        options.ExcludedHosts.Add("localhost");
-#else
-        options.ExcludedHosts.Add("stryxus.xyz");
-        options.ExcludedHosts.Add("www.stryxus.xyz");
-#endif
-    });
+    app.UseHsts();
 }
 app.UseStaticFiles(new StaticFileOptions
 {
