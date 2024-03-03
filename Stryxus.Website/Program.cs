@@ -31,15 +31,6 @@ builder.Services.AddHsts(options =>
     options.IncludeSubDomains = true;
     options.MaxAge = TimeSpan.FromDays(60);
 });
-builder.Services.AddCors(options =>
-{
-    options.AddDefaultPolicy(
-                      policy =>
-                      {
-                          policy.WithOrigins("https://stryxus.xyz",
-                                              "https://www.stryxus.xyz");
-                      });
-});
 #endif
 builder.Services.AddHttpClient();
 builder.Services.AddControllersWithViews();
@@ -73,9 +64,6 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseResponseCaching();
 app.UseAntiforgery();
-#if RELEASE
-app.UseCors();
-#endif
 app.MapControllers();
 app.MapRazorComponents<App>().AddInteractiveServerRenderMode();
 
