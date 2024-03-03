@@ -24,14 +24,12 @@ builder.WebHost.ConfigureKestrel((context, options) =>
     options.AddServerHeader = false;
 });
 builder.Logging.AddFilter<ConsoleLoggerProvider>(level => level == LogLevel.None);
-#if RELEASE
+#if Debug
 builder.Services.AddHsts(options =>
 {
     options.Preload = true;
     options.IncludeSubDomains = true;
     options.MaxAge = TimeSpan.FromDays(60);
-    options.ExcludedHosts.Add("stryxus.xyz");
-    options.ExcludedHosts.Add("www.stryxus.xyz");
 });
 builder.Services.AddCors(options =>
 {
