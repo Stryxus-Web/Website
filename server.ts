@@ -10,23 +10,32 @@ import { debug } from 'console';
 
 const app = express();
 const port = process.env.PORT || 7076;
+const isDev = process.env.NODE_ENV == 'dev';
  
-const vite = await createServer({
-  server: {
-    middlewareMode: true,
-  },
-  appType: 'custom',
-});
- 
-app.use(vite.middlewares);
- 
-app.use('*', async (req, res) => {
-  try {
-    res.status(200).set({ 'Content-Type': 'text/html' }).end( await vite.transformIndexHtml(req.originalUrl, fs.readFileSync('index.html', 'utf-8')));
-  } catch (error) {
-    res.status(500).end(error);
-  }
-});
+if (isDev) {
+  const vite = await createServer({
+    server: {
+      middlewareMode: true,
+    },
+    appType: 'custom',
+  });
+   
+  app.use(vite.middlewares);
+
+  app.use('*', async (req, res) => {
+    try {
+      res.status(200).set({ 'Content-Type': 'text/html' }).end( await vite.transformIndexHtml(req.originalUrl, fs.readFileSync('index.html', 'utf-8')));
+    } catch (error) {
+      res.status(500).end(error);
+    }
+  });
+} else {
+  app.use(express.static('dist'))
+
+  app.get('/*', (req, res) => {
+    res.sendFile(__dirname + '/index.html');
+  });
+}
 
 const server = app.listen(port, () => debug('HTTP Dev Server Started...'));
 
