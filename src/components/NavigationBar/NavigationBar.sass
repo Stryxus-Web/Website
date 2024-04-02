@@ -1,0 +1,75 @@
+@use 'sass:math'
+
+@import "../../styles/globals"
+    
+nav
+    position: fixed
+    top: 0px
+    bottom: 0px
+    left: 0px
+    right: 0px
+    z-index: $zIndexNavigationBar
+    overflow-x: hidden
+    background-repeat: no-repeat
+    background-position: right
+    background-size: cover
+    background-attachment: fixed
+    & > .row
+        height: calc(100% - #{$siteContainerSectionHeight}px)
+        overflow-y: scroll
+        & > .col-auto
+            padding-top: #{$siteContainerSectionHeight + 40}px
+            padding-bottom: #{math.div($siteContainerSectionHeight, 4)}px
+            .nav-button
+                width: $navigationBarWidth + px
+                i, p, h1, h2, h3, h4
+                    color: white
+                    text-decoration: none
+                &.disabled
+                    pointer-events: none
+                &.active
+                    .icon-container
+                        background-color: $greenColour2TransparencyHigh
+                    .bullet-container
+                        .active-bullet
+                            opacity: 0.5 !important
+                &:hover
+                    cursor: pointer
+                    .icon-container
+                        background-color: $greenColour3TransparencyHigh
+                .icon-container, .icon, .active-bullet
+                    transition: 0.33s
+                .icon-container
+                    background-color: $blackTransparencyLow
+                    clip-path: polygon(0% 15px, 15px 0%, calc(100% - 15px) 0%, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0% calc(100% - 15px))
+                    width: 64px
+                    height: 64px
+                    margin-left: auto
+                    margin-right: auto
+                    margin-bottom: 16px
+                    & > .col
+                        padding: 0px
+                    i
+                        display: block
+                        font-size: 32px
+                        width: 32px
+                        height: 32px
+                        margin: 16px
+                        transform: translateY(-6px)
+                .bullet-container
+                    margin-top: -4px !important
+                    margin-bottom: -4px !important
+                    margin-left: 0px !important
+                    margin-right: 0px !important
+                    & > .col-auto
+                        padding: 0px !important
+                        border-radius: 20px
+                        width: 12px
+                        height: 12px
+                        line-height: 12px
+                        font-size: 20px
+                        text-align: center
+                        transform: translateY(-40px) translateX(-42px)
+                        .active-bullet
+                            transform: translateY(-10px) translateX(0.5px)
+                            opacity: 0
