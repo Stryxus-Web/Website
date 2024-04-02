@@ -62,7 +62,7 @@ jobs:
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2 #Upgrade this to v3 when v3 actually works
+        uses: azure/webapps-deploy@v3
         with:
           app-name: 'stryxus'
           slot-name: 'Production'
