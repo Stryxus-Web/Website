@@ -1,5 +1,6 @@
 import 'dotenv/config';
 
+import path from 'path';
 import fs from 'fs';
 import express from 'express';
 import { createServer } from 'vite';
@@ -11,6 +12,7 @@ import { debug } from 'console';
 const app = express();
 const port = process.env.PORT || 7076;
 const isDev = process.env.NODE_ENV == 'dev';
+const __dirname = path.resolve(path.dirname(''));
  
 if (isDev) {
   const vite = await createServer({
