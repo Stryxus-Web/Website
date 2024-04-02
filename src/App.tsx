@@ -29,7 +29,7 @@ import Media from './pages/Media/Media';
 import Music from './pages/Music/Music';
 import Projects from './pages/Projects/Projects';
 import Setups from './pages/Setups/Setups';
-import Admin from './pages/Admin/Admin'
+import Admin from './pages/Admin/Admin';
 import NotFound from './pages/_404.js';
 
 interface ComProps {
