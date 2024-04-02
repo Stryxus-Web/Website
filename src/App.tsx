@@ -31,6 +31,7 @@ import Projects from './pages/Projects/Projects';
 import Setups from './pages/Setups/Setups';
 import Admin from './pages/Admin/Admin';
 import NotFound from './pages/_404.js';
+import { UseIsSSR } from './data/Utilities';
 
 interface ComProps {
 	
@@ -86,49 +87,51 @@ export default class App extends Component<ComProps, ComState> {
 	}
 
 	render() {
-		gsap.registerPlugin(useGSAP);
+		if (typeof window !== 'undefined') {
+			gsap.registerPlugin(useGSAP);
 
-		window.addEventListener('resize', this.updateMediaQueries);
-		this.updateMediaQueries();
-
-		useGSAP((context, contextSafe) => {
-			let isFirstRender = true;
-			let isNavbarOpen = !isBreakpointDownLG.value;
-			const toggle = contextSafe(() => {
-				if (isBreakpointDownLG.value) {
-					if (isFirstRender ? isNavbarOpen : isNavbarOpen = !isNavbarOpen) open(this.state.MButtonElRef.current, this.state.MainElRef.current, this.state.BorderElRef.current);
-					else close(this.state.MButtonElRef.current, this.state.MainElRef.current, this.state.BorderElRef.current);
+			window.addEventListener('resize', this.updateMediaQueries);
+			this.updateMediaQueries();
+	
+			useGSAP((context, contextSafe) => {
+				let isFirstRender = true;
+				let isNavbarOpen = !isBreakpointDownLG.value;
+				const toggle = contextSafe(() => {
+					if (isBreakpointDownLG.value) {
+						if (isFirstRender ? isNavbarOpen : isNavbarOpen = !isNavbarOpen) open(this.state.MButtonElRef.current, this.state.MainElRef.current, this.state.BorderElRef.current);
+						else close(this.state.MButtonElRef.current, this.state.MainElRef.current, this.state.BorderElRef.current);
+					}
+					else this.state.MButtonElRef.current.style.display = 'none';
+					isFirstRender = false;
+				});
+	
+				isBreakpointDownLG.registerListener((val: boolean) => {
+					if (val) close(this.state.MButtonElRef.current, this.state.MainElRef.current, this.state.BorderElRef.current);
+					else open(this.state.MButtonElRef.current, this.state.MainElRef.current, this.state.BorderElRef.current);
+				});
+	
+				function open(MButtonElRef: HTMLDivElement, MainElRef: HTMLDivElement, BorderElRef: HTMLDivElement) {
+					MButtonElRef.style.display = 'none';
+					gsap.to(MainElRef.tagName.toLocaleLowerCase(), { ease: 'sine.out', duration: isFirstRender ? 0 : 0.33, top: '16px', bottom: '16px', left: '108px' });
+					gsap.to(`#${BorderElRef.id}`.toLocaleLowerCase(), { ease: 'sine.out', duration: isFirstRender ? 0 : 0.33, top: '8px', bottom: '8px', left: '99px' });
 				}
-				else this.state.MButtonElRef.current.style.display = 'none';
-				isFirstRender = false;
-			});
-
-			isBreakpointDownLG.registerListener((val: boolean) => {
-				if (val) close(this.state.MButtonElRef.current, this.state.MainElRef.current, this.state.BorderElRef.current);
-				else open(this.state.MButtonElRef.current, this.state.MainElRef.current, this.state.BorderElRef.current);
-			});
-
-			function open(MButtonElRef: HTMLDivElement, MainElRef: HTMLDivElement, BorderElRef: HTMLDivElement) {
-				MButtonElRef.style.display = 'none';
-				gsap.to(MainElRef.tagName.toLocaleLowerCase(), { ease: 'sine.out', duration: isFirstRender ? 0 : 0.33, top: '16px', bottom: '16px', left: '108px' });
-				gsap.to(`#${BorderElRef.id}`.toLocaleLowerCase(), { ease: 'sine.out', duration: isFirstRender ? 0 : 0.33, top: '8px', bottom: '8px', left: '99px' });
-			}
-
-			function close(MButtonElRef: HTMLDivElement, MainElRef: HTMLDivElement, BorderElRef: HTMLDivElement) {
-				gsap.to(MainElRef.tagName.toLocaleLowerCase(), { ease: 'sine.out', duration: isFirstRender ? 0 : 0.33, top: '0px', bottom: '0px', left: '18px' });
-				gsap.to(`#${BorderElRef.id}`.toLocaleLowerCase(), { ease: 'sine.out', duration: isFirstRender ? 0 : 0.33, top: '0px', bottom: '0px', left: '0px' });
-				MButtonElRef.style.display = 'unset';
-			}
-
-			this.state.MButtonElRef.current.addEventListener('click', toggle);
-			// TODO: Figure out how to use references instead, the document get way feels bad. This has type issues so addEventListener doesnt exist.
-			document.getElementById('avatar-img-container').addEventListener('click', toggle);
-			for (let item of document.getElementsByClassName('nav-button')) {
-				item.addEventListener('click', toggle);
-			}
-			
-			toggle();
-		}, { });
+	
+				function close(MButtonElRef: HTMLDivElement, MainElRef: HTMLDivElement, BorderElRef: HTMLDivElement) {
+					gsap.to(MainElRef.tagName.toLocaleLowerCase(), { ease: 'sine.out', duration: isFirstRender ? 0 : 0.33, top: '0px', bottom: '0px', left: '18px' });
+					gsap.to(`#${BorderElRef.id}`.toLocaleLowerCase(), { ease: 'sine.out', duration: isFirstRender ? 0 : 0.33, top: '0px', bottom: '0px', left: '0px' });
+					MButtonElRef.style.display = 'unset';
+				}
+	
+				this.state.MButtonElRef.current.addEventListener('click', toggle);
+				// TODO: Figure out how to use references instead, the document get way feels bad. This has type issues so addEventListener doesnt exist.
+				document.getElementById('avatar-img-container').addEventListener('click', toggle);
+				for (let item of document.getElementsByClassName('nav-button')) {
+					item.addEventListener('click', toggle);
+				}
+				
+				toggle();
+			}, { });
+		}
 
 		return (
 			<LocationProvider>
