@@ -15,12 +15,6 @@ import preact from '@preact/preset-vite';
 export default vite.defineConfig(({ mode }) => {
 	const isDev = mode === 'development';
 	return {
-		/*
-		build: {
-			outDir: 'dist',
-			ssr: true,
-		},
-		*/
 		server: {
 			port: 7076,
 		},
@@ -35,7 +29,6 @@ export default vite.defineConfig(({ mode }) => {
 			}
 		},
 		plugins: [
-			/*
 			progress(),
 			mkcert(),
 			tsconfigPaths(),
@@ -71,17 +64,7 @@ export default vite.defineConfig(({ mode }) => {
 			}),
 			//compression({ algorithm: 'brotliCompress', exclude: [/\.(br)$/, /\.(gz)$/], deleteOriginalAssets: true, }),
 			chunkSplitPlugin(),
-			*/
 			preact(),
-			/*
-			preact({
-				prerender: {
-					enabled: true,
-					renderTarget: '#app',
-					additionalPrerenderRoutes: ['/404'],
-				},
-			}),
-			*/
 		],
 	};
 });
