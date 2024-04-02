@@ -1,6 +1,7 @@
 @use 'sass:math'
 
 @import '~bootstrap/scss/bootstrap-grid'
+$bootstrap-icons-font-dir: "/node_modules/bootstrap-icons/font/fonts" // For some reason the bootstrap-icons font doesnt load in dev when this isnt present.
 @import '~bootstrap-icons/font/bootstrap-icons'
 
 @import 'styles/Theme'
@@ -33,15 +34,6 @@
     font-weight: 300
     src: url(@/assets/fonts/raidercrusaderexpand.woff2) format('woff2')
     font-display: swap
-
-// Bootstrap icons fonts dont seem to work so manually delcare them.
-
-@font-face 
-    font-family: 'bootstrap-icons'
-    src: url(@/../node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2) format('woff2')
-    font-display: swap
-
-//
 
 main, #border, #preapp-transit
     position: fixed
