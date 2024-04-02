@@ -1,0 +1,29 @@
+@use 'sass:math'
+
+@import "../../styles/globals"
+    
+#settings-menu
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translateX(-50%) translateY(-50%)
+    width: 75%
+    height: 75%
+    padding-top: $bootstrapMargin + px
+    padding-bottom: $bootstrapMargin + px
+    padding-left: #{$bootstrapMargin * 4}px
+    padding-right: #{$bootstrapMargin * 4}px
+    background-color: $blackTransparencyLow
+    backdrop-filter: blur(24px)
+    overflow: hidden
+    z-index: $zIndexSettingsMenu
+    #git-commits
+        background-color: $blackTransparencyHigh
+        height: 400px
+        overflow-x: hidden
+        overflow-y: auto
+        padding: 16px
+        margin-bottom: 6px
+    #bmac img
+        height: 80px
+        margin: 24px

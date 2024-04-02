@@ -1,17 +1,11 @@
 {
 	"folders": [
 		{
-			"name": "Root",
 			"path": "."
-		},
-		{
-			"name": "Assets",
-			"path": "Stryxus.Website/wwwroot-dev"
 		}
 	],
 	"settings": {
-		"eslint.workingDirectories": [
-			"./Client"
-		],
-	},
+		"typescript.tsdk": "node_modules\\typescript\\lib",
+		"git.ignoreLimitWarning": true
+	}
 }
