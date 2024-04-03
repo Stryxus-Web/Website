@@ -1,4 +1,5 @@
 import './App.sass';
+
 import 'preact/debug';
 
 import Img_Avatar from './assets/img/avatar.png';
@@ -37,23 +38,21 @@ interface ComProps {
 }
 
 interface ComState {
-	MButtonElRef: MutableRef<HTMLDivElement>,
-	MainElRef: MutableRef<HTMLDivElement>,
-	BorderElRef: MutableRef<HTMLDivElement>,
-	
-	IsSettingsMenuVisible: boolean,
+
 }
 
 export default class App extends Component<ComProps, ComState> {
+	MButtonElRef: MutableRef<HTMLDivElement> = createRef<HTMLDivElement>();
+	NavElRef: MutableRef<NavigationBar> = createRef<NavigationBar>();
+	MainElRef: MutableRef<HTMLDivElement> = createRef<HTMLDivElement>();
+	BorderElRef: MutableRef<HTMLDivElement> = createRef<HTMLDivElement>();
+	
+	IsSettingsMenuVisible: boolean = false;
 
 	constructor(props: ComProps) {
         super(props);
         this.state = {
-			MButtonElRef: createRef<HTMLDivElement>(),
-			MainElRef: createRef<HTMLDivElement>(),
-			BorderElRef: createRef<HTMLDivElement>(),
 
-			IsSettingsMenuVisible: false,
         };
     }
 
@@ -84,7 +83,26 @@ export default class App extends Component<ComProps, ComState> {
 		isBreakpointOnlyXL.value = window.matchMedia(`(min-width: ${mq_xl}px) and (max-width: ${mq_xl - 0.02})`).matches;
 		isBreakpointOnlyXXL.value = window.matchMedia(`(min-width: ${mq_xxl}px) and (max-width: ${mq_xxl - 0.02})`).matches;
 	}
-1
+
+	toggleSettingsMenu() {
+		if (this.IsSettingsMenuVisible)
+		{
+			return (
+				<SettingsMenu />
+			);
+		}
+	}
+
+	setNavBackground(url: string) {
+		if (this.NavElRef.current && this.MainElRef.current) {
+			const imgurls: string[] | undefined = Pages.find(x => x.RelativeLink == url).RelativeNavbarImageURLs;
+			if (imgurls) {
+				this.NavElRef.current.getNavElRef().style.backgroundImage = `url('${imgurls[Math.floor(Math.random() * imgurls.length)]}')`;
+				this.MainElRef.current.style.backgroundImage = `url('${imgurls[Math.floor(Math.random() * imgurls.length)]}')`;
+			}
+		}
+	}
+
 	render() {
 		if (typeof window !== 'undefined') {
 			gsap.registerPlugin(useGSAP);
@@ -97,16 +115,16 @@ export default class App extends Component<ComProps, ComState> {
 				let isNavbarOpen = !isBreakpointDownLG.value;
 				const toggle = contextSafe(() => {
 					if (isBreakpointDownLG.value) {
-						if (isFirstRender ? isNavbarOpen : isNavbarOpen = !isNavbarOpen) open(this.state.MButtonElRef.current, this.state.MainElRef.current, this.state.BorderElRef.current);
-						else close(this.state.MButtonElRef.current, this.state.MainElRef.current, this.state.BorderElRef.current);
+						if (isFirstRender ? isNavbarOpen : isNavbarOpen = !isNavbarOpen) open(this.MButtonElRef.current, this.MainElRef.current, this.BorderElRef.current);
+						else close(this.MButtonElRef.current, this.MainElRef.current, this.BorderElRef.current);
 					}
-					else this.state.MButtonElRef.current.style.display = 'none';
+					else this.MButtonElRef.current.style.display = 'none';
 					isFirstRender = false;
 				});
 	
 				isBreakpointDownLG.registerListener((val: boolean) => {
-					if (val) close(this.state.MButtonElRef.current, this.state.MainElRef.current, this.state.BorderElRef.current);
-					else open(this.state.MButtonElRef.current, this.state.MainElRef.current, this.state.BorderElRef.current);
+					if (val) close(this.MButtonElRef.current, this.MainElRef.current, this.BorderElRef.current);
+					else open(this.MButtonElRef.current, this.MainElRef.current, this.BorderElRef.current);
 				});
 	
 				function open(MButtonElRef: HTMLDivElement, MainElRef: HTMLDivElement, BorderElRef: HTMLDivElement) {
@@ -121,20 +139,22 @@ export default class App extends Component<ComProps, ComState> {
 					MButtonElRef.style.display = 'unset';
 				}
 	
-				this.state.MButtonElRef.current.addEventListener('click', toggle);
+				this.MButtonElRef.current.addEventListener('click', toggle);
 				// TODO: Figure out how to use references instead, the document get way feels bad. This has type issues so addEventListener doesnt exist.
 				document.getElementById('avatar-img-container').addEventListener('click', toggle);
 				for (let item of document.getElementsByClassName('nav-button')) {
 					item.addEventListener('click', toggle);
 				}
-				
+
 				toggle();
+				// TODO: Synchronise the router with my own page state to get which page is routed too.
+				this.setNavBackground('/');
 			}, { });
 		}
 
 		return (
 			<LocationProvider>
-				<NavigationBar>
+				<NavigationBar ref={this.NavElRef}>
 				{
 					Pages.slice(1).map((page: NavPage) =>
 					{
@@ -144,7 +164,7 @@ export default class App extends Component<ComProps, ComState> {
 					})
                 }
 				</NavigationBar>
-				<div ref={this.state.MButtonElRef} id="m-button">
+				<div ref={this.MButtonElRef} id="m-button">
 					<i class="bi bi-caret-right-fill"></i>
 				</div>
 				<div id="header" class="container-fluid">
@@ -156,8 +176,8 @@ export default class App extends Component<ComProps, ComState> {
 						</div>
 					</div>
 				</div>
-				<main ref={this.state.MainElRef} class="container-fluid">
-					<Router>
+				<main ref={this.MainElRef} class="container-fluid">
+					<Router onRouteChange={(url: string) => this.setNavBackground(url)}>
 						<Route path="/" component={Home} />
 						<Route path="/art" component={Art} />
 						<Route path="/blog" component={Blog} />
@@ -173,7 +193,7 @@ export default class App extends Component<ComProps, ComState> {
 						<Route default component={NotFound} />
 					</Router>
 				</main>
-				<div ref={this.state.BorderElRef} id="border"></div>
+				<div ref={this.BorderElRef} id="border"></div>
 				<div id="footer" class="container-fluid">
 					<div class="row">
 						<div class="col">
@@ -185,17 +205,8 @@ export default class App extends Component<ComProps, ComState> {
 						</div>
 					</div>
 				</div>
-				{SettingsMenuComponent}
+				{this.toggleSettingsMenu}
 			</LocationProvider>
-		);
-	}
-}
-
-function SettingsMenuComponent() {
-	if (this.state.IsSettingsMenuVisible)
-	{
-		return (
-			<SettingsMenu />
 		);
 	}
 }

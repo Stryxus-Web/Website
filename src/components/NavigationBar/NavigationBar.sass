@@ -17,6 +17,7 @@ nav
     & > .row
         height: calc(100% - #{$siteContainerSectionHeight}px)
         overflow-y: scroll
+        backdrop-filter: blur(#{math.div($blurRadius, 2) + px})
         & > .col-auto
             padding-top: #{$siteContainerSectionHeight + 40}px
             padding-bottom: #{math.div($siteContainerSectionHeight, 4)}px

@@ -1,9 +1,9 @@
 import './NavigationBar.sass';
 
-import { Component } from 'preact';
+import { Component, createRef } from 'preact';
 
 interface ComProps {
-
+    
 }
 
 interface ComState {
@@ -11,6 +11,7 @@ interface ComState {
 }
 
 export default class NavigationBar extends Component<ComProps, ComState> {
+    navRef = createRef();
 
     constructor(props: ComProps) {
         super(props);
@@ -27,9 +28,13 @@ export default class NavigationBar extends Component<ComProps, ComState> {
 
     }
 
+    getNavElRef = () => {
+        return this.navRef.current;
+    }
+
     render() {
         return (
-            <nav class="container-fluid">
+            <nav class="container-fluid" ref={this.navRef}>
                 <div class="row">
                     <div class="col-auto">
                         {this.props.children}
