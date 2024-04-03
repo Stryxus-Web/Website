@@ -62,7 +62,6 @@ export default vite.defineConfig(({ mode }) => {
 				],
 				cache: isDev,
 			}),
-			//compression({ algorithm: 'brotliCompress', exclude: [/\.(br)$/, /\.(gz)$/], deleteOriginalAssets: true, }),
 			chunkSplitPlugin(),
 			preact({
 				prerender: {
