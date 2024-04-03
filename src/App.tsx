@@ -31,7 +31,6 @@ import Projects from './pages/Projects/Projects';
 import Setups from './pages/Setups/Setups';
 import Admin from './pages/Admin/Admin';
 import NotFound from './pages/_404.js';
-import { UseIsSSR } from './data/Utilities';
 
 interface ComProps {
 	
@@ -85,7 +84,7 @@ export default class App extends Component<ComProps, ComState> {
 		isBreakpointOnlyXL.value = window.matchMedia(`(min-width: ${mq_xl}px) and (max-width: ${mq_xl - 0.02})`).matches;
 		isBreakpointOnlyXXL.value = window.matchMedia(`(min-width: ${mq_xxl}px) and (max-width: ${mq_xxl - 0.02})`).matches;
 	}
-
+1
 	render() {
 		if (typeof window !== 'undefined') {
 			gsap.registerPlugin(useGSAP);
