@@ -34,7 +34,7 @@ if (isDev) {
   });
 } else {
   app.use(express.static('dist'))
-
+  // TODO: This needs to route to the appropriate Preact page
   app.get('/*', (req, res) => {
     res.sendFile(__dirname + '/index.html');
   });
