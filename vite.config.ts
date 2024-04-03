@@ -15,8 +15,17 @@ import preact from '@preact/preset-vite';
 export default vite.defineConfig(({ mode }) => {
 	const isDev = mode === 'development';
 	return {
+		build: {
+			outDir: './dist',
+			assetsDir: './',
+		},
 		server: {
 			port: 7076,
+			https: false,
+			hmr: {
+				host: "localhost",
+				protocol: "ws",
+			},
 		},
 		preview: {
 			port: 7076,
