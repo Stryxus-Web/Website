@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build/Deploy Personal Website to Azure
+name: Build and deploy Node.js app to Azure Web App - stryxus
 
 on:
   push:
@@ -17,20 +17,21 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Set up Node.js version
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
           node-version: '20.x'
 
-      - name: npm install and build
+      - name: npm install, build, and test
         run: |
           npm install
-          npm run build
+          npm run build --if-present
+          npm run test --if-present
 
       - name: Zip artifact for deployment
         run: zip release.zip ./* -r
 
       - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: node-app
           path: release.zip
@@ -46,7 +47,7 @@ jobs:
 
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v3
         with:
           name: node-app
 
@@ -54,15 +55,15 @@ jobs:
         run: unzip release.zip
       
       - name: Login to Azure
-        uses: azure/login@v2
+        uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_44B145EBC4BE4CE0AC3268BB23FB2688 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_F226B317B67C488485B9AE9A80101C04 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_6A3E2F8EB2CD484FAC192E56D4B32E25 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_30025FF03B2047D98D9AEA0CEA0CC4DA }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_9130D9E63E0C4411B3F82EF370D1160B }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_CEFD68FC26254B8C918FCB451260E1F6 }}
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
-        uses: azure/webapps-deploy@v3
+        uses: azure/webapps-deploy@v2
         with:
           app-name: 'stryxus'
           slot-name: 'Production'
