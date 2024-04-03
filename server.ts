@@ -9,10 +9,11 @@ import { DefaultAzureCredential } from '@azure/identity';
 import { BlobServiceClient } from '@azure/storage-blob';
 import { debug } from 'console';
 
-const app = express();
+const isDev = process.env.NODE_ENV.indexOf('development') > -1;
 const port = process.env.PORT || 7076;
-const isDev = process.env.NODE_ENV == 'dev';
 const __dirname = path.resolve(path.dirname(''));
+
+const app = express();
  
 if (isDev) {
   const vite = await createServer({

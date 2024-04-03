@@ -2,8 +2,8 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"dev": "nodemon --exec node --import tsx/esm server.ts",
-		"prod": "node --import tsx/esm server.ts",
+		"dev": "set NODE_ENV=development && nodemon --exec node --import tsx/esm server.ts",
+		"prod": "set NODE_ENV=production && node --import tsx/esm server.ts",
 		"build": "vite build",
 		"preview": "vite preview"
 	},
