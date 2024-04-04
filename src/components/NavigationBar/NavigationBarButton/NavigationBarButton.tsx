@@ -1,11 +1,14 @@
-import './NavigationBarButton.sass';
+import "./NavigationBarButton.sass";
 
-import { Component } from 'preact';
+import { Component } from "preact";
+import * as icons from "react-bootstrap-icons";
+
+import { Icon } from "../../UtilityElements/UtilityElements";
 
 interface ComProps {
     title: string;
     relativeLink: string;
-    iconName: string;
+    iconName: keyof typeof icons;
 }
 
 interface ComState {
@@ -32,15 +35,15 @@ export default class NavigationBarButton extends Component<ComProps, ComState> {
     render(props: ComProps) {
         return (
             <a href={props.relativeLink} class={`row align-items-center nav-button ${this.state.active ? 'active' : ''}`}>
-                <div class="col">
-                    <div class="row icon-container">
-                        <div class="col">
-                            <i class={`bi bi-${this.props.iconName}`}></i>
+                <div class='col'>
+                    <div class='row icon-container'>
+                        <div class='col'>
+                            <Icon iconName={this.props.iconName} />
                         </div>
                     </div>
-                    <div class="row justify-content-center bullet-container">
-                        <div class="col-auto">
-                            <small class="active-bullet">&bull;</small>
+                    <div class='row justify-content-center bullet-container'>
+                        <div class='col-auto'>
+                            <small class='active-bullet'>&bull;</small>
                         </div>
                     </div>
                 </div>

@@ -1,37 +1,39 @@
-import './App.sass';
+import "./App.sass";
 
-import 'preact/debug';
+import "preact/debug";
 
-import Img_Avatar from './assets/img/avatar.png';
+import Img_Avatar from "./assets/img/avatar.png";
 
-import { Component, createRef } from 'preact';
-import { LocationProvider, Router, Route, hydrate, prerender as ssr } from 'preact-iso';
-import { MutableRef } from 'preact/hooks';
+import { Component, createRef } from "preact";
+import { LocationProvider, Router, Route, hydrate, prerender as ssr } from "preact-iso";
+import { MutableRef } from "preact/hooks";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
-
-import { Pages, NavPage } from './data/Globals';
+import { routerPages, NavPage, currentPage } from "./data/Globals";
 import { isBreakpointDownLG, isBreakpointDownMD, isBreakpointDownSM, isBreakpointDownXL, isBreakpointDownXXL, 
 	isBreakpointOnlyLG, isBreakpointOnlyMD, isBreakpointOnlySM, isBreakpointOnlyXL, isBreakpointOnlyXXL, 
 	isBreakpointUpLG, isBreakpointUpMD, isBreakpointUpSM, isBreakpointUpXL, isBreakpointUpXXL, 
-	mq_lg, mq_md, mq_sm, mq_xl, mq_xxl } from './data/MediaQueries';
+	mq_lg, mq_md, mq_sm, mq_xl, mq_xxl } from "./data/MediaQueries";
 
-import NavigationBar from './components/NavigationBar/NavigationBar';
-import NavigationBarButton from './components/NavigationBar/NavigationBarButton/NavigationBarButton';
-import SettingsMenu from './components/SettingsMenu/SettingsMenu';
+import NavigationBar from "./components/NavigationBar/NavigationBar";
+import NavigationBarButton from "./components/NavigationBar/NavigationBarButton/NavigationBarButton";
+import SettingsMenu from "./components/SettingsMenu/SettingsMenu";
+import { Icon } from "./components/UtilityElements/UtilityElements";
 
-import Art from './pages/Art/Art';
-import Blog from './pages/Blog/Blog';
-import Gaming from './pages/Gaming/Gaming';
-import Health from './pages/Health/Health';
-import Home from './pages/Home/Home';
-import Media from './pages/Media/Media';
-import Music from './pages/Music/Music';
-import Projects from './pages/Projects/Projects';
-import Setups from './pages/Setups/Setups';
-import Admin from './pages/Admin/Admin';
-import NotFound from './pages/_404.js';
+import Art from "./pages/Art/Art";
+import Blog from "./pages/Blog/Blog";
+import Gaming from "./pages/Gaming/Gaming";
+import Health from "./pages/Health/Health";
+import Home from "./pages/Home/Home";
+import Media from "./pages/Media/Media";
+import Music from "./pages/Music/Music";
+import Projects from "./pages/Projects/Projects";
+import Setups from "./pages/Setups/Setups";
+import Admin from "./pages/Admin/Admin";
+import NotFound from "./pages/_404.js";
+
+// TODO: Try and implement react-bootstrap
 
 interface ComProps {
 	
@@ -42,12 +44,12 @@ interface ComState {
 }
 
 export default class App extends Component<ComProps, ComState> {
-	MButtonElRef: MutableRef<HTMLDivElement> = createRef<HTMLDivElement>();
-	NavElRef: MutableRef<NavigationBar> = createRef<NavigationBar>();
-	MainElRef: MutableRef<HTMLDivElement> = createRef<HTMLDivElement>();
-	BorderElRef: MutableRef<HTMLDivElement> = createRef<HTMLDivElement>();
+	mobileButtonElRef: MutableRef<HTMLDivElement> = createRef<HTMLDivElement>();
+	navElRef: MutableRef<NavigationBar> = createRef<NavigationBar>();
+	mainElRef: MutableRef<HTMLDivElement> = createRef<HTMLDivElement>();
+	borderElRef: MutableRef<HTMLDivElement> = createRef<HTMLDivElement>();
 	
-	IsSettingsMenuVisible: boolean = false;
+	isSettingsMenuVisible: boolean = false;
 
 	constructor(props: ComProps) {
         super(props);
@@ -85,7 +87,7 @@ export default class App extends Component<ComProps, ComState> {
 	}
 
 	toggleSettingsMenu() {
-		if (this.IsSettingsMenuVisible)
+		if (this.isSettingsMenuVisible)
 		{
 			return (
 				<SettingsMenu />
@@ -94,17 +96,19 @@ export default class App extends Component<ComProps, ComState> {
 	}
 
 	setNavBackground(url: string) {
-		if (this.NavElRef.current && this.MainElRef.current) {
-			const imgurls: string[] | undefined = Pages.find(x => x.RelativeLink == url).RelativeNavbarImageURLs;
+		if (this.navElRef.current && this.mainElRef.current) {
+			const imgurls: string[] | undefined = currentPage.value.RelativeNavbarImageURLs;
 			if (imgurls) {
-				this.NavElRef.current.getNavElRef().style.backgroundImage = `url('${imgurls[Math.floor(Math.random() * imgurls.length)]}')`;
-				this.MainElRef.current.style.backgroundImage = `url('${imgurls[Math.floor(Math.random() * imgurls.length)]}')`;
+				this.navElRef.current.getNavElRef().style.backgroundImage = `url('${imgurls[Math.floor(Math.random() * imgurls.length)]}')`;
+				this.mainElRef.current.style.backgroundImage = `url('${imgurls[Math.floor(Math.random() * imgurls.length)]}')`;
 			}
 		}
 	}
 
 	render() {
 		if (typeof window !== 'undefined') {
+			currentPage.value = routerPages.find(x => x.RelativeLink == (window.location.pathname.length == 0 ? '/' : window.location.pathname));
+
 			gsap.registerPlugin(useGSAP);
 
 			window.addEventListener('resize', this.updateMediaQueries);
@@ -115,16 +119,16 @@ export default class App extends Component<ComProps, ComState> {
 				let isNavbarOpen = !isBreakpointDownLG.value;
 				const toggle = contextSafe(() => {
 					if (isBreakpointDownLG.value) {
-						if (isFirstRender ? isNavbarOpen : isNavbarOpen = !isNavbarOpen) open(this.MButtonElRef.current, this.MainElRef.current, this.BorderElRef.current);
-						else close(this.MButtonElRef.current, this.MainElRef.current, this.BorderElRef.current);
+						if (isFirstRender ? isNavbarOpen : isNavbarOpen = !isNavbarOpen) open(this.mobileButtonElRef.current, this.mainElRef.current, this.borderElRef.current);
+						else close(this.mobileButtonElRef.current, this.mainElRef.current, this.borderElRef.current);
 					}
-					else this.MButtonElRef.current.style.display = 'none';
+					else this.mobileButtonElRef.current.style.display = 'none';
 					isFirstRender = false;
 				});
 	
 				isBreakpointDownLG.registerListener((val: boolean) => {
-					if (val) close(this.MButtonElRef.current, this.MainElRef.current, this.BorderElRef.current);
-					else open(this.MButtonElRef.current, this.MainElRef.current, this.BorderElRef.current);
+					if (val) close(this.mobileButtonElRef.current, this.mainElRef.current, this.borderElRef.current);
+					else open(this.mobileButtonElRef.current, this.mainElRef.current, this.borderElRef.current);
 				});
 	
 				function open(MButtonElRef: HTMLDivElement, MainElRef: HTMLDivElement, BorderElRef: HTMLDivElement) {
@@ -139,7 +143,7 @@ export default class App extends Component<ComProps, ComState> {
 					MButtonElRef.style.display = 'unset';
 				}
 	
-				this.MButtonElRef.current.addEventListener('click', toggle);
+				this.mobileButtonElRef.current.addEventListener('click', toggle);
 				// TODO: Figure out how to use references instead, the document get way feels bad. This has type issues so addEventListener doesnt exist.
 				document.getElementById('avatar-img-container').addEventListener('click', toggle);
 				for (let item of document.getElementsByClassName('nav-button')) {
@@ -154,9 +158,9 @@ export default class App extends Component<ComProps, ComState> {
 
 		return (
 			<LocationProvider>
-				<NavigationBar ref={this.NavElRef}>
+				<NavigationBar ref={this.navElRef}>
 				{
-					Pages.slice(1).map((page: NavPage) =>
+					routerPages.slice(1).map((page: NavPage) =>
 					{
 						return (
 							<NavigationBarButton title={page.Name} relativeLink={page.RelativeLink} iconName={page.IconName} />
@@ -164,42 +168,45 @@ export default class App extends Component<ComProps, ComState> {
 					})
                 }
 				</NavigationBar>
-				<div ref={this.MButtonElRef} id="m-button">
-					<i class="bi bi-caret-right-fill"></i>
+				<div ref={this.mobileButtonElRef} id='m-button'>
+					<i class='bi bi-caret-right-fill'></i>
 				</div>
-				<div id="header" class="container-fluid">
-					<div class="row justify-content-center">
-						<div class="col">
-							<a id="avatar-img-container" class="" href={"/"}>
-								<img src={Img_Avatar} alt="Home Page" />
+				<div id='header' class='container-fluid'>
+					<div class='row justify-content-center'>
+						<div class='col'>
+							<a id='avatar-img-container' class={`${currentPage.value.RelativeLink == '/' ? 'active' : ''}`} href={'/'}>
+								<img src={Img_Avatar} alt='Home Page' />
 							</a>
 						</div>
 					</div>
 				</div>
-				<main ref={this.MainElRef} class="container-fluid">
-					<Router onRouteChange={(url: string) => this.setNavBackground(url)}>
-						<Route path="/" component={Home} />
-						<Route path="/art" component={Art} />
-						<Route path="/blog" component={Blog} />
-						<Route path="/gaming" component={Gaming} />
-						<Route path="/health" component={Health} />
-						<Route path="/media" component={Media} />
-						<Route path="/music" component={Music} />
-						<Route path="/projects" component={Projects} />
-						<Route path="/setups" component={Setups} />
+				<main ref={this.mainElRef} class='container-fluid'>
+					<Router onRouteChange={(url: string) => {
+						currentPage.value = routerPages.find(x => x.RelativeLink == (window.location.pathname.length == 0 ? '/' : window.location.pathname));
+						this.setNavBackground(url);
+					}}>
+						<Route path='/' component={Home} />
+						<Route path='/art' component={Art} />
+						<Route path='/blog' component={Blog} />
+						<Route path='/gaming' component={Gaming} />
+						<Route path='/health' component={Health} />
+						<Route path='/media' component={Media} />
+						<Route path='/music' component={Music} />
+						<Route path='/projects' component={Projects} />
+						<Route path='/setups' component={Setups} />
 
-						<Route path="/admin" component={Admin} />
+						<Route path='/admin' component={Admin} />
 
 						<Route default component={NotFound} />
 					</Router>
 				</main>
-				<div ref={this.BorderElRef} id="border"></div>
-				<div id="footer" class="container-fluid">
-					<div class="row">
-						<div class="col">
-							<div class="row">
-								<div class="col">
-									<i class="bi bi-gear-wide-connected"></i>
+				<div ref={this.borderElRef} id='border'></div>
+				<div id='footer' class='container-fluid'>
+					<div class='row'>
+						<div class='col'>
+							<div class='row'>
+								<div class='col'>
+									<Icon iconName='GearWideConnected' />
 								</div>
 							</div>
 						</div>

@@ -1,8 +1,6 @@
 @use 'sass:math'
 
 @import '~bootstrap/scss/bootstrap-grid'
-$bootstrap-icons-font-dir: "/node_modules/bootstrap-icons/font/fonts" // For some reason the bootstrap-icons font doesnt load in dev when this isnt present.
-@import '~bootstrap-icons/font/bootstrap-icons'
 
 @import 'styles/Theme'
 
@@ -35,6 +33,8 @@ $bootstrap-icons-font-dir: "/node_modules/bootstrap-icons/font/fonts" // For som
     src: url(@/assets/fonts/raidercrusaderexpand.woff2) format('woff2')
     font-display: swap
 
+//
+
 main, #border, #preapp-transit
     position: fixed
     right: 0px
@@ -59,7 +59,7 @@ main
     z-index: $zIndexMobileButton
     &:hover
         background-color: $greenColour3
-    i
+    svg
         position: absolute
         top: 50%
         transform: translateY(-50%)
@@ -114,7 +114,7 @@ main
             & > .row
                 &:nth-child(1)
                     & > .col
-                        i
+                        svg
                             display: block
                             text-align: center
                             width: 42px
