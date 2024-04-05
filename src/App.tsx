@@ -33,7 +33,10 @@ import Setups from "./pages/Setups/Setups";
 import Admin from "./pages/Admin/Admin";
 import NotFound from "./pages/_404.js";
 
-// TODO: Try and implement react-bootstrap
+// TODO: Move to TailwindCSS eventually
+// TODO: Move to FontAwesome eventually
+// TODO: Fix mobile border clip-path
+// TODO: Add error pages
 
 interface ComProps {
 	
