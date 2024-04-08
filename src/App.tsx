@@ -204,8 +204,10 @@ export default class App extends Component<ComProps, ComState> {
 				</div>
 				<main ref={this.mainElRef} class="w-full">
 					<Router onChange={(args: RouterOnChangeArgs<Record<string, string>>) => {
-						currentPage.value = routerPages.find(x => x.RelativeLink == (window.location.pathname.length == 0 ? "/" : window.location.pathname));
-						this.setNavBackground(args.url);
+						if (typeof window !== "undefined") {
+							currentPage.value = routerPages.find(x => x.RelativeLink == (window.location.pathname.length == 0 ? "/" : window.location.pathname));
+							this.setNavBackground(args.url);
+						}
 					}}>
 						<Route path="/" component={Home} />
 						<Route path="/art" component={Art} />
