@@ -1,59 +1,25 @@
-@use 'sass:math'
+@use "sass:math"
 
-@import '~bootstrap/scss/bootstrap-grid'
-@import '~bootstrap-icons/font/bootstrap-icons'
-
-@import '../../styles/Globals'
+@import "../../styles/Globals"
 
 #page-home
     .section
         background-repeat: no-repeat
-        background-size: cover
+        background-size: contain
         background-attachment: fixed
-        background-position: center
+        background-position: left
         &:nth-child(1)
-            padding-bottom: $borderRadius + px
-            height: 100%
             #welcome-text
-                padding-left: 0px
                 text-align: right
                 #welcome-text-inner
                     background-color: $blackTransparencyHigh
                     backdrop-filter: blur(24px)
                     margin-bottom: 24px
                     padding: 16px
-                    h1, h3
-                        font-family: 'RaiderCrusader'
-                        display: inline-block
-                    h1
-                        margin-left: 20px
-                        margin-right: 20px
-                    h3
-                        margin-top: 8px
-                        margin-bottom: 8px
-                        margin-left: 20px
-                        margin-right: 20px
             #avatar-cutout-container
                 #avatar-cutout
-                    padding-top: $borderRadius + px
-                    max-height: 90vh
+                    padding-top: #{$borderRadius * 6} + px
         &:nth-child(2)
             background-color: $blackTransparencyLow
             backdrop-filter: blur(6px)
             color: $white
-@include media-breakpoint-up(lg) // [1200px] Larger Than Larger
-    #page-home
-        .section
-            &:nth-child(1)
-                #welcome-text
-                    height: inherit
-                    & > .row
-                        height: calc(100vh - #{$bootstrapMargin * 4}px)
-@include media-breakpoint-down(lg) // [1199.98px] Smaller Than Large
-    #page-home
-        .section
-            &:nth-child(1)
-                #welcome-text
-                    h1, h2, h3
-                        min-width: 100%
-                        padding-left: 10px

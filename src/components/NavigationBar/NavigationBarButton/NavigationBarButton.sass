@@ -1,1 +1,49 @@
 @import '../../../styles/Globals'
+
+nav
+    svg
+        color: $white
+        text-decoration: none
+    .nav-button
+        width: $navigationBarWidth + px
+        &.disabled
+            pointer-events: none
+        &.active
+            .icon-container
+                background-color: $greenColour2TransparencyLow
+            .bullet-container
+                .active-bullet
+                    color: $whiteTransparencyLow
+                    opacity: 1
+        &:hover
+            cursor: pointer
+            .icon-container
+                background-color: $greenColour3TransparencyHigh
+        .icon-container, .icon, .active-bullet
+            transition: 0.33s
+        .icon-container
+            background-color: $blackTransparencyLow
+            clip-path: polygon(0% 15px, 15px 0%, calc(100% - 15px) 0%, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0% calc(100% - 15px))
+            width: 64px
+            height: 64px
+            margin-left: auto
+            margin-right: auto
+            margin-bottom: 2px
+            svg
+                display: block
+                width: 32px
+                height: 32px
+                margin: 8px
+                padding: 8px
+                transform: translateY(6px)
+        .bullet-container
+            padding: 0px !important
+            border-radius: 20px
+            width: 12px
+            height: 12px
+            line-height: 12px
+            font-size: 20px
+            text-align: center
+            .active-bullet
+                transform: translateY(-42px) translateX(3px)
+                opacity: 0

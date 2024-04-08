@@ -1,4 +1,4 @@
-import './Media.sass';
+import "./Media.sass";
 
 export default function Media() {
 	return (

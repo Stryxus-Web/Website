@@ -1,18 +1,18 @@
 import "./NavigationBarButton.sass";
 
 import { Component } from "preact";
-import * as icons from "react-bootstrap-icons";
+import { Link } from "preact-router/match";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
-import { Icon } from "../../UtilityElements/UtilityElements";
-
-interface ComProps {
+export interface ComProps {
     title: string;
     relativeLink: string;
-    iconName: keyof typeof icons;
+    icon: IconProp;
 }
 
-interface ComState {
-    active: boolean;
+export interface ComState {
+
 }
 
 export default class NavigationBarButton extends Component<ComProps, ComState> {
@@ -34,20 +34,14 @@ export default class NavigationBarButton extends Component<ComProps, ComState> {
 
     render(props: ComProps) {
         return (
-            <a href={props.relativeLink} class={`row align-items-center nav-button ${this.state.active ? 'active' : ''}`}>
-                <div class='col'>
-                    <div class='row icon-container'>
-                        <div class='col'>
-                            <Icon iconName={this.props.iconName} />
-                        </div>
-                    </div>
-                    <div class='row justify-content-center bullet-container'>
-                        <div class='col-auto'>
-                            <small class='active-bullet'>&bull;</small>
-                        </div>
-                    </div>
+            <Link activeClassName="active" href={props.relativeLink} class="nav-button">
+                <div class="icon-container">
+                    <FontAwesomeIcon icon={this.props.icon} />
                 </div>
-            </a>
+                <div class="bullet-container">
+                    <small class="active-bullet">&bull;</small>
+                </div>
+            </Link>
         );
     }
 
