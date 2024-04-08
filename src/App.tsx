@@ -190,7 +190,7 @@ export default class App extends Component<ComProps, ComState> {
 				<div id="header" class="w-full" ref={this.headerElRef}>
 					<div class="cover">
 						<Link id="avatar-img-container" activeClassName="active" href={"/"}>
-							<img id="avatar-img" src={Img_Avatar} alt="Home Page" draggable={false} />
+							<img id="avatar-img" width="48px" height="48px" src={Img_Avatar} alt="Home Page" draggable={false} />
 						</Link>
 					</div>
 				</div>

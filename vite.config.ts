@@ -18,6 +18,7 @@ export default vite.defineConfig(({ mode }) => {
 		build: {
 			outDir: "./dist",
 			assetsDir: "./",
+			target: "es2022",
 		},
 		server: {
 			port: 7076,
@@ -56,7 +57,7 @@ export default vite.defineConfig(({ mode }) => {
 				beforeBundle: true,
 				compress: {
 					avif: {
-						cqLevel: 31,
+						cqLevel: 33,
 						speed: isDev ? 0 : 9,
 					},
 				},
