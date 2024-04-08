@@ -39,6 +39,9 @@ import NotFound from "./pages/_404.js";
 
 // TODO: Fix Settings Menu
 // TODO: Add error pages
+// TODO: Dont rely on gsap to set the mobile nav/header/footer style
+// TODO: Redesign home page
+// TODO: Fix bug which doesnt close the navbar when selecting a page on mobile
 
 declare global {
 	interface Window {
