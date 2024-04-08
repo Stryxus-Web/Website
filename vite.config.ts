@@ -57,7 +57,7 @@ export default vite.defineConfig(({ mode }) => {
 				beforeBundle: true,
 				compress: {
 					avif: {
-						cqLevel: 31,
+						cqLevel: 33,
 						speed: isDev ? 0 : 9,
 					},
 				},
