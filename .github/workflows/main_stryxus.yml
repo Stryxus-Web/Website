@@ -23,7 +23,7 @@ jobs:
 
       - name: Build Website
         run: |
-          npm install --omit=dev
+          npm install
           npm run build
 
       - name: Optimise node_modules
