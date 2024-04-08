@@ -120,7 +120,7 @@ export default class App extends Component<ComProps, ComState> {
 
 	render() {
 		if (typeof window !== "undefined") {
-			require("preline/preline");
+			import("preline/preline");
 			currentPage.value = routerPages.find(x => x.RelativeLink == (window.location.pathname.length == 0 ? "/" : window.location.pathname));
 
 			useEffect(() => {
