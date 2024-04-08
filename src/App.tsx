@@ -37,7 +37,7 @@ import Setups from "./pages/Setups/Setups";
 import Admin from "./pages/Admin/Admin";
 import NotFound from "./pages/_404.js";
 
-// TODO: Fix mobile border clip-path
+// TODO: Fix Settings Menu
 // TODO: Add error pages
 
 declare global {
@@ -61,8 +61,6 @@ export default class App extends Component<ComProps, ComState> {
 	borderElRef: MutableRef<HTMLDivElement> = createRef<HTMLDivElement>();
 	headerElRef: MutableRef<HTMLDivElement> = createRef<HTMLDivElement>();
 	footerElRef: MutableRef<HTMLDivElement> = createRef<HTMLDivElement>();
-	
-	isSettingsMenuVisible: boolean = false;
 
 	constructor(props: ComProps) {
         super(props);
@@ -99,15 +97,6 @@ export default class App extends Component<ComProps, ComState> {
 		isBreakpointOnly2XL.value = window.matchMedia(`(min-width: ${mq_2xl}px) and (max-width: ${mq_2xl - 0.02})`).matches;
 	}
 
-	toggleSettingsMenu() {
-		if (this.isSettingsMenuVisible)
-		{
-			return (
-				<SettingsMenu />
-			);
-		}
-	}
-
 	setNavBackground(url: string) {
 		if (this.navElRef.current && this.mainElRef.current) {
 			const imgurls: string[] | undefined = currentPage.value.RelativeNavbarImageURLs;
@@ -119,6 +108,8 @@ export default class App extends Component<ComProps, ComState> {
 	}
 
 	render() {
+		const [isSettingsMenuVisible, setSettingsMenuIsVisible] = useState(false);
+
 		if (typeof window !== "undefined") {
 			currentPage.value = routerPages.find(x => x.RelativeLink == (window.location.pathname.length == 0 ? "/" : window.location.pathname));
 
@@ -228,12 +219,12 @@ export default class App extends Component<ComProps, ComState> {
 				<div ref={this.borderElRef} id="border"></div>
 				<div id="footer" class="w-full" ref={this.footerElRef}>
 					<div class="cover">
-						<div id="settings-button">
+						<button id="settings-button" title="Settings Menu Button" onClick={() => setSettingsMenuIsVisible(!isSettingsMenuVisible)}>
 							<FontAwesomeIcon icon={faGear} />
-						</div>
+						</button>
 					</div>
 				</div>
-				{this.toggleSettingsMenu}
+				{isSettingsMenuVisible && <SettingsMenu />}
 			</LocationProvider>
 		);
 	}
