@@ -120,11 +120,12 @@ export default class App extends Component<ComProps, ComState> {
 
 	render() {
 		if (typeof window !== "undefined") {
-			import("preline/preline");
 			currentPage.value = routerPages.find(x => x.RelativeLink == (window.location.pathname.length == 0 ? "/" : window.location.pathname));
 
 			useEffect(() => {
-			  window.HSStaticMethods.autoInit();
+				import("preline/preline").then(() => {
+					window.HSStaticMethods.autoInit();
+				});
 			}, [window.location.pathname]);
 
 			gsap.registerPlugin(useGSAP);
