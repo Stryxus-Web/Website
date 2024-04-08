@@ -27,7 +27,7 @@ jobs:
           npm run build
 
       - name: Optimise node_modules
-        run: rm -f ./node_modules
+        run: rm -rf ./node_modules
 
       - name: Install website production modules
         run: npm install --omit=dev
