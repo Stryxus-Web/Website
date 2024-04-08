@@ -20,7 +20,7 @@ export default function Home() {
 					</div>
 				</div>
 				<div id="avatar-cutout-container" class="h-full content-end">
-					<img id="avatar-cutout" src={Img_Cutout} alt="Avatar" draggable={false} />
+					<img id="avatar-cutout" width="626px" height="1020px" src={Img_Cutout} alt="Avatar" draggable={false} />
 				</div>
 			</div>
 			<div class="section padded columns-1">
