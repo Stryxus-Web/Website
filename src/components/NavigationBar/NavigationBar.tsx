@@ -1,6 +1,6 @@
-import './NavigationBar.sass';
+import "./NavigationBar.sass";
 
-import { Component, createRef } from 'preact';
+import { Component, createRef } from "preact";
 
 interface ComProps {
     
@@ -34,9 +34,9 @@ export default class NavigationBar extends Component<ComProps, ComState> {
 
     render() {
         return (
-            <nav class="container-fluid" ref={this.navRef}>
-                <div class="row">
-                    <div class="col-auto">
+            <nav ref={this.navRef}>
+                <div id="nav-scroller">
+                    <div id="nav-buttons">
                         {this.props.children}
                     </div>
                 </div>

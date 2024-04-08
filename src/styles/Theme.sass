@@ -8,31 +8,35 @@
     &:focus 
         outline: none
 
+// Scrollbar
+
+/* width */
+::-webkit-scrollbar
+    width: 16px
+    margin-right: $bootstrapMargin + px
+
+/* Track */
+::-webkit-scrollbar-track
+    background: $greenColour1
+
+/* Handle */
+::-webkit-scrollbar-thumb
+    background: $greenColour2
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover
+    background: $greenColour3
+
 body
     margin: 0px
-    font-family: 'OpenSans', Verdana, Arial, Helvetica, sans-serif
+    font-family: 'Inter', Verdana, Arial, Helvetica, sans-serif
     letter-spacing: 0.75px
     background-color: rgb(0, 0, 0)
     color: white
-    overflow-x: hidden
-
-#app
-    overflow-x: hidden
+    background-color: black
 
 img
-    display: block
-    width: 100%
-    height: 100%
     object-fit: contain
-    overflow: hidden
-
-button
-    outline: none
-    border: none
-    padding: 20px
-
-    h1, h2, h3, h4, h5, h6, p, small
-        margin: 0px
 
 a
     color: white
@@ -44,129 +48,22 @@ a
     &:hover, &:focus, &:active
         color: $whiteTransparencyLow
 
-small, i
+small, i, svg, img
     display: block
-
-h1, h2, h3, h4, h5, h6
-    font-weight: normal
-
-p, small
-    font-weight: lighter
 
 // Pages
 
 .page
     height: 100%
-    background-color: $black
-
-    & > .col
-        height: inherit
-
+    margin-top: -#{math.div($borderRadius, 2) + px}
     .section
-        position: relative
-        margin-top: -$borderRadius + px
-        margin-bottom: -$borderRadius + px
-        padding-top: $borderRadius + px
-        padding-bottom: $borderRadius + px
         padding-left: $borderRadius + px
         padding-right: $borderRadius + px
-        clip-path: polygon(0% 15px, 15px 0%, calc(100% - 15px) 0%, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0% calc(100% - 15px))
-
-
-// Rounded Elements
-
-.rounded
-    border-radius: $borderRadius + px
-    padding: $borderRadius + px
-
-.rounded-top
-    border-top-left-radius: $borderRadius + px
-    border-top-right-radius: $borderRadius + px
-    padding-top: $borderRadius + px
-    padding-left: $borderRadius + px
-    padding-right: $borderRadius + px
-
-.rounded-bottom
-    border-bottom-left-radius: $borderRadius + px
-    border-bottom-right-radius: $borderRadius + px
-    padding-bottom: $borderRadius + px
-    padding-left: $borderRadius + px
-    padding-right: $borderRadius + px
-
-.rounded-left
-    border-top-left-radius: $borderRadius + px
-    border-bottom-left-radius: $borderRadius + px
-    padding-top: $borderRadius + px
-    padding-bottom: $borderRadius + px
-    padding-left: $borderRadius + px
-
-.rounded-right
-    border-top-right-radius: $borderRadius + px
-    border-botom-right-radius: $borderRadius + px
-    padding-top: $borderRadius + px
-    padding-bottom: $borderRadius + px
-    padding-right: $borderRadius + px
-
-// Material Icons
-
-.material-symbols-outlined, .material-symbols-rounded, .material-symbols-sharp
-    font-variation-settings: 'FILL' 1
+        clip-path: polygon(0% 15px, 15px 0%, 100% 0%, 100% 100%, 15px 100%, 0% calc(100% - 15px))
+        &.padded
+            padding-top: $borderRadius + px
+            padding-bottom: $borderRadius + px
 
 // Bootstrap Overrides
 
 //[class*='col-'], .col
-
-@include media-breakpoint-up(sm) // Small devices (landscape phones, 576px and up)
-
-    // Scrollbar
-
-    /* width */
-    ::-webkit-scrollbar
-        width: 16px
-        margin-right: $bootstrapMargin + px
-
-    /* Track */
-    ::-webkit-scrollbar-track
-        background: $greenColour1
-
-    /* Handle */
-    ::-webkit-scrollbar-thumb
-        background: $greenColour2
-
-    /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover
-        background: $greenColour3
-
-@include media-breakpoint-down(lg)
-    h1
-        font-size: 22px
-    h2
-        font-size: 20px
-    h3
-        font-size: 18px
-    h4
-        font-size: 16px
-    h5
-        font-size: 14px
-
-    p
-        font-size: 12px
-    small
-        font-size: 8px
-        
-@include media-breakpoint-down(lg)
-    h1
-        font-size: 22px
-    h2
-        font-size: 20px
-    h3
-        font-size: 18px
-    h4
-        font-size: 16px
-    h5
-        font-size: 14px
-
-    p
-        font-size: 12px
-    small
-        font-size: 8px

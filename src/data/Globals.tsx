@@ -1,51 +1,72 @@
+import { Dispatch, StateUpdater } from "preact/hooks";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { faCamera, faCode, faGamepad, faHeartPulse, faHouse, faMicrochip, faMusic, faNewspaper, faPaintBrush } from "@fortawesome/free-solid-svg-icons";
 
-import Home_BackMain from '../assets/img/home/background.png';
-import Media_Background0 from '../assets/img/media/background-0.png';
-import Media_Background1 from '../assets/img/media/background-1.png';
-import Media_Background2 from '../assets/img/media/background-2.png';
-import Media_Background3 from '../assets/img/media/background-3.png';
-import Media_Background4 from '../assets/img/media/background-4.png';
-import Media_Background5 from '../assets/img/media/background-5.png';
+import { ComState as NavButtonState } from "./../components/NavigationBar/NavigationBarButton/NavigationBarButton";
 
+import Home_BackMain from "../assets/img/home/background.png";
+import Media_Background0 from "../assets/img/media/background-0.png";
+import Media_Background1 from "../assets/img/media/background-1.png";
+import Media_Background2 from "../assets/img/media/background-2.png";
+import Media_Background3 from "../assets/img/media/background-3.png";
+import Media_Background4 from "../assets/img/media/background-4.png";
+import Media_Background5 from "../assets/img/media/background-5.png";
 
 export interface NavPage {
     Name: string;
     RelativeLink: string;
-    IconName: string;
+    Icon: IconProp;
     RelativeNavbarImageURLs?: string[];
 }
 
-export const Pages: NavPage[] = [
+export let currentPage = {
+    internalVal: undefined,
+    internalListener: function(val: NavPage) {},
+    set value(val: NavPage) {
+        if (this.internalVal !== undefined) {
+            this.internalVal = val;
+            this.internalListener(val);
+        } else {
+            this.internalVal = val;
+        }
+    },
+    get value(): NavPage {
+        return this.internalVal;
+    }
+};
+
+
+export const routerPages: NavPage[] = [
     {
-        Name: 'Home',
-        RelativeLink: '/',
-        IconName: 'home',
+        Name: "Home",
+        RelativeLink: "/",
+        Icon: faHouse,
         RelativeNavbarImageURLs: [ Home_BackMain ],
     },
     {
-        Name: 'Blog',
-        RelativeLink: '/blog',
-        IconName: 'newspaper',
+        Name: "Blog",
+        RelativeLink: "/blog",
+        Icon: faNewspaper,
     },
     {
-        Name: 'Projects',
-        RelativeLink: '/projects',
-        IconName: 'code',
+        Name: "Projects",
+        RelativeLink: "/projects",
+        Icon: faCode,
     },
     {
-        Name: 'Gaming',
-        RelativeLink: '/gaming',
-        IconName: 'joystick',
+        Name: "Gaming",
+        RelativeLink: "/gaming",
+        Icon: faGamepad,
     },
     {
-        Name: 'Setups',
-        RelativeLink: '/setups',
-        IconName: 'pci-card',
+        Name: "Setups",
+        RelativeLink: "/setups",
+        Icon: faMicrochip,
     },
     {
-        Name: 'Media',
-        RelativeLink: '/media',
-        IconName: 'camera-fill',
+        Name: "Media",
+        RelativeLink: "/media",
+        Icon: faCamera,
         RelativeNavbarImageURLs:
         [
             Media_Background0,
@@ -57,18 +78,18 @@ export const Pages: NavPage[] = [
         ],
     },
     {
-        Name: 'Art',
-        RelativeLink: '/art',
-        IconName: 'brush-fill',
+        Name: "Art",
+        RelativeLink: "/art",
+        Icon: faPaintBrush,
     },
     {
-        Name: 'Health',
-        RelativeLink: '/health',
-        IconName: 'heart-pulse-fill',
+        Name: "Health",
+        RelativeLink: "/health",
+        Icon: faHeartPulse,
     },
     {
-        Name: 'Music',
-        RelativeLink: '/music',
-        IconName: 'music-note-beamed',
+        Name: "Music",
+        RelativeLink: "/music",
+        Icon: faMusic,
     },
 ];

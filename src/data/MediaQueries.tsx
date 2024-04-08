@@ -1,8 +1,8 @@
-export const mq_sm = 576;
+export const mq_sm = 640;
 export const mq_md = 768;
-export const mq_lg = 992;
-export const mq_xl = 1200;
-export const mq_xxl = 1400;
+export const mq_lg = 1024;
+export const mq_xl = 1280;
+export const mq_2xl = 1536;
 
 //
 
@@ -10,11 +10,9 @@ export let isBreakpointUpSM = {
     internalVal: undefined,
     internalListener: function(val: boolean) {},
     set value(val: boolean) {
-        if (this.internalVal !== undefined) {
+        if (this.internalVal != val || this.internalVal !== undefined) {
             this.internalVal = val;
             this.internalListener(val);
-        } else {
-            this.internalVal = val;
         }
     },
     get value(): boolean {
@@ -29,11 +27,9 @@ export let isBreakpointUpMD = {
     internalVal: undefined,
     internalListener: function(val: boolean) {},
     set value(val: boolean) {
-        if (this.internalVal !== undefined) {
+        if (this.internalVal != val || this.internalVal !== undefined) {
             this.internalVal = val;
             this.internalListener(val);
-        } else {
-            this.internalVal = val;
         }
     },
     get value(): boolean {
@@ -48,11 +44,9 @@ export let isBreakpointUpLG = {
     internalVal: undefined,
     internalListener: function(val: boolean) {},
     set value(val: boolean) {
-        if (this.internalVal !== undefined) {
+        if (this.internalVal != val || this.internalVal !== undefined) {
             this.internalVal = val;
             this.internalListener(val);
-        } else {
-            this.internalVal = val;
         }
     },
     get value(): boolean {
@@ -67,11 +61,9 @@ export let isBreakpointUpXL = {
     internalVal: undefined,
     internalListener: function(val: boolean) {},
     set value(val: boolean) {
-        if (this.internalVal !== undefined) {
+        if (this.internalVal != val || this.internalVal !== undefined) {
             this.internalVal = val;
             this.internalListener(val);
-        } else {
-            this.internalVal = val;
         }
     },
     get value(): boolean {
@@ -82,15 +74,13 @@ export let isBreakpointUpXL = {
     }
 };
 
-export let isBreakpointUpXXL = {
+export let isBreakpointUp2XL = {
     internalVal: undefined,
     internalListener: function(val: boolean) {},
     set value(val: boolean) {
-        if (this.internalVal !== undefined) {
+        if (this.internalVal != val || this.internalVal !== undefined) {
             this.internalVal = val;
             this.internalListener(val);
-        } else {
-            this.internalVal = val;
         }
     },
     get value(): boolean {
@@ -107,11 +97,9 @@ export let isBreakpointDownSM = {
     internalVal: undefined,
     internalListener: function(val: boolean) {},
     set value(val: boolean) {
-        if (this.internalVal !== undefined) {
+        if (this.internalVal != val || this.internalVal !== undefined) {
             this.internalVal = val;
             this.internalListener(val);
-        } else {
-            this.internalVal = val;
         }
     },
     get value(): boolean {
@@ -126,11 +114,9 @@ export let isBreakpointDownMD = {
     internalVal: undefined,
     internalListener: function(val: boolean) {},
     set value(val: boolean) {
-        if (this.internalVal !== undefined) {
+        if (this.internalVal != val || this.internalVal !== undefined) {
             this.internalVal = val;
             this.internalListener(val);
-        } else {
-            this.internalVal = val;
         }
     },
     get value(): boolean {
@@ -145,11 +131,9 @@ export let isBreakpointDownLG = {
     internalVal: undefined,
     internalListener: function(val: boolean) {},
     set value(val: boolean) {
-        if (this.internalVal !== undefined) {
+        if (this.internalVal != val || this.internalVal !== undefined) {
             this.internalVal = val;
             this.internalListener(val);
-        } else {
-            this.internalVal = val;
         }
     },
     get value(): boolean {
@@ -164,11 +148,9 @@ export let isBreakpointDownXL = {
     internalVal: undefined,
     internalListener: function(val: boolean) {},
     set value(val: boolean) {
-        if (this.internalVal !== undefined) {
+        if (this.internalVal != val || this.internalVal !== undefined) {
             this.internalVal = val;
             this.internalListener(val);
-        } else {
-            this.internalVal = val;
         }
     },
     get value(): boolean {
@@ -179,15 +161,13 @@ export let isBreakpointDownXL = {
     }
 };
 
-export let isBreakpointDownXXL = {
+export let isBreakpointDown2XL = {
     internalVal: undefined,
     internalListener: function(val: boolean) {},
     set value(val: boolean) {
-        if (this.internalVal !== undefined) {
+        if (this.internalVal != val || this.internalVal !== undefined) {
             this.internalVal = val;
             this.internalListener(val);
-        } else {
-            this.internalVal = val;
         }
     },
     get value(): boolean {
@@ -204,11 +184,9 @@ export let isBreakpointOnlySM = {
     internalVal: undefined,
     internalListener: function(val: boolean) {},
     set value(val: boolean) {
-        if (this.internalVal !== undefined) {
+        if (this.internalVal != val || this.internalVal !== undefined) {
             this.internalVal = val;
             this.internalListener(val);
-        } else {
-            this.internalVal = val;
         }
     },
     get value(): boolean {
@@ -223,11 +201,9 @@ export let isBreakpointOnlyMD = {
     internalVal: undefined,
     internalListener: function(val: boolean) {},
     set value(val: boolean) {
-        if (this.internalVal !== undefined) {
+        if (this.internalVal != val || this.internalVal !== undefined) {
             this.internalVal = val;
             this.internalListener(val);
-        } else {
-            this.internalVal = val;
         }
     },
     get value(): boolean {
@@ -242,11 +218,9 @@ export let isBreakpointOnlyLG = {
     internalVal: undefined,
     internalListener: function(val: boolean) {},
     set value(val: boolean) {
-        if (this.internalVal !== undefined) {
+        if (this.internalVal != val || this.internalVal !== undefined) {
             this.internalVal = val;
             this.internalListener(val);
-        } else {
-            this.internalVal = val;
         }
     },
     get value(): boolean {
@@ -261,11 +235,9 @@ export let isBreakpointOnlyXL = {
     internalVal: undefined,
     internalListener: function(val: boolean) {},
     set value(val: boolean) {
-        if (this.internalVal !== undefined) {
+        if (this.internalVal != val || this.internalVal !== undefined) {
             this.internalVal = val;
             this.internalListener(val);
-        } else {
-            this.internalVal = val;
         }
     },
     get value(): boolean {
@@ -276,15 +248,13 @@ export let isBreakpointOnlyXL = {
     }
 };
 
-export let isBreakpointOnlyXXL = {
+export let isBreakpointOnly2XL = {
     internalVal: undefined,
     internalListener: function(val: boolean) {},
     set value(val: boolean) {
-        if (this.internalVal !== undefined) {
+        if (this.internalVal != val || this.internalVal !== undefined) {
             this.internalVal = val;
             this.internalListener(val);
-        } else {
-            this.internalVal = val;
         }
     },
     get value(): boolean {

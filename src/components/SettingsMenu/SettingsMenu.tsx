@@ -1,6 +1,6 @@
-import './SettingsMenu.sass'
+import "./SettingsMenu.sass"
 
-import { Component } from 'preact';
+import { Component } from "preact";
 
 interface ComProps {
     
