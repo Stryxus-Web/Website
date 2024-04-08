@@ -18,6 +18,7 @@ export default vite.defineConfig(({ mode }) => {
 		build: {
 			outDir: "./dist",
 			assetsDir: "./",
+			target: "es2022",
 		},
 		server: {
 			port: 7076,
