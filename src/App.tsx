@@ -15,15 +15,15 @@ import { IStaticMethods } from "preline/preline";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretRight, faGear } from "@fortawesome/free-solid-svg-icons";
 
-import { routerPages, NavPage, currentPage } from "./data/Globals";
+import { routerPages, NavPage, currentPage } from "./data/Globals.tsx";
 import { isBreakpointDownLG, isBreakpointDownMD, isBreakpointDownSM, isBreakpointDownXL, isBreakpointDown2XL, 
 	isBreakpointOnlyLG, isBreakpointOnlyMD, isBreakpointOnlySM, isBreakpointOnlyXL, isBreakpointOnly2XL, 
 	isBreakpointUpLG, isBreakpointUpMD, isBreakpointUpSM, isBreakpointUpXL, isBreakpointUp2XL, 
-	mq_lg, mq_md, mq_sm, mq_xl, mq_2xl } from "./data/MediaQueries";
+	mq_lg, mq_md, mq_sm, mq_xl, mq_2xl } from "./data/MediaQueries.tsx";
 
-import NavigationBar from "./components/NavigationBar/NavigationBar";
-import NavigationBarButton, { ComState as NavButtonState } from "./components/NavigationBar/NavigationBarButton/NavigationBarButton";
-import SettingsMenu from "./components/SettingsMenu/SettingsMenu";
+import NavigationBar from "./components/NavigationBar/NavigationBar.tsx";
+import NavigationBarButton, { ComState as NavButtonState } from "./components/NavigationBar/NavigationBarButton/NavigationBarButton.tsx";
+import SettingsMenu from "./components/SettingsMenu/SettingsMenu.tsx";
 
 import Art from "./pages/Art/Art";
 import Blog from "./pages/Blog/Blog";
