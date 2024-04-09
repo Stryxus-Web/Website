@@ -1,11 +1,9 @@
 // TODO: Send enviroment through websocket to exclude debugging components
-import "preact/debug";
+if (import.meta.env.MODE === "development") import("preact/debug");
 import "./App.sass";
 
-import Img_Avatar from "./assets/img/avatar.png";
-
 import { Component, createRef } from "preact";
-import { LocationProvider, hydrate, prerender as ssr } from "preact-iso";
+import { LocationProvider, hydrate, prerender as ssr, useLocation } from "preact-iso";
 import { MutableRef, useEffect, useState } from "preact/hooks";
 import { Router, Route, RouterOnChangeArgs } from "preact-router";
 import { Link } from "preact-router/match";
@@ -22,7 +20,7 @@ import { isBreakpointDownLG, isBreakpointDownMD, isBreakpointDownSM, isBreakpoin
 	mq_lg, mq_md, mq_sm, mq_xl, mq_2xl } from "./data/MediaQueries.tsx";
 
 import NavigationBar from "./components/NavigationBar/NavigationBar.tsx";
-import NavigationBarButton, { ComState as NavButtonState } from "./components/NavigationBar/NavigationBarButton/NavigationBarButton.tsx";
+import NavigationBarButton from "./components/NavigationBar/NavigationBarButton/NavigationBarButton.tsx";
 import SettingsMenu from "./components/SettingsMenu/SettingsMenu.tsx";
 
 import Art from "./pages/Art/Art";
@@ -36,6 +34,8 @@ import Projects from "./pages/Projects/Projects";
 import Setups from "./pages/Setups/Setups";
 import Admin from "./pages/Admin/Admin";
 import NotFound from "./pages/_404.js";
+
+import Img_Avatar from "./assets/img/avatar.png";
 
 // TODO: Fix Settings Menu
 // TODO: Dont rely on gsap to set the mobile nav/header/footer style
@@ -99,7 +99,7 @@ export default class App extends Component<ComProps, ComState> {
 		isBreakpointOnly2XL.value = window.matchMedia(`(min-width: ${mq_2xl}px) and (max-width: ${mq_2xl - 0.02})`).matches;
 	}
 
-	setNavBackground(url: string) {
+	setNavBackground() {
 		if (this.navElRef.current && this.mainElRef.current) {
 			const imgurls: string[] | undefined = currentPage.value.RelativeNavbarImageURLs;
 			if (imgurls) {
@@ -170,7 +170,7 @@ export default class App extends Component<ComProps, ComState> {
 
 				toggle();
 				// TODO: Synchronise the router with my own page state to get which page is routed too.
-				this.setNavBackground("/");
+				this.setNavBackground();
 			}, { });
 		}
 
@@ -200,7 +200,7 @@ export default class App extends Component<ComProps, ComState> {
 					<Router onChange={(args: RouterOnChangeArgs<Record<string, string>>) => {
 						if (typeof window !== "undefined") {
 							currentPage.value = routerPages.find(x => x.RelativeLink == (window.location.pathname.length == 0 ? "/" : window.location.pathname));
-							this.setNavBackground(args.url);
+							this.setNavBackground();
 						}
 					}}>
 						<Route path="/" component={Home} />
