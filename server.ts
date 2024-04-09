@@ -3,24 +3,28 @@ import "dotenv/config";
 import path from "path";
 import fs from "fs";
 import express from "express";
-import { createServer } from "vite";
+import { ViteDevServer, createServer as createViteServer } from "vite";
 
 import { DefaultAzureCredential } from "@azure/identity";
 import { BlobServiceClient } from "@azure/storage-blob";
 import { debug } from "console";
+import { Server as HttpsServer, createServer as createHttpsServer } from "https";
+import { IncomingMessage, Server, ServerResponse, createServer } from "http";
 
 const isDev = process.env.NODE_ENV.indexOf("development") > -1;
 const port = process.env.PORT || 7076;
 const __dirname = path.resolve(path.dirname(""));
 
 const app = express();
- 
+let server: HttpsServer<any, any> | Server<any, any>; 
+
 if (isDev) {
-  const vite = await createServer({
+
+  const vite: ViteDevServer = await createViteServer({
     server: {
       middlewareMode: true,
     },
-    appType: "custom",
+    //appType: "custom",
   });
    
   app.use(vite.middlewares);
@@ -32,15 +36,21 @@ if (isDev) {
       res.status(500).end(error);
     }
   });
+
+  server = createHttpsServer({
+    key: fs.readFileSync("./certs/dev.pem", "utf8"),
+    cert: fs.readFileSync("./certs/cert.pem", "utf8"),
+  }, app).listen(port, () => debug("HTTP Dev Server Started..."));
+  
 } else {
   app.use(express.static("dist"))
   // TODO: This needs to route to the appropriate Preact page
   app.get("/*", (req, res) => {
     res.sendFile(__dirname + "/index.html");
   });
-}
 
-const server = app.listen(port, () => debug("HTTP Dev Server Started..."));
+  server = createServer(app).listen(port, () => debug("HTTP Dev Server Started..."));
+}
 
 process.on("SIGTERM", () => {
   server.close(() => {
