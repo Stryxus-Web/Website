@@ -39,6 +39,9 @@ export default defineConfig(({ mode }): UserConfig => {
 		},
 		server: {
 			port: 7076,
+			watch: {
+				usePolling: true
+			}
 		},
 		preview: {
 			port: 7076,
