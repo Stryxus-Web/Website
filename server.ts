@@ -9,7 +9,7 @@ import { DefaultAzureCredential } from "@azure/identity";
 import { BlobServiceClient } from "@azure/storage-blob";
 import { debug } from "console";
 import { Server as HttpsServer, createServer as createHttpsServer } from "https";
-import { IncomingMessage, Server, ServerResponse, createServer } from "http";
+import { Server, createServer } from "http";
 
 const isDev = process.env.NODE_ENV.indexOf("development") > -1;
 const port = process.env.PORT || 7076;
