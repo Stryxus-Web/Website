@@ -22,16 +22,16 @@ export default defineConfig(({ mode }): UserConfig => {
 			rollupOptions: {
 				output: {
 					manualChunks(id: string) {
-						if (id.includes('node_modules/preact')) {
-							return 'preact';
+						if (id.includes("node_modules/preact")) {
+							return "preact";
 						}
 
-						if (id.includes('node_modules/tailwindcss')) {
-							return 'tailwindcss';
+						if (id.includes("node_modules/tailwindcss")) {
+							return "tailwindcss";
 						}
 
-						if (id.includes('node_modules/@fontawesome')) {
-							return 'fontawesome';
+						if (id.includes("node_modules/@fontawesome")) {
+							return "fontawesome";
 						}
 					}
 				}
@@ -52,7 +52,7 @@ export default defineConfig(({ mode }): UserConfig => {
 			progress(),
 			mkcert({
 				autoUpgrade: true,
-				savePath: "./certs"
+				savePath: "./certs",
 			}),
 			tsconfigPaths(),
 			eslintPlugin(),
