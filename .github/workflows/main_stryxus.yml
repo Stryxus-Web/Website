@@ -26,11 +26,6 @@ jobs:
           npm install
           npm run build
 
-      - name: Optimise node_modules
-        run: |
-          rm -rf ./node_modules
-          npm install --omit=dev
-
       - name: Zip artifact for deployment
         run: zip release.zip ./* -r
 
