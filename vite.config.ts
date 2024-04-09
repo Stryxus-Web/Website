@@ -7,7 +7,6 @@ import eslintPlugin from "@nabla/vite-plugin-eslint";
 import webfontDownload from "vite-plugin-webfont-dl";
 import imagemin from "unplugin-imagemin/vite";
 import { chunkSplitPlugin } from "vite-plugin-chunk-split";
-import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 
 import { UserConfig, defineConfig } from "vite";
 import preact from "@preact/preset-vite";
@@ -85,11 +84,6 @@ export default defineConfig(({ mode }): UserConfig => {
 				},
 			}),
 			chunkSplitPlugin(),
-			cssInjectedByJsPlugin({
-				dev: {
-					enableDev: true,
-				}
-			}),
 		],
 	};
 });
