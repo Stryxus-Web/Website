@@ -40,7 +40,7 @@ if (isDev) {
   server = createHttpsServer({
     key: fs.readFileSync("./certs/dev.pem", "utf8"),
     cert: fs.readFileSync("./certs/cert.pem", "utf8"),
-  }, app).listen(port, () => debug("HTTP Dev Server Started..."));
+  }, app).listen(port, () => debug("HTTPS Dev Server Started..."));
   
 } else {
   app.use(express.static("dist"))
@@ -54,7 +54,7 @@ if (isDev) {
 
 process.on("SIGTERM", () => {
   server.close(() => {
-    debug("HTTP Dev Server Closed.");
+    debug("HTTP('s) Dev Server Closed.");
   });
 });
 
