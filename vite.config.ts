@@ -1,32 +1,44 @@
 import path from "path";
 
 import progress from "vite-plugin-progress";
-import mkcert from"vite-plugin-mkcert";
+import mkcert from "vite-plugin-mkcert";
 import tsconfigPaths from "vite-tsconfig-paths";
 import eslintPlugin from "@nabla/vite-plugin-eslint";
 import webfontDownload from "vite-plugin-webfont-dl";
 import imagemin from "unplugin-imagemin/vite";
 import { chunkSplitPlugin } from "vite-plugin-chunk-split";
 
-import * as vite from "vite";
+import { UserConfig, defineConfig } from "vite";
 import preact from "@preact/preset-vite";
 
 // https://vitejs.dev/config/
-export default vite.defineConfig(({ mode }) => {
+export default defineConfig(({ mode }): UserConfig => {
 	const isDev = mode === "development";
 	return {
 		build: {
 			outDir: "./dist",
 			assetsDir: "./",
 			target: "es2022",
+			rollupOptions: {
+				output: {
+					manualChunks(id: string) {
+						if (id.includes('node_modules/preact')) {
+							return 'preact';
+						}
+
+						if (id.includes('node_modules/tailwindcss')) {
+							return 'tailwindcss';
+						}
+
+						if (id.includes('node_modules/@fontawesome')) {
+							return 'fontawesome';
+						}
+					}
+				}
+			},
 		},
 		server: {
 			port: 7076,
-			https: false,
-			hmr: {
-				host: "localhost",
-				protocol: "ws",
-			},
 		},
 		preview: {
 			port: 7076,
@@ -38,7 +50,9 @@ export default vite.defineConfig(({ mode }) => {
 		},
 		plugins: [
 			progress(),
-			mkcert(),
+			mkcert({
+				autoUpgrade: true
+			}),
 			tsconfigPaths(),
 			eslintPlugin(),
 			webfontDownload([
@@ -70,7 +84,6 @@ export default vite.defineConfig(({ mode }) => {
 				],
 				cache: isDev,
 			}),
-			chunkSplitPlugin(),
 			preact({
 				prerender: {
 					enabled: true,
@@ -78,6 +91,7 @@ export default vite.defineConfig(({ mode }) => {
 					additionalPrerenderRoutes: ["/404"],
 				},
 			}),
+			chunkSplitPlugin(),
 		],
 	};
 });
