@@ -51,7 +51,8 @@ export default defineConfig(({ mode }): UserConfig => {
 		plugins: [
 			progress(),
 			mkcert({
-				autoUpgrade: true
+				autoUpgrade: true,
+				savePath: "./certs"
 			}),
 			tsconfigPaths(),
 			eslintPlugin(),
