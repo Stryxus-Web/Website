@@ -18,17 +18,9 @@ export default defineConfig(({ mode }): UserConfig => {
 			outDir: "./dist",
 			assetsDir: "./",
 			target: "es2022",
-			rollupOptions: {
-				output: {
-					manualChunks: undefined,
-				}
-			},
 		},
 		server: {
 			port: 7076,
-			watch: {
-				usePolling: true
-			}
 		},
 		preview: {
 			port: 7076,
