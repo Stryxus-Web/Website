@@ -18,6 +18,7 @@ const port = process.env.PORT || 7076;
 
 const app = express();
 let server: HttpsServer<any, any> | Server<any, any>; 
+let templateRenderObject = "<!--SSR-->";
 
 if (isDev) {
   const vite: ViteDevServer = await createViteServer();
@@ -28,7 +29,7 @@ if (isDev) {
       const template = await vite.transformIndexHtml(url, fs.readFileSync("index.html", "utf-8"));
       const { prerender } = await vite.ssrLoadModule("./src/entry-server.tsx");
     
-      const html = template.replace(`<!--SSR-->`, prerender);
+      const html = template.replace(templateRenderObject, prerender);
       res.status(200).set({ "Content-Type": "text/html" }).end(html);
     } catch (error) {
       debug(error);
@@ -46,9 +47,9 @@ if (isDev) {
   app.use("*", async (_, res) => {
     try {
       const template = fs.readFileSync("./dist/client/index.html", "utf-8");
-      const { prerender } = await import("./dist/server/entry-server.tsx");
+      const { prerender } = await import("./dist/server/entry-server.js");
    
-      const html = template.replace(`<!--outlet-->`, prerender);
+      const html = template.replace(templateRenderObject, prerender);
       res.status(200).set({ "Content-Type": "text/html" }).end(html);
     } catch (error) {
       debug(error);
