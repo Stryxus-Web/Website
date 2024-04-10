@@ -2,22 +2,16 @@
 if (import.meta.env.MODE === "development") import("preact/debug");
 import "./App.sass";
 
-import { Component, Fragment, createRef } from "preact";
+import { Component, createRef } from "preact";
+import { LocationProvider, hydrate, prerender as ssr, useLocation } from "preact-iso";
 import { MutableRef, useEffect, useState } from "preact/hooks";
-import { Router, RouterOnChangeArgs } from "preact-router";
+import { Router, Route, RouterOnChangeArgs } from "preact-router";
 import { Link } from "preact-router/match";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { IStaticMethods } from "preline/preline";
-import { library, config } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { fas, faCaretRight, faGear } from "@fortawesome/free-solid-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-import "@fortawesome/fontawesome-svg-core/styles.css";
-
-library.add(fas, far, fab);
-config.autoAddCss = false;
+import { faCaretRight, faGear } from "@fortawesome/free-solid-svg-icons";
 
 import { routerPages, NavPage, currentPage } from "./data/Globals.tsx";
 import { isBreakpointDownLG, isBreakpointDownMD, isBreakpointDownSM, isBreakpointDownXL, isBreakpointDown2XL, 
@@ -55,7 +49,7 @@ declare global {
 }
 
 interface ComProps {
-	data: any
+	
 }
 
 interface ComState {
@@ -181,7 +175,7 @@ export default class App extends Component<ComProps, ComState> {
 		}
 
 		return (
-			<Fragment>
+			<LocationProvider>
 				<NavigationBar ref={this.navElRef}>
 				{
 					routerPages.slice(1).map((page: NavPage) =>
@@ -209,19 +203,19 @@ export default class App extends Component<ComProps, ComState> {
 							this.setNavBackground();
 						}
 					}}>
-						<Home path="/"/>
-						<Art path="/art" />
-						<Blog path="/blog"/>
-						<Gaming path="/gaming" />
-						<Health path="/health" />
-						<Media path="/media" />
-						<Music path="/music" />
-						<Projects path="/projects" />
-						<Setups path="/setups" />
+						<Route path="/" component={Home} />
+						<Route path="/art" component={Art} />
+						<Route path="/blog" component={Blog} />
+						<Route path="/gaming" component={Gaming} />
+						<Route path="/health" component={Health} />
+						<Route path="/media" component={Media} />
+						<Route path="/music" component={Music} />
+						<Route path="/projects" component={Projects} />
+						<Route path="/setups" component={Setups} />
 
-						<Admin path="/admin" />
+						<Route path="/admin" component={Admin} />
 
-						<NotFound default />
+						<Route default component={NotFound} />
 					</Router>
 				</main>
 				<div ref={this.borderElRef} id="border"></div>
@@ -233,7 +227,17 @@ export default class App extends Component<ComProps, ComState> {
 					</div>
 				</div>
 				{isSettingsMenuVisible && <SettingsMenu />}
-			</Fragment>
+			</LocationProvider>
 		);
 	}
+}
+
+// Preact
+
+if (typeof window !== "undefined") {
+	hydrate(<App />, document.getElementById("app"));
+}
+
+export async function prerender(data: any) {
+	return await ssr(<App {...data} />);
 }

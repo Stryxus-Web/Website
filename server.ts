@@ -2,9 +2,6 @@ import "dotenv/config";
 
 import path from "path";
 import fs from "fs";
-import { fileURLToPath } from "url";
-import { Server, createServer } from "http";
-
 import express from "express";
 import { ViteDevServer, createServer as createViteServer } from "vite";
 
@@ -12,26 +9,30 @@ import { DefaultAzureCredential } from "@azure/identity";
 import { BlobServiceClient } from "@azure/storage-blob";
 import { debug } from "console";
 import { Server as HttpsServer, createServer as createHttpsServer } from "https";
+import { Server, createServer } from "http";
 
 const isDev = process.env.NODE_ENV.indexOf("development") > -1;
 const port = process.env.PORT || 7076;
+const __dirname = path.resolve(path.dirname(""));
 
 const app = express();
 let server: HttpsServer<any, any> | Server<any, any>; 
 
 if (isDev) {
-  const vite: ViteDevServer = await createViteServer();
+
+  const vite: ViteDevServer = await createViteServer({
+    server: {
+      middlewareMode: true,
+    },
+    //appType: "custom",
+  });
+   
   app.use(vite.middlewares);
+
   app.use("*", async (req, res) => {
-    const url = req.originalUrl;
     try {
-      const template = await vite.transformIndexHtml(url, fs.readFileSync("index.html", "utf-8"));
-      const { prerender } = await vite.ssrLoadModule("./src/entry-server.tsx");
-    
-      const html = template.replace(`<!--SSR-->`, prerender);
-      res.status(200).set({ "Content-Type": "text/html" }).end(html);
+      res.status(200).set({ "Content-Type": "text/html" }).end( await vite.transformIndexHtml(req.originalUrl, fs.readFileSync("index.html", "utf-8")));
     } catch (error) {
-      debug(error);
       res.status(500).end(error);
     }
   });
@@ -42,18 +43,10 @@ if (isDev) {
   }, app).listen(port, () => debug("HTTPS Dev Server Started..."));
   
 } else {
-  app.use(express.static(path.resolve(path.dirname(fileURLToPath(import.meta.url)), "dist/client"), { index: false }));
-  app.use("*", async (_, res) => {
-    try {
-      const template = fs.readFileSync("./dist/client/index.html", "utf-8");
-      const { prerender } = await import("./dist/server/entry-server.tsx");
-   
-      const html = template.replace(`<!--outlet-->`, prerender);
-      res.status(200).set({ "Content-Type": "text/html" }).end(html);
-    } catch (error) {
-      debug(error);
-      res.status(500).end(error);
-    }
+  app.use(express.static("dist"))
+  // TODO: This needs to route to the appropriate Preact page
+  app.get("/*", (req, res) => {
+    res.sendFile(__dirname + "/index.html");
   });
 
   server = createServer(app).listen(port, () => debug("HTTP Dev Server Started..."));
