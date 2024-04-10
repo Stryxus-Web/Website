@@ -3,8 +3,10 @@
 	"type": "module",
 	"scripts": {
 		"dev": "set NODE_ENV=development && nodemon --exec node --import tsx/esm server.ts",
-		"prod": "set NODE_ENV=production && node --import tsx/esm server.ts",
-		"build": "vite build",
+		"serve": "set NODE_ENV=production && node --import tsx/esm server.ts",
+		"build:client": "vite build --outDir dist/client",
+		"build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server",
+		"build": "npm run build:client && npm run build:server",
 		"preview": "vite preview"
 	},
 	"dependencies": {

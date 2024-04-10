@@ -21,6 +21,7 @@ export default defineConfig(({ mode }): UserConfig => {
 		},
 		server: {
 			port: 7076,
+			middlewareMode: true,
 		},
 		preview: {
 			port: 7076,
@@ -28,6 +29,9 @@ export default defineConfig(({ mode }): UserConfig => {
 		resolve: {
 			alias: {
 				"@": path.resolve(__dirname, "src"),
+				react: 'preact/compat',
+				'react-dom/test-utils': 'preact/test-utils',
+				'react-dom': 'preact/compat',
 			}
 		},
 		plugins: [
@@ -67,13 +71,7 @@ export default defineConfig(({ mode }): UserConfig => {
 				],
 				cache: isDev,
 			}),
-			preact({
-				prerender: {
-					enabled: true,
-					renderTarget: "#app",
-					additionalPrerenderRoutes: ["/404"],
-				},
-			}),
+			preact(),
 		],
 	};
 });
