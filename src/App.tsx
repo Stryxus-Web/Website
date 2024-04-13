@@ -41,6 +41,7 @@ import Img_Avatar from "./assets/img/avatar.png";
 // TODO: Dont rely on gsap to set the mobile nav/header/footer style
 // TODO: Redesign home page
 // TODO: Fix bug which doesnt close the navbar when selecting a page on mobile
+// TODO: Investiage CSP enforcement
 
 declare global {
 	interface Window {
