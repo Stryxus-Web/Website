@@ -1,4 +1,3 @@
-// TODO: Send enviroment through websocket to exclude debugging components
 if (import.meta.env.MODE === "development") import("preact/debug");
 import "./App.sass";
 
