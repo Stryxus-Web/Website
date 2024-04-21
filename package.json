@@ -63,6 +63,7 @@
 		"vite-plugin-css-injected-by-js": "^3.5.0",
 		"vite-plugin-mkcert": "^1.17.5",
 		"vite-plugin-progress": "^0.0.7",
+		"vite-plugin-wasm": "^3.3.0",
 		"vite-plugin-webfont-dl": "^3.9.2",
 		"vite-tsconfig-paths": "^4.3.2"
 	},
