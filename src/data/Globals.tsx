@@ -1,8 +1,5 @@
-import { Dispatch, StateUpdater } from "preact/hooks";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faCamera, faCode, faGamepad, faHeartPulse, faHouse, faMicrochip, faMusic, faNewspaper, faPaintBrush } from "@fortawesome/free-solid-svg-icons";
-
-import { ComState as NavButtonState } from "./../components/NavigationBar/NavigationBarButton/NavigationBarButton";
 
 import Home_BackMain from "../assets/img/home/background.png";
 import Media_Background0 from "../assets/img/media/background-0.png";
@@ -15,7 +12,8 @@ import Media_Background5 from "../assets/img/media/background-5.png";
 export interface NavPage {
     Name: string;
     RelativeLink: string;
-    Icon: IconProp;
+    Hidden?: boolean;
+    Icon?: IconProp;
     RelativeNavbarImageURLs?: string[];
 }
 
@@ -40,6 +38,7 @@ export const routerPages: NavPage[] = [
     {
         Name: "Home",
         RelativeLink: "/",
+        Hidden: true,
         Icon: faHouse,
         RelativeNavbarImageURLs: [ Home_BackMain ],
     },
@@ -52,6 +51,11 @@ export const routerPages: NavPage[] = [
         Name: "Projects",
         RelativeLink: "/projects",
         Icon: faCode,
+    },
+    {
+        Name: "Star Prism",
+        RelativeLink: "/projects/starprism",
+        Hidden: true,
     },
     {
         Name: "Gaming",

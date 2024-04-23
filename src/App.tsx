@@ -2,7 +2,7 @@ if (import.meta.env.MODE === "development") import("preact/debug");
 import "./App.sass";
 
 import { Component, createRef } from "preact";
-import { LocationProvider, hydrate, prerender as ssr, useLocation } from "preact-iso";
+import { LocationProvider, hydrate, prerender as ssr } from "preact-iso";
 import { MutableRef, useEffect, useState } from "preact/hooks";
 import { Router, Route, RouterOnChangeArgs } from "preact-router";
 import { Link } from "preact-router/match";
@@ -30,6 +30,8 @@ import Home from "./pages/Home/Home";
 import Media from "./pages/Media/Media";
 import Music from "./pages/Music/Music";
 import Projects from "./pages/Projects/Projects";
+import StarPrism from "./pages/Projects/StarPrism/StarPrism.tsx";
+import AndroidSystemBridge from "./pages/Projects/ASB/AndroidSystemBridge.tsx";
 import Setups from "./pages/Setups/Setups";
 import Admin from "./pages/Admin/Admin";
 import NotFound from "./pages/_404.js";
@@ -178,11 +180,13 @@ export default class App extends Component<ComProps, ComState> {
 			<LocationProvider>
 				<NavigationBar ref={this.navElRef}>
 				{
-					routerPages.slice(1).map((page: NavPage) =>
+					routerPages.map((page: NavPage) =>
 					{
-						return (
-							<NavigationBarButton title={page.Name} relativeLink={page.RelativeLink} icon={page.Icon} />
-						);
+						if (!page.Hidden) {
+							return (
+								<NavigationBarButton title={page.Name} relativeLink={page.RelativeLink} icon={page.Icon} />
+							);
+						}
 					})
                 }
 				</NavigationBar>
@@ -211,6 +215,8 @@ export default class App extends Component<ComProps, ComState> {
 						<Route path="/media" component={Media} />
 						<Route path="/music" component={Music} />
 						<Route path="/projects" component={Projects} />
+						<Route path="/projects/starprism" component={StarPrism} />
+						<Route path="/projects/asb" component={AndroidSystemBridge} />
 						<Route path="/setups" component={Setups} />
 
 						<Route path="/admin" component={Admin} />

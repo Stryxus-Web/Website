@@ -6,6 +6,10 @@
 	],
 	"settings": {
 		"typescript.tsdk": "node_modules\\typescript\\lib",
-		"git.ignoreLimitWarning": true
+		"git.ignoreLimitWarning": true,
+		"rust-analyzer.linkedProjects": [
+			"src\\wasm\\star-prism\\Cargo.toml",
+			"src\\wasm\\asb\\Cargo.toml"
+		],
 	}
 }
