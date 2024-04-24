@@ -38,11 +38,17 @@ import NotFound from "./pages/_404.js";
 
 import Img_Avatar from "./assets/img/avatar.png";
 
-// TODO: Fix Settings Menu
-// TODO: Dont rely on gsap to set the mobile nav/header/footer style
-// TODO: Redesign home page
-// TODO: Fix bug which doesnt close the navbar when selecting a page on mobile
-// TODO: Integrate styled components with SASS
+// TODO: Dont rely on gsap to set the mobile nav/header/footer style.
+// TODO: Redesign home page with particlesjs.
+// TODO: Fix bug which doesnt close the navbar when selecting a page on mobile.
+// TODO: The navbar doesnt close on page select on mobile in most cases.
+// TODO: The settings menu button is broken on mobile.
+// TODO: Add a fully functional StarPrism.
+// TODO: Update the settings menu with a setting to disable WASM.
+// TODO: Remove Git commits from the settings menu.
+// TODO: Add setting to disallow 3rd party embed's on the website, like Apple Music, Youtube and others.
+// TODO: Add ability to the navigation frame to completely minimise when navigating to a WASM tool to give the illusion of a standalone website. Add a subtle back arrow button in the top right.
+// TODO: Add an image transcoding WASM system to the Admin page for photography uploading.
 
 declare global {
 	interface Window {
