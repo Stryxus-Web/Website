@@ -1,6 +1,1 @@
-[submodule "src/wasm/star-prism"]
-	path = src/wasm/star-prism
-	url = https://github.com/Stryxus-Web/StarPrism
-[submodule "src/wasm/asb"]
-	path = src/wasm/asb
-	url = https://github.com/Stryxus-Web/Android-System-Bridge
+
