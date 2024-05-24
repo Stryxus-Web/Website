@@ -18,13 +18,15 @@ const __dirname = path.resolve(path.dirname(""));
 const app = express();
 let server: HttpsServer<any, any> | Server<any, any>; 
 
+// TODO: Figure out how to convert to hyper-express since its many times faster.
+// TODO: Convert to Server-Side Rendering.
+
 if (isDev) {
 
   const vite: ViteDevServer = await createViteServer({
     server: {
       middlewareMode: true,
     },
-    //appType: "custom",
   });
    
   app.use(vite.middlewares);

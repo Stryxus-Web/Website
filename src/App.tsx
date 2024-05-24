@@ -49,7 +49,6 @@ import Img_Avatar from "./assets/img/avatar.png";
 // TODO: Add setting to disallow 3rd party embed's on the website, like Apple Music, Youtube and others.
 // TODO: Add ability to the navigation frame to completely minimise when navigating to a WASM tool to give the illusion of a standalone website. Add a subtle back arrow button in the top right.
 // TODO: Add an image transcoding WASM system to the Admin page for photography uploading.
-// TODO: Convert to Server-Side Rendering.
 
 declare global {
 	interface Window {
