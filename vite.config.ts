@@ -7,6 +7,9 @@ import eslintPlugin from "@nabla/vite-plugin-eslint";
 import webfontDownload from "vite-plugin-webfont-dl";
 import imagemin from "unplugin-imagemin/vite";
 import wasm from "vite-plugin-wasm";
+import vitePluginSass from "vite-plugin-sass";
+import { imagetools } from "vite-imagetools";
+import vike from "vike/plugin";
 
 import { UserConfig, defineConfig } from "vite";
 import preact from "@preact/preset-vite";
@@ -19,17 +22,13 @@ export default defineConfig(({ mode }): UserConfig => {
 			outDir: "./dist",
 			assetsDir: "./",
 			target: "es2022",
+			emptyOutDir: true,
 		},
 		server: {
 			port: 7076,
 		},
 		preview: {
 			port: 7076,
-		},
-		resolve: {
-			alias: {
-				"@": path.resolve(__dirname, "src"),
-			}
 		},
 		plugins: [
 			progress(),
@@ -50,6 +49,7 @@ export default defineConfig(({ mode }): UserConfig => {
 				proxy: false,
 			}
 			),
+			/*
 			imagemin({
 				mode: "sharp",
 				beforeBundle: true,
@@ -68,14 +68,22 @@ export default defineConfig(({ mode }): UserConfig => {
 				],
 				cache: isDev,
 			}),
-			preact({
-				prerender: {
-					enabled: true,
-					renderTarget: "#app",
-					additionalPrerenderRoutes: ["/404"],
-				},
-			}),
+			*/
+			preact(),
 			wasm(),
+			imagetools(),
+			vitePluginSass(),
+			vike({
+				prerender: true
+			}),
 		],
+		optimizeDeps: {
+			include: ['preact/devtools', 'preact/debug', 'preact/jsx-dev-runtime', 'preact', 'preact/hooks']
+		},
+		resolve: {
+			alias: {
+				".//..": __dirname,
+			}
+		}
 	};
 });
