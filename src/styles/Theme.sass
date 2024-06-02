@@ -55,11 +55,12 @@ small, i, svg, img
 
 .page
     height: 100%
-    margin-top: -#{math.div($borderRadius, 2) + px}
     .section
         padding-left: $borderRadius + px
         padding-right: $borderRadius + px
         clip-path: polygon(0% 15px, 15px 0%, 100% 0%, 100% 100%, 15px 100%, 0% calc(100% - 15px))
+        &:nth-child(1n)
+            height: 100%
         &.padded
             padding-top: $borderRadius + px
             padding-bottom: $borderRadius + px
