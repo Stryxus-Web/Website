@@ -106,5 +106,4 @@ export const routerPages: NavPage[] = [
 
 export function setRoute(pathname: string) {
     currentPage.value = routerPages.find(x => x.RelativeLink == (pathname.length == 0 ? "/" : pathname));
-    //setNavBackground();
 }
