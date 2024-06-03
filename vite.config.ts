@@ -10,6 +10,7 @@ import wasm from "vite-plugin-wasm";
 import vitePluginSass from "vite-plugin-sass";
 import { imagetools } from "vite-imagetools";
 import vike from "vike/plugin";
+import { cjsInterop } from "vite-plugin-cjs-interop";
 
 import { UserConfig, defineConfig } from "vite";
 import preact from "@preact/preset-vite";
@@ -76,6 +77,12 @@ export default defineConfig(({ mode }): UserConfig => {
 			vike({
 				prerender: true
 			}),
+			cjsInterop({
+				// List of CJS dependencies that require interop
+				dependencies: [
+				  "@tsparticles/preact",
+				],
+			}),
 		],
 		optimizeDeps: {
 			include: ['preact/devtools', 'preact/debug', 'preact/jsx-dev-runtime', 'preact', 'preact/hooks']
@@ -84,6 +91,6 @@ export default defineConfig(({ mode }): UserConfig => {
 			alias: {
 				".//..": __dirname,
 			}
-		}
+		},
 	};
 });

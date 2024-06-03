@@ -18,6 +18,13 @@ import faCaretRight from "../assets/img/fa/solid/caret-right.svg";
 import faGear from "../assets/img/fa/solid/gear.svg";
 import { Component } from "preact";
 
+import {
+	MoveDirection,
+	OutMode,
+  } from "@tsparticles/engine";
+import { loadFull } from "tsparticles";
+import Particles, { initParticlesEngine } from "@tsparticles/preact";
+
 declare global {
 	interface Window {
 	  	HSStaticMethods: IStaticMethods;
@@ -30,6 +37,7 @@ interface ComProps {
 }
 
 interface ComState {
+	particlesInitialized: boolean,
 	isSettingsMenuVisible: boolean,
 }
 
@@ -58,9 +66,19 @@ export default class PageShell extends Component<ComProps, ComState> {
 
 	constructor() {
 		super();
-		this.state ={
-			isSettingsMenuVisible: false
+		this.state = {
+			particlesInitialized: false,
+			isSettingsMenuVisible: false,
 		}
+
+        initParticlesEngine(async engine => {
+            await loadFull(engine);
+        }).then(() => {
+            this.setState({
+				...this.state,
+                particlesInitialized: true,
+            });
+        });
 	}
 
 	componentDidMount() {
@@ -121,7 +139,6 @@ export default class PageShell extends Component<ComProps, ComState> {
 	}
 
 	render({ children, pageContext }) {
-
 		if (typeof window !== "undefined") {
 			currentPage.value = routerPages.find(x => x.RelativeLink == (window.location.pathname.length == 0 ? "/" : window.location.pathname));
 			window.addEventListener("resize", updateMediaQueries);
