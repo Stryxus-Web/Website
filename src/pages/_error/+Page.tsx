@@ -1,1 +1,1 @@
-import "./style.sass";
+import "./Error.sass";

@@ -3,7 +3,7 @@ export default onRenderHtml
 
 import renderToString from "preact-render-to-string";
 import { escapeInject, dangerouslySkipEscape } from "vike/server";
-import PageShell from "./PageShell";
+import PageShell from "../components/PageShell/PageShell";
 
 import favicon from ".//../assets/img/favicon.png";
 import og from ".//../assets/og.png";

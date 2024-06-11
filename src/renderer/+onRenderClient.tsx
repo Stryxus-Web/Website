@@ -2,7 +2,7 @@
 export default onRenderClient
 
 import { hydrate } from "preact";
-import PageShell from "./PageShell";
+import PageShell from "../components/PageShell/PageShell";
 
 async function onRenderClient(pageContext) {
   const { Page, pageProps } = pageContext
