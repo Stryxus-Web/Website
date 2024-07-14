@@ -18,6 +18,7 @@ const __dirname = path.dirname(__filename);
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://stryxus.xyz",
   integrations: [preact(), tailwind(), sitemap(), robotsTxt()],
   vite: {
     build: {
