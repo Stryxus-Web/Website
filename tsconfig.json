@@ -1,6 +1,7 @@
 {
-	"compilerOptions": {
-		"target": "ES2022",
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "target": "ES2022",
 		"module": "ESNext",
 		"moduleResolution": "bundler",
 		"noEmit": true,
@@ -8,15 +9,12 @@
 		"checkJs": true,
 		"allowImportingTsExtensions": true,
 
-		/* Preact Config */
-		"jsx": "react-jsx",
-		"jsxImportSource": "preact",
-		"skipLibCheck": true,
-		"paths": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact",
+    "paths": {
 			".//../*": ["./*"],
 			"react": ["./node_modules/preact/compat/"],
 			"react-dom": ["./node_modules/preact/compat/"]
 		}
-	},
-	"include": ["node_modules/vite/client.d.ts", "**/*"],
+  }
 }
