@@ -1,6 +1,6 @@
+.astro/
 node_modules/
 dist/
-certs/
 
 .eslintcache
 *.local
