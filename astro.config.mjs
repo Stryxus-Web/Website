@@ -20,6 +20,13 @@ const __dirname = path.dirname(__filename);
 export default defineConfig({
   site: "https://stryxus.xyz",
   integrations: [preact(), tailwind(), sitemap(), robotsTxt()],
+  build: {
+    serverEntry: 'entry.ts'
+  },
+  output: "hybrid",
+  adapter: node({
+    mode: "middleware"
+  }),
   vite: {
     build: {
       target: "es2022",
@@ -41,8 +48,4 @@ export default defineConfig({
       }
     }
   },
-  output: "hybrid",
-  adapter: node({
-    mode: "middleware"
-  }),
 });
