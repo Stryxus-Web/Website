@@ -21,7 +21,8 @@ export default defineConfig({
   site: "https://stryxus.xyz",
   integrations: [preact(), tailwind(), sitemap(), robotsTxt()],
   build: {
-    serverEntry: 'entry.ts'
+    serverEntry: "entry.ts",
+    inlineStylesheets: "always",
   },
   output: "hybrid",
   adapter: node({
@@ -47,5 +48,15 @@ export default defineConfig({
         ".//..": __dirname
       }
     }
+  },
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: 'viewport',
+  },
+  experimental: {
+    directRenderScript: true,
+    actions: true,
+    clientPrerender: true,
+    rewriting: true,
   },
 });
