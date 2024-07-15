@@ -8,7 +8,7 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "prod": "node --import tsx/esm entry.ts"
+    "prod": "node --import tsx/esm dist/server/entry.ts"
   },
   "dependencies": {
     "@astrojs/check": "^0.8.1",
