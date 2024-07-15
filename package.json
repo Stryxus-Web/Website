@@ -45,7 +45,6 @@
     "vite-plugin-compression2": "^1.1.2",
     "vite-plugin-sass": "^0.1.0",
     "vite-plugin-wasm": "^3.3.0",
-    "vite-plugin-webfont-dl": "^3.9.4",
     "vite-tsconfig-paths": "^4.3.2"
   }
 }
