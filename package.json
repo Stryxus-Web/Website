@@ -11,7 +11,6 @@
     "prod": "node --import tsx/esm dist/server/entry.ts"
   },
   "dependencies": {
-    "@astrojs/check": "^0.8.1",
     "@astrojs/node": "^8.3.2",
     "@astrojs/preact": "^3.5.0",
     "@astrojs/sitemap": "^3.1.6",
@@ -23,7 +22,6 @@
     "astro-seo": "^0.8.4",
     "chart.js": "^4.4.3",
     "chartjs-react": "^4.2.1",
-    "dotenv": "^16.4.5",
     "fastify": "^4.28.1",
     "gsap": "^3.12.5",
     "highlight.js": "^11.10.0",
@@ -32,17 +30,19 @@
     "preact": "^10.22.1",
     "quill": "^2.0.2",
     "swiper": "^11.1.4",
-    "tailwindcss": "^3.4.4",
-    "typescript": "^5.5.3",
     "video.js": "^8.16.1"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.8.1",
     "@types/postcss-import": "^14.0.3",
     "cssnano": "^7.0.4",
+    "dotenv": "^16.4.5",
     "postcss-import": "^16.1.0",
     "postcss-nesting": "^12.1.5",
     "sass": "^1.77.8",
+    "tailwindcss": "^3.4.4",
     "tsx": "^4.16.2",
+    "typescript": "^5.5.3",
     "vite-imagetools": "^7.0.4",
     "vite-plugin-compression2": "^1.1.2",
     "vite-plugin-sass": "^0.1.0",
