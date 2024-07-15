@@ -3,7 +3,6 @@ import path from 'path';
 import { defineConfig } from 'astro/config';
 import preact from "@astrojs/preact";
 import tailwind from '@astrojs/tailwind';
-import sitemap from "@astrojs/sitemap";
 import robotsTxt from "astro-robots-txt";
 import tsconfigPaths from "vite-tsconfig-paths";
 import webfontDownload from "vite-plugin-webfont-dl";
@@ -15,11 +14,18 @@ import node from "@astrojs/node";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-
 // https://astro.build/config
 export default defineConfig({
   site: "https://stryxus.xyz",
-  integrations: [preact(), tailwind(), sitemap(), robotsTxt()],
+  integrations: [preact(), tailwind(), robotsTxt({
+    sitemap: true,
+    policy: [
+      {
+        userAgent: '*',
+        allow: '/',
+      },
+    ],
+  })],
   build: {
     serverEntry: "entry.mjs",
     inlineStylesheets: "always",
