@@ -1,60 +1,62 @@
-import { fileURLToPath } from 'url';
-import path from 'path';
 import { defineConfig } from 'astro/config';
-import preact from "@astrojs/preact";
+import preact from '@astrojs/preact';
 import tailwind from '@astrojs/tailwind';
-import robotsTxt from "astro-robots-txt";
-import tsconfigPaths from "vite-tsconfig-paths";
-import wasm from "vite-plugin-wasm";
-// @ts-ignore
-import vitePluginSass from "vite-plugin-sass";
-import { imagetools } from "vite-imagetools";
-import node from "@astrojs/node";
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import robotsTxt from 'astro-robots-txt';
+import wasm from 'vite-plugin-wasm';
+import node from '@astrojs/node';
+import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://stryxus.xyz",
-  integrations: [preact(), tailwind(), robotsTxt({
-    sitemap: true,
-    policy: [
-      {
+  site: 'https://stryxus.xyz',
+  integrations: [
+    wasm(), 
+    preact({
+      compat: true
+    }), 
+    tailwind(), 
+    robotsTxt({
+      sitemap: true,
+      policy: [{
         userAgent: '*',
-        allow: '/',
-      },
-    ],
-  })],
+        allow: '/'
+      }]
+    }), 
+    icon({
+      iconDir: 'src/assets/icons',
+    }),
+  ],
   build: {
-    serverEntry: "entry.mjs",
-    inlineStylesheets: "always",
+    serverEntry: 'entry.mjs',
   },
-  output: "hybrid",
+  output: 'hybrid',
   adapter: node({
-    mode: "middleware"
+    mode: 'middleware'
   }),
   vite: {
     build: {
-      target: "es2022",
       emptyOutDir: true
     },
-    plugins: [tsconfigPaths(), wasm(), imagetools(), vitePluginSass()],
+    plugins: [
+      wasm(),
+    ],
     optimizeDeps: {
       include: ['preact/devtools', 'preact/debug', 'preact/jsx-dev-runtime', 'preact', 'preact/hooks']
     },
     resolve: {
       alias: {
-        ".//..": __dirname
+        '~/*': ['src/*']
       }
-    }
+    },
   },
   prefetch: {
     prefetchAll: true,
-    defaultStrategy: "viewport",
+    defaultStrategy: 'viewport'
   },
   experimental: {
     directRenderScript: true,
     clientPrerender: true,
     rewriting: true,
+    serverIslands: true,
   },
 });

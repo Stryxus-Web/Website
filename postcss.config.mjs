@@ -1,15 +1,17 @@
-import postcssNesting from "postcss-nesting";
-import postcssImport from "postcss-import";
-import tailwindCSS from "tailwindcss";
-import autoprefixer from "autoprefixer";
-import cssnano from "cssnano";
+import postcssNesting from 'postcss-nesting';
+import postcssImport from 'postcss-import';
+import tailwindCSS from 'tailwindcss';
+import autoprefixer from 'autoprefixer';
+import cssnano from 'cssnano';
+
+const isDev = process.env.NODE_ENV === 'production';
 
 export default {
     plugins: [
-        postcssNesting,
         postcssImport,
+        postcssNesting,
         tailwindCSS,
         autoprefixer,
-        process.env.NODE_ENV === "production" ? cssnano : undefined,
+        isDev ? cssnano : undefined,
     ],
 }

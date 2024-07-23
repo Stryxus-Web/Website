@@ -1,0 +1,53 @@
+@use 'sass:math'
+    
+@import '../../variables'
+    
+$spacing: 24
+
+nav
+    opacity: 0
+    height: #{$navHeight + px}
+
+    .avatar-container, .buttons-container
+        backdrop-filter: blur($blurAmount)
+
+    .avatar-container, .buttons-container a
+        &:hover
+            background-color: rgba($lightgreen, $transparency)
+        &.active
+            background-color: rgba($green, $transparency)
+
+    .avatar-container
+        float: left
+        border-radius: 64px
+        padding: 8px
+        img
+            border-radius: 64px
+            width: #{$avatarSize + px}
+            height: #{$avatarSize + px}
+
+    .buttons-container
+        float: left
+        white-space: nowrap
+        overflow: hidden
+        background-color: rgba(0, 0, 0, $transparency)
+        border-radius: 50px
+        padding-left: 6px
+        padding-right: 6px
+        padding-top: 6px
+        padding-bottom: 6px
+        margin-left: #{$spacing * 1.5 + px}
+        margin-right: #{$spacing * 1.5 + px}
+        margin-top: #{math.div($navHeight, 2) + px}
+        transform: translateY(-50%)
+        a
+            width: 92px
+            display: inline-block
+            text-align: center
+            margin-left: 2px
+            margin-right: 2px
+            padding-left: 14px
+            padding-right: 14px
+            padding-top: 8px
+            padding-bottom: 8px
+            border-radius: 50px

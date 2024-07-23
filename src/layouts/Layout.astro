@@ -1,13 +1,11 @@
 ---
-/*
-interface Props {
-	title: string;
-}
+import './_layout.sass';
 
-const { title } = Astro.props;
-*/
-import "../layouts/Layout.sass";
-import { SEO } from "astro-seo";
+import { SEO } from 'astro-seo';
+import { ViewTransitions } from 'astro:transitions';
+
+import Navigator from '../components/nav/navigator.astro';
+import Footer from '../components/footer/footer.astro';
 ---
 
 <!doctype html>
@@ -24,10 +22,10 @@ import { SEO } from "astro-seo";
 					title: "A Very Descriptive Title",
 					type: "A type.",
 					image: "https://stryxus.xyz/og.pngg",
-				}
+				},
 			}}
 			twitter={{
-				creator: "@Stryxus"
+				creator: "@Stryxus",
 			}}
 			extend={{
 				// extending the default link tags
@@ -43,8 +41,13 @@ import { SEO } from "astro-seo";
 				],
 			}}
 		/>
+		<ViewTransitions />
 	</head>
 	<body>
-		<slot />
+		<Navigator />
+		<main class="min-h-screen">
+			<slot />
+		</main>
+		<Footer />
 	</body>
 </html>

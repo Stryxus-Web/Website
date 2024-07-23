@@ -1,18 +1,125 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import  './_index.sass';
+
+import { ViewTransitions } from 'astro:transitions';
+import { Icon } from 'astro-icon/components'
+
+import Layout from '../layouts/layout.astro';
+
+import vid_back from '../assets/videos/home/back.mp4';
 ---
 
 <Layout>
-	<main>
-		<h1>Website under construction.</h1>
-	</main>
+    <ViewTransitions />
+    <video id="home-vid" class="-z-0 object-cover object-center fixed w-screen h-screen" preload="auto" muted autoplay loop>
+        <source src={vid_back} type="video/mp4" />
+    </video>
+    <h1 id="back-vid-name" class="absolute left-1/2 -bottom-16 transform -translate-x-1/2 px-8 py-4 rounded-full">Stryxus</h1>
+    <a id="back-vid-icon" class="absolute left-1/2 -bottom-32 transform -translate-x-1/2 p-4 rounded-full" href="#home-body" rel="noopener noreferrer nofollow">
+        <Icon name="fa/chevron-down-solid" />
+    </a>
+    <div class="h-screen"></div>
+    <div id="home-body" class="container mb-16 ml-auto mr-auto">
+        <div class="grid grid-cols-2 gap-8">
+            <div class="section break-inside-avoid-column">
+                <h1>My Notes</h1>
+                <div class="content">
+                    <small>A random selection of my notes.</small>
+                    <p>
+                        My journey began in my early teens, when I took up great interest in how technology worked just after getting my first laptop, studying Windows 7 and the games I played.
+                        <br><br>
+                        Working on an Intel Atom laptop, I took on the hobby of learning Java to mod and make server plugins for Minecraft; quickly attaining the entire stack of knowledge required to be ambitious in my work while sticking to principles.
+                        <br><br>
+                        Eventually, meeting new people within the Minecraft scene and releasing works but, that eventually came to an end towards the latter years of my teens. Taking up C# as my main language which I have used it ever since, 
+                        becoming proficient with many of its frameworks, from ASP.NET, to WPF.
+                        <br><br>
+                        Today, having learnt the in's and out's of Windows and much of Linux and macOS throughout the years, as well as a large part of the programming industry, I can now persue my ambitious projects and give away my knowledge through my website!
+                    </p>
+                </div>
+            </div>
+            <div class="section break-inside-avoid-column">
+                <h1>My Story</h1>
+                <div class="content">
+                    <p>
+                        My journey began in my early teens, when I took up great interest in how technology worked just after getting my first laptop, studying Windows 7 and the games I played.
+                        <br><br>
+                        Working on an Intel Atom laptop, I took on the hobby of learning Java to mod and make server plugins for Minecraft; quickly attaining the entire stack of knowledge required to be ambitious in my work while sticking to principles.
+                        <br><br>
+                        Eventually, meeting new people within the Minecraft scene and releasing works but, that eventually came to an end towards the latter years of my teens. Taking up C# as my main language which I have used it ever since, 
+                        becoming proficient with many of its frameworks, from ASP.NET, to WPF.
+                        <br><br>
+                        Today, having learnt the in's and out's of Windows and much of Linux and macOS throughout the years, as well as a large part of the programming industry, I can now persue my ambitious projects and give away my knowledge through my website!
+                    </p>
+                </div>
+            </div>
+            <div class="section break-inside-avoid-column">
+                <h1>My Art</h1>
+                <div class="content">
+                    <small>A random selection of my art.</small>
+                    <p>
+                        My journey began in my early teens, when I took up great interest in how technology worked just after getting my first laptop, studying Windows 7 and the games I played.
+                        <br><br>
+                        Working on an Intel Atom laptop, I took on the hobby of learning Java to mod and make server plugins for Minecraft; quickly attaining the entire stack of knowledge required to be ambitious in my work while sticking to principles.
+                        <br><br>
+                        Eventually, meeting new people within the Minecraft scene and releasing works but, that eventually came to an end towards the latter years of my teens. Taking up C# as my main language which I have used it ever since, 
+                        becoming proficient with many of its frameworks, from ASP.NET, to WPF.
+                        <br><br>
+                        Today, having learnt the in's and out's of Windows and much of Linux and macOS throughout the years, as well as a large part of the programming industry, I can now persue my ambitious projects and give away my knowledge through my website!
+                    </p>
+                </div>
+            </div>
+            <div class="section break-inside-avoid-column w-full">
+                <h1>My Skills</h1>
+                <div class="content grid grid-cols-2 gap-4">
+                    <small>A random selection of my skills.</small>
+                    <div>
+                        <h2>Languages</h2>
+                        <ul>
+                            <li><p>Rust</p></li>
+                            <li><p>C#</p></li>
+                            <li><p>Python</p></li>
+                            <li><p>Typescript</p></li>
+                            <li><p>Java</p></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2>Frameworks</h2>
+                        <ul>
+                            <li><p>ASP.NET</p></li>
+                            <li><p>WPF & Win32</p></li>
+                            <li><p>Blazor</p></li>
+                            <li><p>Astro</p></li>
+                            <li><p>React</p></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2>Libraries</h2>
+                        <ul>
+                            <li><p>Preact</p></li>
+                            <li><p>jQuery</p></li>
+                            <li><p>Bootstrap</p></li>
+                            <li><p>GSAP</p></li>
+                            <li><p>Newtonsoft.Json</p></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2>Tools</h2>
+                        <ul>
+                            <li><p>Visual Studio + VS Code</p></li>
+                            <li><p>Affinity Suite</p></li>
+                            <li><p>Unity</p></li>
+                            <li><p>Unreal Engine 5</p></li>
+                            <li><p>Cloudflare</p></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </Layout>
 
-<style lang="sass">
-	h1
-		font-size: 48px
-		position: absolute
-		top: 50%
-		left: 50%
-		transform: translateX(-50%) translateY(-50%)
-</style>
+<script>
+    import { astroLoad } from "./index";
+
+    document.addEventListener('astro:page-load', () => astroLoad());
+</script>

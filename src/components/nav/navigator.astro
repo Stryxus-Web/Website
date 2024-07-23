@@ -1,0 +1,43 @@
+---
+import './_navigator.sass';
+
+import { Image } from 'astro:assets';
+
+import img_avatar from '../../assets/images/avatar.png';
+
+const currentPath = Astro.url.pathname;
+const navItems = [
+    { path: '/notes', name: 'Notes' },
+    { path: '/work', name: 'Work' },
+    { path: '/play', name: 'Play' },
+    { path: '/art', name: 'Art' },
+    { path: '/health', name: 'Health' },
+    { path: '/contact', name: 'Contact' },
+]
+---
+
+<nav id="navigator"class="z-50 fixed -top-40 left-1/2 transform -translate-x-1/2" transition:persist="navigator">
+    <div class="buttons-container">
+        {navItems.slice(0, 3).map((item) => (
+            <a class={currentPath === item.path ? 'active' : ''} rel="noopener noreferrer nofollow" href={item.path}>
+                {item.name}
+            </a>
+        ))}
+    </div>
+    <a class={'avatar-container' + (currentPath === '/' ? ' active' : '')} rel="noopener noreferrer nofollow" href='/'>
+        <Image src={img_avatar} alt='Avatar' format='avif' />
+    </a>
+    <div class="buttons-container">
+        {navItems.slice(3, 6).map((item) => (
+            <a class={currentPath === item.path ? 'active' : ''} rel="noopener noreferrer nofollow" href={item.path}>
+                {item.name}
+            </a>
+        ))}
+    </div>
+</nav>
+
+<script>
+    import { astroLoad } from "./navigator";
+
+    document.addEventListener('astro:page-load', () => astroLoad());
+</script>

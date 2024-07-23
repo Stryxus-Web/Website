@@ -1,0 +1,56 @@
+@import '../_variables'
+
+#home-vid
+    opacity: 0
+    right: -100%
+
+#back-vid-name, #back-vid-icon, #home-body .section .content
+    background-color: rgba(0, 0, 0, $transparency)
+    backdrop-filter: blur($blurAmount)
+
+#back-vid-name, #back-vid-icon
+    opacity: 0
+
+#back-vid-name
+    font-family: 'Raider Crusader Laser'
+    font-weight: normal
+    font-style: normal
+    letter-spacing: unset
+    font-size: 48px
+
+#home-body
+    padding-top: #{$navHeight * 2.5 + px}
+    .section
+        margin: 0px auto
+        h1, h2
+            display: inline-block
+            padding-top: 12px
+            padding-bottom: 12px
+            padding-left: 22px
+            padding-right: 22px
+            border-top-left-radius: 25px
+            border-top-right-radius: 25px
+            background-color: rgba($green, $transparency)
+        h1
+            background-color: rgba($green, $transparency)
+            backdrop-filter: blur($blurAmount)
+        .content
+            padding: 36px
+            border-top-right-radius: 50px
+            border-bottom-right-radius: 50px
+            border-bottom-left-radius: 50px
+            small
+                position: absolute
+                top: 10px
+                left: 24px
+            h2
+                font-size: 24px
+                margin-bottom: 8px
+                border-bottom-left-radius: 25px
+                border-bottom-right-radius: 25px
+                background-color: rgba($green, $transparency)
+            ul
+                margin-left: 40px
+                list-style-type: square
+                li
+                    margin-bottom: 8px

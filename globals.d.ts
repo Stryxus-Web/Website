@@ -1,4 +1,4 @@
-declare module "*&imagetools" {
+declare module '*&imagetools' {
     /**
      * actual types
      * - code https://github.com/JonasKruckenberg/imagetools/blob/main/packages/core/src/output-formats.ts
