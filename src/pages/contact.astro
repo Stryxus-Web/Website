@@ -1,9 +1,49 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
+import './contact/_contact.sass';
 
-import Layout from "../layouts/layout.astro";
+import { ViewTransitions } from 'astro:transitions';
+import { Icon } from 'astro-icon/components';
+
+import Layout from "~/layouts/layout.astro";
+import { getEmail } from '~/server/mongomanager';
+
+const email: string = (await getEmail())[0]._email;
 ---
 
 <Layout>
     <ViewTransitions />
+    <div id="contact-body" class="page container mt-8 mb-8 md:mt-32 md:mb-32 ml-auto mr-auto">
+        <div class="grid grid-flow-row grid-cols-none md:gap-24 gap-8">
+            <div class="section break-inside-avoid-column">
+                <h1>Primary Contact Routes</h1>
+                <div class="content">
+                    <p>
+                        My primary contact routes are through Twitter (X) and my Discord guild. You will find the link at the bottom of this page!
+                        <iframe class="pt-4" src="https://discordapp.com/widget?id=1257793819110277183&theme=dark" width="100%" height="500" allowtransparency="true" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+                    </p>
+                </div>
+            </div>
+            <div class="section break-inside-avoid-column">
+                <h1>Email</h1>
+                <div class="content">
+                    <h2 id="email">
+                        {email}
+                        <button id="copy-email">
+                            <Icon name="fa/copy-solid" />
+                        </button>
+                    </h2>
+                    <p>
+                        Thanks to iCloud+ Hide My Email, I am able to proxy my email without exposing it.
+                        <br>
+                        This email will be regenerated and updated if abused so, always check back if you want to send something!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </Layout>
+
+<script>
+    import { astroLoad } from './contact/contact';
+    document.addEventListener('astro:page-load', astroLoad);
+</script>

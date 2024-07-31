@@ -1,0 +1,46 @@
+@import '../../lib/_variables'
+
+#home-typer, #home-vid, #home-vid-name, #home-vid-icon, #home-body .section
+    user-select: none
+
+#home-typer
+    font-family: 'Terminus'
+    font-size: 14px
+    letter-spacing: 1.25px
+    color: $darkgreen
+    line-height: 16px
+    span
+        color: rgba($green, $transparency)
+        
+#home-vid
+    opacity: 0
+    margin-top: #{$dividingLineSize * 2 + px}
+    transform: translateX(100vw)
+
+#home-vid-name, #home-vid-icon, #home-body .section .content
+    background-color: rgba(0, 0, 0, $transparency)
+
+#home-vid-name, #home-vid-icon
+    opacity: 0
+    backdrop-filter: blur($blurAmount)
+    transform: translateY(100vh)
+
+#home-vid-name
+    font-family: 'Raider Crusader Laser'
+    font-weight: normal
+    font-style: normal
+    letter-spacing: unset
+    font-size: 48px
+
+#home-body
+    background-color: black
+
+@media (min-width: theme('screens.lg'))
+    #home-vid-name, #home-vid-icon
+        top: unset !important
+
+@media (max-width: theme('screens.lg'))
+    #home-typer
+        transform: translateY(50px)
+    #home-vid-name, #home-vid-icon
+        bottom: unset !important

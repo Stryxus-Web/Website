@@ -5,3 +5,4 @@ css-obfuscator/
 
 .eslintcache
 *.local
+.env

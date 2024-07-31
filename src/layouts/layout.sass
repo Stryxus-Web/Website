@@ -1,0 +1,45 @@
+@use 'sass:math'
+    
+@import '../lib/_variables'
+@import '../lib/_fonts'
+@import '../lib/_elements'
+
+.page
+    margin-top: #{$navHeight * 2.5 + px}
+
+.dividing-line-top
+    clip-path: polygon(0% 0%, calc(60% - #{$dividingLineSize + px}) 0%, calc(60% + #{$dividingLineSize + px}) calc(100% - #{$dividingLineSize + px}), 100% calc(100% - #{$dividingLineSize + px}), 100% 100%, calc(60% + #{$dividingLineSize + px}) 100%, calc(60% - #{$dividingLineSize + px}) #{$dividingLineSize + px}, 0% #{$dividingLineSize + px})
+    background-color: $yellow
+    height: #{$dividingLineSize * 3 + px}
+    margin-top: -#{$dividingLineSize * 2 + px}
+    border-top: $darkestgreen ridge
+    border-bottom: $darkestgreen groove
+    border-left: none
+    border-right: none
+    border-width: #{$dividingLineSize + px}
+
+.section
+    margin: 0px auto
+    h1, h2
+        display: inline-block
+        padding-top: 12px
+        padding-bottom: 12px
+        padding-left: 22px
+        padding-right: 22px
+        background-color: $yellow
+        color: black
+    .content
+        border: 4px solid $yellow
+        padding: 36px
+        small
+            position: absolute
+            top: 10px
+            left: 24px
+        h2
+            font-size: 24px
+            margin-bottom: 8px
+        ul
+            margin-left: 40px
+            list-style-type: square
+            li
+                margin-bottom: 8px

@@ -1,43 +1,63 @@
 ---
-import './_navigator.sass';
+import './navigator.sass';
 
 import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components'
 
 import img_avatar from '../../assets/images/avatar.png';
 
 const currentPath = Astro.url.pathname;
 const navItems = [
+    { path: '/', name: 'Home' },
     { path: '/notes', name: 'Notes' },
-    { path: '/work', name: 'Work' },
-    { path: '/play', name: 'Play' },
     { path: '/art', name: 'Art' },
+    { path: '/play', name: 'Play' },
+    { path: '/work', name: 'Work' },
     { path: '/health', name: 'Health' },
     { path: '/contact', name: 'Contact' },
 ]
 ---
 
-<nav id="navigator"class="z-50 fixed -top-40 left-1/2 transform -translate-x-1/2" transition:persist="navigator">
-    <div class="buttons-container">
-        {navItems.slice(0, 3).map((item) => (
-            <a class={currentPath === item.path ? 'active' : ''} rel="noopener noreferrer nofollow" href={item.path}>
-                {item.name}
-            </a>
-        ))}
+<nav id="navigator" class="z-50 fixed flex justify-center w-full lg:top-12 top-0 left-1/2 transform -translate-x-1/2" transition:persist="navigator">
+    <div class="hidden lg:block">
+        <div class="buttons-container">
+            {navItems.slice(1, 4).map((item) => (
+                <a class={currentPath === item.path ? 'active' : ''} rel="noopener noreferrer nofollow" href={item.path} draggable="false">
+                    {item.name}
+                </a>
+            ))}
+        </div>
+        <a class={'avatar-container' + (currentPath === '/' ? ' active' : '')} rel="noopener noreferrer nofollow" href='/' draggable="false">
+            <Image src={img_avatar} alt='Avatar' format='avif' draggable="false" />
+        </a>
+        <div class="buttons-container">
+            {navItems.slice(4, 7).map((item) => (
+                <a class={currentPath === item.path ? 'active' : ''} rel="noopener noreferrer nofollow" href={item.path} draggable="false">
+                    {item.name}
+                </a>
+            ))}
+        </div>
     </div>
-    <a class={'avatar-container' + (currentPath === '/' ? ' active' : '')} rel="noopener noreferrer nofollow" href='/'>
-        <Image src={img_avatar} alt='Avatar' format='avif' />
-    </a>
-    <div class="buttons-container">
-        {navItems.slice(3, 6).map((item) => (
-            <a class={currentPath === item.path ? 'active' : ''} rel="noopener noreferrer nofollow" href={item.path}>
-                {item.name}
-            </a>
-        ))}
+    <div id="mobile-menu" class="absolute lg:hidden text-center text-black font-medium">
+        <button id="mobile-menu-button" class="flex items-center justify-center w-screen h-12 text-black focus:outline-none">
+            <Icon name="fa/bars-solid" />
+        </button>
+        <div id="mobile-menu-dropdown" class="hidden">
+            <div class="flex flex-col space-y-3 p-4">
+                {navItems.map((item) => (
+                    <a class={currentPath === item.path ? 'active' : ''} rel="noopener noreferrer nofollow" href={item.path} draggable="false">
+                        {item.name}
+                    </a>
+                ))}
+            </div>
+        </div>
     </div>
 </nav>
 
 <script>
-    import { astroLoad } from "./navigator";
-
-    document.addEventListener('astro:page-load', () => astroLoad());
+    import { astroBeforePreparation, astroLoad, updateNavLinks } from './navigator';
+    document.addEventListener('astro:page-load', astroLoad);
+    // Prevents to-same-page navigation which ended up breaking animations and more.
+	document.addEventListener('astro:before-preparation', astroBeforePreparation);
+	updateNavLinks();
 </script>

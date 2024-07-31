@@ -1,21 +1,28 @@
 @use 'sass:math'
     
-@import '../../variables'
+@import '../../lib/_variables'
     
 $spacing: 24
 
 nav
     opacity: 0
     height: #{$navHeight + px}
+    transform: translateY(-200px)
+
+    #mobile-menu
+        background-color: $yellow
+        backdrop-filter: blur($blurAmount)
 
     .avatar-container, .buttons-container
         backdrop-filter: blur($blurAmount)
 
-    .avatar-container, .buttons-container a
-        &:hover
-            background-color: rgba($lightgreen, $transparency)
+    .avatar-container, .button-container a
         &.active
-            background-color: rgba($green, $transparency)
+            background: linear-gradient(90deg, $darkestyellow 0%, $darkestgreen 100%)
+
+    .avatar-container
+        &:hover
+            background: linear-gradient(90deg, $darkeryellow 0%, $darkergreen 100%)
 
     .avatar-container
         float: left
@@ -40,6 +47,16 @@ nav
         margin-right: #{$spacing * 1.5 + px}
         margin-top: #{math.div($navHeight, 2) + px}
         transform: translateY(-50%)
+        &:nth-child(1), &:nth-child(3)
+            transform: scaleX(0) translateY(-50%)
+        &:nth-child(1)
+            a
+                &:hover
+                    background-color: $darkestyellow
+        &:nth-child(3)
+            a
+                &:hover
+                    background-color: $darkestgreen
         a
             width: 92px
             display: inline-block
@@ -51,3 +68,8 @@ nav
             padding-top: 8px
             padding-bottom: 8px
             border-radius: 50px
+
+@media (min-width: theme('screens.lg'))
+    #mobile-menu-button-container
+        top: unset !important
+        

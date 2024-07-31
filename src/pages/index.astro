@@ -1,77 +1,59 @@
 ---
-import  './_index.sass';
+import  './index/_index.sass';
 
 import { ViewTransitions } from 'astro:transitions';
-import { Icon } from 'astro-icon/components'
+import { Icon } from 'astro-icon/components';
 
-import Layout from '../layouts/layout.astro';
+import Layout from '~/layouts/layout.astro';
 
-import vid_back from '../assets/videos/home/back.mp4';
+import vid_back from '~/assets/videos/home/back.mp4';
+import vid_back_vp9 from '~/assets/videos/home/back.webm';
 ---
 
 <Layout>
     <ViewTransitions />
-    <video id="home-vid" class="-z-0 object-cover object-center fixed w-screen h-screen" preload="auto" muted autoplay loop>
+    <video id="home-vid" class="-z-1 object-contain object-bottom h-screen lg:w-4/5 ml-auto mr-auto" preload="auto" muted autoplay loop draggable="false" transition:persist="home-vid">
         <source src={vid_back} type="video/mp4" />
+        <source src={vid_back_vp9} type="video/webm" />
     </video>
-    <h1 id="back-vid-name" class="absolute left-1/2 -bottom-16 transform -translate-x-1/2 px-8 py-4 rounded-full">Stryxus</h1>
-    <a id="back-vid-icon" class="absolute left-1/2 -bottom-32 transform -translate-x-1/2 p-4 rounded-full" href="#home-body" rel="noopener noreferrer nofollow">
+    <div id="home-typer" class="-z-5 absolute top-0 left-0" transition:persist="home-typer"></div>
+    <h1 id="home-vid-name" class="absolute left-1/2 md:bottom-32 top-64 transform -translate-x-1/2 px-8 py-4 rounded-full" transition:persist="home-vid-name"></h1>
+    <a id="home-vid-icon" class="absolute left-1/2 md:bottom-16 top-96 transform -translate-x-1/2 p-4 rounded-full " href="#home-body-dividing-line" rel="noopener noreferrer nofollow" draggable="false" transition:persist="home-vid-icon">
         <Icon name="fa/chevron-down-solid" />
     </a>
-    <div class="h-screen"></div>
-    <div id="home-body" class="container mb-16 ml-auto mr-auto">
-        <div class="grid grid-cols-2 gap-8">
+    <div id="home-body-dividing-line" class="z-2 dividing-line-top"></div>
+    <div id="home-body" class="page z-1 container mb-8 md:mt-32 md:mb-32 ml-auto mr-auto">
+        <div class="grid grid-flow-row lg:grid-cols-2 grid-cols-none md:gap-24 gap-8">
             <div class="section break-inside-avoid-column">
-                <h1>My Notes</h1>
+                <h1>Brief</h1>
                 <div class="content">
-                    <small>A random selection of my notes.</small>
                     <p>
-                        My journey began in my early teens, when I took up great interest in how technology worked just after getting my first laptop, studying Windows 7 and the games I played.
+                        My journey began in my early teens, when I took up a serious interest in technology in all areas, just after getting my first laptop, studying Windows 7 and the games I played in-depth, sometimes dedicated weeks to singular aspects.
                         <br><br>
-                        Working on an Intel Atom laptop, I took on the hobby of learning Java to mod and make server plugins for Minecraft; quickly attaining the entire stack of knowledge required to be ambitious in my work while sticking to principles.
+                        Working on an Intel Atom laptop, I took on the hobby of learning Java to mod and make server plugins for Minecraft; quickly attaining the entire stack of knowledge required to be ambitious in my work while sticking to respective engineering principles.
                         <br><br>
-                        Eventually, meeting new people within the Minecraft scene and releasing works but, that eventually came to an end towards the latter years of my teens. Taking up C# as my main language which I have used it ever since, 
-                        becoming proficient with many of its frameworks, from ASP.NET, to WPF.
+                        Eventually, meeting new people within the Minecraft scene and releasing works but, it was to an end towards the latter years of my teens. Taking up C# as my main language which I have used it ever since, 
+                        becoming proficient with many of its frameworks, from ASP.NET, to WPF, to Unity and more!
                         <br><br>
-                        Today, having learnt the in's and out's of Windows and much of Linux and macOS throughout the years, as well as a large part of the programming industry, I can now persue my ambitious projects and give away my knowledge through my website!
+                        Today, having learnt the in's and out's of Windows, much of Linux and macOS throughout the years, as well as a large part of the software engineering industry, I can now persue my ambitious projects and give away my knowledge through this website! For free!
                     </p>
                 </div>
             </div>
             <div class="section break-inside-avoid-column">
-                <h1>My Story</h1>
+                <h1>Some Notes</h1>
                 <div class="content">
-                    <p>
-                        My journey began in my early teens, when I took up great interest in how technology worked just after getting my first laptop, studying Windows 7 and the games I played.
-                        <br><br>
-                        Working on an Intel Atom laptop, I took on the hobby of learning Java to mod and make server plugins for Minecraft; quickly attaining the entire stack of knowledge required to be ambitious in my work while sticking to principles.
-                        <br><br>
-                        Eventually, meeting new people within the Minecraft scene and releasing works but, that eventually came to an end towards the latter years of my teens. Taking up C# as my main language which I have used it ever since, 
-                        becoming proficient with many of its frameworks, from ASP.NET, to WPF.
-                        <br><br>
-                        Today, having learnt the in's and out's of Windows and much of Linux and macOS throughout the years, as well as a large part of the programming industry, I can now persue my ambitious projects and give away my knowledge through my website!
-                    </p>
+
                 </div>
             </div>
             <div class="section break-inside-avoid-column">
-                <h1>My Art</h1>
+                <h1>Some Art</h1>
                 <div class="content">
-                    <small>A random selection of my art.</small>
-                    <p>
-                        My journey began in my early teens, when I took up great interest in how technology worked just after getting my first laptop, studying Windows 7 and the games I played.
-                        <br><br>
-                        Working on an Intel Atom laptop, I took on the hobby of learning Java to mod and make server plugins for Minecraft; quickly attaining the entire stack of knowledge required to be ambitious in my work while sticking to principles.
-                        <br><br>
-                        Eventually, meeting new people within the Minecraft scene and releasing works but, that eventually came to an end towards the latter years of my teens. Taking up C# as my main language which I have used it ever since, 
-                        becoming proficient with many of its frameworks, from ASP.NET, to WPF.
-                        <br><br>
-                        Today, having learnt the in's and out's of Windows and much of Linux and macOS throughout the years, as well as a large part of the programming industry, I can now persue my ambitious projects and give away my knowledge through my website!
-                    </p>
+
                 </div>
             </div>
             <div class="section break-inside-avoid-column w-full">
-                <h1>My Skills</h1>
+                <h1>Some Skills</h1>
                 <div class="content grid grid-cols-2 gap-4">
-                    <small>A random selection of my skills.</small>
                     <div>
                         <h2>Languages</h2>
                         <ul>
@@ -79,7 +61,6 @@ import vid_back from '../assets/videos/home/back.mp4';
                             <li><p>C#</p></li>
                             <li><p>Python</p></li>
                             <li><p>Typescript</p></li>
-                            <li><p>Java</p></li>
                         </ul>
                     </div>
                     <div>
@@ -88,28 +69,25 @@ import vid_back from '../assets/videos/home/back.mp4';
                             <li><p>ASP.NET</p></li>
                             <li><p>WPF & Win32</p></li>
                             <li><p>Blazor</p></li>
-                            <li><p>Astro</p></li>
                             <li><p>React</p></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h2>Libraries</h2>
-                        <ul>
-                            <li><p>Preact</p></li>
-                            <li><p>jQuery</p></li>
-                            <li><p>Bootstrap</p></li>
-                            <li><p>GSAP</p></li>
-                            <li><p>Newtonsoft.Json</p></li>
                         </ul>
                     </div>
                     <div>
                         <h2>Tools</h2>
                         <ul>
-                            <li><p>Visual Studio + VS Code</p></li>
+                            <li><p>Visual Studio + Code</p></li>
                             <li><p>Affinity Suite</p></li>
                             <li><p>Unity</p></li>
                             <li><p>Unreal Engine 5</p></li>
                             <li><p>Cloudflare</p></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2>Other</h2>
+                        <ul>
+                            <li><p>Photography</p></li>
+                            <li><p>Health/Fitness</p></li>
+                            <li><p>Electronics</p></li>
                         </ul>
                     </div>
                 </div>
@@ -119,7 +97,6 @@ import vid_back from '../assets/videos/home/back.mp4';
 </Layout>
 
 <script>
-    import { astroLoad } from "./index";
-
-    document.addEventListener('astro:page-load', () => astroLoad());
+    import { astroLoad } from './index/index';
+    document.addEventListener('astro:page-load', astroLoad);
 </script>
