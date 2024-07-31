@@ -28,7 +28,7 @@ export default defineConfig({
   ],
   build: {
     serverEntry: 'entry.mjs',
-    inlineStylesheets: 'auto',
+    inlineStylesheets: 'always',
   },
   output: 'hybrid',
   adapter: node({
@@ -51,7 +51,7 @@ export default defineConfig({
     },
   },
   prefetch: {
-    prefetchAll: true,
+    prefetchAll: false,
     defaultStrategy: 'viewport'
   },
   experimental: {
