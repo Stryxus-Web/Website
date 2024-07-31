@@ -28,6 +28,7 @@ export default defineConfig({
   ],
   build: {
     serverEntry: 'entry.mjs',
+    inlineStylesheets: 'auto',
   },
   output: 'hybrid',
   adapter: node({
