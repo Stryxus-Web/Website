@@ -74,7 +74,7 @@ export async function astroLoad() {
     gsap.to('#home-vid-icon', { transform: 'translateY(0px) translateX(-50%)', opacity: 1, duration: 0.4, ease: 'power4.out' });
 
     const homeTyperEl = document.getElementById('home-typer') as Element;
-    typeLines(homeTyperEl, bootSequenceLines, 5, -1, 0, 250, () => {
+    typeLines(homeTyperEl, bootSequenceLines, 5, -1, 0, 250, undefined, () => {
         untypeText(homeTyperEl, 1, 8000);
     });
 
