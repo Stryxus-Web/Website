@@ -56,10 +56,11 @@ import Footer from '../components/footer/footer.astro';
 
 <script>
 	import { updateMediaQueries } from '~/lib/mediaQueries';
-	import { astroLoad } from './layout';
+	import { astroLoad, init } from './layout';
 
 	window.addEventListener('resize', updateMediaQueries);
 	document.addEventListener('DOMContentLoaded', updateMediaQueries);
 	document.addEventListener('astro:after-swap', updateMediaQueries);
 	document.addEventListener('astro:page-load', astroLoad);
+	init();
 </script>
