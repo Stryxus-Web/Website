@@ -1,64 +1,51 @@
+import { delay } from "./async";
 import { randRangeInt } from "./random";
 
 // Change the parameter lists to their own types
 
-export async function typeLines(element: Element, lines: string[], speed: number, lineDelay: number = 1000, lineDelayMin?: number, lineDelayMax?: number, onComplete?: () => void) {
+export async function typeLines(element: Element, lines: string[], typeSpeed: number, lineSpeed: number = 1000, lineSppedMin?: number, lineSpeedMax?: number, beginDelay?: number, onComplete?: () => void) {
+    if (beginDelay) await delay(beginDelay);
     for (let i = 0; i < lines.length; i++) {
-        await typeText(element, lines[i], speed);
-        element.innerHTML += '<br>';
-        
-        // Determine the delay for the next line
-        let delay = lineDelay;
-        if (lineDelay === -1 && lineDelayMin !== undefined && lineDelayMax !== undefined) {
-            delay = randRangeInt(lineDelayMin, lineDelayMax);
-        }
-        
-        // Wait for the specified delay before typing the next line
-        await new Promise(resolve => setTimeout(resolve, delay));
-    }
-    if (onComplete) onComplete();
-}
-
-export async function typeText(element: Element, text: string, speed: number, onComplete?: () => void) {
-    return await new Promise<void>((resolve, reject) => {
-        let i = 0;
-        const typingInterval = setInterval(() => {
-            if (element) {
-                if (i < text.length) {
-                    const char = text[i];
-                    element.append(char);
-                    i++;
-                } else {
-                    clearInterval(typingInterval);
-                    if (onComplete) onComplete();
-                    resolve();
-                }
-            } else {
-                clearInterval(typingInterval);
-                reject();
+        if (element) {
+            await typeText(element, lines[i], typeSpeed);
+            element.innerHTML += '<br>';
+            
+            let lDelay = lineSpeed;
+            if (lineSpeed === -1 && lineSppedMin !== undefined && lineSpeedMax !== undefined) {
+                lDelay = randRangeInt(lineSppedMin, lineSpeedMax);
             }
-        }, speed);
-    });
+    
+            await delay(lDelay);
+        }
+    }
+    if (onComplete && element) onComplete();
 }
 
-export async function untypeText(element: Element, speed: number, delay?: number, onComplete?: () => void) {
-    return await new Promise<void>((resolve, reject) => {
-        setTimeout(() => {
-            let i = element.innerHTML.length;
-            const typingInterval = setInterval(() => {
-                if (element) {
-                    if (i > 0) {
-                        element.innerHTML = element.innerHTML.substring(0, element.innerHTML.length - 2)
-                    } else {
-                        clearInterval(typingInterval);
-                        if (onComplete) onComplete();
-                        resolve();
-                    }
-                } else {
-                    clearInterval(typingInterval);
-                    reject();
+export async function typeText(element: Element, text: string, typeSpeed: number, beginDelay?: number, onComplete?: () => void) {
+    if (beginDelay) await delay(beginDelay);
+    for (let i = 0; i < text.length; i++) {
+        if (element) {
+            if (i < text.length) {
+                const char = text[i];
+                element.append(char);
+                await delay(typeSpeed);
+            }
+        }
+    }
+    if (onComplete && element) onComplete();
+}
+
+export async function untypeText(element: Element, typeSpeed: number, beginDelay?: number, onComplete?: () => void) {
+    if (beginDelay) await delay(beginDelay);
+    if (element.textContent) {
+        for (let i = 0; i < element.textContent.length; i++) {
+            if (element) {
+                if (i > 0) {
+                    element.innerHTML = element.innerHTML.substring(0, element.innerHTML.length - 2);
+                    await delay(typeSpeed);
                 }
-            }, speed);
-        }, delay ? delay : 0);
-    });
+            }
+        }
+        if (onComplete) onComplete();
+    }
 }
