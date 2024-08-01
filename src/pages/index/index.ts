@@ -67,16 +67,17 @@ const bootSequenceLines = [
 ];
 
 export async function astroLoad() {
+
+    const homeTyperEl = document.getElementById('home-typer') as Element;
+
     gsap.to('#home-vid', { transform: 'translateX(0px)', opacity: 1, duration: 0.6, ease: 'power4.out' });
     gsap.to('#home-vid-name', { transform: 'translateY(0px)  translateX(-50%)', opacity: 1, duration: 0.4, ease: 'power4.out', onComplete: () => {
         typeText(document.getElementById('home-vid-name') as Element, 'Stryxus', 40);
+        typeLines(homeTyperEl, bootSequenceLines, 5, -1, 0, 250, undefined, () => {
+            untypeText(homeTyperEl, 1, 8000);
+        });
     } });
     gsap.to('#home-vid-icon', { transform: 'translateY(0px) translateX(-50%)', opacity: 1, duration: 0.4, ease: 'power4.out' });
-
-    const homeTyperEl = document.getElementById('home-typer') as Element;
-    typeLines(homeTyperEl, bootSequenceLines, 5, -1, 0, 250, undefined, () => {
-        untypeText(homeTyperEl, 1, 8000);
-    });
 
     let i = 0;
 
