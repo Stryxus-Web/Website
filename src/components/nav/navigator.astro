@@ -22,30 +22,30 @@ const navItems = [
     <div class="hidden lg:block">
         <div class="buttons-container">
             {navItems.slice(1, 4).map((item) => (
-                <a class={currentPath === item.path ? 'active' : ''} rel="noopener noreferrer nofollow" href={item.path} draggable="false">
+                <a class={currentPath === item.path ? 'active' : ''} rel="noopener noreferrer nofollow" href={item.path} draggable="false" aria-label={`${item.name} Nav Button`}>
                     {item.name}
                 </a>
             ))}
         </div>
-        <a class={'avatar-container' + (currentPath === '/' ? ' active' : '')} rel="noopener noreferrer nofollow" href='/' draggable="false">
+        <a class={'avatar-container' + (currentPath === '/' ? ' active' : '')} rel="noopener noreferrer nofollow" href='/' draggable="false" aria-label="Home Nav Button">
             <Image src={img_avatar} alt='Avatar' format='avif' draggable="false" />
         </a>
         <div class="buttons-container">
             {navItems.slice(4, 7).map((item) => (
-                <a class={currentPath === item.path ? 'active' : ''} rel="noopener noreferrer nofollow" href={item.path} draggable="false">
+                <a class={currentPath === item.path ? 'active' : ''} rel="noopener noreferrer nofollow" href={item.path} draggable="false"  aria-label={`${item.name} Nav Button`}>
                     {item.name}
                 </a>
             ))}
         </div>
     </div>
     <div id="mobile-menu" class="absolute lg:hidden text-center text-black font-medium">
-        <button id="mobile-menu-button" class="flex items-center justify-center w-screen h-12 text-black focus:outline-none">
+        <button id="mobile-menu-button" class="flex items-center justify-center w-screen h-12 text-black focus:outline-none" aria-label="Mobile Nav Menu Button">
             <Icon name="fa/bars-solid" />
         </button>
         <div id="mobile-menu-dropdown" class="hidden">
             <div class="flex flex-col space-y-3 p-4">
                 {navItems.map((item) => (
-                    <a class={currentPath === item.path ? 'active' : ''} rel="noopener noreferrer nofollow" href={item.path} draggable="false">
+                    <a class={currentPath === item.path ? 'active' : ''} rel="noopener noreferrer nofollow" href={item.path} draggable="false"  aria-label={`${item.name} Nav Button`}>
                         {item.name}
                     </a>
                 ))}
