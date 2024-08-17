@@ -16,13 +16,11 @@ nav
     .avatar-container, .buttons-container
         backdrop-filter: blur($blurAmount)
 
-    .avatar-container, .button-container a
+    .avatar-container, .buttons-container a
         &.active
-            background: linear-gradient(90deg, $darkestyellow 0%, $darkestgreen 100%)
-
-    .avatar-container
+            background-color: rgba($darkergreen, $transparency)
         &:hover
-            background: linear-gradient(90deg, $darkeryellow 0%, $darkergreen 100%)
+            background-color: rgba($darkestgreen, $transparency)
 
     .avatar-container
         float: left
@@ -49,14 +47,6 @@ nav
         transform: translateY(-50%)
         &:nth-child(1), &:nth-child(3)
             transform: scaleX(0) translateY(-50%)
-        &:nth-child(1)
-            a
-                &:hover
-                    background-color: $darkestyellow
-        &:nth-child(3)
-            a
-                &:hover
-                    background-color: $darkestgreen
         a
             width: 92px
             display: inline-block
