@@ -7,14 +7,12 @@ import { Icon } from 'astro-icon/components';
 import Layout from '~/layouts/layout.astro';
 
 import vid_back from '~/assets/videos/home/back.mp4';
-import vid_back_vp9 from '~/assets/videos/home/back.webm';
 ---
 
 <Layout>
     <ViewTransitions />
     <video id="home-vid" class="-z-1 object-contain object-bottom h-screen lg:w-4/5 ml-auto mr-auto" preload="auto" muted autoplay loop draggable="false" transition:persist="home-vid">
         <source src={vid_back} type="video/mp4" />
-        <source src={vid_back_vp9} type="video/webm" />
     </video>
     <div id="home-typer" class="-z-5 absolute top-0 left-0" transition:persist="home-typer"></div>
     <h1 id="home-vid-name" class="absolute left-1/2 md:bottom-32 top-64 transform -translate-x-1/2 px-8 py-4 rounded-full" transition:persist="home-vid-name"></h1>
