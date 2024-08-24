@@ -53,7 +53,6 @@ export default defineConfig({
   experimental: {
     directRenderScript: true,
     clientPrerender: true,
-    rewriting: true,
     serverIslands: true,
   },
 });
