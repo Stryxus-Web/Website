@@ -1,8 +1,6 @@
 import gsap from 'gsap';
 
-import { isBreakpointDownLG } from '~/lib/mediaQueries';
-import { typeLines, typeText, untypeText } from '~/lib/typer';
-import { delay } from '~/lib/async';
+import { typeLines, typeText } from '~/lib/typer';
 
 const bootSequenceLines = [
     '[SYSTEM] Initializing StryxCore v3.7.2...',
@@ -72,7 +70,9 @@ export async function astroLoad() {
 
     gsap.to('#home-vid', { transform: 'translateX(0px)', opacity: 1, duration: 0.6, ease: 'power4.out' });
     gsap.to('#home-vid-name', { transform: 'translateY(0px)  translateX(-50%)', opacity: 1, duration: 0.4, ease: 'power4.out', onComplete: () => {
-        typeText(document.getElementById('home-vid-name') as Element, 'Stryxus', 40);
+        typeText(document.getElementById('home-vid-name') as Element, 'Stryxus', {
+            typeSpeed: 40
+        });
         typeLines(homeTyperEl, bootSequenceLines, {
             typeSpeed: 5,
             lineSpeed: -1,
