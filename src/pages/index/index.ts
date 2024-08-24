@@ -73,25 +73,14 @@ export async function astroLoad() {
     gsap.to('#home-vid', { transform: 'translateX(0px)', opacity: 1, duration: 0.6, ease: 'power4.out' });
     gsap.to('#home-vid-name', { transform: 'translateY(0px)  translateX(-50%)', opacity: 1, duration: 0.4, ease: 'power4.out', onComplete: () => {
         typeText(document.getElementById('home-vid-name') as Element, 'Stryxus', 40);
-        typeLines(homeTyperEl, bootSequenceLines, 5, -1, 0, 250, undefined, () => {
-            untypeText(homeTyperEl, 1, 8000);
+        typeLines(homeTyperEl, bootSequenceLines, {
+            typeSpeed: 5,
+            lineSpeed: -1,
+            lineSpeedMin: 0,
+            lineSpeedMax: 350,
+            emulateConsoleScroll: true,
+            emulateConsoleLineAmount: 8,
         });
     } });
     gsap.to('#home-vid-icon', { transform: 'translateY(0px) translateX(-50%)', opacity: 1, duration: 0.4, ease: 'power4.out' });
-
-    let i = 0;
-
-    async function loop() {
-        if (i < bootSequenceLines.length - 1 && homeTyperEl) {
-            const lineHeight = Number(window.getComputedStyle(homeTyperEl).lineHeight.substring(0, 2));
-            gsap.to(homeTyperEl, { y: -(i * lineHeight), duration: 0.4, ease: 'power4.out' });
-            i++;
-            await delay(isBreakpointDownLG.value ? 300 : 650);
-            await loop();
-        }
-    }
-
-    setTimeout(async () => {
-        await loop()
-    }, isBreakpointDownLG.value ? 2000 : 3500);
 }

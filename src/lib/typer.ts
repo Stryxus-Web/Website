@@ -1,51 +1,84 @@
+import gsap from 'gsap';
+
 import { delay } from "./async";
 import { randRangeInt } from "./random";
 
-// Change the parameter lists to their own types
+type typedLinesOptions = {
+    typeSpeed: number, 
+    lineSpeed: number, 
+    lineSpeedMin?: number, 
+    lineSpeedMax?: number, 
+    beginDelay?: number, 
+    emulateConsoleScroll?: boolean,
+    emulateConsoleLineAmount?: number,
+    onComplete?: () => void,
+};
 
-export async function typeLines(element: Element, lines: string[], typeSpeed: number, lineSpeed: number = 1000, lineSppedMin?: number, lineSpeedMax?: number, beginDelay?: number, onComplete?: () => void) {
-    if (beginDelay) await delay(beginDelay);
+export async function typeLines(element: Element, lines: string[], options: typedLinesOptions) {
+    if (options.beginDelay) await delay(options.beginDelay);
+
+    var emulatedScrollLines = 0;
     for (let i = 0; i < lines.length; i++) {
         if (element) {
-            await typeText(element, lines[i], typeSpeed);
+            if (options.emulateConsoleScroll && options.emulateConsoleLineAmount) {
+                if (i > options.emulateConsoleLineAmount) {
+                    const lineHeight = Number(window.getComputedStyle(element).lineHeight.substring(0, 2));
+                    gsap.to(element, { y: -(emulatedScrollLines * lineHeight), duration: 0.4, ease: 'power4.out' });
+                    emulatedScrollLines++;
+                }
+            }
+
+            await typeText(element, lines[i], options);
             element.innerHTML += '<br>';
             
-            let lDelay = lineSpeed;
-            if (lineSpeed === -1 && lineSppedMin !== undefined && lineSpeedMax !== undefined) {
-                lDelay = randRangeInt(lineSppedMin, lineSpeedMax);
+            let lDelay = options.lineSpeed;
+            if (options.lineSpeed === -1 && options.lineSpeedMin !== undefined && options.lineSpeedMax !== undefined) {
+                lDelay = randRangeInt(options.lineSpeedMin, options.lineSpeedMax);
             }
     
             await delay(lDelay);
         }
     }
-    if (onComplete && element) onComplete();
+    if (options.onComplete && element) options.onComplete();
 }
 
-export async function typeText(element: Element, text: string, typeSpeed: number, beginDelay?: number, onComplete?: () => void) {
-    if (beginDelay) await delay(beginDelay);
+type typedTextOptions = {
+    typeSpeed: number, 
+    beginDelay?: number, 
+    onComplete?: () => void,
+};
+
+export async function typeText(element: Element, text: string, options: typedTextOptions) {
+    if (options.beginDelay) await delay(options.beginDelay);
     for (let i = 0; i < text.length; i++) {
         if (element) {
             if (i < text.length) {
                 const char = text[i];
                 element.append(char);
-                await delay(typeSpeed);
+                await delay(options.typeSpeed);
             }
         }
     }
-    if (onComplete && element) onComplete();
+    if (options.onComplete && element) options.onComplete();
 }
 
-export async function untypeText(element: Element, typeSpeed: number, beginDelay?: number, onComplete?: () => void) {
-    if (beginDelay) await delay(beginDelay);
+type untypedTextOptions = {
+    typeSpeed: number, 
+    beginDelay?: number, 
+    onComplete?: () => void,
+};
+
+export async function untypeText(element: Element, options: untypedTextOptions) {
+    if (options.beginDelay) await delay(options.beginDelay);
     if (element.textContent) {
         for (let i = 0; i < element.textContent.length; i++) {
             if (element) {
                 if (i > 0) {
                     element.innerHTML = element.innerHTML.substring(0, element.innerHTML.length - 2);
-                    await delay(typeSpeed);
+                    await delay(options.typeSpeed);
                 }
             }
         }
-        if (onComplete) onComplete();
+        if (options.onComplete) options.onComplete();
     }
 }
