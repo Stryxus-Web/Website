@@ -10,7 +10,6 @@
     "prod": "node entry.mjs"
   },
   "dependencies": {
-    "@astrojs/node": "^8.3.3",
     "@astrojs/preact": "^3.5.1",
     "@astrojs/tailwind": "^5.1.0",
     "@fastify/middie": "^8.3.1",
@@ -29,9 +28,10 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.3",
+    "@astrojs/node": "^9.0.0-alpha.1",
     "@types/node": "^22.5.0",
     "@types/postcss-import": "^14.0.3",
-    "astro": "^4.14.5",
+    "astro": "^5.0.0-alpha.1",
     "astro-icon": "^1.1.1",
     "astro-robots-txt": "^1.0.0",
     "astro-seo": "^0.8.4",
