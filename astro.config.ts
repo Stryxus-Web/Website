@@ -51,7 +51,6 @@ export default defineConfig({
     },
   },
   experimental: {
-    directRenderScript: true,
     clientPrerender: true,
     serverIslands: true,
   },
