@@ -17,11 +17,11 @@ type typedLinesOptions = {
 export async function typeLines(element: Element, lines: string[], options: typedLinesOptions) {
     if (options.beginDelay) await delay(options.beginDelay);
 
-    var emulatedScrollLines = 0;
+    var emulatedScrollLines = 1;
     for (let i = 0; i < lines.length; i++) {
         if (element) {
             if (options.emulateConsoleScroll && options.emulateConsoleLineAmount) {
-                if (i > options.emulateConsoleLineAmount) {
+                if (i >= options.emulateConsoleLineAmount + 1) {
                     const lineHeight = Number(window.getComputedStyle(element).lineHeight.substring(0, 2));
                     gsap.to(element, { y: -(emulatedScrollLines * lineHeight), duration: 0.4, ease: 'power4.out' });
                     emulatedScrollLines++;

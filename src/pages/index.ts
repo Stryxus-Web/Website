@@ -79,7 +79,7 @@ export async function astroLoad() {
             lineSpeedMin: 0,
             lineSpeedMax: 350,
             emulateConsoleScroll: true,
-            emulateConsoleLineAmount: 8,
+            emulateConsoleLineAmount: 5,
         });
     } });
     gsap.to('#home-vid-icon', { transform: 'translateY(0px) translateX(-50%)', opacity: 1, duration: 0.4, ease: 'power4.out' });
