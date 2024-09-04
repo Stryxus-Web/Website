@@ -1,35 +1,43 @@
 ---
-import '../footer/footer.sass'
+import '../footer/footer.sass';
 
-import { Icon } from 'astro-icon/components'
+import { Icon } from 'astro-icon/components';
 ---
 
-<footer class="h-16 flex justify-center" transition:persist="footer">
-    <div class="flex flex-row">
-        <div class="link-container flex-none">
+<footer class="h-16 flex flex-col md:flex-row w-full" transition:persist="footer">
+    <div class="side-container justify-center align-middle w-screen md:w-56">
+        <p>© {new Date().getFullYear()} Stryxus</p>
+    </div>
+    <div class="flex-grow flex justify-center align-middle">
+        <div class="link-container">
             <a rel="noopener noreferrer nofollow" target="_blank" href="https://x.com/Stryxus" draggable="false">
                 <Icon name="fa/x-twitter-brands-solid" />
             </a>
         </div>
-        <div class="link-container flex-none">
+        <div class="link-container">
             <a rel="noopener noreferrer nofollow" target="_blank" href="https://x.com/Stryxus" draggable="false">
                 <Icon name="fa/discord-brands-solid" />
             </a>
         </div>
-        <div class="link-container flex-none">
+        <div class="link-container">
             <a rel="noopener noreferrer nofollow" target="_blank" href="https://github.com/Stryxus" draggable="false">
                 <Icon name="fa/github-brands-solid" />
             </a>
         </div>
-        <div class="link-container flex-none">
+        <div class="link-container">
             <a rel="noopener noreferrer nofollow" target="_blank" href="https://www.instagram.com/stryxus_/" draggable="false">
                 <Icon name="fa/instagram-brands-solid" />
             </a>
         </div>
-        <div class="link-container flex-none">
+        <div class="link-container">
             <a rel="noopener noreferrer nofollow" target="_blank" href="https://www.youtube.com/channel/UCnLgNxhTuEsl6M_d8CKQS8g" draggable="false">
                 <Icon name="fa/youtube-brands-solid" />
             </a>
         </div>
+    </div>
+    <div class="side-container justify-center align-middle w-screen md:w-56">
+        <button draggable="false">
+            <p>About this website</p>
+        </button>
     </div>
 </footer>
