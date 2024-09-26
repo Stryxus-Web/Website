@@ -30,7 +30,7 @@ export default defineConfig({
     serverEntry: 'entry.mjs',
     inlineStylesheets: 'always',
   },
-  output: 'hybrid',
+  output: 'static',
   adapter: node({
     mode: 'middleware'
   }),
@@ -52,6 +52,5 @@ export default defineConfig({
   },
   experimental: {
     clientPrerender: true,
-    serverIslands: true,
   },
 });
