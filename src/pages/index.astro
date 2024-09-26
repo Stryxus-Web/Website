@@ -1,7 +1,6 @@
 ---
 import  './_index.sass';
 
-import { ViewTransitions } from 'astro:transitions';
 import { Icon } from 'astro-icon/components';
 
 import Layout from '~/layouts/layout.astro';
@@ -11,7 +10,6 @@ import vid_back_vp9 from '~/assets/videos/home/back.webm';
 ---
 
 <Layout>
-    <ViewTransitions />
     <video id="home-vid" class="-z-1 object-contain object-bottom h-screen w-5/6 ml-auto mr-auto" preload="auto" muted autoplay loop draggable="false" transition:persist="home-vid">
         <source src={vid_back} type="video/mp4" />
         <source src={vid_back_vp9} type="video/webm" />

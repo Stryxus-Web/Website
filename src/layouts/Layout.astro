@@ -2,7 +2,7 @@
 import './layout.sass';
 
 import { SEO } from 'astro-seo';
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter, fade } from 'astro:transitions';
 
 import { yellow } from '~/lib/variables';
 import Navigator from '../components/nav/navigator.astro';
@@ -43,7 +43,7 @@ import Footer from '../components/footer/footer.astro';
 				],
 			}}
 		/>
-		<ViewTransitions />
+		<ClientRouter transition:animate={fade({ duration: '0.4s' })} />
 	</head>
 	<body>
 		<Navigator />

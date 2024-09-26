@@ -1,7 +1,6 @@
 ---
 import './_contact.sass';
 
-import { ViewTransitions } from 'astro:transitions';
 import { Icon } from 'astro-icon/components';
 
 import Layout from "~/layouts/layout.astro";
@@ -11,7 +10,6 @@ const email: string = (await getEmail())[0]._email;
 ---
 
 <Layout>
-    <ViewTransitions />
     <div id="contact-body" class="page container mt-8 mb-8 md:mt-32 md:mb-32 ml-auto mr-auto">
         <div class="grid grid-flow-row grid-cols-none md:gap-24 gap-8">
             <div class="section break-inside-avoid-column">
