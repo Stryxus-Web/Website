@@ -1,0 +1,3 @@
+[submodule "modules/Android-System-Bridge"]
+	path = modules/Android-System-Bridge
+	url = https://github.com/Stryxus-Web/Android-System-Bridge

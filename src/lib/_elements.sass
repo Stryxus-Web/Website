@@ -10,17 +10,34 @@ html
     overflow-y: scroll
     scroll-behavior: smooth
 
-// Scrollbar
+// Header styles
+h1
+    font-size: clamp(32px, calc(32px + 2vw), 48px)
 
-/* width */
-::-webkit-scrollbar
-    width: 16px
-    margin-right: 16px
+h2
+    font-size: clamp(24px, calc(24px + 2vw), 40px)
 
-/* Track */
-::-webkit-scrollbar-track
-    background-color: black
+h3
+    font-size: clamp(18px, calc(18px + 2vw), 32px)
 
-/* Handle */
-::-webkit-scrollbar-thumb
-    background: $yellow
+h4
+    font-size: clamp(16px, calc(16px + 1vw), 24px)
+
+h5, h6
+    font-size: clamp(13px, calc(13px + 1vw), 20px)
+
+// Media query for larger screens
+@media screen and (min-width: 1200px)
+    h1
+        font-size: 48px
+    h2
+        font-size: 40px
+    h3
+        font-size: 32px
+    h4
+        font-size: 24px
+    h5, h6
+        font-size: 20px
+
+
+
