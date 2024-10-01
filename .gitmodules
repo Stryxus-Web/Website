@@ -1,3 +1,6 @@
 [submodule "modules/Android-System-Bridge"]
-	path = modules/Android-System-Bridge
+	path = src/modules/Android-System-Bridge
 	url = https://github.com/Stryxus-Web/Android-System-Bridge
+[submodule "modules/wadb"]
+	path = modules/wadb
+	url = https://github.com/GoogleChromeLabs/wadb/
