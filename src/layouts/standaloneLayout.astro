@@ -1,0 +1,64 @@
+---
+import './standaloneLayout.sass';
+
+import { SEO } from 'astro-seo';
+import { ClientRouter, fade } from 'astro:transitions';
+
+import { yellow } from '~/lib/variables';
+import Navigator from '~/components/nav/navigator.astro';
+import Footer from '~/components/footer/footer.astro';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="theme-color" content={yellow}>
+		<SEO
+			title="Stryxus"
+			description="Stryxus' Personal Website."
+			openGraph={{
+				basic: {
+					title: "Stryxus' Personal Website.",
+					type: "website",
+					image: "https://stryxus.xyz/og.png",
+				},
+			}}
+			twitter={{
+				creator: "@Stryxus",
+			}}
+			extend={{
+				// extending the default link tags
+				link: [{ rel: "icon", href: "/favicon.png" }],
+				// extending the default meta tags
+				meta: [
+					{
+						name: "twitter:image",
+						content: "https://stryxus.xyz/og.png",
+					},
+					{ name: "twitter:title", content: "Stryxus" },
+					{ name: "twitter:description", content: "Stryxus' Personal Website." },
+				],
+			}}
+		/>
+		<ClientRouter transition:animate={fade({ duration: '0.4s' })} />
+	</head>
+	<body>
+		<main class="min-h-screen">
+			<slot />
+		</main>
+	</body>
+</html>
+
+<script>
+	import { updateMediaQueries } from '~/lib/mediaQueries';
+	import { astroLoad, init } from './layout';
+
+	window.addEventListener('resize', updateMediaQueries);
+	document.addEventListener('DOMContentLoaded', updateMediaQueries);
+	document.addEventListener('astro:after-swap', updateMediaQueries);
+	document.addEventListener('astro:page-load', astroLoad);
+	init();
+</script>

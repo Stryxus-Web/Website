@@ -31,6 +31,7 @@
     "@astrojs/node": "^9.0.0-alpha.1",
     "@types/node": "^22.7.2",
     "@types/postcss-import": "^14.0.3",
+    "@types/w3c-web-usb": "^1.0.10",
     "astro": "^5.0.0-alpha.2",
     "astro-icon": "^1.1.1",
     "astro-robots-txt": "^1.0.0",

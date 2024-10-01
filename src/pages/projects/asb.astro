@@ -1,0 +1,27 @@
+---
+import './asb.sass'
+
+import { Picture } from 'astro:assets';
+
+import Layout from '~/layouts/standaloneLayout.astro';
+import ConnectScreen from "~/components/projects/asb/connectScreen.astro"
+
+import Logo from '~/assets/images/projects/asb/logo.svg';
+---
+
+<Layout>
+    <div class="page page-asb justify-center">
+        <div id="title" class="flex grow justify-center">
+            <h1>Android System Bridge</h1>
+        </div>
+        <ConnectScreen />
+        <div class="grid md:grid-cols-3 gap-4">
+
+        </div>
+    </div>
+</Layout>
+
+<script>
+    import { astroLoad } from "~/pages/projects/asb";
+    document.addEventListener("astro:page-load", astroLoad);
+</script>
