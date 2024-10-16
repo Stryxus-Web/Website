@@ -1,6 +1,8 @@
+/*
+
 import { WebUsbTransport, AdbClient, type KeyStore, type Options, Message, MessageHeader } from "modules/wadb/src";
 import { WebUSBDevice } from "~/lib/standards/webusb";
-import init, { } from "~/modules/Android-System-Bridge/pkg/asb";
+//import init, { } from "~/modules/Android-System-Bridge/pkg/asb";
 
 // TODO: Convert as much of this as possible to Rust WASM, slowly but surely as I learn Rust.
 
@@ -17,12 +19,10 @@ const options: Options = {
 export async function astroLoad() {
     document.getElementById("connectButton")?.addEventListener("click", async () => {
         await initWasm();
-        /*
         device = new WebUSBDevice();
         if (await device.connect()) {
 
         }
-        */
 
         try {
             await connectADB();
@@ -103,3 +103,5 @@ async function initWasm() {
     }
     return asbWasm;
 }
+
+*/
