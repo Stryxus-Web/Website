@@ -30,7 +30,7 @@ export default defineConfig({
     serverEntry: 'entry.mjs',
     inlineStylesheets: 'always',
   },
-  output: 'static',
+  output: 'server',
   adapter: node({
     mode: 'middleware'
   }),

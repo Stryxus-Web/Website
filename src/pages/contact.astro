@@ -1,5 +1,4 @@
 ---
-export const prerender = false; // This page needs to be rendered
 import './contact.sass';
 
 import { Icon } from 'astro-icon/components';
@@ -7,7 +6,7 @@ import { Icon } from 'astro-icon/components';
 import Layout from "~/layouts/layout.astro";
 import { getEmail } from '~/server/mongomanager';
 
-const email: string = (await getEmail())[0]._email;
+const email: string = "Error: Unable to retrieve email" || (await getEmail())[0]._email;
 ---
 
 <Layout>
