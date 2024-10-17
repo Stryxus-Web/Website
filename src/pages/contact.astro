@@ -6,7 +6,14 @@ import { Icon } from 'astro-icon/components';
 import Layout from "~/layouts/layout.astro";
 import { getEmail } from '~/server/mongomanager';
 
-const email: string = "Error: Unable to retrieve email" || (await getEmail())[0]._email;
+let email: string = "Error: Unable to retrieve email";
+
+try {
+    const result = await getEmail();
+    if (result[0]._email) {
+        email = result[0]._email;
+    }
+} catch (error) {}
 ---
 
 <Layout>
