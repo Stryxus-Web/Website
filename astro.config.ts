@@ -14,7 +14,9 @@ export default defineConfig({
     preact({
       compat: true
     }), 
-    tailwind(), 
+    tailwind({
+      applyBaseStyles: false,
+    }),
     robotsTxt({
       sitemap: true,
       policy: [{

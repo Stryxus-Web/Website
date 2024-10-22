@@ -4,6 +4,7 @@
     "baseUrl": ".",
     "jsxImportSource": "preact",
     "paths": {
+      "@/*": ["./src/*"],
       "~/*": ["src/*"],
       "react": ["./node_modules/preact/compat/"],
       "react/jsx-runtime": ["./node_modules/preact/jsx-runtime"],

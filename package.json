@@ -15,16 +15,21 @@
     "@fastify/middie": "^9.0.2",
     "@fastify/static": "^8.0.1",
     "chart.js": "^4.4.5",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
     "fastify": "^5.0.0",
     "gsap": "^3.12.5",
     "highlight.js": "^11.10.0",
     "highlighter.js": "^1.0.0",
     "howler": "^2.2.4",
+    "lucide-react": "^0.453.0",
     "moment": "^2.30.1",
     "mongodb": "^6.9.0",
     "preact": "^10.24.3",
-    "swiper": "^11.1.14"
+    "swiper": "^11.1.14",
+    "tailwind-merge": "^2.5.4",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
