@@ -82,3 +82,8 @@ export async function untypeText(element: Element, options: untypedTextOptions) 
         if (options.onComplete) options.onComplete();
     }
 }
+
+function isWhitespace(char: string) {
+    const code = char.charCodeAt(0);
+    return code === 32 || (code >= 9 && code <= 13);
+}

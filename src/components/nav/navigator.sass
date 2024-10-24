@@ -5,7 +5,6 @@
 $spacing: 24
 
 #navigator
-    opacity: 0
     height: #{$navHeight + px}
     transform: translateY(-500px) translateX(-50%)
 
@@ -32,6 +31,7 @@ $spacing: 24
             height: #{$avatarSize + px}
 
     .buttons-container
+        opacity: 0
         float: left
         white-space: nowrap
         overflow: hidden
@@ -45,10 +45,8 @@ $spacing: 24
         margin-right: #{$spacing * 1.5 + px}
         margin-top: #{math.div($navHeight, 2) + px}
         transform: translateY(-50%)
-        &:nth-child(1), &:nth-child(3)
-            transform: scaleX(0) translateY(-50%)
         a
-            width: 92px
+            width: 112px
             display: inline-block
             text-align: center
             margin-left: 2px

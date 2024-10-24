@@ -4,19 +4,14 @@ import '../footer/footer.sass';
 import { Icon } from 'astro-icon/components';
 ---
 
-<footer class="h-16 flex flex-col md:flex-row w-full" transition:persist="footer">
+<footer class="md:h-16 flex flex-col md:flex-row w-full">
     <div class="side-container justify-center content-center w-screen md:w-56">
         <p>© {new Date().getFullYear()} Stryxus</p>
     </div>
     <div class="flex-grow flex justify-center content-center">
         <div class="link-container">
-            <a rel="noopener noreferrer nofollow" target="_blank" href="https://x.com/Stryxus" draggable="false">
-                <Icon name="fa/x-twitter-brands-solid" />
-            </a>
-        </div>
-        <div class="link-container">
-            <a rel="noopener noreferrer nofollow" target="_blank" href="https://x.com/Stryxus" draggable="false">
-                <Icon name="fa/discord-brands-solid" />
+            <a rel="noopener noreferrer nofollow" target="_blank" href="https://bsky.app/profile/stryxus.xyz" draggable="false">
+                <Icon name="fa/bluesky-brands-solid" />
             </a>
         </div>
         <div class="link-container">

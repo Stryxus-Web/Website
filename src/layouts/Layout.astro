@@ -60,8 +60,27 @@ import Footer from '../components/footer/footer.astro';
 	import { astroLoad, init } from './layout';
 
 	window.addEventListener('resize', updateMediaQueries);
-	document.addEventListener('DOMContentLoaded', updateMediaQueries);
-	document.addEventListener('astro:after-swap', updateMediaQueries);
+	document.addEventListener('DOMContentLoaded', () => {
+		updateMediaQueries();
+		smoothAllAnchors();
+	});
+	document.addEventListener('astro:after-swap', () => {
+		updateMediaQueries();
+		smoothAllAnchors();
+	});
 	document.addEventListener('astro:page-load', astroLoad);
+
+	function smoothAllAnchors() {
+		document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+			anchor.addEventListener('click', function (e) {
+				e.preventDefault();
+				const href = anchor.getAttribute('href');
+				if (href) {
+					document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+				}
+			});
+		});
+	}
+
 	init();
 </script>

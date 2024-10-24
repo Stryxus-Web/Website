@@ -32,7 +32,7 @@ export default defineConfig({
     serverEntry: 'entry.mjs',
     inlineStylesheets: 'always',
   },
-  output: 'server',
+  output: 'static',
   adapter: node({
     mode: 'middleware'
   }),

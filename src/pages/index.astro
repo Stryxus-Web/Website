@@ -1,57 +1,45 @@
 ---
-export const prerender = true; // Prerender this page.
 import  './index.sass';
 
+import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 
 import Layout from '~/layouts/layout.astro';
 
-import vid_back from '~/assets/videos/home/back.mp4';
-import vid_back_vp9 from '~/assets/videos/home/back.webm';
+import img_background from '~/assets/images/home/background.png';
 ---
 
 <Layout>
-    <video id="home-vid" class="-z-1 object-contain object-bottom h-screen w-5/6 ml-auto mr-auto" preload="auto" muted autoplay loop draggable="false" transition:persist="home-vid">
-        <source src={vid_back} type="video/mp4" />
-        <source src={vid_back_vp9} type="video/webm" />
-    </video>
-    <div id="home-typer" class="-z-5 absolute top-0 left-0 w-screen" transition:persist="home-typer"></div>
-    <h1 id="home-vid-name" class="absolute left-1/2 md:bottom-32 top-64 transform -translate-x-1/2 px-8 py-4 rounded-full" transition:persist="home-vid-name"></h1>
-    <a id="home-vid-icon" class="absolute left-1/2 md:bottom-16 top-96 transform -translate-x-1/2 p-4 rounded-full " href="#home-body-dividing-line" rel="noopener noreferrer nofollow" draggable="false" aria-label="Button to page body" transition:persist="home-vid-icon">
+    <Image id="top-background" class="h-screen" src={img_background} format='avif' quality="mid" alt="Background Image" />
+    <h1 id="my-name" class="absolute left-1/2 md:bottom-32 md:top-64 transform -translate-x-1/2 px-8 py-4 rounded-full"></h1>
+    <a id="scroll-icon" class="absolute left-1/2 md:bottom-16 md:top-96 transform -translate-x-1/2 p-4 rounded-full " href="#a-content" rel="noopener noreferrer nofollow" draggable="false" aria-label="Button to page body">
         <Icon name="fa/chevron-down-solid" />
     </a>
-    <div id="home-body-dividing-line" class="z-2 dividing-line"></div>
-    <div id="home-body" class="page z-1 container mt-8 mb-8 md:mt-32 md:mb-32 ml-auto mr-auto">
-        <div class="grid grid-flow-row grid-cols-none md:gap-24 gap-8">
+    <div id="a-content" class="z-2 dividing-line"></div>
+    <div class="page z-1 pt-8">
+        <ul id="brief">
+            <li><span>The introverty, zen person.</span></li>
+            <li><span>Favours the blade, sniper and pistol.</span></li>
+            <li><span>Prefers stealth, strategy and tactics.</span></li>
+            <li><span>Well spoken but rarely speaking.</span></li>
+            <li><span>Tracking you at all times.</span></li>
+            <li><span>Knows more about you than yourself.</span></li>
+            <li><span>A cyber wizard, making the impossible, possible.</span></li>
+        </ul>
+        <div class="container grid grid-flow-row grid-cols-none gap-8 mt-8 mb-8 ml-auto mr-auto">
             <div class="section w-full">
-                <h1>Brief</h1>
                 <div class="content">
-                    <p>
-                        My journey began in my early teens, when I took up a serious interest in technology in all areas, just after getting my first laptop, studying Windows 7 and the games I played, in-depth, sometimes dedicated weeks to singular aspects.
-                        <br><br>
-                        Working on an Intel Atom laptop, I took on the hobby of learning Java to mod and make server plugins and mods for Minecraft; quickly attaining the entire stack of knowledge required to be ambitious in my work, while sticking to respective engineering principles.
-                        <br><br>
-                        Eventually, I started meeting new people within the Minecraft scene and releasing my work but, it was to end towards the latter years of my teens. I took up C# as my main language, using it ever since, 
-                        becoming proficient with many of its frameworks and tools, from ASP.NET, to WPF, to Unity 5 and many more!
-                        <br><br>
-                        Today, having learnt a vast majority of Windows' inner workings, and much of Linux and macOS throughout the years, as well as a large part of the software engineering industry in general, I can now persue my ambitious projects and give away my knowledge through this website! For free!
-                    </p>
+                    <!-- Put random Art here -->
                 </div>
             </div>
             <div class="section w-full">
-                <h1>Notes</h1>
                 <div class="content">
-
-                </div>
-            </div>
-            <div class="section w-full">
-                <h1>Art</h1>
-                <div class="content">
-
+                    <!-- Put random Notes here -->
                 </div>
             </div>
         </div>
     </div>
+    <div id="typer" class="z-0 absolute top-0 left-0 w-screen"></div>
 </Layout>
 
 <script>

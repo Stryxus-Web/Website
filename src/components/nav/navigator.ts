@@ -1,6 +1,6 @@
 import gsap from 'gsap';
 
-import { transparency, yellow } from "~/lib/variables";
+import { green, transparency, yellow } from "~/lib/variables";
 
 const navigator = document.getElementById('navigator') as HTMLElement;
 
@@ -49,14 +49,14 @@ export function astroLoad() {
         if (window.scrollY > 0) {
             if (!mobileMenuScrolled) {
                 mobileMenuScrolled = true;
-                gsap.to('#mobile-menu', { background: `rgba(${yellow.substring(4, yellow.length - 1)}, ${transparency})`, duration: 0.4, ease: 'power4.out' });
+                gsap.to('#mobile-menu', { background: `rgba(${green.substring(4, green.length - 1)}, ${transparency})`, duration: 0.4, ease: 'power4.out' });
             }
         } else if (mobileMenuScrolled) {
-            gsap.to('#mobile-menu', { background: `rgba(${yellow.substring(4, yellow.length - 1)}, 1)`, duration: 0.4, ease: 'power4.out', onComplete: () => { mobileMenuScrolled = false; } });
+            gsap.to('#mobile-menu', { background: `rgba(${green.substring(4, green.length - 1)}, 1)`, duration: 0.4, ease: 'power4.out', onComplete: () => { mobileMenuScrolled = false; } });
         }
     });
 
-    gsap.to('#navigator', { opacity: 1, transform: 'translateY(0px) translateX(-50%)', duration: 0.4, ease: 'power4.out', onComplete: () => {
-        gsap.to('.buttons-container', { transform: 'scaleX(1) translateY(-50%)', opacity: 1, duration: 0.4, ease: 'power4.out' });
+    gsap.to('#navigator', { transform: 'translateY(0px) translateX(-50%)', duration: 0.4, ease: 'power4.out', onComplete: () => {
+        gsap.to('.buttons-container', { opacity: 1, duration: 0.4, ease: 'power4.out' });
     } });
 }

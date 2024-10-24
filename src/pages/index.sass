@@ -1,46 +1,60 @@
 @import '../lib/_variables'
 
-#home-typer, #home-vid, #home-vid-name, #home-vid-icon, #home-body .section
+#typer, #top-background, #my-name, #scroll-icon, .page .section
     user-select: none
 
-#home-typer
-    font-family: 'Terminus'
+#typer
+    font-family: monospace
     font-size: 12px
     letter-spacing: 1.25px
     color: $green
     line-height: 16px
-    white-space: nowrap
+    white-space: pre
     overflow: hidden
+    opacity: 0.2
         
-#home-vid
+#top-background
     opacity: 0
     margin-top: #{$dividingLineSize * 2 + px}
-    transform: translateX(100vw)
+    transform: translateX(100vw) translateY(5%) scale(90%)
+    aspect-ratio: 16 / 9
 
-#home-vid-name, #home-vid-icon, #home-body .section .content
+#my-name, #scroll-icon, .page .section .content
     background-color: rgba(0, 0, 0, $transparency)
 
-#home-vid-name, #home-vid-icon
+#my-name, #scroll-icon
     opacity: 0
     backdrop-filter: blur($blurAmount)
-    transform: translateY(100vh)
 
-#home-vid-name
-    font-family: 'Raider Crusader Laser'
+#my-name
+    font-family: 'HACKED'
     font-weight: normal
     font-style: normal
     letter-spacing: unset
     font-size: 48px
 
-#home-body
-    background-color: black
+#brief
+    display: flex
+    list-style-type: none
+    padding: 0
+    margin: 0
+    li
+        white-space: nowrap
+        padding: 0 20px
 
 @media (min-width: theme('screens.lg'))
-    #home-vid-name, #home-vid-icon
+    #my-name, #scroll-icon
         top: unset !important
 
 @media (max-width: theme('screens.lg'))
-    #home-typer
+    #typer
         transform: translateY(50px)
-    #home-vid-name, #home-vid-icon
-        bottom: unset !important
+    #my-name
+        bottom: 76px !important
+        border-radius: 12px
+        padding-top: 12px
+        padding-bottom: 12px
+        padding-left: 24px
+        padding-right: 24px
+    #scroll-icon
+        bottom: 18px !important

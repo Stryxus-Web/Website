@@ -7,3 +7,11 @@ declare module '*&imagetools' {
     const out;
     export default out;
 }
+
+declare global {
+    interface Window {
+        particlesInit: (engine: any) => Promise<void>;
+    }
+}
+  
+export {};

@@ -1,10 +1,23 @@
 import gsap from 'gsap';
+import { isBreakpointDownMD } from '~/lib/mediaQueries';
 
 import { typeLines, typeText } from '~/lib/typer';
 
 const bootSequenceLines = [
+    "╔════════════════════════════════════════════════════════════════╗",
+    "║                                                                ║",
+    "║   ███████╗████████╗██████╗ ██╗   ██╗██╗  ██╗██╗   ██╗███████╗  ║",
+    "║   ██╔════╝╚══██╔══╝██╔══██╗╚██╗ ██╔╝╚██╗██╔╝██║   ██║██╔════╝  ║",
+    "║   ███████╗   ██║   ██████╔╝ ╚████╔╝  ╚███╔╝ ██║   ██║███████╗  ║",
+    "║   ╚════██║   ██║   ██╔══██╗  ╚██╔╝   ██╔██╗ ██║   ██║╚════██║  ║",
+    "║   ███████║   ██║   ██║  ██║   ██║   ██╔╝ ██╗╚██████╔╝███████║  ║",
+    "║   ╚══════╝   ╚═╝   ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚══════╝  ║",
+    "║                                                                ║",
+    "║     [STRYXCORE v3.7.2]    [QUANTUM ENCRYPTION ENGAGED]         ║",
+    "║     [NEURAL LINK ACTIVE]  [BUSHIDO PROTOCOL INITIALISING]      ║",
+    "║                                                                ║",
+    "╚════════════════════════════════════════════════════════════════╝",
     '[SYSTEM] Initializing StryxCore v3.7.2...',
-    '[SECURITY] Engaging quantum encryption protocols...',
     '[NETWORK] Establishing neural link to global mesh...',
     '[CORE] Initialising Bushido Protocol...',
     '[BUSHIDO] Directives synchronised with global mesh',
@@ -65,22 +78,55 @@ const bootSequenceLines = [
 ];
 
 export async function astroLoad() {
+    runIntroAnimations();
+    runBrief();
+}
 
-    const homeTyperEl = document.getElementById('home-typer') as Element;
-
-    gsap.to('#home-vid', { transform: 'translateX(0px)', opacity: 1, duration: 0.6, ease: 'power4.out' });
-    gsap.to('#home-vid-name', { transform: 'translateY(0px)  translateX(-50%)', opacity: 1, duration: 0.4, ease: 'power4.out', onComplete: () => {
-        typeText(document.getElementById('home-vid-name') as Element, 'Stryxus', {
-            typeSpeed: 40
+function runIntroAnimations() {
+    const homeTyperEl = document.getElementById('typer') as Element;
+    gsap.to('#top-background', { transform: 'translateX(0px) translateY(5%) scale(90%)', opacity: 1, duration: 0.6, ease: 'power4.out' });
+    gsap.to('#my-name', { transform: 'translateY(0px) translateX(-50%)', opacity: 1, duration: 0.4, ease: 'power4.out', onComplete: () => {
+        typeText(document.getElementById('my-name') as Element, 'Stryxus', {
+            typeSpeed: 80
         });
-        typeLines(homeTyperEl, bootSequenceLines, {
-            typeSpeed: 5,
-            lineSpeed: -1,
-            lineSpeedMin: 0,
-            lineSpeedMax: 350,
-            emulateConsoleScroll: true,
-            emulateConsoleLineAmount: 5,
-        });
+        if (!isBreakpointDownMD.value) {
+            typeLines(homeTyperEl, bootSequenceLines, {
+                typeSpeed: 5,
+                lineSpeed: -1,
+                lineSpeedMin: 0,
+                lineSpeedMax: 350,
+            });
+        }
     } });
-    gsap.to('#home-vid-icon', { transform: 'translateY(0px) translateX(-50%)', opacity: 1, duration: 0.4, ease: 'power4.out' });
+    gsap.to('#scroll-icon', { delay: 1.25, opacity: 1, duration: 0.4, ease: 'power4.out' });
+}
+
+function runBrief() {
+    const list = document.querySelector('#brief');
+    if (list) {
+        const originalItems = [...list.children];
+        const buffer = 3;
+        for (let i = 0; i < buffer; i++) {
+            originalItems.forEach(item => {
+                const clone = item.cloneNode(true);
+                list?.appendChild(clone);
+            });
+        }
+    
+        const totalWidth = list?.scrollWidth;
+        function setupScroll() {
+            if (totalWidth) {
+                gsap.to(list, { x: -totalWidth / buffer, duration: 40, ease: "none", repeat: -1,
+                    modifiers: { x: gsap.utils.unitize(x => parseFloat(x) % (totalWidth / 3)) }
+                });
+            }
+        }
+    
+        setupScroll();
+        window.addEventListener('resize', () => {
+            gsap.killTweensOf(list);
+            gsap.set(list, { x: 0 });
+            setupScroll();
+        });
+    }
 }

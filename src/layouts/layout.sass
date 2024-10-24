@@ -4,6 +4,9 @@
 @import '../lib/_fonts'
 @import '../lib/_elements'
 
+.page
+    backdrop-filter: blur($blurAmount)
+
 .dividing-line
     clip-path: polygon(0% 0%, calc(60% - #{$dividingLineSize + px}) 0%, calc(60% + #{$dividingLineSize + px}) calc(100% - #{$dividingLineSize + px}), 100% calc(100% - #{$dividingLineSize + px}), 100% 100%, calc(60% + #{$dividingLineSize + px}) 100%, calc(60% - #{$dividingLineSize + px}) #{$dividingLineSize + px}, 0% #{$dividingLineSize + px})
     background-color: $green
