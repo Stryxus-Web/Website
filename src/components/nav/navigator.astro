@@ -28,7 +28,7 @@ const navItems = [
             ))}
         </div>
         <a class={'avatar-container' + (currentPath === '/' ? ' active' : '')} rel="noopener noreferrer nofollow" href='/' draggable="false" aria-label="Home Nav Button">
-            <Image src={img_avatar} alt='Avatar' format='avif' quality="high" draggable="false" />
+            <Image src={img_avatar} alt='Avatar' format='avif' quality="low" draggable="false" />
         </a>
         <div class="buttons-container">
             {navItems.slice(4, 7).map((item) => (

@@ -19,29 +19,16 @@ import Footer from '../components/footer/footer.astro';
 		<meta name="theme-color" content={yellow}>
 		<SEO
 			title="Stryxus"
-			description="Stryxus' Personal Website."
+			description="Welcome to Stryxus' domain."
 			openGraph={{
 				basic: {
-					title: "Stryxus' Personal Website.",
+					title: "Stryxus' Domain",
 					type: "website",
 					image: "https://stryxus.xyz/og.png",
 				},
 			}}
-			twitter={{
-				creator: "@Stryxus",
-			}}
 			extend={{
-				// extending the default link tags
 				link: [{ rel: "icon", href: "/favicon.png" }],
-				// extending the default meta tags
-				meta: [
-					{
-						name: "twitter:image",
-						content: "https://stryxus.xyz/og.png",
-					},
-					{ name: "twitter:title", content: "Stryxus" },
-					{ name: "twitter:description", content: "Stryxus' Personal Website." },
-				],
 			}}
 		/>
 		<ClientRouter transition:animate={fade({ duration: '0.4s' })} />
